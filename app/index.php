@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
+<head> 
    <meta charset="utf-8">
    <title>体重管理アプリ</title>
    <h1>目標体重</h1>

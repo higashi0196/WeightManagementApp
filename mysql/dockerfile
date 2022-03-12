@@ -1,0 +1,8 @@
+FROM mysql:5.7
+
+ENV MYSQL_ROOT_PASSWORD todolist
+ENV MYSQL_DATABASE higashi
+ENV MYSQL_USER azuma
+ENV MYSQL_PASSWORD kanriapp
+
+COPY ./config/my.conf /etc/mysql/conf.d/my.cnf
