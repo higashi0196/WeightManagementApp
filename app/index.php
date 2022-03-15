@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php
+echo "golf" . PHP_EOL;
+?>
+
+<!-- <!DOCTYPE html>
 <html lang="ja">
 <head> 
    <meta charset="utf-8">
@@ -10,4 +14,4 @@
    <h1>継続するToDoリスト</h1>
    <h1>明日への一言</h1>
 </body>
-</html>
+</html> -->
