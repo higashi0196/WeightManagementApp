@@ -1,8 +1,8 @@
 <?php
-echo "golf" . PHP_EOL;
+echo "アプリ" . PHP_EOL;
 ?>
 
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head> 
    <meta charset="utf-8">
@@ -14,4 +14,4 @@ echo "golf" . PHP_EOL;
    <h1>継続するToDoリスト</h1>
    <h1>明日への一言</h1>
 </body>
-</html> -->
+</html> 

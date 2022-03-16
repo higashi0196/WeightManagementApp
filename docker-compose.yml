@@ -2,19 +2,20 @@ version: "3"
 
 services:
   web:
-    image: nginx:1.18
+    build: ./docker/php
+    image: nginx:1.15.6
     ports:
-      - "8080:80"
+      - "8000:80"
     depends_on:
-      - db
       - app
-    volumes:
+      # - db
+    volumes: 
       - ./docker/web/default.conf:/etc/nginx/conf.d/default.conf
       - .:/var/www/html
 
   # phpコンテナ
   app:
-    build: ./php
+    build: ./docker/php
     image: taijuapp_app
     volumes:
       - .:/var/www/html
@@ -33,9 +34,9 @@ services:
       MYSQL_PASSWORD: azuma
       MYSQL_ROOT_PASSWORD: kanriapp
       TZ: "Asia/Tokyo"
-      # volumes:
-      #  - ./var/lib/mysql
-      # – ./mysql:/var/lib/mysql
+    volumes:
+       - db-volume:/var/lib/mysql
+      #  - ./mysql:/var/lib/mysql
 
-# volumes:
-#   db-volume:
+volumes:
+  db-volume:
