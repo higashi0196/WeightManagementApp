@@ -28,10 +28,10 @@ services:
     ports:
       - "3310:3310"
     environment:
-      MYSQL_DATABASE: todolist
+      MYSQL_DATABASE: todoapp
       MYSQL_USER: higashi
       MYSQL_PASSWORD: higashi
-      MYSQL_ROOT_PASSWORD: app
+      MYSQL_ROOT_PASSWORD: max
       TZ: "Asia/Tokyo"
     volumes:
-       - db-volume:/var/lib/mysql
+       - :/var/lib/mysql
