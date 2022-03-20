@@ -24,14 +24,14 @@ services:
 
   # mysqlコンテナ
   db:
-    image: mysql:5.7
+    image: mysql:5.7.37
     ports:
-      - "3310:3310"
+      - "3399:3399"
     environment:
       MYSQL_DATABASE: todoapp
       MYSQL_USER: higashi
       MYSQL_PASSWORD: higashi
-      MYSQL_ROOT_PASSWORD: max
+      MYSQL_ROOT_PASSWORD: 
       TZ: "Asia/Tokyo"
     volumes:
        - :/var/lib/mysql
