@@ -1,6 +1,7 @@
 version: "3"
 
 services:
+# appコンテナ
   web:
     build: ./docker/dockerfile
     image: nginx:1.15.6
@@ -13,7 +14,7 @@ services:
       - ./docker/web/default.conf:/etc/nginx/conf.d/default.conf
       - .:/var/www/html
 
-  # phpコンテナ
+# phpコンテナ
   app:
     build: ./docker/dockerfile
     image: taijuapp_app
@@ -22,16 +23,19 @@ services:
     volumes:
       - .:/var/www/html
 
-  # mysqlコンテナ
+# mysqlコンテナ
   db:
-    image: mysql:5.7.37
+    image:  mysql:5.7
+    platform: linux/amd64
     ports:
-      - "3399:3399"
+      - "3306:3306"
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     environment:
       MYSQL_DATABASE: todoapp
       MYSQL_USER: higashi
       MYSQL_PASSWORD: higashi
-      MYSQL_ROOT_PASSWORD: 
+      MYSQL_ROOT_PASSWORD: Nakanaka3535!
       TZ: "Asia/Tokyo"
     volumes:
        - :/var/lib/mysql
+       - /mysql/my.cnf:/etc/mysql/conf.d/my.cnf
