@@ -1,5 +1,6 @@
 <?php
 echo "アプリ" . PHP_EOL;
+echo "アプリ" . PHP_EOL;
 ?>
 
 <!DOCTYPE html>
