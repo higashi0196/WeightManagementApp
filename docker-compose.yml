@@ -28,7 +28,7 @@ services:
     image:  mysql:5.7
     platform: linux/amd64
     ports:
-      - "3306:3306"
+      - "3303:3303"
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     environment:
       MYSQL_DATABASE: todoapp
@@ -37,5 +37,8 @@ services:
       MYSQL_ROOT_PASSWORD: Nakanaka3535!
       TZ: "Asia/Tokyo"
     volumes:
-      #  - :/var/lib/mysql
-       - /mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    - .:/var/www/html
+    # - mysql-db:/var/lib/mysql-db
+    # - /var/lib/docker/volumes/mysql-db/_data
+    # - :/var/lib/mysql
+    
