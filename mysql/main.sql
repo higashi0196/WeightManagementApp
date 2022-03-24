@@ -1,0 +1,7 @@
+CREATE TABLE todos (
+   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   title VARCHAR(50), 
+   content VARCHAR(255)
+   );
+
+SELECT * FROM todos;

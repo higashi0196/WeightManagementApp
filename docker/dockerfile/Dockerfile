@@ -15,4 +15,4 @@ WORKDIR /var/www/html
 
 COPY ./app /var/www/html/
 
-EXPOSE 3306
+EXPOSE 3303

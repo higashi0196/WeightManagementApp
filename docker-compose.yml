@@ -32,13 +32,15 @@ services:
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     environment:
       MYSQL_DATABASE: todoapp
-      MYSQL_USER: higashi
+      MYSQL_USER: higashi root
       MYSQL_PASSWORD: higashi
       MYSQL_ROOT_PASSWORD: Nakanaka3535!
       TZ: "Asia/Tokyo"
     volumes:
     - .:/var/www/html
+    - .:/var/lib/mysql
     # - mysql-db:/var/lib/mysql-db
     # - /var/lib/docker/volumes/mysql-db/_data
-    # - :/var/lib/mysql
+  # [mysqld]
+  # lower_case_table_names=1
     
