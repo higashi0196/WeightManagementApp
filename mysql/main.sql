@@ -8,6 +8,6 @@ CREATE TABLE todos (
    );
 
 INSERT INTO todos (title, content, complete, created_at, upsated_at) VALUES ('sample', 'tests',0,now(),now());
-INSERT INTO todos (title, content, complete, created_at, upsated_at) VALUES ('do', 'done',0,now(),now());
+INSERT INTO todos (title, content, complete, created_at, upsated_at) VALUES ('do', 'done',1,now(),now());
 
 SELECT * FROM todos;

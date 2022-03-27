@@ -26,23 +26,31 @@ $lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head> 
    <meta charset="utf-8">
    <title>体重管理アプリ</title>
-   <link rel="stylesheet" href="css/styles.css">
+   <link rel="stylesheet" href="public/css/styles.css">
 </head>
 <body>
    <header>
       <h1>目標体重</h1>
-      <p>a</p>
    </header>
    <main>
       <h2>今日のToDoリスト</h2>
-         <ul>
-            <?php foreach ($lists as $todo): ?>
-            <li>
-               <input type="checkbox">
-            </li>
-            <?php endforeach; ?>
-               
-         </ul>
+         <table>
+            <thead>
+               <tr>
+                  <th>タイトル</th>
+                  <th>目標</th>
+                  <input type="radio">
+               </tr>
+            </thead>
+            <tbody>
+               <?php foreach ($lists as $todo): ?>
+                  <tr>
+                     <td><?php echo $todo['title']?></td>
+                     <td><?php echo $todo['content']?></td>
+                  </tr>
+               <?php endforeach; ?>
+            </tbody>
+         </table>
       <h2>継続するToDoリスト</h2>
       <h2>明日への一言</h2>
    </main>
