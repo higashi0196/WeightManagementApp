@@ -1,23 +1,20 @@
 <?php
-define('DSN', 'mysql:host=db;dbname=todoapp;charset=utf8mb4');
-define('DB_USER', 'root');
-define('DB_PASS', 'Nakanaka3535!');
-define('DB_DATABASE', 'todoapp');
+
+require_once('config.php');
 
 try {
-   $pdo = new PDO(
-     DSN,
-     DB_USER,
-     DB_PASS
-   );
+   $pdo = new PDO(DSN, DB_USER, DB_PASS);
    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   // return $pdo;
 } catch (PDOException $e) {
-      echo $e->getMessage();
-      exit;
+   echo $e->getMessage();
+   exit;
 }
 
 $stmt = $pdo->query("SELECT * FROM todos ORDER BY id DESC");
 $lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// $lists = array();
 
 ?>
 
@@ -37,18 +34,24 @@ $lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
          <table>
             <thead>
                <tr>
-                  <th>タイトル</th>
-                  <th>目標</th>
-                  <input type="radio">
+                  <th scope="col">タイトル</th>
+                  <th scope="col">目標</th>
                </tr>
             </thead>
             <tbody>
-               <?php foreach ($lists as $todo): ?>
-                  <tr>
-                     <td><?php echo $todo['title']?></td>
-                     <td><?php echo $todo['content']?></td>
-                  </tr>
-               <?php endforeach; ?>
+               <?php if($lists): ?>
+                  <?php foreach ($lists as $todo): ?>
+                     <tr>
+                        <!-- <td><input type="checkbox" /></td> -->
+                        <td><?php echo $todo['title']?></td>
+                        <td><?php echo $todo['content']?></td>
+                        <td><a href="" class="editbtn">編集</a></td>
+                        <td><a href="" class="deletebtn">削除</a></td>
+                     </tr>
+                  <?php endforeach; ?>
+               <?php else : ?>
+                  <td>Todoなし</td>
+               <? endif; ?>
             </tbody>
          </table>
       <h2>継続するToDoリスト</h2>
