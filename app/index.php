@@ -1,20 +1,10 @@
 <?php
 
-require_once('config.php');
+require_once('functions.php');
 
-try {
-   $pdo = new PDO(DSN, DB_USER, DB_PASS);
-   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   // return $pdo;
-} catch (PDOException $e) {
-   echo $e->getMessage();
-   exit;
-}
+$pdo = pdo_connect();
 
-$stmt = $pdo->query("SELECT * FROM todos ORDER BY id DESC");
-$lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// $lists = array();
+$lists = takelists($pdo);
 
 ?>
 
@@ -23,7 +13,7 @@ $lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head> 
    <meta charset="utf-8">
    <title>体重管理アプリ</title>
-   <link rel="stylesheet" href="public/css/styles.css">
+   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
    <header>
@@ -43,8 +33,8 @@ $lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
                   <?php foreach ($lists as $todo): ?>
                      <tr>
                         <!-- <td><input type="checkbox" /></td> -->
-                        <td><?php echo $todo['title']?></td>
-                        <td><?php echo $todo['content']?></td>
+                        <td><? echo $todo->title; ?></td>
+                        <td><? echo $todo->content; ?></td>
                         <td><a href="" class="editbtn">編集</a></td>
                         <td><a href="" class="deletebtn">削除</a></td>
                      </tr>

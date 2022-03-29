@@ -5,4 +5,6 @@ define('DB_USER', 'root');
 define('DB_PASS', 'Nakanaka3535!');
 define('DB_DATABASE', 'todoapp');
 
+require_once('functions.php');
+
 ?>
