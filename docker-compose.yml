@@ -18,6 +18,7 @@ services:
   app:
     build: ./docker/dockerfile
     image: taijuapp_app
+    container_name: taijuapp-db-1
     depends_on:
       - db
     volumes:
@@ -30,13 +31,17 @@ services:
     platform: linux/amd64
     ports:
       - "3303:3303"
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    command:
+    - --character-set-server=utf8mb4 
+    - --collation-server=utf8mb4_unicode_ci 
+    # - --innodb-use-native-aio=0
     environment:
       MYSQL_DATABASE: todoapp
-      MYSQL_USER: higashi root
+      MYSQL_USER: root
       MYSQL_PASSWORD: higashi
       MYSQL_ROOT_PASSWORD: Nakanaka3535!
       TZ: "Asia/Tokyo"
+    restart: always
     volumes:
     - .:/var/www/html
     - .:/var/lib/mysql
