@@ -1,6 +1,6 @@
 <?php 
 
-function pdo_connect() {
+function pdo_connect($fff) {
    try {
          $pdo = new PDO('DSN', 'DB_USER', 'DB_PASS',
          [
@@ -9,7 +9,7 @@ function pdo_connect() {
          PDO::ATTR_EMULATE_PREPARES => false,
          ]
       );
-     return $pdo;
+   //   return $pdo;
    } catch (PDOException $e) {
       echo $e->getMessage();
       exit;
