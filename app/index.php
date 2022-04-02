@@ -13,10 +13,6 @@ $stmt = $pdo->query("SELECT * FROM todos ORDER BY id DESC");
 $lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // var_dump($lists);
 
-// $pdo = pdo_connect();
-// $lists = takelists($pdo);
-
-// return $lists;
 ?>
 
 <!DOCTYPE html>

@@ -26,7 +26,7 @@ services:
       MYSQL_DATABASE: todolists
       MYSQL_USER: hiagahi
       MYSQL_PASSWORD: higashi
-      MYSQL_ROOT_PASSWORD: Nanahigashi10!
+      MYSQL_ROOT_PASSWORD: Higashieast10!
     ports:
       - "3303:3303"
     volumes:
