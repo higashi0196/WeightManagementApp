@@ -1,7 +1,12 @@
-th {
-   padding-left: 50px;
+table th {
+   padding-left:50px;
+   color: red;
 }
 
 td {
+   padding-left: 50px;
+}
+
+h2 {
    padding-left: 50px;
 }
