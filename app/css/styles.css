@@ -1,11 +1,14 @@
-table th {
-   padding-left:50px;
+th {
+   padding-left:15px;
 }
 
 td {
-   padding-left: 50px;
+   padding-left: 15px;
 }
 
+h1 {
+   margin-left: 15px;
+}
 h2 {
-   padding-left: 50px;
+   margin-left: 15px;
 }
