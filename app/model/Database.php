@@ -32,4 +32,15 @@ class Database
       }
       return $lists;
    }
+
+   // public static function dbAll(){
+   //    $pdo = new PDO(DSN, USER, PASSWORD);
+   //    $stmt = $pdo->query("SELECT * FROM todos ORDER BY id DESC");
+   //    if($stmt) {
+   //       $lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
+   //    } else {
+   //       $lists = array();
+   //    }
+   //    return $lists;
+   // }
 }

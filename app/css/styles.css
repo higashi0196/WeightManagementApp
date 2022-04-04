@@ -1,14 +1,29 @@
+/* index.php メインページ */
 th {
-   padding-left:15px;
+   padding-left:30px;
+   /* color: red; */
 }
 
 td {
-   padding-left: 15px;
+   padding-left: 30px;
 }
 
 h1 {
-   margin-left: 15px;
+   margin-left: 30px;
 }
 h2 {
-   margin-left: 15px;
+   margin-left: 30px;
 }
+.ishigaki {
+   font-size: 20px;
+}
+/* メインページ　終わり */
+
+/* create.phpページ */
+.new-create {
+   font-size: 20px;
+}
+.shinki-btn {
+   margin-left: 10px;
+}
+/* create.phpページ　終わり */

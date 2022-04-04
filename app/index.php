@@ -3,7 +3,8 @@
 require_once('config.php');
 
 $pdo = Database::get();
-$lists = Database::dbconnect();
+$getller = new Todocontroller;
+$lists = $getller->index();
 
 ?>
 
@@ -12,16 +13,17 @@ $lists = Database::dbconnect();
 <head> 
    <meta charset="utf-8">
    <title>体重管理アプリ</title>
-   <link rel="stylesheet" href="css/styles.css">
+   <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
    <main>
       <header>
          <h1>目標体重</h1>
       </header>
+      <form action="./create.php" method="POST">
          <div>
             <a>今日のToDoリスト</a>
-            <a href="create.php">新規登録</button></a>
+            <a href="create.php" class="ishigaki">新規登録</a>  
          </div>
             <table>
                <thead>
@@ -48,6 +50,7 @@ $lists = Database::dbconnect();
             </table>
          <a>継続するToDoリスト</a>
          <h2>明日への一言</h2>
+      <form>
    </main>
 </body>
 </html> 
