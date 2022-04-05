@@ -20,11 +20,11 @@ $lists = $getller->index();
       <header>
          <h1>目標体重</h1>
       </header>
-      <form action="./create.php" method="POST">
-         <div>
-            <a>今日のToDoリスト</a>
-            <a href="create.php" class="ishigaki">新規登録</a>  
-         </div>
+      <div>
+         <a>今日のToDoリスト</a>
+         <a href="create.php" class="ishigaki">新規登録</a>  
+      </div>
+         <form action="./create.php" method="POST">
             <table>
                <thead>
                   <tr>
@@ -48,9 +48,9 @@ $lists = $getller->index();
                   <? endif; ?>
                </tbody>
             </table>
-         <a>継続するToDoリスト</a>
-         <h2>明日への一言</h2>
-      <form>
+         <form>
+      <a>継続するToDoリスト</a>
+      <h2>明日への一言</h2>
    </main>
 </body>
 </html> 

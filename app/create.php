@@ -1,8 +1,10 @@
 <?php
 
-if ($SEV['REQUEST_METHOD'] === 'post') {
-   echo 'HELLO';
-   exit;
+require_once('config.php');
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+   $getller = new Todocontroller;
+   $getller->create();
 }
 
 ?>
@@ -16,7 +18,7 @@ if ($SEV['REQUEST_METHOD'] === 'post') {
 </head>
 <body>
    <a class="new-create">新規登録</a>
-   <form method="post" action="index.php">
+   <form method="POST" action="./create.php">
       <div>
          <div>タイトル</div>
          <input type="text" name="title"></input>
