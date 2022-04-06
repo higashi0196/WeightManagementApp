@@ -13,6 +13,17 @@ class Todocontroller {
       $todo = new Database;
       $todo->setTitle($title);
       $todo->setContent($content);
-      $todo->save();
-      }
+      $result = $todo->save();
+
+      header("Location: index.php");
+   }
+
+   public function update() {
+      $id = (filter_get(INPUT_GET, 'id'));
+
+      $todo = new Database;
+      $todo->setContent($id);
+      $result = $todo->save();
+   }
+
 }

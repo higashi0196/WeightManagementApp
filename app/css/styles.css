@@ -1,7 +1,6 @@
 /* index.php メインページ */
 th {
    padding-left:30px;
-   /* color: red; */
 }
 
 td {
@@ -17,7 +16,10 @@ h2 {
 .ishigaki {
    font-size: 20px;
 }
-/* メインページ　終わり */
+.miyako{
+   margin-left: 30px;
+}
+/* メインページ 終わり */
 
 /* create.phpページ */
 .new-create {
@@ -26,4 +28,4 @@ h2 {
 .shinki-btn {
    margin-left: 10px;
 }
-/* create.phpページ　終わり */
+/* create.phpページ 終わり */

@@ -21,7 +21,7 @@ $lists = $getller->index();
          <h1>目標体重</h1>
       </header>
       <div>
-         <a>今日のToDoリスト</a>
+         <a class="miyako">今日のToDoリスト</a>
          <a href="create.php" class="ishigaki">新規登録</a>  
       </div>
          <form action="./create.php" method="POST">
@@ -39,7 +39,7 @@ $lists = $getller->index();
                            <!-- <td><input type="checkbox" /></td> -->
                            <td><? echo $todo['title']; ?></td>
                            <td><? echo $todo['content']; ?></td>
-                           <td><a href="" class="editbtn">編集</a></td>
+                           <td><a href="update.php" class="editbtn">編集</a></td>
                            <td><a href="" class="deletebtn">削除</a></td>
                         </tr>
                      <?php endforeach; ?>
@@ -49,7 +49,7 @@ $lists = $getller->index();
                </tbody>
             </table>
          <form>
-      <a>継続するToDoリスト</a>
+      <a class="miyako">継続するToDoリスト</a>
       <h2>明日への一言</h2>
    </main>
 </body>

@@ -1,9 +1,9 @@
 <?php
 class Database
 {
-   public static  $osaka;
+   private static  $osaka;
    
-   public static function get(){
+   public static function get() {
       try {
          if (!isset(self::$osaka)) {
            self::$osaka = new PDO(
@@ -24,7 +24,7 @@ class Database
   
    public static function dbconnect(){
       $pdo = new PDO(DSN, USER, PASSWORD);
-      $stmt = $pdo->query('SELECT * FROM todos;');
+      $stmt = $pdo->query('SELECT * FROM todos');
       if($stmt) {
          $lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
       } else {
@@ -37,7 +37,7 @@ class Database
 
    public static function getAll(){
       $pdo = new PDO(DSN, USER, PASSWORD);
-      $stmt = $pdo->query('SELECT * FROM todos;');
+      $stmt = $pdo->query('SELECT * FROM todos');
       if($stmt) {
          $lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
       } else {
@@ -62,14 +62,21 @@ class Database
       $this->content = $content;
    }
 
+   public function takeid() {
+      return $this->id;
+   }
+
+   public function setid($id) {
+      $this->id = $id;
+   }
+
    public function save() {
-      $query = sprintf("INSERT INTO `todos` (`title`,`content`,`complete` `created_at`,`updated_at`) VALUES ('%s','%s', 1,NOW(),NOW())",$this->title,$this->content);
+      $query = sprintf("INSERT INTO `todos` (`title`, `content`,  `complete`, `created_at`, `updated_at`) VALUES ('%s', '%s',  0, NOW(), NOW())",$this->title,$this->content);
 
-      // $pdo = new PDO(DSN, USER, PASSWORD);
-      // $result = $pdo->query();
+      $pdo = new PDO(DSN, USER, PASSWORD);
+      $result = $pdo->query($query);
 
-      var_dump($query);
-      exit;
+      return $result;
    }
 
 }
