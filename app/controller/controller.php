@@ -1,4 +1,7 @@
 <?php
+
+// controllerフォルダ todocontroller
+
 class Todocontroller {
 
    public function index() {
@@ -18,12 +21,15 @@ class Todocontroller {
       header("Location: index.php");
    }
 
-   public function update() {
-      $id = (filter_get(INPUT_GET, 'id'));
+   public function getid() {
+      $todo_id = (filter_input(INPUT_GET, 'id'));
 
-      $todo = new Database;
-      $todo->setContent($id);
-      $result = $todo->save();
+      $todo = database::findById($todo_id);
+      return $todo; 
+
+      // $todo = new Database;
+      // $todo->setContent($id);
+      // $result = $todo->save();
    }
 
 }

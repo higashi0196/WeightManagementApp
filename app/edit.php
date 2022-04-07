@@ -2,6 +2,12 @@
 
 require_once('config.php');
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+   $getller = new Todocontroller;
+   $getller->edit();
+   exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -12,18 +18,17 @@ require_once('config.php');
    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-   <a class="">編集画面</a>
-   <form method="POST" action="./update.php">
+   <a class="edit-feeld">編集画面</a>
+   <form method="POST" action="./edit.php">
       <div>
-         <div>タイトル</div>
+         <p class="taketomi">タイトル</p>
          <input type="text" name="title"></input>
       </div>
       <div>
-         <div>目標</div>
+         <p class="kohama">目標</p>
          <textarea name="content"></textarea>
       </div>
-         <button type="submit" class="update-btn">更新</button>
-      <div>
+         <button type="submit" class="edit-btn">更新</button>
          <a href="index.php">戻る</a>
       </div>
    </form>

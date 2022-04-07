@@ -22,17 +22,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    <a class="new-create">新規登録</a>
    <form method="POST" action="./create.php">
       <div>
-         <div>タイトル</div>
+         <p class="taketomi">タイトル</p>
          <input type="text" name="title"></input>
       </div>
       <div>
-         <div>目標</div>
+         <p class="kohama">目標</p>
          <textarea name="content"></textarea>
       </div>
          <button type="submit" class="shinki-btn">登録</button>
-      <div>
          <a href="index.php">戻る</a>
       </div>
-      </form>
+   </form>
 </body>
 </html>
