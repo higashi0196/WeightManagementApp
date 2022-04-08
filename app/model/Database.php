@@ -92,4 +92,18 @@ class Database
       return $result;
    }
 
+   public function update() {
+      try {
+         $query = sprintf("UPDATE `todos` SET `title` = '%s', `created_at` = '%s', `updated_at` = '%s'", $this->title,$this->content);
+         date("Y-m-d G-i-s");
+
+         $pdo = new PDO(DSN, USER, PASSWORD);
+         $result = $pdo->query($query);
+
+      }  catch (PDOException $e) {
+         // エラーログ欄
+      }
+      return $result;
+   }
+
 }

@@ -10,6 +10,11 @@ class Todocontroller {
    }
 
    public function create() {
+
+      // $data = array(
+      // $title = (filter_input(INPUT_POST, 'title')),
+      // $content = (filter_input(INPUT_POST, 'content')),
+      // );
       $title = (filter_input(INPUT_POST, 'title'));
       $content = (filter_input(INPUT_POST, 'content'));
 
@@ -21,15 +26,19 @@ class Todocontroller {
       header("Location: index.php");
    }
 
-   public function getid() {
+   public function edit() {
       $todo_id = (filter_input(INPUT_GET, 'id'));
+      $title = (filter_input(INPUT_POST, 'title'));
+      $content = (filter_input(INPUT_POST, 'content'));
 
-      $todo = database::findById($todo_id);
+      $todo = database::findId($todo_id);
       return $todo; 
 
-      // $todo = new Database;
-      // $todo->setContent($id);
-      // $result = $todo->save();
+      $todo = new Database;
+      $todo->setTitle($title);
+      $todo->setContent($content);
+      $todo->setid($id);
+      $result = $todo->update();
    }
 
 }

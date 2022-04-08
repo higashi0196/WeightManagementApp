@@ -8,6 +8,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    exit;
 }
 
+$title = $todo['title'];
+$content = $todo['content'];
+
+if($_SERVER['REQUEST_METHOD'] === 'GET') {
+   if(isset($_GET['title'])) {
+      $title = $_GET['title'];
+   }
+
+   if(isset($_GET['content'])) {
+      $content = $_GET['content'];
+   }
+}
+
 ?>
 
 <!DOCTYPE html>
