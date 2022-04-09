@@ -94,8 +94,8 @@ class Database
 
    public function update() {
       try {
-         $query = sprintf("UPDATE `todos` SET `title` = '%s', `created_at` = '%s', `updated_at` = '%s'", $this->title,$this->content);
-         date("Y-m-d G-i-s");
+         $query = sprintf("UPDATE `todos` SET `title` = '%s', `complete`, `updated_at` = '%s' WHERE id = %s", $this->title,$this->content);
+         date("Y-m-d G:i:s");
 
          $pdo = new PDO(DSN, USER, PASSWORD);
          $result = $pdo->query($query);

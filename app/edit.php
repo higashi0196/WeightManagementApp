@@ -8,10 +8,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    exit;
 }
 
-$title = $todo['title'];
-$content = $todo['content'];
+// $title = $todo['title'];
+// $content = $todo['content'];
+// $todo_id = $todo['todo_id'];
+
+$title = '';
+$content = '';
+$todo_id = '';
 
 if($_SERVER['REQUEST_METHOD'] === 'GET') {
+   if(isset($_GET['todo_id'])) {
+      $todo_id = $_GET['todo_id'];
+   }
+
    if(isset($_GET['title'])) {
       $title = $_GET['title'];
    }
@@ -41,6 +50,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
          <p class="kohama">目標</p>
          <textarea name="content"></textarea>
       </div>
+         <input type="hidden" name="todo_id" value="<?php echo $todo_id; ?>"></input>
          <button type="submit" class="edit-btn">更新</button>
          <a href="index.php">戻る</a>
       </div>
