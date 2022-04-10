@@ -23,6 +23,10 @@ class Todocontroller {
    }
 
    public function edit() {
+
+      $title = '';
+      $content = '';
+      $todo_id = '';
       
       $data = array(
          $todo_id = (filter_input(INPUT_POST, 'todo_id')),
@@ -30,11 +34,41 @@ class Todocontroller {
          $content = (filter_input(INPUT_POST, 'content')),
       );
       
-      var_dump($data);
-      exit;
+      // $param = array();
+      // if($_SERVER['REQUEST_METHOD'] === 'GET') {
+      //    if(isset($_GET['todo_id'])) {
+      //       $todo_id = $_GET['todo_id'];
+      //    }
+      
+      //    if(isset($_GET['title'])) {
+      //       $title = $_GET['title'];
+      //    }
+      
+      //    if(isset($_GET['content'])) {
+      //       $content = $_GET['content'];
+      //    }
+      // }
+      $param = array();
+      if($_SERVER['REQUEST_METHOD'] === 'GET') {
+         if(isset($_GET['todo_id'])) {
+            $todo_id = $_GET['todo_id'];
+         }
+      
+         if(isset($_GET['title'])) {
+            $param['title'] = $_GET['title'];
+         }
+      
+         if(isset($_GET['content'])) {
+            $$param['content']  = $_GET['content'];
+         }
+      }
 
       $todo = Database::findId($todo_id);
-      return $todo; 
+      $data = array(
+         "todo" => $todo,
+         "param" => $param,
+      );
+      return $data; 
 
       $todo = new Database;
       $todo->setTitle($title);

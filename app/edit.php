@@ -8,27 +8,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    exit;
 }
 
-// $title = $todo['title'];
-// $content = $todo['content'];
-// $todo_id = $todo['todo_id'];
+$getller = new Todocontroller;
+$data =  $getller->edit();
+$todo = $data['todo'];
+$param = $data['param'];
 
 $title = '';
 $content = '';
 $todo_id = '';
 
-if($_SERVER['REQUEST_METHOD'] === 'GET') {
-   if(isset($_GET['todo_id'])) {
-      $todo_id = $_GET['todo_id'];
-   }
-
-   if(isset($_GET['title'])) {
-      $title = $_GET['title'];
-   }
-
-   if(isset($_GET['content'])) {
-      $content = $_GET['content'];
-   }
-}
 
 ?>
 
@@ -41,16 +29,17 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
 </head>
 <body>
    <a class="edit-feeld">編集画面</a>
-   <form method="POST" action="./edit.php">
+   <form method="POST" action="./index.php">
       <div>
          <p class="taketomi">タイトル</p>
-         <input type="text" name="title"></input>
+         <input type="text" name="title" value="<?php echo $todo['title']; ?>">
       </div>
       <div>
          <p class="kohama">目標</p>
-         <textarea name="content"></textarea>
+         <!-- <input name="content" value="<?php echo $todo['content']; ?>"> -->
+         <textarea name="content"><?php echo $todo['content']; ?></textarea>
       </div>
-         <input type="hidden" name="todo_id" value="<?php echo $todo_id; ?>"></input>
+         <input type="hidden" name="todo_id" value="<?php echo $todo['id']; ?>">
          <button type="submit" class="edit-btn">更新</button>
          <a href="index.php">戻る</a>
       </div>
