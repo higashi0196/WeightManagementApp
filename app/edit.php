@@ -3,8 +3,8 @@
 require_once('config.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-   $getller = new Todocontroller;
-   $getller->edit();
+   $getller = new Todocontroller();
+   $getller->update();
    exit;
 }
 
@@ -12,11 +12,6 @@ $getller = new Todocontroller;
 $data =  $getller->edit();
 $todo = $data['todo'];
 $param = $data['param'];
-
-$title = '';
-$content = '';
-$todo_id = '';
-
 
 ?>
 
@@ -36,7 +31,6 @@ $todo_id = '';
       </div>
       <div>
          <p class="kohama">目標</p>
-         <!-- <input name="content" value="<?php echo $todo['content']; ?>"> -->
          <textarea name="content"><?php echo $todo['content']; ?></textarea>
       </div>
          <input type="hidden" name="todo_id" value="<?php echo $todo['id']; ?>">

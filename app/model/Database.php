@@ -5,6 +5,10 @@
 class Database
 {
 
+   public $title;
+   public $content;
+   public $id;
+
    public function takeTitle() {
       return $this->title;
    }
@@ -21,11 +25,11 @@ class Database
       $this->content = $content;
    }
 
-   public function takeid() {
+   public function takeId() {
       return $this->id;
    }
 
-   public function setid($id) {
+   public function setId($id) {
       $this->id = $id;
    }
 
@@ -94,12 +98,10 @@ class Database
 
    public function update() {
       try {
-         $query = sprintf("UPDATE `todos` SET `title` = '%s', `complete`, `updated_at` = '%s' WHERE id = %s", $this->title,$this->content);
-         date("Y-m-d G:i:s");
-
+         $query = sprintf("UPDATE `todos` SET `title` = '%s', `content` = '%s', `complete`, `updated_at` = '%s' WHERE todo_id = %s", $this->title,$this->content,date("Y-m-d G:i:s"),$this->id
+      );
          $pdo = new PDO(DSN, USER, PASSWORD);
          $result = $pdo->query($query);
-
       }  catch (PDOException $e) {
          // エラーログ欄
       }
