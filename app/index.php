@@ -38,15 +38,15 @@ $lists = $getller->index();
                   <?php foreach ($lists as $todo): ?>
                      <tr>
                         <!-- <td><input type="checkbox" /></td> -->
-                        <td><? echo $todo['title']; ?></td>
-                        <td><? echo $todo['content']; ?></td>
+                        <td><?php echo $todo['title']; ?></td>
+                        <td><?php echo $todo['content']; ?></td>
                         <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn">編集</a></td>
                         <td><a href="" class="deletebtn">削除</a></td>
                      </tr>
                   <?php endforeach; ?>
                <?php else : ?>
                   <td>Todoなし</td>
-               <? endif; ?>
+               <?php endif; ?>
             </tbody>
          </table>
       <a class="miyako">継続するToDoリスト</a>

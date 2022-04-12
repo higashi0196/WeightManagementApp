@@ -9,6 +9,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    header('Location: ' . SITE_URL);
 }
 
+$title = '';
+$content = '';
+if($_SERVER['REQUEST_METHOD'] === 'GET') {
+
+   if(isset($_GET['title'])) {
+      $title = $_GET['title'];
+   }
+
+   if(isset($_GET['content'])) {
+      $content = $_GET['content'];
+   }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    <form method="POST" action="./create.php">
       <div>
          <p class="taketomi">タイトル</p>
-         <input type="text" name="title"></input>
+         <input type="text" name="title">
       </div>
       <div>
          <p class="kohama">目標</p>

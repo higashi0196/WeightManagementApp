@@ -56,7 +56,7 @@ class Database
   
    public static function dbconnect(){
       $pdo = new PDO(DSN, USER, PASSWORD);
-      $stmt = $pdo->query('SELECT * FROM todos');
+      $stmt = $pdo->query('SELECT * FROM todos;');
       if($stmt) {
          $lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
       } else {
@@ -82,7 +82,7 @@ class Database
       if($stmt) {
           $todo = $stmt->fetch(PDO::FETCH_ASSOC);
       } else {
-          $todo = array();
+         $todo = array();
       }
       return $todo;
   }
@@ -96,9 +96,9 @@ class Database
       return $result;
    }
 
-   public function update() {
+   public function update($todo_id) {
       try {
-         $query = sprintf("UPDATE `todos` SET `title` = '%s', `content` = '%s', `complete`, `updated_at` = '%s' WHERE todo_id = %s", $this->title,$this->content,date("Y-m-d G:i:s"),$this->id
+         $query = sprintf("UPDATE `todos` SET `title` = '%s', `content` = '%s', `complete`, `updated_at` = '%s' WHERE id = %s", $this->title,$this->content,date("Y-m-d G:i:s"),$this->id
       );
          $pdo = new PDO(DSN, USER, PASSWORD);
          $result = $pdo->query($query);
