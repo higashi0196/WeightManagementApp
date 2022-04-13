@@ -3,7 +3,7 @@
 require_once('config.php');
 
 $pdo = Database::get();
-$getller = new Todocontroller;
+$getller = new Todocontroller();
 $lists = $getller->index();
 // $todo = $$getller->edit();
 

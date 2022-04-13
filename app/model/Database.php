@@ -33,6 +33,14 @@ class Database
       $this->id = $id;
    }
 
+   public function takeData() {
+      return $this->data;
+   }
+
+   public function setData($data) {
+      $this->data = $data;
+   }
+
    private static  $osaka;
    
    public static function get() {
@@ -67,7 +75,7 @@ class Database
 
    public static function getAll(){
       $pdo = new PDO(DSN, USER, PASSWORD);
-      $stmt = $pdo->query('SELECT * FROM todos');
+      $stmt = $pdo->query('SELECT * FROM todos;');
       if($stmt) {
          $lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
       } else {
@@ -88,7 +96,7 @@ class Database
   }
 
    public function save() {
-      $query = sprintf("INSERT INTO `todos` (`title`, `content`,  `complete`, `created_at`, `updated_at`) VALUES ('%s', '%s',  0, NOW(), NOW())",$this->title,$this->content);
+      $query = sprintf("INSERT INTO `todos` (`title`, `content`,  `complete`, `created_at`, `updated_at`) VALUES ('%s', '%s', 0, NOW(), NOW())",$this->title,$this->content);
 
       $pdo = new PDO(DSN, USER, PASSWORD);
       $result = $pdo->query($query);
@@ -96,16 +104,33 @@ class Database
       return $result;
    }
 
-   public function update($todo_id) {
+   public function update() {
       try {
-         $query = sprintf("UPDATE `todos` SET `title` = '%s', `content` = '%s', `complete`, `updated_at` = '%s' WHERE id = %s", $this->title,$this->content,date("Y-m-d G:i:s"),$this->id
+         $query = sprintf("UPDATE `todos` SET `title` = '%s', `content` = '%s', `updated_at` = '%s' WHERE id = %s", $this->title,$this->content,date("Y-m-d G:i:s"),$this->id
       );
          $pdo = new PDO(DSN, USER, PASSWORD);
          $result = $pdo->query($query);
       }  catch (PDOException $e) {
-         // エラーログ欄
-      }
+         // エラーログ記載
+         echo $e->getMessage();
+         exit();
+      }   
       return $result;
    }
+   
+   public static function isExistById($todo_id) {
+
+      $pdo = new PDO(DSN, USERNAME, PASSWORD);
+      $stmh = $pdo->query(sprintf('select * from todos where id = %s;', $todo_id));
+      if($stmh) {
+          $todo = $stmh->fetch(PDO::FETCH_ASSOC);
+      } else {
+          $todo = array();
+      }
+      // if($todo) {
+      //     return true;
+      // }
+      // return false;
+  }
 
 }
