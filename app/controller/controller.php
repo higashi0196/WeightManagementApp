@@ -11,27 +11,8 @@ class Todocontroller {
 
    public function create() {
 
-      // $data = array(
-      //    $title = (filter_input(INPUT_POST, 'title')),
-      //    $content = (filter_input(INPUT_POST, 'content')),
-      // );
       $title = (filter_input(INPUT_POST, 'title'));
       $content = (filter_input(INPUT_POST, 'content'));
-
-      // $error_message = array();
-      // if (empty($title)) {
-      //    $error_message[] = "タイトルを入力してください". PHP_EOL;
-      //    echo "タイトルを入力してください". PHP_EOL;
-      // }
-      // if (empty($content)) {
-      //    $error_message[] = "目標を入力してください" . PHP_EOL;
-      //    echo "目標を入力してください". PHP_EOL;
-      // }
-      // if (count($error_message) > 0) {
-      //    $param = sprintf("$title=%scontent=%s", $title, $content);
-      //    header(sprintf("Location: ./create.php", $param));
-      // }
-      // exit;
 
       $todo = new Database;
       $todo->setTitle($title);
@@ -78,16 +59,25 @@ class Todocontroller {
       );
 
       $todo = new Database;
-      // $todo->setTitle($title);
-      // $todo->setContent($content);
-      // $todo->setId($id);
-      // $todo->setData($data);
-      $todo->setId($data['todo_id']);
-      $todo->setTitle($data['title']);
-      $todo->setContent($data['content']);
+      $todo->setTitle($title);
+      $todo->setContent($content);
+      $todo->setContent($id);
+
       $result = $todo->update();
 
       header("Location: ./index.php");
+   }
+
+   public function delete() {
+      $todo_id = filter_input(INPUT_POST, 'todo_id');
+      if (empty($todo_id)) {
+         return;
+         }
+      $todo = new Todo;
+      $todo->setId($todo_id);
+      $result = $todo->delete();
+
+      return $result;
    }
 
 }

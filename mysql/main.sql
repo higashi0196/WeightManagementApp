@@ -10,4 +10,6 @@ CREATE TABLE todos (
 INSERT INTO todos (title, content, complete, created_at, upsated_at) VALUES ('sample', 'tests',0,now(),now());
 INSERT INTO todos (title, content, complete, created_at, updated_at) VALUES ('do', 'done',1,now(),now());
 
+UPDATE todos SET title = 'www',content = 'www',updated_at = NOW()  WHERE id = 6;
+
 SELECT * FROM todos;

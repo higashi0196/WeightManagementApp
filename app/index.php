@@ -5,7 +5,6 @@ require_once('config.php');
 $pdo = Database::get();
 $getller = new Todocontroller();
 $lists = $getller->index();
-// $todo = $$getller->edit();
 
 ?>
 
@@ -31,17 +30,19 @@ $lists = $getller->index();
                <tr>
                   <th scope="col">タイトル</th>
                   <th scope="col">目標</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
                </tr>
             </thead>
             <tbody>
-               <?php if($lists): ?>
+               <?php if ($lists): ?>
                   <?php foreach ($lists as $todo): ?>
                      <tr>
                         <!-- <td><input type="checkbox" /></td> -->
                         <td><?php echo $todo['title']; ?></td>
                         <td><?php echo $todo['content']; ?></td>
                         <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn">編集</a></td>
-                        <td><a href="" class="deletebtn">削除</a></td>
+                        <td><a href="delete.php?id=<?php echo $todo['id'];?>"><button id="<?php echo $todo['id']?>">削除</button></td>
                      </tr>
                   <?php endforeach; ?>
                <?php else : ?>
@@ -52,5 +53,6 @@ $lists = $getller->index();
       <a class="miyako">継続するToDoリスト</a>
       <h2>明日への一言</h2>
    </main>
+   <script src="./js/main.js"></script>
 </body>
 </html> 
