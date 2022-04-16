@@ -5,7 +5,7 @@ require_once('config.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $getller = new Todocontroller();
    $getller->create();
-
+   exit;
    header('Location: ' . SITE_URL);
 }
 
@@ -42,9 +42,8 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
          <p class="kohama">目標</p>
          <textarea name="content"></textarea>
       </div>
-         <button type="submit" class="shinki-btn">登録</button>
-         <a href="index.php">戻る</a>
-      </div>
+      <button type="submit" class="shinki-btn">登録</button>
+      <a href="index.php">戻る</a>
    </form>
 </body>
 </html>

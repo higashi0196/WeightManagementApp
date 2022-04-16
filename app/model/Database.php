@@ -2,6 +2,8 @@
 
 // modleフォルダ todo.php
 
+// require_once('config.php');
+
 class Database
 {
 
@@ -83,10 +85,10 @@ class Database
       }
       return $lists;
    }
-
+   
    public static function findId($todo_id) {
       $pdo = new PDO(DSN, USER, PASSWORD);
-      $stmt = $pdo->query(sprintf('SELECT * from todos WHERE id = %s;', $todo_id));
+      $stmt = $pdo->query(sprintf('SELECT * FROM todos WHERE id = %s;', $todo_id));
       if($stmt) {
           $todo = $stmt->fetch(PDO::FETCH_ASSOC);
       } else {
@@ -94,40 +96,36 @@ class Database
       }
       return $todo;
   }
-
+  
    public function save() {
-   try{
-      $query = sprintf("INSERT INTO `todos` (`title`, `content`,  `complete`, `created_at`, `updated_at`) VALUES ('%s', '%s', 0, NOW(), NOW())",$this->title,$this->content);
+      try {
+         $query = sprintf("INSERT INTO `todos` (`title`, `content`,  `complete`, `created_at`, `updated_at`) VALUES ('%s', '%s', 0, NOW(), NOW())",$this->title,$this->content);
 
-      $pdo = new PDO(DSN, USER, PASSWORD);
-      $result = $pdo->query($query);
-   } catch(Exception $e) {
-      // エラーログ
-   }
-      return $result;
+         $pdo = new PDO(DSN, USER, PASSWORD);
+         $result = $pdo->query($query);
+      } catch(Exception $e) {
+         // エラーログ
+      }
+         return $result;
    }
 
    public function update() {
       try {
-         $query = sprintf("UPDATE `todos` SET `title` = '%s', `content` = '%s', `updated_at` = '%s' WHERE id = %s",$this->title,$this->detail,date("Y-m-d H:i:s"),$this->id
+         $query = sprintf("UPDATE `todos` SET `title` = '%s', `content` = :title, `updated_at` = :content WHERE id = :id",$this->title,$this->content,date("Y-m-d H:i:s"),$this->id
          );
          $pdo = new PDO(DSN, USER, PASSWORD);
-         $pdo->beginTransaction();
          $result = $pdo->query($query);
-         $pdo->commit();
       }  catch (PDOException $e) {
-         // エラーログ記載
-         echo $e->getMessage();
-         $pdo->rollBack();
-         exit();
+         print($query->errorInfo());
       }   
+         return $result;
    }
    
    public static function isExistById($todo_id) {
 
       $pdo = new PDO(DSN, USERNAME, PASSWORD);
-      $stmt = $pdo->query(sprintf('SELECT * from todos where id = %s;', $todo_id));
-      if($stmh) {
+      $stmt = $pdo->query(sprintf('SELECT * FROM todos WHERE id = %s;', $todo_id));
+      if($stmt) {
           $todo = $stmh->fetch(PDO::FETCH_ASSOC);
       } else {
           $todo = array();
@@ -143,9 +141,8 @@ class Database
       $result = $pdo->query($query);
       $pdo->commit();
    }  catch (PDOException $e) {
-      // エラーログ記載
       echo $e->getMessage();
-      exit();
+      exit;
    }   
    return $result;
   }

@@ -6,6 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $getller = new Todocontroller();
    $getller->update();
    exit;
+   header('Location: ' . SITE_URL);
 }
 
 $getller = new Todocontroller();
@@ -34,7 +35,7 @@ $param = $data['param'];
          <textarea name="content"><?php echo $todo['content']; ?></textarea>
       </div>
       <input type="hidden" name="todo_id" value="<?php echo $todo['id']; ?>">
-      <button type="submit" class="edit-btn">更新</button>
+      <input type="submit" class="edit-btn" value="更新">
       <a href="index.php">戻る</a>
    </form>
 </body>

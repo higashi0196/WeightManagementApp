@@ -2,10 +2,13 @@
 
 // controllerフォルダ todocontroller
 
+require_once('config.php');
+
 class Todocontroller {
 
    public function index() {
       $lists = Database::dbconnect($query);
+      $lists = Database::getAll();
       return $lists;
    }
 
@@ -31,17 +34,16 @@ class Todocontroller {
          }
          
          if(isset($_GET['title'])) {
-            // $title = $_GET['title'];
             $param['title'] = $_GET['title'];
          }
       
          if(isset($_GET['content'])) {
-            // $content = $_GET['content'];
             $param['content'] = $_GET['content'];
          }
       }
 
       $todo = Database::findId($todo_id);
+      // $todo = Database::findById($todo_id);
 
       $data = array(
          "todo" => $todo,
