@@ -35,14 +35,6 @@ class Database
       $this->id = $id;
    }
 
-   public function takeData() {
-      return $this->data;
-   }
-
-   public function setData($data) {
-      $this->data = $data;
-   }
-
    private static  $osaka;
    
    public static function get() {
@@ -109,28 +101,33 @@ class Database
          return $result;
    }
 
-   public function update() {
-      try {
-         $query = sprintf("UPDATE `todos` SET `title` = '%s', `content` = :title, `updated_at` = :content WHERE id = :id",$this->title,$this->content,date("Y-m-d H:i:s"),$this->id
-         );
-         $pdo = new PDO(DSN, USER, PASSWORD);
-         $result = $pdo->query($query);
-      }  catch (PDOException $e) {
-         print($query->errorInfo());
-      }   
-         return $result;
-   }
+  public function update() {
+   try {
+      $query = sprintf("UPDATE `todos` SET `title` = '%s', `content` = '%s', `updated_at` = '%s' WHERE id = %s",$this->title,$this->content,date("Y-m-d H:i:s"),$this->id
+      );
+      $pdo = new PDO(DSN, USER, PASSWORD);
+      $result = $pdo->query($query);
+   }  catch (PDOException $e) {
+      // エラーログ
+   }   
+      return $result;
+}
    
-   public static function isExistById($todo_id) {
+  public static function isExistById($todo_id) {
 
-      $pdo = new PDO(DSN, USERNAME, PASSWORD);
-      $stmt = $pdo->query(sprintf('SELECT * FROM todos WHERE id = %s;', $todo_id));
-      if($stmt) {
-          $todo = $stmh->fetch(PDO::FETCH_ASSOC);
-      } else {
-          $todo = array();
-      }
-  }
+   $pdo = new PDO(DSN, USER, PASSWORD);
+   $stmt = $pdo->query(sprintf('select * from todos where id = %s;', $todo_id));
+   if($stmt) {
+       $todo = $stmt->fetch(PDO::FETCH_ASSOC);
+   } else {
+       $todo = array();
+   }
+
+   if($todo) {
+       return true;
+   }
+   return false;
+}
 
   public function delete() {
    try {
@@ -142,7 +139,7 @@ class Database
       $pdo->commit();
    }  catch (PDOException $e) {
       echo $e->getMessage();
-      exit;
+      // exit;
    }   
    return $result;
   }

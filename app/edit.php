@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $getller = new Todocontroller();
    $getller->update();
    exit;
-   header('Location: ' . SITE_URL);
+   // header('Location: ' . SITE_URL);
 }
 
 $getller = new Todocontroller();
