@@ -10,6 +10,7 @@ class Database
    public $title;
    public $content;
    public $id;
+   public $data = array();
 
    public function takeTitle() {
       return $this->title;
@@ -33,6 +34,14 @@ class Database
 
    public function setId($id) {
       $this->id = $id;
+   }
+
+   public function takeData() {
+      return $this->data;
+   }
+
+   public function setData($data) {
+      $this->data = $data;
    }
 
    private static  $osaka;
@@ -103,8 +112,8 @@ class Database
 
   public function update() {
    try {
-      $query = sprintf("UPDATE `todos` SET `title` = '%s', `content` = '%s', `updated_at` = '%s' WHERE id = %s",$this->title,$this->content,date("Y-m-d H:i:s"),$this->id
-      );
+      $query = sprintf("UPDATE `todos` SET `title` = '%s', `content` = '%s', `updated_at` = '%s' WHERE id = %s",$this->title,$this->content,date("Y-m-d H:i:s"),$this->id);
+
       $pdo = new PDO(DSN, USER, PASSWORD);
       $result = $pdo->query($query);
    }  catch (PDOException $e) {
@@ -131,15 +140,12 @@ class Database
 
   public function delete() {
    try {
-      $query = sprintf("DELETE FROM todos WHERE id = %s", $this->id
-   );
+      $query = sprintf("DELETE FROM todos WHERE id = %s", $this->id);
       $pdo = new PDO(DSN, USER, PASSWORD);
-      $pdo->beginTransaction();
       $result = $pdo->query($query);
-      $pdo->commit();
    }  catch (PDOException $e) {
       echo $e->getMessage();
-      // exit;
+      exit;
    }   
    return $result;
   }
