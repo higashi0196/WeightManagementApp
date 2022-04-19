@@ -40,7 +40,7 @@ $lists = $getller->index();
                         <td><?php echo $todo['title']; ?></td>
                         <td><?php echo $todo['content']; ?></td>
                         <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn">編集</a></td>
-                        <td><a href="delete.php?id=<?php echo $todo['id'];?>">削除</a></td>
+                        <td><a href="delete.php?id=<?php echo $todo['id'];?>"><button>削除</button></a></td>
                      </tr>
                   <?php endforeach; ?>
                <?php else : ?>

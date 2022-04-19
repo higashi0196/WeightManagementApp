@@ -36,7 +36,7 @@ $param = $data['param'];
       </div>
       <input type="hidden" name="todo_id" value="<?php echo $todo['id']; ?>">
       <input type="submit" class="edit-btn" value="更新">
-      <a href="index.php">戻る</a>
+      <button href="index.php">戻る</button>
    </form>
 </body>
 </html>

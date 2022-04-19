@@ -72,7 +72,7 @@ class Todocontroller {
    }
 
    public function delete() {
-      $todo_id = filter_input(INPUT_POST, 'todo_id');
+      $todo_id = $_POST['todo_id'];
       if (empty($todo_id)) {
          return;
          }
@@ -81,7 +81,6 @@ class Todocontroller {
       $result = $todo->delete();
 
       return $result;
-   
       header("Location: ./index.php");
    }
 

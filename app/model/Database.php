@@ -121,6 +121,21 @@ class Database
    }   
       return $result;
 }
+
+   public function delete() {
+      try {
+         $query = sprintf("DELETE FROM todos WHERE id = %s", $this->id);
+         
+         $pdo = new PDO(DSN, USER, PASSWORD);
+         $result = $pdo->query($query);
+      }  catch (PDOException $e) {
+      //    エラーログ
+      //    echo $e->getMessage();
+      //    exit;
+      }   
+      return $result;
+   }
+  
    
   public static function isExistById($todo_id) {
 
@@ -138,16 +153,6 @@ class Database
    return false;
 }
 
-  public function delete() {
-   try {
-      $query = sprintf("DELETE FROM todos WHERE id = %s", $this->id);
-      $pdo = new PDO(DSN, USER, PASSWORD);
-      $result = $pdo->query($query);
-   }  catch (PDOException $e) {
-      echo $e->getMessage();
-      exit;
-   }   
-   return $result;
-  }
+ 
 
 }
