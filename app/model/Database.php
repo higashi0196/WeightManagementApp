@@ -111,21 +111,21 @@ class Database
    }
 
   public function update() {
-   try {
-      $query = sprintf("UPDATE `todos` SET `title` = '%s', `content` = '%s', `updated_at` = '%s' WHERE id = %s",$this->title,$this->content,date("Y-m-d H:i:s"),$this->id);
+      try {
+         $query = sprintf("UPDATE `todos` SET `title` = '%s', `content` = '%s', `updated_at` = '%s' WHERE id = %s",$this->title,$this->content,date("Y-m-d H:i:s"),$this->id);
 
-      $pdo = new PDO(DSN, USER, PASSWORD);
-      $result = $pdo->query($query);
-   }  catch (PDOException $e) {
-      // エラーログ
-   }   
-      return $result;
-}
+         $pdo = new PDO(DSN, USER, PASSWORD);
+         $result = $pdo->query($query);
+      }  catch (PDOException $e) {
+         // エラーログ
+      }   
+         return $result;
+   }
 
    public function delete() {
       try {
          $query = sprintf("DELETE FROM todos WHERE id = %s", $this->id);
-         
+
          $pdo = new PDO(DSN, USER, PASSWORD);
          $result = $pdo->query($query);
       }  catch (PDOException $e) {
@@ -138,21 +138,18 @@ class Database
   
    
   public static function isExistById($todo_id) {
+      $pdo = new PDO(DSN, USER, PASSWORD);
+      $stmt = $pdo->query(sprintf('select * from todos where id = %s;', $todo_id));
+      if($stmt) {
+         $todo = $stmt->fetch(PDO::FETCH_ASSOC);
+      } else {
+         $todo = array();
+      }
 
-   $pdo = new PDO(DSN, USER, PASSWORD);
-   $stmt = $pdo->query(sprintf('select * from todos where id = %s;', $todo_id));
-   if($stmt) {
-       $todo = $stmt->fetch(PDO::FETCH_ASSOC);
-   } else {
-       $todo = array();
+      if($todo) {
+         return true;
+      }
+      return false;
    }
-
-   if($todo) {
-       return true;
-   }
-   return false;
-}
-
- 
 
 }

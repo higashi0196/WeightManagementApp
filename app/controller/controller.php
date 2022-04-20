@@ -76,6 +76,7 @@ class Todocontroller {
       if (empty($todo_id)) {
          return;
          }
+
       $todo = new Database;
       $todo->setId($todo_id);
       $result = $todo->delete();

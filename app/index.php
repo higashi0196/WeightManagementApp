@@ -40,7 +40,12 @@ $lists = $getller->index();
                         <td><?php echo $todo['title']; ?></td>
                         <td><?php echo $todo['content']; ?></td>
                         <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn">編集</a></td>
-                        <td><a href="delete.php?id=<?php echo $todo['id'];?>"><button>削除</button></a></td>
+
+                        <td><button id="btn1" todo_id=<?php echo $todo['id'];?>>削除</button></td>
+
+                        <!-- <td><button id="btn2" class="delete-btn">Click</button></td> -->
+                        <td><input type="submit" id="btn2" class="delet" value="Click"></td>
+
                      </tr>
                   <?php endforeach; ?>
                <?php else : ?>
@@ -52,5 +57,17 @@ $lists = $getller->index();
       <h2>明日への一言</h2>
    </main>
    <script src="./js/main.js"></script>
+   <script>
+      const button1 = document.getElementById("btn1");
+      button1.addEventListener("click", () => {
+      console.log("クリックされました");
+      });
+
+      const button2 = document.getElementById("btn2");
+      button2.addEventListener("click", event => {
+         console.log("クリックされました");
+      });
+
+   </script>
 </body>
 </html> 
