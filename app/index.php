@@ -40,12 +40,14 @@ $lists = $getller->index();
                         <td><?php echo $todo['title']; ?></td>
                         <td><?php echo $todo['content']; ?></td>
                         <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn">編集</a></td>
+                        <td><button type="submit" id="btn1" data-id="<?php echo $todo['id']; ?>" class="deltbtn" >削除</button></td>
 
-                        <td><button id="btn1" todo_id=<?php echo $todo['id'];?>>削除</button></td>
-
-                        <!-- <td><button id="btn2" class="delete-btn">Click</button></td> -->
-                        <td><input type="submit" id="btn2" class="delet" value="Click"></td>
-
+                        <!-- 試し用 -->
+                        <td><a href="delete.php?todo_id=<?php echo $todo['id']?>" class="deltbtn" >削除2</td>
+                        <td><button id="btn2" class="delete-btn">Click2</button></td>
+                        <td><button id="btn3" class="delete-btn">Click3</button></td>
+                        <td><button data-action="./edit.php" id="btn3" class="delete-btn">Click3</button></td>
+                        <!-- 試し用終わり -->
                      </tr>
                   <?php endforeach; ?>
                <?php else : ?>
@@ -56,18 +58,30 @@ $lists = $getller->index();
       <a class="miyako">継続するToDoリスト</a>
       <h2>明日への一言</h2>
    </main>
-   <script src="./js/main.js"></script>
+   <!-- <script src="./js/main.js"></script> -->
    <script>
+
       const button1 = document.getElementById("btn1");
       button1.addEventListener("click", () => {
-      console.log("クリックされました");
+         if (!confirm('本当に削除しますか?')) {
+        return;
+      }     
+      console.log("なんでやねん");
       });
 
       const button2 = document.getElementById("btn2");
-      button2.addEventListener("click", event => {
-         console.log("クリックされました");
+      button2.addEventListener("click", () => {
+         if (!confirm('Are you sure?')) {
+        return;
+      }
+         console.log("まっほー");
       });
 
+      const button3 = document.getElementById("btn3");
+      button3.addEventListener("click", () => {
+         console.log("クリックされました");
+      });
+      
    </script>
 </body>
 </html> 
