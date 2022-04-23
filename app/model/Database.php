@@ -128,7 +128,7 @@ class Database
 
          $pdo = new PDO(DSN, USER, PASSWORD);
          $result = $pdo->query($query);
-         // header('Location: ' . SITE_URL);
+         header('Location: ' . SITE_URL);
       }  catch (PDOException $e) {
       //    エラーログ
       //    echo $e->getMessage();

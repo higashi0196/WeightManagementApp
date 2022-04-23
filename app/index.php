@@ -40,12 +40,16 @@ $lists = $getller->index();
                         <td><?php echo $todo['title']; ?></td>
                         <td><?php echo $todo['content']; ?></td>
                         <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn">編集</a></td>
-                        <td><button todo_id=<?php echo $todo['id']; ?> class="btn" >削除</button></td>
+                        
+                        <!-- jquery用 -->
+                        <td><div class="delete-btn" data-id=<?php echo $todo['id']; ?>>
+                        <button >jquery</button></div></td>
+                        <!-- jquery用おわり -->
 
-                        <!-- 試し用 -->
-                        <td><button id="btn2" class="delete-btn">Click2</button></td>
-                        <td><button id="btn3" class="delete-btn">Click3</button></td>
-                        <!-- 試し用終わり -->
+                         <!-- javascript用 -->
+                        <td><div id="btn5"  data-id=<?php echo $todo['id']; ?>><button >javascript</button></div></td>
+                        <!-- javascript用 おわり-->
+
                      </tr>
                   <?php endforeach; ?>
                <?php else : ?>
@@ -59,48 +63,60 @@ $lists = $getller->index();
    <!-- <script src="./js/main.js"></script> -->
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
-   // $(".delete-btn").click(function () {
-   //      let todo_id = $(this).data('id');
-   //      if (confirm("削除しますがよろしいですか？ id:" + todo_id)) {
-   //          $(".delete-btn").prop("disabled", true);
-   //          let data = {};
-   //          data.todo_id = todo_id;
-   //          $.ajax({
-   //              url: './delete.php',
-   //              type: 'post',
-   //              data: data
-   //          })
-   //      }
-   //  });
 
-   const btn = document.querySelector(".btn");
-   btn.addEventListener("click", function(){
-      // let todo_id = $(this).data('id');
-      //   if (confirm("削除しますがよろしいですか？ id:" + todo_id)) {
-      //       btn.disabled = true;
-      //       let data = {};
-      //       data.todo_id = todo_id;
-      //       $.ajax({
-      //           url: './delete.php',
-      //           type: 'post',
-      //           data: data
-      //       })
-      //   }
-        if (confirm("削除しますがよろしいですか？")) {
-         let todo_id = $(this).data('id');
-            btn.disabled = true;
+   
+   const btn5 = document.getElementById("btn5");
+   btn5.addEventListener("click", function () {
+      let todo_id = $(btn5).data('id');
+      if (!confirm("本当に削除??' id:" + todo_id)) {
+         // $("btn5").prop("disabled", true);
+         // ↓イコール
+         btn5.disabled = true;
+   } else {
+      let data = {};
+      data.todo_id = todo_id;
+      $.ajax({
+            url: './delete.php',
+            type: 'post',
+            data: data
+      })
+      console.log("なんでやねん");
+      // location.href = './delete.php';
+      // location.pathname = './delete.php';
+   }
+   });
+
+   $(".delete-btn").click(function () {
+        let todo_id = $(this).data('id');
+        if (confirm("削除しますがよろしいですか？ id:" + todo_id)) {
+            $(".delete-btn").prop("disabled", true);
             let data = {};
             data.todo_id = todo_id;
             $.ajax({
                 url: './delete.php',
                 type: 'post',
                 data: data
-            })
+            }).then(
+                function (data) {
+                    let json = JSON.parse(data);
+                    console.log("success", json);
+                    if (json.result == 'success') {
+                        window.location.href = "./index.php";
+                    } else {
+                        console.log("failed to delete.");
+                        alert("failed to delete.");
+                        $(".delete-btn").prop("disabled", false);
+                    }
+                },
+                function () {
+                    console.log("fail");
+                    alert("fail");
+                    $(".delete-btn").prop("disabled", false);
+                }
+            );
         }
-});
+    });
 
-
-   
       // const button1 = document.getElementById("btn1");
       // button1.addEventListener("click", () => {
       //    if (!confirm('本当に削除しますか?')) {
