@@ -82,7 +82,7 @@ class Todocontroller {
       $result = $todo->delete();
 
       return $result;
-      // header("Location: ./index.php");
+      header("Location: ./index.php");
    }
 
 }
