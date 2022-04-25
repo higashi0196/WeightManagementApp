@@ -17,53 +17,56 @@ $lists = $getller->index();
 </head>
 <body>
    <main>
-      <header>
-         <h1>目標体重</h1>
-      </header>
+      <h1>目標体重</h1>
       <div>
          <a class="miyako">今日のToDoリスト</a>
          <a action="./create.php" method="POST"></a>
          <a href="create.php" class="ishigaki">新規登録</a>  
       </div>
-         <table>
-            <thead>
-               <tr>
-                  <th scope="col">タイトル</th>
-                  <th scope="col">目標</th>
-               </tr>
-            </thead>
-            <tbody>
-               <?php if ($lists): ?>
-                  <?php foreach ($lists as $todo): ?>
-                     <tr>
-                        <!-- <td><input type="checkbox"></td> -->
-                        <td><?php echo $todo['title']; ?></td>
-                        <td><?php echo $todo['content']; ?></td>
-                        <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn">編集</a></td>
-                        
-                        <!-- jquery用 -->
-                        <td><div class="delete-btn" data-id=<?php echo $todo['id']; ?>>
-                        <button >jquery</button></div></td>
-                        <!-- jquery用おわり -->
+      <table>
+         <thead>
+            <tr>
+               <th scope="col">タイトル</th>
+               <th scope="col">目標</th>
+            </tr>
+         </thead>
+         <tbody>
+            <?php if ($lists): ?>
+               <?php foreach ($lists as $todo): ?>
+                  <tr>
+                     <!-- <td><input type="checkbox"></td> -->
+                     <td><?php echo $todo['title']; ?></td>
+                     <td><?php echo $todo['content']; ?></td>
+                     <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn">編集</a></td>
+                     
+                     <!-- jquery用 -->
+                     <td><div class="delete-btn" data-id=<?php echo $todo['id']; ?>>
+                     <button >jquery</button></div></td>
+                     <!-- jquery用おわり -->
 
-                         <!-- javascript用 -->
-                        <td><div class="btn5"  data-id=<?php echo $todo['id']; ?>><button>javascript</button></div></td>
-                        <!-- javascript用 おわり-->
+                        <!-- javascript用 -->
+                     <td><div class="btn5"  data-id=<?php echo $todo['id']; ?>><button>javascript</button></div></td>
+                     <!-- javascript用 おわり-->
 
-                     </tr>
-                  <?php endforeach; ?>
-               <?php else : ?>
-                  <td>Todoなし</td>
-               <?php endif; ?>
-            </tbody>
-         </table>
+                  </tr>
+               <?php endforeach; ?>
+            <?php else : ?>
+               <td>Todoなし</td>
+            <?php endif; ?>
+         </tbody>
+      </table>
+
       <a class="miyako">継続するToDoリスト</a>
-      <h2>明日への一言</h2>
+
+      <div class="miyako">
+         <a>明日への一言</a>
+         <a href="wcreate.php" class="ishigaki">投稿する</a>  
+      </div>
+
    </main>
    <!-- <script src="./js/main.js"></script> -->
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
-
    const btn5 = document.querySelectorAll('.btn5');
    for (let i = 0; i < btn5.length; i++) 
    btn5[i].addEventListener('click', () => {
@@ -79,15 +82,15 @@ $lists = $getller->index();
       xml.open("POST", "http://localhost:8000/delete.php", true);
       xml.onreadystatechange = function() {
          if (xml.readyState === 4 || xml.status === 200) {
-            console.log("通信完了");
+            console.log("通信中！");
          } else {
             console.log("通信失敗");
          }
       };
-      xml.open('POST', './delete.php',"data", true);
-      xml.send("data");
-   }
-      console.log("またかよ！");
+         xml.open('POST', './delete.php',"data", true);
+         xml.send("data");
+      }
+         console.log("通信完了");
    });
 
    $(".delete-btn").click(function () {
@@ -97,9 +100,9 @@ $lists = $getller->index();
          let data = {};
          data.todo_id = todo_id;
          $.ajax({
-               url: './delete.php',
-               type: 'post',
-               data: data
+            url: './delete.php',
+            type: 'post',
+            data: data
          }).then(
             function (data) {
                let json = JSON.parse(data);
