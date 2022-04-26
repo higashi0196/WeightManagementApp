@@ -86,6 +86,17 @@ class Database
       }
       return $lists;
    }
+
+   // public static function getAll2(){
+   //    $pdo = new PDO(DSN, USER, PASSWORD);
+   //    $stmt = $pdo->query('SELECT * FROM words;');
+   //    if($stmt) {
+   //       $wordlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
+   //    } else {
+   //       $wordlists = array();
+   //    }
+   //    return $wordlists;
+   // }
    
    public static function findId($todo_id) {
       $pdo = new PDO(DSN, USER, PASSWORD);

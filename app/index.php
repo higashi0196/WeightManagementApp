@@ -5,6 +5,7 @@ require_once('config.php');
 $pdo = Database::get();
 $getller = new Todocontroller();
 $lists = $getller->index();
+// $wordlists = $getller->index2();
 
 ?>
 
@@ -59,7 +60,7 @@ $lists = $getller->index();
       <!-- <a class="miyako">継続するToDoリスト</a> -->
 
       <a class="miyako">明日への一言</a>
-      <a href="post.php" class="ishigaki">一言投稿</a>  
+      <a href="post.php" class="ishigaki">投稿画面</a>  
 
    </main>
 

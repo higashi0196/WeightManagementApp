@@ -12,6 +12,12 @@ class Todocontroller {
       return $lists;
    }
 
+   // public function index2() {
+   //    $lists = Database::dbconnect($query);
+   //    $wordlists = Database::getAll2();
+   //    return $wordlists;
+   // }
+
    public function create() {
 
       $title = (filter_input(INPUT_POST, 'title'));
