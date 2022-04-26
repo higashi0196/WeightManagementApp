@@ -56,17 +56,17 @@ $lists = $getller->index();
          </tbody>
       </table>
 
-      <a class="miyako">継続するToDoリスト</a>
+      <!-- <a class="miyako">継続するToDoリスト</a> -->
 
-      <div class="miyako">
-         <a>明日への一言</a>
-         <a href="wcreate.php" class="ishigaki">投稿する</a>  
-      </div>
+      <a class="miyako">明日への一言</a>
+      <a href="post.php" class="ishigaki">一言投稿</a>  
 
    </main>
+
    <!-- <script src="./js/main.js"></script> -->
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
+
    const btn5 = document.querySelectorAll('.btn5');
    for (let i = 0; i < btn5.length; i++) 
    btn5[i].addEventListener('click', () => {

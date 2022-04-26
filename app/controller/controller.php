@@ -25,6 +25,17 @@ class Todocontroller {
       header("Location: index.php");
    }
 
+   public function create2() {
+
+      $content = (filter_input(INPUT_POST, 'content2'));
+
+      $word = new Database;
+      $word->setContent($content);
+      $result2 = $word->save2();
+
+      header("Location: index.php");
+   }
+
    public function edit() {
       $todo_id = '';
       $param = array();

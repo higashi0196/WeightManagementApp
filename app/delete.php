@@ -44,7 +44,6 @@ const button3 = document.getElementById("btn3");
 button3.addEventListener("click", () => {
    console.log("クリックされました");
 }); -->
-      
 
 <!DOCTYPE html>
 <html lang="ja">
