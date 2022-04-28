@@ -5,7 +5,7 @@ require_once('config.php');
 $pdo = Database::get();
 $getller = new Todocontroller();
 $lists = $getller->index();
-// $wordlists = $getller->index2();
+$wordlists = $getller->index2();
 
 ?>
 
