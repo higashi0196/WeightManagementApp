@@ -29,21 +29,21 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 <form method="POST" action="./post.php">
    <div class="miyako">
-      <p class="kohama">明日への一言1</p>
+      <p class="kuroshima">明日への一言1</p>
       <textarea name="content2"></textarea>
    </div>
-   <div class="miyako">
+   <div class="miyako"> 
       <button type="submit" class="post-btn">投稿する
       </button>
       <a href="index.php">戻る</a>
    </div>
 </form>
 
-<div class="miyako">
+<!-- <div class="miyako">
    <p>明日への一言2</p>
    <textarea id="days" name="message" rows="2" cols="30"></textarea>
    <input type="button" onclick="" value="投稿">
-   <a href="index.php">戻る</a>
+   <a href="index.php">戻る</a> -->
 </div>
 </body>
 </html>

@@ -34,16 +34,18 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
 <body>
    <a class="new-create">新規登録</a>
    <form method="POST" action="./create.php">
+      <div class="miyako">
       <div>
-         <p class="taketomi">タイトル</p>
+         <p>タイトル</p>
          <input type="text" name="title">
       </div>
       <div>
-         <p class="kohama">目標</p>
+         <p>目標</p>
          <textarea name="content"></textarea>
       </div>
       <button type="submit" class="shinki-btn">登録</button>
       <a href="index.php">戻る</a>
+      </div>
    </form>
 </body>
 </html>

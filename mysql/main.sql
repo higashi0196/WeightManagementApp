@@ -22,3 +22,5 @@ CREATE TABLE words (
 );
 
 INSERT INTO words (content , created_at, updated_at) VALUES ('language', now(), now());
+
+SELECT * FROM words;
