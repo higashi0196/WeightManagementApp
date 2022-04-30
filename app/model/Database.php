@@ -130,7 +130,7 @@ class Database
       } catch(Exception $e) {
          // エラーログ
       }
-         return $result;
+         return $result2;
    }
 
   public function update() {

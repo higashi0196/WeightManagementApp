@@ -27,7 +27,6 @@ services:
       MYSQL_USER: hiagahi
       MYSQL_PASSWORD: higashi
       MYSQL_ROOT_PASSWORD: Higashieast10!
-                           Nakanaka3535!
     ports:
       - "3303:3303"
     volumes:

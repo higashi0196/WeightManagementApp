@@ -33,8 +33,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
       <textarea name="content2"></textarea>
    </div>
    <div class="miyako"> 
-      <button type="submit" class="post-btn">投稿する
-      </button>
+      <button type="submit" class="post-btn">投稿する</button>
       <a href="index.php">戻る</a>
    </div>
 </form>

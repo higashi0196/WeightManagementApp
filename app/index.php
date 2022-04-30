@@ -61,9 +61,14 @@ $wordlists = $getller->index2();
 
       <a class="miyako">明日への一言</a>
       <a href="post.php" class="ishigaki">投稿画面</a>  
-      <?php foreach ($wordlists as $word): ?>
-         
+
+      <?php foreach ($wordlists as $wordtodo): ?>
+         <?php echo $wordtodo['content']; ?>
       <?php endforeach; ?>
+
+      <!-- <?php foreach ($wordlists as $wordtodo): ?>
+         <?php echo $wordtodo['content']; ?>
+      <?php endforeach; ?> -->
 
    </main>
 
