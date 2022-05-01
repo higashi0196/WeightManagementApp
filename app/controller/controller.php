@@ -102,4 +102,18 @@ class Todocontroller {
       header("Location: ./index.php");
    }
 
+   public function postdelete() {
+      $todo_id = $_POST['todo_id'];
+      if (empty($todo_id)) {
+         return;
+         }
+
+      $word = new Database;
+      $word->setId($todo_id);
+      $result2 = $word->postdelete();
+
+      return $result2;
+      header("Location: ./index.php");
+   }
+
 }

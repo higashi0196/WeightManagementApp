@@ -89,7 +89,9 @@ class Database
 
    public static function getAll2(){
       $pdo = new PDO(DSN, USER, PASSWORD);
-      $stmt = $pdo->query('SELECT * FROM words;');
+      // $stmt = $pdo->query('SELECT * FROM words ;');
+      // $stmt = $pdo->query('SELECT * FROM words WHERE id >=40;');
+      $stmt = $pdo->query('SELECT * FROM words ORDER BY id DESC LIMIT 1;');
       if($stmt) {
          $wordlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
       } else {
@@ -148,7 +150,6 @@ class Database
    public function delete() {
       try {
          $query = sprintf("DELETE FROM todos WHERE id = %s", $this->id);
-
          $pdo = new PDO(DSN, USER, PASSWORD);
          $result = $pdo->query($query);
          header('Location: ' . SITE_URL);
@@ -158,6 +159,20 @@ class Database
       //    exit;
       }   
       return $result;
+   }
+
+   public function postdelete() {
+      try {
+         $query = sprintf("DELETE FROM words WHERE id = %s", $this->id);
+         $pdo = new PDO(DSN, USER, PASSWORD);
+         $result = $pdo->query($query);
+         header('Location: ' . SITE_URL);
+      }  catch (PDOException $e) {
+      //    エラーログ
+      //    echo $e->getMessage();
+      //    exit;
+      }   
+      return $result2;
    }
   
    

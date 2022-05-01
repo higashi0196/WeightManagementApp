@@ -58,23 +58,27 @@ $wordlists = $getller->index2();
       </table>
 
       <!-- <a class="miyako">継続するToDoリスト</a> -->
-
-      <a class="miyako">明日への一言</a>
-      <a href="post.php" class="ishigaki">投稿画面</a>  
-
+      <div>
+         <a class="miyako">明日への一言</a>
+         <a href="post.php" class="ishigaki">投稿画面</a> 
+         <input type="button"  value="クリア" onclick="postclear()" />
+      </div>
       <?php foreach ($wordlists as $wordtodo): ?>
-         <?php echo $wordtodo['content']; ?>
+         <textarea id="clearbtn" cols="50" rows="4" class="miyako"><?php echo $wordtodo['content']; ?></textarea>
+         <div class="delete-btn" data-id=<?php echo $wordtodo['id']; ?>>
+         <button >削除</button></div></td>
       <?php endforeach; ?>
-
-      <!-- <?php foreach ($wordlists as $wordtodo): ?>
-         <?php echo $wordtodo['content']; ?>
-      <?php endforeach; ?> -->
-
+      <p><?php echo $wordlists['content']; ?></p>
    </main>
 
    <!-- <script src="./js/main.js"></script> -->
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
+
+   function postclear() {
+      var clearbtn = document.getElementById("clearbtn");
+      clearbtn.value = '';
+   }
 
    const btn5 = document.querySelectorAll('.btn5');
    for (let i = 0; i < btn5.length; i++) 
