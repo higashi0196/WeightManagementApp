@@ -135,6 +135,18 @@ class Database
          return $result2;
    }
 
+   public function post() {
+      try {
+         $query = sprintf("INSERT INTO `words` (`content`, `created_at`, `updated_at`) VALUES ('', NOW(), NOW())",$this->content);
+
+         $pdo = new PDO(DSN, USER, PASSWORD);
+         $result = $pdo->query($query);
+      } catch(Exception $e) {
+         // エラーログ
+      }
+         return $result2;
+   }
+
   public function update() {
       try {
          $query = sprintf("UPDATE `todos` SET `title` = '%s', `content` = '%s', `updated_at` = '%s' WHERE id = %s",$this->title,$this->content,date("Y-m-d H:i:s"),$this->id);

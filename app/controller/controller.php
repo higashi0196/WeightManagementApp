@@ -42,6 +42,31 @@ class Todocontroller {
       header("Location: index.php");
    }
 
+   public function postdelete() {
+
+      $content = (filter_input(INPUT_POST, 'content2'));
+
+      $word = new Database;
+      $word->setContent($content);
+      $result2 = $word->post();
+
+      header("Location: index.php");
+   }
+
+   // public function postdelete() {
+   //    $todo_id = $_POST['todo_id'];
+   //    if (empty($todo_id)) {
+   //       return;
+   //       }
+
+   //    $word = new Database;
+   //    $word->setId($todo_id);
+   //    $result2 = $word->postdelete();
+
+   //    return $result2;
+   //    header("Location: ./index.php");
+   // }
+
    public function edit() {
       $todo_id = '';
       $param = array();
@@ -65,7 +90,7 @@ class Todocontroller {
          "param" => $param,
      );
       return $data;
- }
+   }
    
    public function update() {
 
@@ -99,20 +124,6 @@ class Todocontroller {
       $result = $todo->delete();
 
       return $result;
-      header("Location: ./index.php");
-   }
-
-   public function postdelete() {
-      $todo_id = $_POST['todo_id'];
-      if (empty($todo_id)) {
-         return;
-         }
-
-      $word = new Database;
-      $word->setId($todo_id);
-      $result2 = $word->postdelete();
-
-      return $result2;
       header("Location: ./index.php");
    }
 

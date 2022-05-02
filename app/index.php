@@ -35,7 +35,7 @@ $wordlists = $getller->index2();
             <?php if ($lists): ?>
                <?php foreach ($lists as $todo): ?>
                   <tr>
-                     <!-- <td><input type="checkbox"></td> -->
+                     <td class="check"><input type="checkbox"></td>
                      <td><?php echo $todo['title']; ?></td>
                      <td><?php echo $todo['content']; ?></td>
                      <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn">編集</a></td>
@@ -45,7 +45,7 @@ $wordlists = $getller->index2();
                      <button >jquery</button></div></td>
                      <!-- jquery用おわり -->
 
-                        <!-- javascript用 -->
+                     <!-- javascript用 -->
                      <td><div class="btn5"  data-id=<?php echo $todo['id']; ?>><button>javascript</button></div></td>
                      <!-- javascript用 おわり-->
 
@@ -57,18 +57,16 @@ $wordlists = $getller->index2();
          </tbody>
       </table>
 
-      <!-- <a class="miyako">継続するToDoリスト</a> -->
       <div>
          <a class="miyako">明日への一言</a>
-         <a href="post.php" class="ishigaki">投稿画面</a> 
-         <input type="button"  value="クリア" onclick="postclear()" />
+         <a href="post.php" class="ishigaki"><button>投稿画面</button></a> 
+         <a class="delete-btn" data-id=<?php echo $wordtodo['id']; ?>>
+         <button>削除</button></a>
       </div>
       <?php foreach ($wordlists as $wordtodo): ?>
          <textarea id="clearbtn" cols="50" rows="4" class="miyako"><?php echo $wordtodo['content']; ?></textarea>
-         <div class="delete-btn" data-id=<?php echo $wordtodo['id']; ?>>
-         <button >削除</button></div></td>
       <?php endforeach; ?>
-      <p><?php echo $wordlists['content']; ?></p>
+
    </main>
 
    <!-- <script src="./js/main.js"></script> -->
