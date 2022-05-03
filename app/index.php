@@ -27,15 +27,18 @@ $wordlists = $getller->index2();
       <table>
          <thead>
             <tr>
+               <th scope="col"></th>
                <th scope="col">タイトル</th>
                <th scope="col">目標</th>
+               <th scope="col"></th>
+               <th scope="col"></th>
             </tr>
          </thead>
          <tbody>
             <?php if ($lists): ?>
                <?php foreach ($lists as $todo): ?>
                   <tr>
-                     <td class="check"><input type="checkbox"></td>
+                     <td><input type="checkbox"></td>
                      <td><?php echo $todo['title']; ?></td>
                      <td><?php echo $todo['content']; ?></td>
                      <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn">編集</a></td>

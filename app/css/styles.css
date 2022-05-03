@@ -3,20 +3,15 @@
 /* テーブル CSS */
 th {
    /* padding: 0 0 0 50px; */
-   width: 100px;
-   height: 20px;
+   padding-left: 15px;
 }
 
 td {
    text-align: left;
    /* padding: 0 0 0 10px; */
-   padding-left: 10px;
+   padding-left: 15px;
 }
 
-.check {
-   width: 30px;
-   text-align: center;
-}
 /* テーブル CSS 終わり */
 
 h1 {
