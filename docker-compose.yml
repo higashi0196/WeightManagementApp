@@ -27,6 +27,7 @@ services:
       MYSQL_USER: hiagahi
       MYSQL_PASSWORD: higashi
       MYSQL_ROOT_PASSWORD: Higashieast10!
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
       - "3303:3303"
     volumes:
