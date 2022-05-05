@@ -2,8 +2,15 @@ FROM --platform=linux/amd64 mysql:5.7
 
 ADD ./my.cnf /etc/mysql/my.cnf
 
+RUN apt-get update
+RUN apt-get -y install locales-all
+RUN sed -i -E 's/# (ja\_JP.UTF-8)/\\1/' /etc/locale.gen && locale-gen  
+ENV LANG ja\_JP.UTF-8
+
 # ENV LANG ja_JP.UTF-8
 # ENV LANGUAGE ja_JP:ja
 # ENV LC_ALL ja_JP.UTF-8
 
 RUN chmod 644 /etc/mysql/my.cnf
+
+COPY mysqld_charset.cnf /etc/mysql/conf.d/mysqld_charset.cnf

@@ -12,7 +12,7 @@ services:
       - .:/var/www/html
 
   app:
-    build: ./docker/php
+    build: ./Dockerfile/Dockerfile/php
     volumes:
       - .:/var/www/html
     depends_on:
@@ -20,7 +20,7 @@ services:
 
   mysql:
     image: mysql:5.7
-    build: ./mysql/dockerfile
+    build: ./mysql/Dockerfile
     platform: linux/amd64
     environment:
       MYSQL_DATABASE: todolists
