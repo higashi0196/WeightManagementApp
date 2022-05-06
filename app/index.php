@@ -66,6 +66,7 @@ $wordlists = $getller->index2();
          <a class="delete-btn" data-id=<?php echo $wordtodo['id']; ?>>
          <button>削除</button></a>
       </div>
+      
       <?php foreach ($wordlists as $wordtodo): ?>
          <textarea id="clearbtn" cols="50" rows="4" class="miyako"><?php echo $wordtodo['content']; ?></textarea>
       <?php endforeach; ?>
