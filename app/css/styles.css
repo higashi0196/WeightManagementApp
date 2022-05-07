@@ -12,6 +12,11 @@ td {
    padding-left: 15px;
 }
 
+.done {
+   text-decoration: line-through;
+   color: #ccc;
+}
+
 /* テーブル CSS 終わり */
 
 h1 {

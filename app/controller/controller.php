@@ -127,4 +127,28 @@ class Todocontroller {
       header("Location: ./index.php");
    }
 
+   public function completestatus() {
+      $todo_id = $_POST['todo_id'];
+      if (empty($todo_id)) {
+         return;
+         }
+
+      $todo = Database::findId($todo_id);
+
+      $status = $todo['complete'];
+      if($status == Database::status_uncomplete) {
+         $status = Database::status_complete;
+     } else if($status == Database::status_complete) {
+         $status = Database::status_uncomplete;
+     }
+
+      $todo = new Database;
+      $todo->setId($todo_id);
+      $todo->setstatus($todo_status);
+      $result = $todo->updatecomplete();
+      
+      return $result;
+      header("Location: ./index.php");
+   }
+
 }

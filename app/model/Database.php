@@ -10,7 +10,11 @@ class Database
    public $title;
    public $content;
    public $id;
+   public $status;
    public $data = array();
+
+   const status_uncomplete = 0;
+   const status_complete = 1;
 
    public function takeTitle() {
       return $this->title;
@@ -42,6 +46,14 @@ class Database
 
    public function setData($data) {
       $this->data = $data;
+   }
+
+   public function takeStatus() {
+      return $this->status;
+   }
+
+   public function setStatus($status) {
+      $this->status = $status;
    }
 
    private static  $osaka;
@@ -159,6 +171,18 @@ class Database
          return $result;
    }
 
+   public function updatecomplete() {
+      try {
+         $query = sprintf("UPDATE `todos` SET `complete` = '%s', `updated_at` = '%s' WHERE id = %s",$this->status,date("Y-m-d H:i:s"),$this->id);
+
+         $pdo = new PDO(DSN, USER, PASSWORD);
+         $result = $pdo->query($query);
+      }  catch (PDOException $e) {
+         // エラーログ
+      }   
+         return $result;
+   }
+
    public function delete() {
       try {
          $query = sprintf("DELETE FROM todos WHERE id = %s", $this->id);
@@ -173,19 +197,19 @@ class Database
       return $result;
    }
 
-   public function postdelete() {
-      try {
-         $query = sprintf("DELETE FROM words WHERE id = %s", $this->id);
-         $pdo = new PDO(DSN, USER, PASSWORD);
-         $result = $pdo->query($query);
-         header('Location: ' . SITE_URL);
-      }  catch (PDOException $e) {
-      //    エラーログ
-      //    echo $e->getMessage();
-      //    exit;
-      }   
-      return $result2;
-   }
+   // public function postdelete() {
+   //    try {
+   //       $query = sprintf("DELETE FROM words WHERE id = %s", $this->id);
+   //       $pdo = new PDO(DSN, USER, PASSWORD);
+   //       $result = $pdo->query($query);
+   //       header('Location: ' . SITE_URL);
+   //    }  catch (PDOException $e) {
+   //       エラーログ
+   //       echo $e->getMessage();
+   //       exit;
+   //    }   
+   //    return $result2;
+   // }
   
    
   public static function isExistById($todo_id) {

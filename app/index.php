@@ -38,9 +38,12 @@ $wordlists = $getller->index2();
             <?php if ($lists): ?>
                <?php foreach ($lists as $todo): ?>
                   <tr>
-                     <td><input type="checkbox"></td>
-                     <td><?php echo $todo['title']; ?></td>
-                     <td><?php echo $todo['content']; ?></td>
+                     <span class="<?= $todo->complete ? 'done' : ''; ?>">
+                        <td><input type="checkbox" id="box" <?= $todo->complete ? 'chekced' : ''; ?>></td>
+                        <td><?php echo $todo['title']; ?></td>
+                        <td><?php echo $todo['content']; ?></td>
+                     </span>
+
                      <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn">編集</a></td>
                      
                      <!-- jquery用 -->
@@ -66,7 +69,7 @@ $wordlists = $getller->index2();
          <a class="delete-btn" data-id=<?php echo $wordtodo['id']; ?>>
          <button>削除</button></a>
       </div>
-      
+
       <?php foreach ($wordlists as $wordtodo): ?>
          <textarea id="clearbtn" cols="50" rows="4" class="miyako"><?php echo $wordtodo['content']; ?></textarea>
       <?php endforeach; ?>
@@ -76,6 +79,13 @@ $wordlists = $getller->index2();
    <!-- <script src="./js/main.js"></script> -->
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
+
+   const box = document.querySelectorAll('input[type="checkbox"]');
+      box.forEach(checkbox => {
+      checkbox.addEventListener('change', () => {
+      checkbox.submit();
+      });
+   });
 
    function postclear() {
       var clearbtn = document.getElementById("clearbtn");
