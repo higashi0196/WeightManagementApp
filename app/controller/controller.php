@@ -128,6 +128,10 @@ class Todocontroller {
    }
 
    public function completestatus() {
+
+      $title = (filter_input(INPUT_POST, 'title'));
+      $content = (filter_input(INPUT_POST, 'content'));
+      
       $todo_id = $_POST['todo_id'];
       if (empty($todo_id)) {
          return;
@@ -146,7 +150,7 @@ class Todocontroller {
       $todo->setId($todo_id);
       $todo->setstatus($todo_status);
       $result = $todo->updatecomplete();
-      
+
       return $result;
       header("Location: ./index.php");
    }

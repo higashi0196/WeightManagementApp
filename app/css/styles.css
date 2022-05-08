@@ -17,6 +17,26 @@ td {
    color: #ccc;
 }
 
+/* input[type="checkbox"]:checked {
+   box-shadow: 0 0 0 3px hotpink;
+   text-decoration: line-through;
+   color: #ccc;
+ } */
+
+ input[type="checkbox"]:checked {
+   box-shadow: 0 0 0 3px blue;
+   text-decoration: line-through;
+   color: #ccc;
+ }
+
+ /* input:checked + td {
+   box-shadow: 0 0 0 3px blue;
+   text-decoration: line-through;
+   color: #ccc;
+ } */
+ 
+ 
+
 /* テーブル CSS 終わり */
 
 h1 {

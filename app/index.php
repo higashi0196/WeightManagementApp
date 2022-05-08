@@ -6,6 +6,7 @@ $pdo = Database::get();
 $getller = new Todocontroller();
 $lists = $getller->index();
 $wordlists = $getller->index2();
+$completes = $getller->completestatus();
 
 ?>
 
@@ -38,17 +39,15 @@ $wordlists = $getller->index2();
             <?php if ($lists): ?>
                <?php foreach ($lists as $todo): ?>
                   <tr>
-                     <span class="<?= $todo->complete ? 'done' : ''; ?>">
-                        <td><input type="checkbox" id="box" <?= $todo->complete ? 'chekced' : ''; ?>></td>
-                        <td><?php echo $todo['title']; ?></td>
-                        <td><?php echo $todo['content']; ?></td>
-                     </span>
+                     <td><input type="checkbox" id="checkbox" class="checkbox"></td>
+                     <td class="checkbox"><?php echo $todo['title']; ?></td>
+                     <td class="checkbox"><?php echo $todo['content']; ?></td>
 
                      <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn">編集</a></td>
                      
                      <!-- jquery用 -->
                      <td><div class="delete-btn" data-id=<?php echo $todo['id']; ?>>
-                     <button >jquery</button></div></td>
+                     <button>jquery</button></div></td>
                      <!-- jquery用おわり -->
 
                      <!-- javascript用 -->
@@ -80,12 +79,12 @@ $wordlists = $getller->index2();
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
 
-   const box = document.querySelectorAll('input[type="checkbox"]');
-      box.forEach(checkbox => {
-      checkbox.addEventListener('change', () => {
-      checkbox.submit();
+   const done = document.querySelectorAll("input[type='checkbox']");
+   for (let i = 0; i < done.length; i++) {
+   done[i].addEventListener('change', () => {
+      done.className = 'input[type="checkbox"]:checked';
       });
-   });
+   }
 
    function postclear() {
       var clearbtn = document.getElementById("clearbtn");
@@ -148,6 +147,17 @@ $wordlists = $getller->index2();
             );
         }
     });
+
+   // <form action="" method="post">
+   // <td><input type="checkbox" id="box" <?= $todo->complete ? 'chekced' : ''; ?>></td>
+   // <input type="hidden" name="id" value="<?php $todo['id']; ?>">
+   // </form>
+   // const box = document.querySelectorAll('input[type="checkbox"]');
+   //    box.forEach(checkbox => {
+   //    checkbox.addEventListener('change', () => {
+   //    checkbox.parentNode.submit();
+   //    });
+   // });
    </script>
 </body>
 </html> 
