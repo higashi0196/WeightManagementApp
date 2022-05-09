@@ -39,9 +39,9 @@ $completes = $getller->completestatus();
             <?php if ($lists): ?>
                <?php foreach ($lists as $todo): ?>
                   <tr>
-                     <td><input type="checkbox" id="checkbox" class="checkbox"></td>
-                     <td class="checkbox"><?php echo $todo['title']; ?></td>
-                     <td class="checkbox"><?php echo $todo['content']; ?></td>
+                     <td><input type="checkbox"></td>
+                     <td id="aaa"><?php echo $todo['title']; ?></td>
+                     <td id="bbb"><?php echo $todo['content']; ?></td>
 
                      <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn">編集</a></td>
                      
@@ -78,11 +78,16 @@ $completes = $getller->completestatus();
    <!-- <script src="./js/main.js"></script> -->
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
-
+   
    const done = document.querySelectorAll("input[type='checkbox']");
+   const aaa = document.getElementById("aaa");
+   const bbb = document.getElementById("bbb");
+   
    for (let i = 0; i < done.length; i++) {
-   done[i].addEventListener('change', () => {
+      done[i].addEventListener('change', () => {
       done.className = 'input[type="checkbox"]:checked';
+      aaa.classList.add('my-color');
+      bbb.classList.add('my-color');
       });
    }
 

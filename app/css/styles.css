@@ -2,7 +2,7 @@
 
 /* テーブル CSS */
 th {
-   /* padding: 0 0 0 50px; */
+   text-align: left;
    padding-left: 15px;
 }
 
@@ -17,25 +17,16 @@ td {
    color: #ccc;
 }
 
+.my-color {
+text-decoration: line-through;
+color: #ccc;
+}
+
 /* input[type="checkbox"]:checked {
-   box-shadow: 0 0 0 3px hotpink;
-   text-decoration: line-through;
-   color: #ccc;
- } */
-
- input[type="checkbox"]:checked {
-   box-shadow: 0 0 0 3px blue;
-   text-decoration: line-through;
-   color: #ccc;
- }
-
- /* input:checked + td {
-   box-shadow: 0 0 0 3px blue;
-   text-decoration: line-through;
-   color: #ccc;
- } */
- 
- 
+box-shadow: 0 0 0 3px pink;
+text-decoration: line-through;
+color: #ccc;
+} */
 
 /* テーブル CSS 終わり */
 
