@@ -39,7 +39,7 @@ $completes = $getller->completestatus();
             <?php if ($lists): ?>
                <?php foreach ($lists as $todo): ?>
                   <tr>
-                     <td><input type="checkbox"></td>
+                     <td><input type="checkbox" id="ccc"></td>
                      <td id="aaa"><?php echo $todo['title']; ?></td>
                      <td id="bbb"><?php echo $todo['content']; ?></td>
 
@@ -79,17 +79,22 @@ $completes = $getller->completestatus();
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
    
-   const done = document.querySelectorAll("input[type='checkbox']");
-   const aaa = document.getElementById("aaa");
-   const bbb = document.getElementById("bbb");
+      const done = document.querySelectorAll("input[type='checkbox']");
+      const aaa = document.getElementById("aaa");
+      const bbb = document.getElementById("bbb");
    
-   for (let i = 0; i < done.length; i++) {
-      done[i].addEventListener('change', () => {
-      done.className = 'input[type="checkbox"]:checked';
-      aaa.classList.add('my-color');
-      bbb.classList.add('my-color');
-      });
-   }
+      for (let i = 0; i < done.length; i++) {
+         done[i].addEventListener('change', () => {
+         aaa.classList.toggle('my-color');
+         bbb.classList.toggle('my-color');
+         });
+      }
+      
+
+   // aaa.classList.add('my-color');
+   // bbb.classList.add('my-color');
+   // 5/10 const aaa,const bbb の両方にfor文をつけてみては？
+   // 両方を分けてループ処理を試してみよう
 
    function postclear() {
       var clearbtn = document.getElementById("clearbtn");
