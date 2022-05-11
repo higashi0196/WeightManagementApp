@@ -10,11 +10,11 @@ class Database
    public $title;
    public $content;
    public $id;
-   public $status;
+   public $complete;
    public $data = array();
 
-   const status_uncomplete = 0;
-   const status_complete = 1;
+   const complete_uncomplete = 0;
+   const complete_complete = 1;
 
    public function takeTitle() {
       return $this->title;
@@ -48,12 +48,12 @@ class Database
       $this->data = $data;
    }
 
-   public function takeStatus() {
-      return $this->status;
+   public function takecomplete() {
+      return $this->$complete;
    }
 
-   public function setStatus($status) {
-      $this->status = $status;
+   public function setcomplete($complete) {
+      $this->$complete = $complete;
    }
 
    private static  $osaka;

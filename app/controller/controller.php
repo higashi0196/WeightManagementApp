@@ -129,26 +129,23 @@ class Todocontroller {
 
    public function completestatus() {
 
-      $title = (filter_input(INPUT_POST, 'title'));
-      $content = (filter_input(INPUT_POST, 'content'));
-      
       $todo_id = $_POST['todo_id'];
-      if (empty($todo_id)) {
-         return;
-         }
+      // if (empty($todo_id)) {
+      //    return;
+      //    }
 
       $todo = Database::findId($todo_id);
 
-      $status = $todo['complete'];
-      if($status == Database::status_uncomplete) {
-         $status = Database::status_complete;
-     } else if($status == Database::status_complete) {
-         $status = Database::status_uncomplete;
+      $complete = $todo['complete'];
+      if($complete === Database::complete_uncomplete) {
+         $complete = Database::complete_uncomplete;
+     } else if($complete === Database::complete_complete) {
+         $complete = Database::complete_uncomplete;
      }
 
       $todo = new Database;
       $todo->setId($todo_id);
-      $todo->setstatus($todo_status);
+      $todo->setcomplete($complete);
       $result = $todo->updatecomplete();
 
       return $result;

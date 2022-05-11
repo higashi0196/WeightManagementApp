@@ -39,22 +39,25 @@ $completes = $getller->completestatus();
             <?php if ($lists): ?>
                <?php foreach ($lists as $todo): ?>
                   <tr>
-                     <td><input type="checkbox" id="ccc"></td>
+                     <!-- <td><input type="checkbox" class="todo-checkbox" data-id="<?php echo $todo['id']; ?>"></td>
+                     <td><?php echo $todo['title']; ?></td>
+                     <td><?php echo $todo['content']; ?></td> -->
+
+                     <td><input type="checkbox" id="done"></td>
                      <td id="aaa"><?php echo $todo['title']; ?></td>
-                     <td id="bbb"><?php echo $todo['content']; ?></td>
+                     <td id="bbb"><?php echo $todo['content']; ?></td> 
 
                      <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn">編集</a></td>
                      
                      <!-- jquery用 -->
-                     <td><div class="delete-btn" data-id=<?php echo $todo['id']; ?>>
+                     <td><div class="delete-btn" data-id="<?php echo $todo['id']; ?>">
                      <button>jquery</button></div></td>
                      <!-- jquery用おわり -->
 
                      <!-- javascript用 -->
-                     <td><div class="btn5"  data-id=<?php echo $todo['id']; ?>><button>javascript</button></div></td>
+                     <td><div class="btn5"  data-id="<?php echo $todo['id']; ?>"><button>javascript</button></div></td>
                      <!-- javascript用 おわり-->
 
-                  </tr>
                <?php endforeach; ?>
             <?php else : ?>
                <td>Todoなし</td>
@@ -78,32 +81,26 @@ $completes = $getller->completestatus();
    <!-- <script src="./js/main.js"></script> -->
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
-   
+
       const done = document.querySelectorAll("input[type='checkbox']");
       const aaa = document.getElementById("aaa");
       const bbb = document.getElementById("bbb");
-   
+
       for (let i = 0; i < done.length; i++) {
          done[i].addEventListener('change', () => {
          aaa.classList.toggle('my-color');
          bbb.classList.toggle('my-color');
          });
       }
-      
 
-   // aaa.classList.add('my-color');
-   // bbb.classList.add('my-color');
-   // 5/10 const aaa,const bbb の両方にfor文をつけてみては？
-   // 両方を分けてループ処理を試してみよう
+      function postclear() {
+         var clearbtn = document.getElementById("clearbtn");
+         clearbtn.value = '';
+      }
 
-   function postclear() {
-      var clearbtn = document.getElementById("clearbtn");
-      clearbtn.value = '';
-   }
-
-   const btn5 = document.querySelectorAll('.btn5');
-   for (let i = 0; i < btn5.length; i++) 
-   btn5[i].addEventListener('click', () => {
+      const btn5 = document.querySelectorAll('.btn5');
+      for (let i = 0; i < btn5.length; i++) {
+      btn5[i].addEventListener('click', () => {
       let todo_id = $(btn5).data('id');
       if (!confirm('本当に削除する？ id:' + todo_id)) {
          btn5.disabled = false;
@@ -120,13 +117,15 @@ $completes = $getller->completestatus();
          } else {
             console.log("通信失敗");
          }
-      };
-         xml.open('POST', './delete.php',"data", true);
-         xml.send("data");
+         };
+            xml.open('POST', './delete.php',"data", true);
+            xml.send("data");
+         }
+            console.log("通信完了");
+         });
       }
-         console.log("通信完了");
-   });
 
+   
    $(".delete-btn").click(function () {
       let todo_id = $(this).data('id');
       if (confirm("削除しますがよろしいですか？ id:" + todo_id)) {
@@ -158,16 +157,6 @@ $completes = $getller->completestatus();
         }
     });
 
-   // <form action="" method="post">
-   // <td><input type="checkbox" id="box" <?= $todo->complete ? 'chekced' : ''; ?>></td>
-   // <input type="hidden" name="id" value="<?php $todo['id']; ?>">
-   // </form>
-   // const box = document.querySelectorAll('input[type="checkbox"]');
-   //    box.forEach(checkbox => {
-   //    checkbox.addEventListener('change', () => {
-   //    checkbox.parentNode.submit();
-   //    });
-   // });
    </script>
 </body>
 </html> 
