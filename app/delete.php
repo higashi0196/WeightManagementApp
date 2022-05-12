@@ -15,7 +15,7 @@ if($result) {
 
 echo json_encode([$response]);
 
-header('Location: ' . SITE_URL);
+// header('Location: ' . SITE_URL);
 
 ?>
 

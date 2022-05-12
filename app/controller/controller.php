@@ -152,4 +152,41 @@ class Todocontroller {
       header("Location: ./index.php");
    }
 
+      // ここからした
+   public function updateStatus() {
+      error_log("updateStatus call.");
+      $todo_id = $_POST['todo_id'];
+      if(!$todo_id) {
+          error_log(sprintf("[TodoController][updateStatus]todo_id id not found. todo_id: %s", $todo_id));
+          return false;
+      }
+
+      // if(Database::isExistId($todo_id) === false) {
+      //     error_log(sprintf("[TodoController][updateStatus]record is not found. todo_id: %s", $todo_id));
+      //     return false;
+      // }
+
+      // $todo = Database::findId($todo_id);
+      // if(!$todo) {
+      //     error_log(sprintf("[TodoController][updateStatus]record is not found. todo_id: %s", $todo_id));
+      //     return false;
+      // }
+
+      $status = $todo['status'];
+      if($status == Database::STATUS_INCOMPLETE) {
+          $status = Database::STATUS_COMPLETED;
+      } else if($status == Database::STATUS_COMPLETED) {
+          $status = Database::STATUS_INCOMPLETE;
+      }
+
+      $todo = new Todo;
+      $todo->setId($todo_id);
+      $todo->setStatus($status);
+      $result = $todo->updateStatus();
+
+      error_log(print_r($result, true));
+
+      return $result;
+  }
+
 }

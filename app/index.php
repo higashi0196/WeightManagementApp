@@ -39,13 +39,13 @@ $completes = $getller->completestatus();
             <?php if ($lists): ?>
                <?php foreach ($lists as $todo): ?>
                   <tr>
-                     <!-- <td><input type="checkbox" class="todo-checkbox" data-id="<?php echo $todo['id']; ?>"></td>
+                     <td><input type="checkbox" class="todo-checkbox" data-id="<?php echo $todo['id']; ?> " <?php if($todo['status']):?>checked<?php endif;?>></td>
                      <td><?php echo $todo['title']; ?></td>
-                     <td><?php echo $todo['content']; ?></td> -->
+                     <td><?php echo $todo['content']; ?></td>
 
-                     <td><input type="checkbox" id="done"></td>
+                     <!-- <td><input type="checkbox" id="done"></td>
                      <td id="aaa"><?php echo $todo['title']; ?></td>
-                     <td id="bbb"><?php echo $todo['content']; ?></td> 
+                     <td id="bbb"><?php echo $todo['content']; ?></td>  -->
 
                      <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn">編集</a></td>
                      
@@ -82,21 +82,23 @@ $completes = $getller->completestatus();
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
 
-      const done = document.querySelectorAll("input[type='checkbox']");
-      const aaa = document.getElementById("aaa");
-      const bbb = document.getElementById("bbb");
-
-      for (let i = 0; i < done.length; i++) {
-         done[i].addEventListener('change', () => {
-         aaa.classList.toggle('my-color');
-         bbb.classList.toggle('my-color');
+      const btn5 = document.querySelectorAll('.btn5');
+      btn5.forEach(span => {
+         span.addEventListener('click', () => {
+            let todo_id = $(btn5).data('id');
+            if (!confirm('本当に削除する？ id:' + todo_id)) {
+               btn5.disabled = false;
+               return;
+            }
+            fetch('index.php', {
+               method: 'POST',
+               body: new URLSearchParams({
+                  id: span.dataset.id,
+               }),
+            });
+            span.remove();
          });
-      }
-
-      function postclear() {
-         var clearbtn = document.getElementById("clearbtn");
-         clearbtn.value = '';
-      }
+      });
 
       const btn5 = document.querySelectorAll('.btn5');
       for (let i = 0; i < btn5.length; i++) {
@@ -114,6 +116,7 @@ $completes = $getller->completestatus();
       xml.onreadystatechange = function() {
          if (xml.readyState === 4 || xml.status === 200) {
             console.log("通信中！");
+            
          } else {
             console.log("通信失敗");
          }
@@ -155,8 +158,24 @@ $completes = $getller->completestatus();
                 }
             );
         }
+      //   location.reload();
     });
 
+   // const done = document.querySelectorAll("input[type='checkbox']");
+      // const aaa = document.getElementById("aaa");
+      // const bbb = document.getElementById("bbb");
+
+      // for (let i = 0; i < done.length; i++) {
+      //    done[i].addEventListener('change', () => {
+      //    aaa.classList.toggle('my-color');
+      //    bbb.classList.toggle('my-color');
+      //    });
+      // }
+
+      function postclear() {
+         var clearbtn = document.getElementById("clearbtn");
+         clearbtn.value = '';
+      }
    </script>
 </body>
 </html> 
