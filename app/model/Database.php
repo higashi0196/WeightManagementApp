@@ -147,18 +147,6 @@ class Database
          return $result2;
    }
 
-   public function post() {
-      try {
-         $query = sprintf("INSERT INTO `words` (`content`, `created_at`, `updated_at`) VALUES ('', NOW(), NOW())",$this->content);
-
-         $pdo = new PDO(DSN, USER, PASSWORD);
-         $result = $pdo->query($query);
-      } catch(Exception $e) {
-         // エラーログ
-      }
-         return $result2;
-   }
-
   public function update() {
       try {
          $query = sprintf("UPDATE `todos` SET `title` = '%s', `content` = '%s', `updated_at` = '%s' WHERE id = %s",$this->title,$this->content,date("Y-m-d H:i:s"),$this->id);
@@ -197,22 +185,33 @@ class Database
       return $result;
    }
 
-   // public function postdelete() {
+   public function postdelete() {
+      try {
+         $query = sprintf("DELETE FROM words WHERE id = %s", $this->id);
+         $pdo = new PDO(DSN, USER, PASSWORD);
+         $result2 = $pdo->query($query);
+         header('Location: ' . SITE_URL);
+      }  catch (PDOException $e) {
+         // エラーログ
+         // echo $e->getMessage();
+         exit;
+      }   
+      return $result2;
+   }
+  
+   // public function post() {
    //    try {
-   //       $query = sprintf("DELETE FROM words WHERE id = %s", $this->id);
+   //       $query = sprintf("INSERT INTO `words` (`content`, `created_at`, `updated_at`) VALUES ('', NOW(), NOW())",$this->content);
+
    //       $pdo = new PDO(DSN, USER, PASSWORD);
    //       $result = $pdo->query($query);
-   //       header('Location: ' . SITE_URL);
-   //    }  catch (PDOException $e) {
-   //       エラーログ
-   //       echo $e->getMessage();
-   //       exit;
-   //    }   
-   //    return $result2;
+   //    } catch(Exception $e) {
+   //       // エラーログ
+   //    }
+   //       return $result2;
    // }
-  
-   
-  public static function isExistById($todo_id) {
+
+   public static function isExistById($todo_id) {
       $pdo = new PDO(DSN, USER, PASSWORD);
       $stmt = $pdo->query(sprintf('select * from todos where id = %s;', $todo_id));
       if($stmt) {
@@ -272,7 +271,6 @@ class Database
           return false;
       }
       return $result;
-
-  }
+   }
 
 }

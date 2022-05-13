@@ -8,12 +8,12 @@ $result2 = $getller->postdelete();
 
 $response = array();
 if($result) {
-    $response['result'] = 'success';
+   $response['result'] = 'success';
 } else {
-    $response['result'] = 'fail';
+   $response['result'] = 'fail';
 }
 
-echo json_encode([$response]);
+echo json_encode($response);
 
 // header('Location: ' . SITE_URL);
 
@@ -45,15 +45,3 @@ const button3 = document.getElementById("btn3");
 button3.addEventListener("click", () => {
    console.log("クリックされました");
 }); -->
-
-<!DOCTYPE html>
-<html lang="ja">
-<head> 
-   <meta charset="utf-8">
-   <title>編集画面</title>
-   <link rel="stylesheet" href="./css/styles.css">
-</head>
-<body>
-   <a class="edit-feeld">削除画面</a>
-</body>
-</html>

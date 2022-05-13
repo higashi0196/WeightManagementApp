@@ -64,17 +64,21 @@ $completes = $getller->completestatus();
             <?php endif; ?>
          </tbody>
       </table>
-
+      
       <div>
          <a class="miyako">明日への一言</a>
-         <a href="post.php" class="ishigaki"><button>投稿画面</button></a> 
-         <a class="delete-btn" data-id=<?php echo $wordtodo['id']; ?>>
-         <button>削除</button></a>
+         <a href="post.php" class="ishigaki"><button>投稿する</button></a>
       </div>
-
+      
+      <?php if ($wordlists): ?>
       <?php foreach ($wordlists as $wordtodo): ?>
-         <textarea id="clearbtn" cols="50" rows="4" class="miyako"><?php echo $wordtodo['content']; ?></textarea>
+         <textarea id="clearbtn" cols="50" rows="2" style="margin-left:30px"> <?php echo $wordtodo['content']; ?></textarea>
+         <div class="aaa" data-id=<?php echo $wordtodo['id']; ?>>
+         <button style="margin-left:220px">削除</button></div>
       <?php endforeach; ?>
+      <?php else : ?>
+         <textarea placeholder="何でもコメント" cols="50" rows="2" style="margin-left:30px"></textarea>
+      <?php endif; ?>
 
    </main>
 
@@ -82,23 +86,33 @@ $completes = $getller->completestatus();
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
 
-      const btn5 = document.querySelectorAll('.btn5');
-      btn5.forEach(span => {
-         span.addEventListener('click', () => {
-            let todo_id = $(btn5).data('id');
-            if (!confirm('本当に削除する？ id:' + todo_id)) {
-               btn5.disabled = false;
-               return;
-            }
-            fetch('index.php', {
-               method: 'POST',
-               body: new URLSearchParams({
-                  id: span.dataset.id,
-               }),
-            });
-            span.remove();
-         });
-      });
+      function postclear() {
+         var clearbtn = document.getElementById("clearbtn");
+         clearbtn.value = '';
+      }
+
+      // const aaa = document.getElementById('.aaa');
+      // aaa.addEventListener('click', () => {
+         
+      // });
+
+      // const btn5 = document.querySelectorAll('.btn5');
+      // btn5.forEach(span => {
+      //    span.addEventListener('click', () => {
+      //       let todo_id = $(btn5).data('id');
+      //       if (!confirm('本当に削除する？ id:' + todo_id)) {
+      //          btn5.disabled = false;
+      //          return;
+      //       }
+      //       fetch('index.php', {
+      //          method: 'POST',
+      //          body: new URLSearchParams({
+      //             id: span.dataset.id,
+      //          }),
+      //       });
+      //       span.remove();
+      //    });
+      // });
 
       const btn5 = document.querySelectorAll('.btn5');
       for (let i = 0; i < btn5.length; i++) {
@@ -128,7 +142,38 @@ $completes = $getller->completestatus();
          });
       }
 
-   
+      $(".aaa").click(function () {
+      let todo_id = $(this).data('id');
+      if (confirm("削除しますがよろしいですか？ id:" + todo_id)) {
+         $(".aaa").prop("disabled", true);
+         let data = {};
+         data.todo_id = todo_id;
+         $.ajax({
+            url: './delete.php',
+            type: 'post',
+            data: data
+         }).then(
+            function (data) {
+               let json = JSON.parse(data);
+               console.log("success", json);
+               if (json.result == 'success') {
+                  window.location.href = "./index.php";
+               } else {
+                  console.log("failed to delete.");
+                  alert("failed to delete.");
+                  $(".aaa").prop("disabled", false);
+               }
+               },
+               function () {
+                  console.log("fail");
+                  alert("fail");
+                  $(".aaa").prop("disabled", false);
+                }
+            );
+        }
+      //   location.reload();
+    });
+
    $(".delete-btn").click(function () {
       let todo_id = $(this).data('id');
       if (confirm("削除しますがよろしいですか？ id:" + todo_id)) {
@@ -172,10 +217,6 @@ $completes = $getller->completestatus();
       //    });
       // }
 
-      function postclear() {
-         var clearbtn = document.getElementById("clearbtn");
-         clearbtn.value = '';
-      }
    </script>
 </body>
 </html> 
