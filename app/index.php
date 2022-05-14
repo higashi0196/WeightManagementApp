@@ -19,7 +19,11 @@ $completes = $getller->completestatus();
 </head>
 <body>
    <main>
-      <h1>目標体重</h1>
+      <label style="margin-left:30px" for="weight">目標体重 : </label>
+      <input type="text" id="weight"></br>
+      <label style="margin-left:30px" for="now-weight">現在の体重 : </label>
+      <input type="text" id="now-weight">
+
       <div>
          <a class="miyako">今日のToDoリスト</a>
          <a action="./create.php" method="POST"></a>
@@ -39,13 +43,13 @@ $completes = $getller->completestatus();
             <?php if ($lists): ?>
                <?php foreach ($lists as $todo): ?>
                   <tr>
-                     <td><input type="checkbox" class="todo-checkbox" data-id="<?php echo $todo['id']; ?> " <?php if($todo['status']):?>checked<?php endif;?>></td>
+                     <!-- <td><input type="checkbox" class="todo-checkbox" data-id="<?php echo $todo['id']; ?> " <?php if($todo['status']):?>checked<?php endif;?>></td>
                      <td><?php echo $todo['title']; ?></td>
-                     <td><?php echo $todo['content']; ?></td>
+                     <td><?php echo $todo['content']; ?></td> -->
 
-                     <!-- <td><input type="checkbox" id="done"></td>
+                     <td><input type="checkbox" id="done"></td>
                      <td id="aaa"><?php echo $todo['title']; ?></td>
-                     <td id="bbb"><?php echo $todo['content']; ?></td>  -->
+                     <td id="bbb"><?php echo $todo['content']; ?></td> 
 
                      <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn">編集</a></td>
                      
@@ -85,6 +89,22 @@ $completes = $getller->completestatus();
    <!-- <script src="./js/main.js"></script> -->
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
+
+   const done = document.querySelectorAll("input[type='checkbox']");
+      const aaa = document.getElementById("aaa");
+      const bbb = document.getElementById("bbb");
+
+      for (let i = 0; i < done.length; i++) {
+         done[i].addEventListener('change', () => {
+         aaa.classList.toggle('my-color');
+         bbb.classList.toggle('my-color');
+         });
+      }
+   // const aaa = document.querySelectorAll('td')[1]
+   // const bbb = document.querySelectorAll('td')[2]
+   // const aaa = document.getElementsByTagName('td')[1]
+   // const bbb = document.getElementsByTagName('td')[2]
+
 
       function postclear() {
          var clearbtn = document.getElementById("clearbtn");
@@ -205,17 +225,6 @@ $completes = $getller->completestatus();
         }
       //   location.reload();
     });
-
-   // const done = document.querySelectorAll("input[type='checkbox']");
-      // const aaa = document.getElementById("aaa");
-      // const bbb = document.getElementById("bbb");
-
-      // for (let i = 0; i < done.length; i++) {
-      //    done[i].addEventListener('change', () => {
-      //    aaa.classList.toggle('my-color');
-      //    bbb.classList.toggle('my-color');
-      //    });
-      // }
 
    </script>
 </body>
