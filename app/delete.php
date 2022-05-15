@@ -18,30 +18,3 @@ echo json_encode($response);
 // header('Location: ' . SITE_URL);
 
 ?>
-
-<!-- javascript  -->
-<!-- 試し用 -->
-<!-- <td><button id="btn2" class="delete-btn">Click2</button></td>
-<td><button id="btn3" class="delete-btn">Click3</button></td> -->
-<!-- 試し用終わり -->
-
-<!-- const button1 = document.getElementById("btn1");
-button1.addEventListener("click", () => {
-   if (!confirm('本当に削除しますか?')) {
-   return;
-}    
-   console.log("なんでやねん");
-});
-
-const button2 = document.getElementById("btn2");
-button2.addEventListener("click", () => {
-   if (!confirm('Are you sure?')) {
-   return;
-}
-   console.log("まっほー");
-});
-
-const button3 = document.getElementById("btn3");
-button3.addEventListener("click", () => {
-   console.log("クリックされました");
-}); -->

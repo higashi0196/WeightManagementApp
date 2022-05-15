@@ -54,6 +54,7 @@ class Todocontroller {
    // }
 
    public function postdelete() {
+
       $todo_id = $_POST['todo_id'];
       if (empty($todo_id)) {
          return;
@@ -68,6 +69,7 @@ class Todocontroller {
    }
 
    public function edit() {
+
       $todo_id = '';
       $param = array();
 
@@ -114,10 +116,8 @@ class Todocontroller {
    }
 
    public function delete() {
+
       $todo_id = $_POST['todo_id'];
-      // if (empty($todo_id)) {
-      //    return;
-      //    }
 
       $todo = new Database;
       $todo->setId($todo_id);
@@ -130,10 +130,6 @@ class Todocontroller {
    public function completestatus() {
 
       $todo_id = $_POST['todo_id'];
-      // if (empty($todo_id)) {
-      //    return;
-      //    }
-
       $todo = Database::findId($todo_id);
 
       $complete = $todo['complete'];

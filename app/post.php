@@ -37,12 +37,5 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
       <a href="index.php">戻る</a>
    </div>
 </form>
-
-<!-- <div class="miyako">
-   <p>明日への一言2</p>
-   <textarea id="days" name="message" rows="2" cols="30"></textarea>
-   <input type="button" onclick="" value="投稿">
-   <a href="index.php">戻る</a> -->
-</div>
 </body>
 </html>

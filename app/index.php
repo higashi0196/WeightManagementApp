@@ -52,7 +52,6 @@ $completes = $getller->completestatus();
                      <td id="bbb"><?php echo $todo['content']; ?></td> 
 
                      <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn">編集</a></td>
-                     
                      <!-- jquery用 -->
                      <td><div class="delete-btn" data-id="<?php echo $todo['id']; ?>">
                      <button>jquery</button></div></td>
@@ -76,9 +75,9 @@ $completes = $getller->completestatus();
       
       <?php if ($wordlists): ?>
       <?php foreach ($wordlists as $wordtodo): ?>
-         <textarea id="clearbtn" cols="50" rows="2" style="margin-left:30px"> <?php echo $wordtodo['content']; ?></textarea>
+         <textarea cols="50" rows="2" style="margin-left:30px"> <?php echo $wordtodo['content']; ?></textarea>
          <div class="aaa" data-id=<?php echo $wordtodo['id']; ?>>
-         <button style="margin-left:220px">削除</button></div>
+         <button style="margin-left:30px">削除</button></div>
       <?php endforeach; ?>
       <?php else : ?>
          <textarea placeholder="何でもコメント" cols="50" rows="2" style="margin-left:30px"></textarea>
@@ -90,26 +89,20 @@ $completes = $getller->completestatus();
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
 
-   const done = document.querySelectorAll("input[type='checkbox']");
-      const aaa = document.getElementById("aaa");
-      const bbb = document.getElementById("bbb");
+   // const done = document.querySelectorAll("input[type='checkbox']");
+   //    const aaa = document.getElementById("aaa");
+   //    const bbb = document.getElementById("bbb");
 
-      for (let i = 0; i < done.length; i++) {
-         done[i].addEventListener('change', () => {
-         aaa.classList.toggle('my-color');
-         bbb.classList.toggle('my-color');
-         });
-      }
+   //    for (let i = 0; i < done.length; i++) {
+   //       done[i].addEventListener('change', () => {
+   //       aaa.classList.toggle('my-color');
+   //       bbb.classList.toggle('my-color');
+   //       });
+   //    }
    // const aaa = document.querySelectorAll('td')[1]
    // const bbb = document.querySelectorAll('td')[2]
    // const aaa = document.getElementsByTagName('td')[1]
    // const bbb = document.getElementsByTagName('td')[2]
-
-
-      function postclear() {
-         var clearbtn = document.getElementById("clearbtn");
-         clearbtn.value = '';
-      }
 
       // const aaa = document.getElementById('.aaa');
       // aaa.addEventListener('click', () => {
@@ -223,7 +216,6 @@ $completes = $getller->completestatus();
                 }
             );
         }
-      //   location.reload();
     });
 
    </script>

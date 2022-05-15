@@ -254,7 +254,6 @@ class Database
           error_log($query);
 
           $pdo = new PDO(DSN, USERNAME, PASSWORD);
-
           $pdo->beginTransaction();
 
           $result = $pdo->query($query);
