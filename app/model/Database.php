@@ -32,6 +32,22 @@ class Database
       $this->content = $content;
    }
 
+   public function takebody() {
+      return $this->body;
+   }
+
+   public function setbody($body) {
+      $this->body = $body;
+   }
+
+   public function takeweight() {
+      return $this->weight;
+   }
+
+   public function setweight($weight) {
+      $this->weight = $weight;
+   }
+
    public function takeId() {
       return $this->id;
    }
@@ -145,6 +161,18 @@ class Database
          // エラーログ
       }
          return $result2;
+   }
+
+   public function hold() {
+      try {
+         $query = sprintf("INSERT INTO `bodies` (`bodyweight1`, `bodyweight2`, `nowdate`) VALUES ('44.4', '11.1', NOW())",$this->body,$this->weight);
+
+         $pdo = new PDO(DSN, USER, PASSWORD);
+         $result = $pdo->query($query);
+      } catch(Exception $e) {
+         // エラーログ
+      }
+         return $result;
    }
 
   public function update() {

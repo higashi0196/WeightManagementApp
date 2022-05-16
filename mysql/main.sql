@@ -24,3 +24,14 @@ CREATE TABLE words (
 INSERT INTO words (content , created_at, updated_at) VALUES ('language', now(), now());
 
 SELECT * FROM words;
+
+CREATE TABLE bodies (
+   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   bodyweight1 DECIMAL(5,2),
+   bodyweight2 DECIMAL(5,2),
+   nowdate date NOT NULL
+);
+
+INSERT INTO bodies (bodyweight1, bodyweight2, nowdate) VALUES ('70.8', '65.5', now());
+
+SELECT * FROM bodies;

@@ -42,6 +42,19 @@ class Todocontroller {
       header("Location: index.php");
    }
 
+   public function dietcreate() {
+
+      $body = (filter_input(INPUT_POST, 'body'));
+      $weight = (filter_input(INPUT_POST, 'weight'));
+
+      $physical = new Database;
+      $physical->setbody($body);
+      $physical->setweight($weight);
+      $result = $physical->hold();
+
+      header("Location: index.php");
+   }
+
    // public function postdelete() {
 
    //    $content = (filter_input(INPUT_POST, 'content2'));

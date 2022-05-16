@@ -24,6 +24,11 @@ $completes = $getller->completestatus();
       <label style="margin-left:30px" for="now-weight">現在の体重 : </label>
       <input type="text" id="now-weight">
 
+      <div class="miyako">
+         <a action="./weight.php" method="POST"></a>
+         <a href="weight.php" class="ishigaki">体重記入</a>
+      </div>
+
       <div>
          <a class="miyako">今日のToDoリスト</a>
          <a action="./create.php" method="POST"></a>
