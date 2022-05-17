@@ -18,6 +18,12 @@ class Todocontroller {
       return $wordlists;
    }
 
+   public function index3() {
+      // $lists = Database::dbconnect($query);
+      $bodylists = Database::getAll3();
+      return $bodylists;
+   }
+
    public function create() {
 
       $title = (filter_input(INPUT_POST, 'title'));
@@ -46,10 +52,12 @@ class Todocontroller {
 
       $body = (filter_input(INPUT_POST, 'body'));
       $weight = (filter_input(INPUT_POST, 'weight'));
+      $today = (filter_input(INPUT_POST, 'today'));
 
       $physical = new Database;
       $physical->setbody($body);
       $physical->setweight($weight);
+      $physical->settoday($today);
       $result = $physical->hold();
 
       header("Location: index.php");

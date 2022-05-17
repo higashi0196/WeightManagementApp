@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $body = '';
 $weight = '';
+$today = '';
 if($_SERVER['REQUEST_METHOD'] === 'GET') {
 
    if(isset($_GET['body'])) {
@@ -19,6 +20,10 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
 
    if(isset($_GET['weight'])) {
       $weight = $_GET['weight'];
+   }
+
+   if(isset($_GET['today'])) {
+      $today = $_GET['today'];
    }
 }
 
@@ -39,10 +44,10 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
          <p>目標体重 : <input type="text" name="body"></p>
       </div>
       <div>
-         <p>現在の体重 : <input type="date" name="111"></p>
-         <input type="text" name="weight">
+         <p>現在の体重 : <input type="text" name="weight"> <input type="date" name="today"></p>
       </div>
-      <button type="submit" class="shinki-btn">記入</button>
+      <div style="padding-top:5px">
+      <button type="submit">記入</button>
       <a href="index.php">戻る</a>
       </div>
    </form>

@@ -6,15 +6,25 @@
 
 class Database
 {
-
+   public $id;
    public $title;
    public $content;
-   public $id;
-   public $complete;
+   public $body;
+   public $weight;
+   public $today;
    public $data = array();
+   public $complete;
 
    const complete_uncomplete = 0;
    const complete_complete = 1;
+
+   public function takeId() {
+      return $this->id;
+   }
+
+   public function setId($id) {
+      $this->id = $id;
+   }
 
    public function takeTitle() {
       return $this->title;
@@ -48,12 +58,12 @@ class Database
       $this->weight = $weight;
    }
 
-   public function takeId() {
-      return $this->id;
+   public function taketoday() {
+      return $this->today;
    }
 
-   public function setId($id) {
-      $this->id = $id;
+   public function settoday($today) {
+      $this->today = $today;
    }
 
    public function takeData() {
@@ -117,8 +127,6 @@ class Database
 
    public static function getAll2(){
       $pdo = new PDO(DSN, USER, PASSWORD);
-      // $stmt = $pdo->query('SELECT * FROM words ;');
-      // $stmt = $pdo->query('SELECT * FROM words WHERE id >=40;');
       $stmt = $pdo->query('SELECT * FROM words ORDER BY id DESC LIMIT 1;');
       if($stmt) {
          $wordlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -126,6 +134,17 @@ class Database
          $wordlists = array();
       }
       return $wordlists;
+   }
+
+   public static function getAll3(){
+      $pdo = new PDO(DSN, USER, PASSWORD);
+      $stmt = $pdo->query('SELECT * FROM bodies ORDER BY id DESC LIMIT 1;');
+      if($stmt) {
+         $bodylists = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      } else {
+         $bodylists = array();
+      }
+      return $bodylists;
    }
    
    public static function findId($todo_id) {
@@ -165,7 +184,7 @@ class Database
 
    public function hold() {
       try {
-         $query = sprintf("INSERT INTO `bodies` (`bodyweight1`, `bodyweight2`, `nowdate`) VALUES ('44.4', '11.1', NOW())",$this->body,$this->weight);
+         $query = sprintf("INSERT INTO `bodies` (`bodyweight1`, `bodyweight2`, `nowdate`) VALUES ('%s', '%s', '%s')",$this->body,$this->weight,$this->today);
 
          $pdo = new PDO(DSN, USER, PASSWORD);
          $result = $pdo->query($query);

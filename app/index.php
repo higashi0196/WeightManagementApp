@@ -6,6 +6,7 @@ $pdo = Database::get();
 $getller = new Todocontroller();
 $lists = $getller->index();
 $wordlists = $getller->index2();
+$bodylists = $getller->index3();
 $completes = $getller->completestatus();
 
 ?>
@@ -19,10 +20,16 @@ $completes = $getller->completestatus();
 </head>
 <body>
    <main>
-      <label style="margin-left:30px" for="weight">目標体重 : </label>
-      <input type="text" id="weight"></br>
-      <label style="margin-left:30px" for="now-weight">現在の体重 : </label>
-      <input type="text" id="now-weight">
+   <!-- <?php if ($bodylists): ?> -->
+      <?php foreach ($bodylists as $bodylist): ?>
+         <label style="margin-left:30px" for="weight">目標体重 : </label>
+         <input type="text" id="weight" value=" <?php echo $bodylist['bodyweight1']; ?>"></br>
+         <label style="margin-left:30px" for="now-weight">現在の体重 : </label>
+         <input type="text" id="now-weight" value="<?php echo $bodylist['bodyweight2']; ?>">
+      <?php endforeach; ?>
+   <!-- <?php else : ?> -->
+      
+   <!-- <?php endif; ?> -->
 
       <div class="miyako">
          <a action="./weight.php" method="POST"></a>
