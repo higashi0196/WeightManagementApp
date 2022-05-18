@@ -20,16 +20,17 @@ $completes = $getller->completestatus();
 </head>
 <body>
    <main>
-   <!-- <?php if ($bodylists): ?> -->
+   
+      <h2>体重管理リスト</h2>
+
       <?php foreach ($bodylists as $bodylist): ?>
          <label style="margin-left:30px" for="weight">目標体重 : </label>
-         <input type="text" id="weight" value=" <?php echo $bodylist['bodyweight1']; ?>"></br>
+         <input type="text" id="weight" value=" <?php echo $bodylist['goalweights']; ?>"> kg</br>
          <label style="margin-left:30px" for="now-weight">現在の体重 : </label>
-         <input type="text" id="now-weight" value="<?php echo $bodylist['bodyweight2']; ?>">
+         <input type="text" id="now-weight" value=" <?php echo $bodylist['nowweights']; ?>"> kg<br>
+         <p style="margin:0 0 0 30px">目標達成まであと <?php echo $bodylist['difference']; ?> kg</p>
+         <p style="margin:0 0 0 30px">(<?php echo $bodylist['nowdate']; ?> 現在)</p>
       <?php endforeach; ?>
-   <!-- <?php else : ?> -->
-      
-   <!-- <?php endif; ?> -->
 
       <div class="miyako">
          <a action="./weight.php" method="POST"></a>
@@ -37,7 +38,7 @@ $completes = $getller->completestatus();
       </div>
 
       <div>
-         <a class="miyako">今日のToDoリスト</a>
+         <a class="miyako">ToDoリスト</a>
          <a action="./create.php" method="POST"></a>
          <a href="create.php" class="ishigaki">新規登録</a>  
       </div>

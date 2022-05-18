@@ -184,7 +184,8 @@ class Database
 
    public function hold() {
       try {
-         $query = sprintf("INSERT INTO `bodies` (`bodyweight1`, `bodyweight2`, `nowdate`) VALUES ('%s', '%s', '%s')",$this->body,$this->weight,$this->today);
+         // $query = sprintf("INSERT INTO `bodies` (`goalweights`,`nowweights` , `nowdate`) VALUES (`%s`, `%s`, `%s`)",$this->body,$this->weight,$this->today);
+         $query = sprintf("INSERT INTO bodies (nowweights,goalweights, nowdate) VALUES ('%s', '%s', '%s')",$this->weight,$this->body,$this->today);
 
          $pdo = new PDO(DSN, USER, PASSWORD);
          $result = $pdo->query($query);

@@ -27,11 +27,12 @@ SELECT * FROM words;
 
 CREATE TABLE bodies (
    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-   bodyweight1 DECIMAL(5,2),
-   bodyweight2 DECIMAL(5,2),
+   nowweights DECIMAL(5,2),
+   goalweights DECIMAL(5,2),
+   difference DECIMAL(5,2) AS (nowweights - goalweights),
    nowdate date NOT NULL
 );
 
-INSERT INTO bodies (bodyweight1, bodyweight2, nowdate) VALUES ('70.8', '65.5', now());
+INSERT INTO bodies (nowweights, goalweights, nowdate) VALUES ('%s', '%S', '%s');
 
 SELECT * FROM bodies;
