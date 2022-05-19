@@ -114,6 +114,42 @@ class Todocontroller {
      );
       return $data;
    }
+
+   public function dietget() {
+
+      // $body = '';
+      // $weight = '';
+      // $today = '';
+      $muscle_id = '';
+      $weightparam = array();
+
+      if($_SERVER['REQUEST_METHOD'] === 'GET') {
+         if(isset($_GET['muscle_id'])) {
+            $muscle_id = $_GET['muscle_id'];
+         }
+
+         if(isset($_GET['body'])) {
+            $weightparam['body'] = $_GET['body'];
+         }
+
+         if(isset($_GET['weight'])) {
+            $weightparam['weight'] = $_GET['weight'];
+         }
+
+         if(isset($_GET['today'])) {
+            $weightparam['today'] = $_GET['today'];
+         }
+      }
+
+      $muscle = Database::weightId($muscle_id);
+
+      $weightdata = array(
+         "muscle" => $muscle,
+         "weightparam" => $weightparam,
+     );
+      return $weightdata;
+      console.log($weightdata);
+   }   
    
    public function update() {
 

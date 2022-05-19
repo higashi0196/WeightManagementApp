@@ -74,6 +74,14 @@ class Database
       $this->data = $data;
    }
 
+   public function takeweightData() {
+      return $this->weightdata;
+   }
+
+   public function setweightData($weightdata) {
+      $this->weightdata = $weightdata;
+   }
+
    public function takecomplete() {
       return $this->$complete;
    }
@@ -156,6 +164,17 @@ class Database
          $todo = array();
       }
       return $todo;
+  }
+
+   public static function weightId($muscle_id) {
+      $pdo = new PDO(DSN, USER, PASSWORD);
+      $stmt = $pdo->query(sprintf('SELECT * FROM bodies WHERE id = %s;', $muscle_id));
+      if($stmt) {
+          $muscle = $stmt->fetch(PDO::FETCH_ASSOC);
+      } else {
+         $muscle = array();
+      }
+      return $muscle;
   }
   
    public function save() {
