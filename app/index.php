@@ -87,14 +87,18 @@ $completes = $getller->completestatus();
       </div>
       
       <?php if ($wordlists): ?>
-      <?php foreach ($wordlists as $wordtodo): ?>
-         <textarea cols="50" rows="2" style="margin-left:30px"> <?php echo $wordtodo['content']; ?></textarea>
+         <?php foreach ($wordlists as $wordtodo): ?>
+            <textarea cols="50" rows="2" style="margin-left:30px">
+   <?php echo $wordtodo['content']; ?>
+            </textarea>      
+         <?php endforeach; ?>
+      <?php else : ?>
+         <textarea cols="50" rows="2" style="margin-left:30px">
+   <?php echo 'todoなし' ?>
+         </textarea> 
+       <?php endif; ?>     
          <div class="aaa" data-id=<?php echo $wordtodo['id']; ?>>
          <button style="margin-left:30px">削除</button></div>
-      <?php endforeach; ?>
-      <?php else : ?>
-         <textarea placeholder="何でもコメント" cols="50" rows="2" style="margin-left:30px"></textarea>
-      <?php endif; ?>
 
    </main>
 
@@ -170,7 +174,7 @@ $completes = $getller->completestatus();
 
       $(".aaa").click(function () {
       let todo_id = $(this).data('id');
-      if (confirm("削除しますがよろしいですか？ id:" + todo_id)) {
+      if (confirm("本当に削除する？ id:" + todo_id)) {
          $(".aaa").prop("disabled", true);
          let data = {};
          data.todo_id = todo_id;

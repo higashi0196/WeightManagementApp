@@ -11,7 +11,6 @@ class Database
    public $content;
    public $body;
    public $weight;
-   public $today;
    public $data = array();
    public $complete;
 
@@ -135,7 +134,7 @@ class Database
 
    public static function getAll2(){
       $pdo = new PDO(DSN, USER, PASSWORD);
-      $stmt = $pdo->query('SELECT * FROM words ORDER BY id DESC LIMIT 1;');
+      $stmt = $pdo->query('SELECT * FROM words;');
       if($stmt) {
          $wordlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
       } else {
@@ -166,17 +165,6 @@ class Database
       return $todo;
   }
 
-   public static function weightId($muscle_id) {
-      $pdo = new PDO(DSN, USER, PASSWORD);
-      $stmt = $pdo->query(sprintf('SELECT * FROM bodies WHERE id = %s;', $muscle_id));
-      if($stmt) {
-          $muscle = $stmt->fetch(PDO::FETCH_ASSOC);
-      } else {
-         $muscle = array();
-      }
-      return $muscle;
-  }
-  
    public function save() {
       try {
          $query = sprintf("INSERT INTO `todos` (`title`, `content`,  `complete`, `created_at`, `updated_at`) VALUES ('%s', '%s', 0, NOW(), NOW())",$this->title,$this->content);
@@ -203,7 +191,6 @@ class Database
 
    public function hold() {
       try {
-         // $query = sprintf("INSERT INTO `bodies` (`goalweights`,`nowweights` , `nowdate`) VALUES (`%s`, `%s`, `%s`)",$this->body,$this->weight,$this->today);
          $query = sprintf("INSERT INTO bodies (nowweights,goalweights, nowdate) VALUES ('%s', '%s', '%s')",$this->weight,$this->body,$this->today);
 
          $pdo = new PDO(DSN, USER, PASSWORD);
@@ -217,18 +204,6 @@ class Database
   public function update() {
       try {
          $query = sprintf("UPDATE `todos` SET `title` = '%s', `content` = '%s', `updated_at` = '%s' WHERE id = %s",$this->title,$this->content,date("Y-m-d H:i:s"),$this->id);
-
-         $pdo = new PDO(DSN, USER, PASSWORD);
-         $result = $pdo->query($query);
-      }  catch (PDOException $e) {
-         // エラーログ
-      }   
-         return $result;
-   }
-
-   public function updatecomplete() {
-      try {
-         $query = sprintf("UPDATE `todos` SET `complete` = '%s', `updated_at` = '%s' WHERE id = %s",$this->status,date("Y-m-d H:i:s"),$this->id);
 
          $pdo = new PDO(DSN, USER, PASSWORD);
          $result = $pdo->query($query);
@@ -255,6 +230,7 @@ class Database
    public function postdelete() {
       try {
          $query = sprintf("DELETE FROM words WHERE id = %s", $this->id);
+         // $query = sprintf("INSERT INTO `words` (`content`, `created_at`, `updated_at`) VALUES ('', NOW(), NOW())",$this->content);
          $pdo = new PDO(DSN, USER, PASSWORD);
          $result2 = $pdo->query($query);
          header('Location: ' . SITE_URL);
@@ -294,6 +270,18 @@ class Database
    }
 
    // ここからした
+
+   public function updatecomplete() {
+      try {
+         $query = sprintf("UPDATE `todos` SET `complete` = '%s', `updated_at` = '%s' WHERE id = %s",$this->status,date("Y-m-d H:i:s"),$this->id);
+
+         $pdo = new PDO(DSN, USER, PASSWORD);
+         $result = $pdo->query($query);
+      }  catch (PDOException $e) {
+         // エラーログ
+      }   
+         return $result;
+   }
 
    const STATUS_INCOMPLETE = 0;
    const STATUS_COMPLETED = 1;

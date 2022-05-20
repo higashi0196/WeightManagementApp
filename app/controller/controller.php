@@ -13,13 +13,11 @@ class Todocontroller {
    }
 
    public function index2() {
-      // $lists = Database::dbconnect($query);
       $wordlists = Database::getAll2();
       return $wordlists;
    }
 
    public function index3() {
-      // $lists = Database::dbconnect($query);
       $bodylists = Database::getAll3();
       return $bodylists;
    }
@@ -63,32 +61,6 @@ class Todocontroller {
       header("Location: index.php");
    }
 
-   // public function postdelete() {
-
-   //    $content = (filter_input(INPUT_POST, 'content2'));
-
-   //    $word = new Database;
-   //    $word->setContent($content);
-   //    $result2 = $word->post();
-
-   //    header("Location: index.php");
-   // }
-
-   public function postdelete() {
-
-      $todo_id = $_POST['todo_id'];
-      if (empty($todo_id)) {
-         return;
-         }
-
-      $word = new Database;
-      $word->setId($todo_id);
-      $result2 = $word->postdelete();
-
-      return $result2;
-      header("Location: ./index.php");
-   }
-
    public function edit() {
 
       $todo_id = '';
@@ -113,43 +85,7 @@ class Todocontroller {
          "param" => $param,
      );
       return $data;
-   }
-
-   public function dietget() {
-
-      // $body = '';
-      // $weight = '';
-      // $today = '';
-      $muscle_id = '';
-      $weightparam = array();
-
-      if($_SERVER['REQUEST_METHOD'] === 'GET') {
-         if(isset($_GET['muscle_id'])) {
-            $muscle_id = $_GET['muscle_id'];
-         }
-
-         if(isset($_GET['body'])) {
-            $weightparam['body'] = $_GET['body'];
-         }
-
-         if(isset($_GET['weight'])) {
-            $weightparam['weight'] = $_GET['weight'];
-         }
-
-         if(isset($_GET['today'])) {
-            $weightparam['today'] = $_GET['today'];
-         }
-      }
-
-      $muscle = Database::weightId($muscle_id);
-
-      $weightdata = array(
-         "muscle" => $muscle,
-         "weightparam" => $weightparam,
-     );
-      return $weightdata;
-      console.log($weightdata);
-   }   
+   }  
    
    public function update() {
 
@@ -184,24 +120,18 @@ class Todocontroller {
       // header("Location: ./index.php");
    }
 
-   public function completestatus() {
+   public function postdelete() {
 
       $todo_id = $_POST['todo_id'];
-      $todo = Database::findId($todo_id);
+      if (empty($todo_id)) {
+         return;
+      }
 
-      $complete = $todo['complete'];
-      if($complete === Database::complete_uncomplete) {
-         $complete = Database::complete_uncomplete;
-     } else if($complete === Database::complete_complete) {
-         $complete = Database::complete_uncomplete;
-     }
+      $word = new Database;
+      $word->setId($todo_id);
+      $result2 = $word->postdelete();
 
-      $todo = new Database;
-      $todo->setId($todo_id);
-      $todo->setcomplete($complete);
-      $result = $todo->updatecomplete();
-
-      return $result;
+      return $result2;
       header("Location: ./index.php");
    }
 
@@ -242,4 +172,24 @@ class Todocontroller {
       return $result;
   }
 
+  public function completestatus() {
+
+   $todo_id = $_POST['todo_id'];
+   $todo = Database::findId($todo_id);
+
+   $complete = $todo['complete'];
+   if($complete === Database::complete_uncomplete) {
+      $complete = Database::complete_uncomplete;
+  } else if($complete === Database::complete_complete) {
+      $complete = Database::complete_uncomplete;
+  }
+
+   $todo = new Database;
+   $todo->setId($todo_id);
+   $todo->setcomplete($complete);
+   $result = $todo->updatecomplete();
+
+   return $result;
+   header("Location: ./index.php");
+}
 }
