@@ -7,7 +7,7 @@ $getller = new Todocontroller();
 $lists = $getller->index();
 $wordlists = $getller->index2();
 $bodylists = $getller->index3();
-$completes = $getller->completestatus();
+// $completes = $getller->completestatus();
 
 ?>
 
@@ -28,7 +28,7 @@ $completes = $getller->completestatus();
          <input type="text" id="weight" value=" <?php echo $bodylist['goalweights']; ?>"> kg</br>
          <label style="margin-left:30px" for="now-weight">現在の体重 : </label>
          <input type="text" id="now-weight" value=" <?php echo $bodylist['nowweights']; ?>"> kg<br>
-         <p style="margin:0 0 0 30px">目標達成まであと <?php echo $bodylist['difference']; ?> kg</p>
+         <p style="margin:0 0 0 30px"> 目標達成まであと <?php echo $bodylist['difference']; ?> kg</p>
          <p style="margin:0 0 0 30px">(<?php echo $bodylist['nowdate']; ?> 現在)</p>
       <?php endforeach; ?>
 
@@ -105,45 +105,21 @@ $completes = $getller->completestatus();
    <!-- <script src="./js/main.js"></script> -->
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
+      let mmm = <?php echo $bodylist['difference']; ?>;
+      if (mmm > 0) {
+         alert("mmmは0より大きいよ");
+         console.log("mmmは0より大きいです。");
+      }
 
-   // const done = document.querySelectorAll("input[type='checkbox']");
-   //    const aaa = document.getElementById("aaa");
-   //    const bbb = document.getElementById("bbb");
-
-   //    for (let i = 0; i < done.length; i++) {
-   //       done[i].addEventListener('change', () => {
-   //       aaa.classList.toggle('my-color');
-   //       bbb.classList.toggle('my-color');
-   //       });
-   //    }
-   // const aaa = document.querySelectorAll('td')[1]
-   // const bbb = document.querySelectorAll('td')[2]
-   // const aaa = document.getElementsByTagName('td')[1]
-   // const bbb = document.getElementsByTagName('td')[2]
-
-      // const aaa = document.getElementById('.aaa');
-      // aaa.addEventListener('click', () => {
-         
-      // });
-
-      // const btn5 = document.querySelectorAll('.btn5');
-      // btn5.forEach(span => {
-      //    span.addEventListener('click', () => {
-      //       let todo_id = $(btn5).data('id');
-      //       if (!confirm('本当に削除する？ id:' + todo_id)) {
-      //          btn5.disabled = false;
-      //          return;
-      //       }
-      //       fetch('index.php', {
-      //          method: 'POST',
-      //          body: new URLSearchParams({
-      //             id: span.dataset.id,
-      //          }),
-      //       });
-      //       span.remove();
-      //    });
-      // });
-
+      var num = 90;
+      if (num > 80) {
+         console.log("numは80より大きいです。");
+      }
+      var num = 50;
+      if (num < 80) {
+         console.log("numは80より小さいです。");
+      }
+  
       const btn5 = document.querySelectorAll('.btn5');
       for (let i = 0; i < btn5.length; i++) {
       btn5[i].addEventListener('click', () => {
@@ -234,6 +210,44 @@ $completes = $getller->completestatus();
             );
         }
     });
+
+   // const done = document.querySelectorAll("input[type='checkbox']");
+   //    const aaa = document.getElementById("aaa");
+   //    const bbb = document.getElementById("bbb");
+
+   //    for (let i = 0; i < done.length; i++) {
+   //       done[i].addEventListener('change', () => {
+   //       aaa.classList.toggle('my-color');
+   //       bbb.classList.toggle('my-color');
+   //       });
+   //    }
+   // const aaa = document.querySelectorAll('td')[1]
+   // const bbb = document.querySelectorAll('td')[2]
+   // const aaa = document.getElementsByTagName('td')[1]
+   // const bbb = document.getElementsByTagName('td')[2]
+
+      // const aaa = document.getElementById('.aaa');
+      // aaa.addEventListener('click', () => {
+         
+      // });
+
+      // const btn5 = document.querySelectorAll('.btn5');
+      // btn5.forEach(span => {
+      //    span.addEventListener('click', () => {
+      //       let todo_id = $(btn5).data('id');
+      //       if (!confirm('本当に削除する？ id:' + todo_id)) {
+      //          btn5.disabled = false;
+      //          return;
+      //       }
+      //       fetch('index.php', {
+      //          method: 'POST',
+      //          body: new URLSearchParams({
+      //             id: span.dataset.id,
+      //          }),
+      //       });
+      //       span.remove();
+      //    });
+      // });
 
    </script>
 </body>

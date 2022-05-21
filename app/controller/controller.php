@@ -103,8 +103,8 @@ class Todocontroller {
       $todo->setId($dataset['todo_id']);
       $todo->setTitle($dataset['title']);
       $todo->setContent($dataset['content']);
-
       $result = $todo->update();
+
       header("Location: ./index.php");
    }
 
@@ -130,8 +130,8 @@ class Todocontroller {
       $word = new Database;
       $word->setId($todo_id);
       $result2 = $word->postdelete();
-
       return $result2;
+      
       header("Location: ./index.php");
    }
 

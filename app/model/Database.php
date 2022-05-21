@@ -230,7 +230,6 @@ class Database
    public function postdelete() {
       try {
          $query = sprintf("DELETE FROM words WHERE id = %s", $this->id);
-         // $query = sprintf("INSERT INTO `words` (`content`, `created_at`, `updated_at`) VALUES ('', NOW(), NOW())",$this->content);
          $pdo = new PDO(DSN, USER, PASSWORD);
          $result2 = $pdo->query($query);
          header('Location: ' . SITE_URL);
@@ -241,18 +240,6 @@ class Database
       }   
       return $result2;
    }
-  
-   // public function post() {
-   //    try {
-   //       $query = sprintf("INSERT INTO `words` (`content`, `created_at`, `updated_at`) VALUES ('', NOW(), NOW())",$this->content);
-
-   //       $pdo = new PDO(DSN, USER, PASSWORD);
-   //       $result = $pdo->query($query);
-   //    } catch(Exception $e) {
-   //       // エラーログ
-   //    }
-   //       return $result2;
-   // }
 
    public static function isExistById($todo_id) {
       $pdo = new PDO(DSN, USER, PASSWORD);

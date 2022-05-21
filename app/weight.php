@@ -27,6 +27,8 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
 $getller = new Todocontroller();
 $bodylists = $getller->index3();
 
+// <?php echo $wordtodo['content'];
+
 ?>
 
 <!DOCTYPE html>
@@ -42,11 +44,10 @@ $bodylists = $getller->index3();
       <?php foreach ($bodylists as $bodylist): ?>
          <p>目標体重 : <input type="text" name="body" value=" <?php echo $bodylist['goalweights']; ?>"> kg</p>
       <?php endforeach; ?>
-         <p>現在の体重 : <input type="text" name="weight" value="<?php echo $muscle['nowweights']; ?>"> kg</p>
+         <p>現在の体重 : <input type="text" name="weight"> kg</p>
          <p>日付 : <input type="date" name="today"></p>
    
       <div style="padding-top:5px">
-         <input type="hidden" name="muscle_id" value="<?php echo $muscle['id']; ?>">
          <button type="submit">記入</button>
          <a href="index.php">戻る</a>
       </div>
