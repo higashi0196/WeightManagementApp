@@ -8,7 +8,7 @@ $lists = $getller->index();
 $wordlists = $getller->index2();
 $bodylists = $getller->index3();
 // $completes = $getller->completestatus();
-
+$json = json_encode($employeeData);
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +28,7 @@ $bodylists = $getller->index3();
          <input type="text" id="weight" value=" <?php echo $bodylist['goalweights']; ?>"> kg</br>
          <label style="margin-left:30px" for="now-weight">現在の体重 : </label>
          <input type="text" id="now-weight" value=" <?php echo $bodylist['nowweights']; ?>"> kg<br>
-         <p style="margin:0 0 0 30px"> 目標達成まであと <?php echo $bodylist['difference']; ?> kg</p>
+         <p style="margin:0 0 0 30px"> 目標達成まであと <a class="eee"><?php echo $bodylist['difference']; ?></a> kg</p>
          <p style="margin:0 0 0 30px">(<?php echo $bodylist['nowdate']; ?> 現在)</p>
       <?php endforeach; ?>
 
@@ -105,10 +105,12 @@ $bodylists = $getller->index3();
    <!-- <script src="./js/main.js"></script> -->
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
-      let mmm = <?php echo $bodylist['difference']; ?>;
-      if (mmm > 0) {
-         alert("mmmは0より大きいよ");
-         console.log("mmmは0より大きいです。");
+      const mmm = <?php echo $bodylist['difference']; ?>;
+      // if (0 <= mmm) {
+      if (mmm >= 0) {
+         console.log(mmm);
+      } else {
+         console.log("0より小さい");
       }
 
       var num = 90;
@@ -119,7 +121,7 @@ $bodylists = $getller->index3();
       if (num < 80) {
          console.log("numは80より小さいです。");
       }
-  
+      
       const btn5 = document.querySelectorAll('.btn5');
       for (let i = 0; i < btn5.length; i++) {
       btn5[i].addEventListener('click', () => {
