@@ -26,9 +26,9 @@ $json = json_encode($employeeData);
       <?php foreach ($bodylists as $bodylist): ?>
          <label style="margin-left:30px" for="weight">目標体重 : </label>
          <input type="text" id="weight" value=" <?php echo $bodylist['goalweights']; ?>"> kg</br>
-         <label style="margin-left:30px" for="now-weight">現在の体重 : </label>
+         <label style="margin-left:30px" for="now-weight"> 現在の体重 : </label>
          <input type="text" id="now-weight" value=" <?php echo $bodylist['nowweights']; ?>"> kg<br>
-         <p style="margin:0 0 0 30px"> 目標達成まであと <a class="eee"><?php echo $bodylist['difference']; ?></a> kg</p>
+         <p style="margin:0 0 0 30px">目標達成まであと<a id="ggg"> <?php echo $bodylist['difference']; ?> kg</a></p>
          <p style="margin:0 0 0 30px">(<?php echo $bodylist['nowdate']; ?> 現在)</p>
       <?php endforeach; ?>
 
@@ -105,22 +105,17 @@ $json = json_encode($employeeData);
    <!-- <script src="./js/main.js"></script> -->
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
-      const mmm = <?php echo $bodylist['difference']; ?>;
-      // if (0 <= mmm) {
-      if (mmm >= 0) {
-         console.log(mmm);
+      const ggg = document.getElementById("ggg");
+      const goal = <?php echo $bodylist['difference']; ?>;
+      if (goal <= 0) {
+         ggg.classList.add('my-color');
+         console.log("0kg以下,達成");
+      } else if (goal <= 0.5) {
+         console.log("0〜0.5kgの間、もう少し");
       } else {
-         console.log("0より小さい");
+         console.log("0.5kg以上、まだまだ");
       }
-
-      var num = 90;
-      if (num > 80) {
-         console.log("numは80より大きいです。");
-      }
-      var num = 50;
-      if (num < 80) {
-         console.log("numは80より小さいです。");
-      }
+      
       
       const btn5 = document.querySelectorAll('.btn5');
       for (let i = 0; i < btn5.length; i++) {
@@ -138,7 +133,6 @@ $json = json_encode($employeeData);
       xml.onreadystatechange = function() {
          if (xml.readyState === 4 || xml.status === 200) {
             console.log("通信中！");
-            
          } else {
             console.log("通信失敗");
          }

@@ -15,6 +15,9 @@ td {
 .done {
    text-decoration: line-through;
    color: #ccc;
+   color: rgb(15, 40, 208);
+   color: red;
+   
 }
 
 .my-color {
