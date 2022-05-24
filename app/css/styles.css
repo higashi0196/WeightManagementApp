@@ -1,5 +1,9 @@
 /* index.php メインページ */
 
+/* body{
+   text-align: center;
+} */
+
 /* テーブル CSS */
 th {
    text-align: left;
@@ -17,9 +21,7 @@ td {
    color: #ccc;
    color: rgb(15, 40, 208);
    color: red;
-   
 }
-
 .my-color {
 text-decoration: line-through;
 color: #ccc;
@@ -31,11 +33,10 @@ box-shadow: 0 0 0 3px pink;
 
 /* テーブル CSS 終わり */
 
+/* メインページ 開始 */
 h1 {
-   margin-left: 30px;
-}
-h2 {
-   margin-left: 30px;
+   margin: 0 0 0 30px;
+   font-size: 25px;
 }
 .ishigaki {
    font-size: 20px;
@@ -54,3 +55,7 @@ h2 {
    margin-left: 10px;
 }
 /* create.phpページ 終わり */
+.achieve-color {
+   color: red;
+}
+

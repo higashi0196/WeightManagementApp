@@ -21,21 +21,23 @@ $json = json_encode($employeeData);
 <body>
    <main>
    
-      <h2>体重管理リスト</h2>
-
-      <?php foreach ($bodylists as $bodylist): ?>
-         <label style="margin-left:30px" for="weight">目標体重 : </label>
-         <input type="text" id="weight" value=" <?php echo $bodylist['goalweights']; ?>"> kg</br>
-         <label style="margin-left:30px" for="now-weight"> 現在の体重 : </label>
-         <input type="text" id="now-weight" value=" <?php echo $bodylist['nowweights']; ?>"> kg<br>
-         <p style="margin:0 0 0 30px">目標達成まであと<a id="ggg"> <?php echo $bodylist['difference']; ?> kg</a></p>
-         <p style="margin:0 0 0 30px">(<?php echo $bodylist['nowdate']; ?> 現在)</p>
-      <?php endforeach; ?>
+      <h1>体重管理リスト</h1>
 
       <div class="miyako">
          <a action="./weight.php" method="POST"></a>
          <a href="weight.php" class="ishigaki">体重記入</a>
       </div>
+   
+      <?php foreach ($bodylists as $bodylist): ?>
+         <label style="margin-left:30px" for="weight">目標体重 : </label>
+         <input type="text" id="weight" value=" <?php echo $bodylist['goalweights']; ?>"> kg</br>
+         <label style="margin-left:30px" for="now-weight"> 現在の体重 : </label>
+         <input type="text" id="now-weight" value=" <?php echo $bodylist['nowweights']; ?>"> kg<br>
+         <p style="margin:0 0 0 30px">目標達成まであと
+         <a id="ggg"><?php echo $bodylist['difference']; ?></a> 
+         kg</p>
+         <p style="margin:0 0 0 30px">(<?php echo $bodylist['nowdate']; ?> 現在)</p>
+      <?php endforeach; ?>
 
       <div>
          <a class="miyako">ToDoリスト</a>
@@ -105,17 +107,17 @@ $json = json_encode($employeeData);
    <!-- <script src="./js/main.js"></script> -->
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
+
       const ggg = document.getElementById("ggg");
       const goal = <?php echo $bodylist['difference']; ?>;
-      if (goal <= 0) {
-         ggg.classList.add('my-color');
+      if (ggg <= 0) {
+         ggg.classList.add('achieve-color');
          console.log("0kg以下,達成");
       } else if (goal <= 0.5) {
          console.log("0〜0.5kgの間、もう少し");
       } else {
          console.log("0.5kg以上、まだまだ");
       }
-      
       
       const btn5 = document.querySelectorAll('.btn5');
       for (let i = 0; i < btn5.length; i++) {
