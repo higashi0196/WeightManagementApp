@@ -1,6 +1,43 @@
 /* index.php メインページ */
+.modal {
+   width: 250px;
+   height: 250px;
+   padding: 30px 30px;
+   color:gold;
+   background:navy;
+   font-size: 25px;
+   text-align: center;
+   line-height:250px;
+   border-radius: 50%;
+   box-shadow: 0 0 10px rgba(25, 25, 25, 0.9);
+   position: fixed;
+   right: 32px;
+   bottom: 32px;
 
-/* body{
+   /* animation: otaru 0.5s; */
+}
+
+@keyframes otaru {
+   0% {
+      transform: translateY(40px);
+      opacity: 0;
+   }
+   100% {
+      transform: translateY(40px) scale(0.8);
+      opacity: 0;
+   }
+}
+
+.achieve-color {
+   color: red;
+}
+
+.achieve-color2 {
+   color: green;
+   background-color: pink;
+}
+
+/* body {
    text-align: center;
 } */
 
@@ -55,7 +92,3 @@ h1 {
    margin-left: 10px;
 }
 /* create.phpページ 終わり */
-.achieve-color {
-   color: red;
-}
-

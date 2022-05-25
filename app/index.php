@@ -8,7 +8,7 @@ $lists = $getller->index();
 $wordlists = $getller->index2();
 $bodylists = $getller->index3();
 // $completes = $getller->completestatus();
-$json = json_encode($employeeData);
+// $json = json_encode($employeeData);
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +34,7 @@ $json = json_encode($employeeData);
          <label style="margin-left:30px" for="now-weight"> 現在の体重 : </label>
          <input type="text" id="now-weight" value=" <?php echo $bodylist['nowweights']; ?>"> kg<br>
          <p style="margin:0 0 0 30px">目標達成まであと
-         <a id="ggg"><?php echo $bodylist['difference']; ?></a> 
+         <span id="ggg"><?php echo $bodylist['difference']; ?></span> 
          kg</p>
          <p style="margin:0 0 0 30px">(<?php echo $bodylist['nowdate']; ?> 現在)</p>
       <?php endforeach; ?>
@@ -44,6 +44,9 @@ $json = json_encode($employeeData);
          <a action="./create.php" method="POST"></a>
          <a href="create.php" class="ishigaki">新規登録</a>  
       </div>
+
+      <div class="modal">good job! 見事達成! </div>
+
       <table>
          <thead>
             <tr>
@@ -110,10 +113,12 @@ $json = json_encode($employeeData);
 
       const ggg = document.getElementById("ggg");
       const goal = <?php echo $bodylist['difference']; ?>;
-      if (ggg <= 0) {
+      if (goal <= 0) {
          ggg.classList.add('achieve-color');
          console.log("0kg以下,達成");
       } else if (goal <= 0.5) {
+         ggg.classList.add('achieve-color2');
+         // ggg.classList.add('body');
          console.log("0〜0.5kgの間、もう少し");
       } else {
          console.log("0.5kg以上、まだまだ");
