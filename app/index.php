@@ -45,8 +45,6 @@ $bodylists = $getller->index3();
          <a href="create.php" class="ishigaki">新規登録</a>  
       </div>
 
-      <div class="modal">good job! 見事達成! </div>
-
       <table>
          <thead>
             <tr>
@@ -107,6 +105,13 @@ $bodylists = $getller->index3();
 
    </main>
 
+   <div class="modal_overlay">
+      <div class="modal">
+         <p>good job! 見事達成!</p>
+         <button id="modalclose">X</button>
+      </div>
+   </div>
+
    <!-- <script src="./js/main.js"></script> -->
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
@@ -114,7 +119,8 @@ $bodylists = $getller->index3();
       const ggg = document.getElementById("ggg");
       const goal = <?php echo $bodylist['difference']; ?>;
       if (goal <= 0) {
-         ggg.classList.add('achieve-color');
+         ggg.classList.add('modal_overlay');
+         // ggg.classList.add('achieve-color');
          console.log("0kg以下,達成");
       } else if (goal <= 0.5) {
          ggg.classList.add('achieve-color2');
@@ -123,6 +129,11 @@ $bodylists = $getller->index3();
       } else {
          console.log("0.5kg以上、まだまだ");
       }
+
+      const modalclose = document.getElementById("modalclose");
+      modalclose.addEventListener('click', () => {
+         ggg.classList.remove('modal_overlay');
+      });
       
       const btn5 = document.querySelectorAll('.btn5');
       for (let i = 0; i < btn5.length; i++) {
