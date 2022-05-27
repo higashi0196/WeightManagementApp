@@ -34,7 +34,7 @@ $bodylists = $getller->index3();
          <label style="margin-left:30px" for="now-weight"> 現在の体重 : </label>
          <input type="text" id="now-weight" value=" <?php echo $bodylist['nowweights']; ?>"> kg<br>
          <p style="margin:0 0 0 30px">目標達成まであと
-         <span id="ggg"><?php echo $bodylist['difference']; ?></span> 
+         <span><?php echo $bodylist['difference']; ?></span> 
          kg</p>
          <p style="margin:0 0 0 30px">(<?php echo $bodylist['nowdate']; ?> 現在)</p>
       <?php endforeach; ?>
@@ -103,37 +103,73 @@ $bodylists = $getller->index3();
          <div class="aaa" data-id=<?php echo $wordtodo['id']; ?>>
          <button style="margin-left:30px">削除</button></div>
 
-   </main>
 
-   <div class="modal_overlay">
-      <div class="modal">
-         <p>good job! 見事達成!</p>
-         <button id="modalclose">X</button>
+   <div id="modalOpen">
+      <div id="easyModal" class="modal_overlay">
+         <div class="modal">
+            <p>good job! 見事達成!</p>
+            <span class="modalClose">×</span>
+         </div>
       </div>
    </div>
+
+   <!-- <button id="modalOpen" class="button">Click Me</button>
+   <div id="easyModal" class="modal">
+      <div class="modal-content">
+         <p>Great job 🎉</p>
+         <span class="modalClose">×</span>
+      </div>
+    </div>
+  </div> -->
+         
+   </main>
 
    <!-- <script src="./js/main.js"></script> -->
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
+      const Open = document.getElementById('modalOpen');
+      const modal = document.getElementById('easyModal');
+      const buttonClose = document.getElementsByClassName('modalClose')[0];
 
-      const ggg = document.getElementById("ggg");
+      // ボタンがクリックされた時
+      // Open.addEventListener('click', modalOpen);
+      // function modalOpen() {
+      // modal.style.display = 'block';
+      // }
+      Open.addEventListener('click', () => {
+         modal.style.display = 'block';
+      });
+      
+
+      // バツ印がクリックされた時
+      buttonClose.addEventListener('click', modalClose);
+      function modalClose() {
+      modal.style.display = 'none';
+      }
+
+      // モーダルコンテンツ以外がクリックされた時
+      addEventListener('click', outsideClose);
+      function outsideClose(e) {
+      if (e.target == modal) {
+         modal.style.display = 'none';
+         }
+      }
+
       const goal = <?php echo $bodylist['difference']; ?>;
       if (goal <= 0) {
-         ggg.classList.add('modal_overlay');
-         // ggg.classList.add('achieve-color');
          console.log("0kg以下,達成");
       } else if (goal <= 0.5) {
-         ggg.classList.add('achieve-color2');
-         // ggg.classList.add('body');
          console.log("0〜0.5kgの間、もう少し");
       } else {
          console.log("0.5kg以上、まだまだ");
-      }
-
-      const modalclose = document.getElementById("modalclose");
-      modalclose.addEventListener('click', () => {
-         ggg.classList.remove('modal_overlay');
-      });
+      }     
+      
+      // const ggg = document.getElementById("ggg");
+      // ggg.classList.add('achieve-color2');
+      // function loadFinished(){
+      //    modal.style.display = 'none';
+      // }
+      // window.addEventListener('load', loadFinished);
       
       const btn5 = document.querySelectorAll('.btn5');
       for (let i = 0; i < btn5.length; i++) {
