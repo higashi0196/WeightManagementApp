@@ -102,69 +102,49 @@ $bodylists = $getller->index3();
        <?php endif; ?>     
          <div class="aaa" data-id=<?php echo $wordtodo['id']; ?>>
          <button style="margin-left:30px">削除</button></div>
-
-
-   <div id="modalOpen">
-      <div id="easyModal" class="modal_overlay">
-         <div class="modal">
-            <p>good job! 見事達成!</p>
-            <span class="modalClose">×</span>
+         
+         <div id="finish" class="modal_overlay">
+            <div class="modal">
+               <p>good job! 見事達成!</p>
+               <span class="modalclose"><button>x</button></span>
+               <!-- <div id="modalClose"><button>x</button></div> -->
+            </div>
          </div>
-      </div>
-   </div>
-
-   <!-- <button id="modalOpen" class="button">Click Me</button>
-   <div id="easyModal" class="modal">
-      <div class="modal-content">
-         <p>Great job 🎉</p>
-         <span class="modalClose">×</span>
-      </div>
-    </div>
-  </div> -->
          
    </main>
 
    <!-- <script src="./js/main.js"></script> -->
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
-      const Open = document.getElementById('modalOpen');
-      const modal = document.getElementById('easyModal');
-      const buttonClose = document.getElementsByClassName('modalClose')[0];
 
-      // ボタンがクリックされた時
-      // Open.addEventListener('click', modalOpen);
-      // function modalOpen() {
-      // modal.style.display = 'block';
-      // }
-      Open.addEventListener('click', () => {
-         modal.style.display = 'block';
+      const finish = document.getElementById('finish');
+      // const modalClose = document.getElementById('modalClose');
+      const modalclose = document.getElementsByClassName('modalclose')[0];
+
+      modalclose.addEventListener('click', () => {
+         finish.style.display = 'none';
       });
+
+      // addEventListener('click', (e) => {
+      //    if (e.target == finish) {
+      //    finish.style.display = 'none';
+      //    }
+      // });
       
 
-      // バツ印がクリックされた時
-      buttonClose.addEventListener('click', modalClose);
-      function modalClose() {
-      modal.style.display = 'none';
-      }
-
-      // モーダルコンテンツ以外がクリックされた時
-      addEventListener('click', outsideClose);
-      function outsideClose(e) {
-      if (e.target == modal) {
-         modal.style.display = 'none';
-         }
-      }
 
       const goal = <?php echo $bodylist['difference']; ?>;
       if (goal <= 0) {
+         finish.style.display = 'block';
          console.log("0kg以下,達成");
       } else if (goal <= 0.5) {
          console.log("0〜0.5kgの間、もう少し");
+         // finish.style.display = 'none';
       } else {
          console.log("0.5kg以上、まだまだ");
+         // finish.style.display = 'none';
       }     
-      
-      // const ggg = document.getElementById("ggg");
+     
       // ggg.classList.add('achieve-color2');
       // function loadFinished(){
       //    modal.style.display = 'none';
