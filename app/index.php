@@ -20,7 +20,7 @@ $bodylists = $getller->index3();
 </head>
 <body>
    <main>
-   
+
       <h1>体重管理リスト</h1>
 
       <div class="miyako">
@@ -29,14 +29,16 @@ $bodylists = $getller->index3();
       </div>
    
       <?php foreach ($bodylists as $bodylist): ?>
-         <label style="margin-left:30px" for="weight">目標体重 : </label>
-         <input type="text" id="weight" value=" <?php echo $bodylist['goalweights']; ?>"> kg</br>
-         <label style="margin-left:30px" for="now-weight"> 現在の体重 : </label>
-         <input type="text" id="now-weight" value=" <?php echo $bodylist['nowweights']; ?>"> kg<br>
-         <p style="margin:0 0 0 30px">目標達成まであと
-         <span><?php echo $bodylist['difference']; ?></span> 
-         kg</p>
-         <p style="margin:0 0 0 30px">(<?php echo $bodylist['nowdate']; ?> 現在)</p>
+         <span style="margin-left:30px" >目標体重 : 
+         <input type="text" value=" <?php echo $bodylist['goalweights']; ?>"> kg</span></br>
+         <span style="margin-left:30px"> 現在の体重 : 
+         <?php echo $bodylist['nowweights']; ?> kg</span><br>
+         <!-- <span style="margin-left:30px"> 現在の体重 : 
+         <input type="text" value=" <?php echo $bodylist['nowweights']; ?>"> kg</span><br> -->
+         <span style="margin:0 0 0 30px">目標達成まであと
+         <?php echo $bodylist['difference']; ?>
+         kg</span><br>
+         <span style="margin:0 0 0 30px">(<?php echo $bodylist['nowdate']; ?> 現在)</span>
       <?php endforeach; ?>
 
       <div>
@@ -103,53 +105,45 @@ $bodylists = $getller->index3();
          <div class="aaa" data-id=<?php echo $wordtodo['id']; ?>>
          <button style="margin-left:30px">削除</button></div>
          
-         <div id="finish" class="modal_overlay">
-            <div class="modal">
-               <p>good job! 見事達成!</p>
-               <span class="modalclose"><button>x</button></span>
-               <!-- <div id="modalClose"><button>x</button></div> -->
-            </div>
+      <div id="finish" class="modal_overlay">
+         <div class="modal">
+            <p>good job! 見事達成!</p>
          </div>
+         <span class="modalclose">x</span>
+      </div>
          
    </main>
 
    <!-- <script src="./js/main.js"></script> -->
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
-
-      const finish = document.getElementById('finish');
-      // const modalClose = document.getElementById('modalClose');
-      const modalclose = document.getElementsByClassName('modalclose')[0];
-
-      modalclose.addEventListener('click', () => {
-         finish.style.display = 'none';
-      });
-
-      // addEventListener('click', (e) => {
-      //    if (e.target == finish) {
-      //    finish.style.display = 'none';
-      //    }
-      // });
       
-
-
+      const finish = document.getElementById('finish');
+      const modalclose = document.getElementsByClassName('modalclose')[0];
       const goal = <?php echo $bodylist['difference']; ?>;
+      const goal2 = <?php echo $bodylist['nowweights']; ?> ;
+     
       if (goal <= 0) {
-         finish.style.display = 'block';
-         console.log("0kg以下,達成");
+      finish.style.display = 'block';
+      console.log("0kg以下,達成");
+      console.log(goal2);
       } else if (goal <= 0.5) {
          console.log("0〜0.5kgの間、もう少し");
-         // finish.style.display = 'none';
       } else {
          console.log("0.5kg以上、まだまだ");
-         // finish.style.display = 'none';
-      }     
-     
-      // ggg.classList.add('achieve-color2');
-      // function loadFinished(){
-      //    modal.style.display = 'none';
-      // }
-      // window.addEventListener('load', loadFinished);
+      } 
+      
+      modalclose.addEventListener('click', () => {
+         finish.style.display = 'none';
+         console.log("xクリック");
+      });
+
+      addEventListener('click', (e) => {
+         if (e.target == finish) {
+         finish.style.display = 'none';
+         console.log("x以外クリック");
+         }
+      });
       
       const btn5 = document.querySelectorAll('.btn5');
       for (let i = 0; i < btn5.length; i++) {
