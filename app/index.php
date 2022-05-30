@@ -32,13 +32,11 @@ $bodylists = $getller->index3();
          <span style="margin-left:30px" >目標体重 : 
          <input type="text" value=" <?php echo $bodylist['goalweights']; ?>"> kg</span></br>
          <span style="margin-left:30px"> 現在の体重 : 
-         <?php echo $bodylist['nowweights']; ?> kg</span><br>
-         <!-- <span style="margin-left:30px"> 現在の体重 : 
-         <input type="text" value=" <?php echo $bodylist['nowweights']; ?>"> kg</span><br> -->
+         <input type="text" value=" <?php echo $bodylist['nowweights']; ?>"> kg</span><br>
          <span style="margin:0 0 0 30px">目標達成まであと
          <?php echo $bodylist['difference']; ?>
          kg</span><br>
-         <span style="margin:0 0 0 30px">(<?php echo $bodylist['nowdate']; ?> 現在)</span>
+         <span style="margin:0 0 0 30px">(<?php echo $bodylist['nowdate']; ?> 現在)</span><br>
       <?php endforeach; ?>
 
       <div>
@@ -85,7 +83,7 @@ $bodylists = $getller->index3();
             <?php endif; ?>
          </tbody>
       </table>
-      
+
       <div>
          <a class="miyako">明日への一言</a>
          <a href="post.php" class="ishigaki"><button>投稿する</button></a>
@@ -112,6 +110,13 @@ $bodylists = $getller->index3();
          <span class="modalclose">x</span>
       </div>
          
+      <!-- <input id="abc" type="hidden" value="<?php echo $bodylist['nowweights']; ?> "> -->
+      <input id="ppp" type="hidden" value="<?php echo $bodylist['nowweights']; ?> ">
+   
+      <?php foreach ($bodydifferences as $bodydifference): ?>
+         <p id="dif"><?php echo $bodydifference; ?></p>
+      <?php endforeach; ?>
+
    </main>
 
    <!-- <script src="./js/main.js"></script> -->
@@ -119,9 +124,14 @@ $bodylists = $getller->index3();
    <script>
       
       const finish = document.getElementById('finish');
+      const dif = document.getElementById('dif');
       const modalclose = document.getElementsByClassName('modalclose')[0];
       const goal = <?php echo $bodylist['difference']; ?>;
       const goal2 = <?php echo $bodylist['nowweights']; ?> ;
+      // var abc = document.getElementById('abc');
+      // var value = abc.getAttribute('value');
+      // console.log(value);
+      // console.log(dif);
      
       if (goal <= 0) {
       finish.style.display = 'block';
