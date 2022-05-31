@@ -34,8 +34,8 @@ $bodylists = $getller->index3();
          <span style="margin-left:30px"> 現在の体重 : 
          <input type="text" value=" <?php echo $bodylist['nowweights']; ?>"> kg</span><br>
          <span style="margin:0 0 0 30px">目標達成まであと
-         <?php echo $bodylist['difference']; ?>
-         kg</span><br>
+         <a id="remaining"><?php echo $bodylist['difference']; ?></a> 
+         <a id="unit">kg</a></span><br>
          <span style="margin:0 0 0 30px">(<?php echo $bodylist['nowdate']; ?> 現在)</span><br>
       <?php endforeach; ?>
 
@@ -102,20 +102,6 @@ $bodylists = $getller->index3();
        <?php endif; ?>     
          <div class="aaa" data-id=<?php echo $wordtodo['id']; ?>>
          <button style="margin-left:30px">削除</button></div>
-         
-      <div id="finish" class="modal_overlay">
-         <div class="modal">
-            <p>good job! 見事達成!</p>
-         </div>
-         <span class="modalclose">x</span>
-      </div>
-         
-      <!-- <input id="abc" type="hidden" value="<?php echo $bodylist['nowweights']; ?> "> -->
-      <input id="ppp" type="hidden" value="<?php echo $bodylist['nowweights']; ?> ">
-   
-      <?php foreach ($bodydifferences as $bodydifference): ?>
-         <p id="dif"><?php echo $bodydifference; ?></p>
-      <?php endforeach; ?>
 
    </main>
 
@@ -123,37 +109,20 @@ $bodylists = $getller->index3();
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
       
-      const finish = document.getElementById('finish');
-      const dif = document.getElementById('dif');
-      const modalclose = document.getElementsByClassName('modalclose')[0];
+      const remaining = document.getElementById("remaining");
+      const unit = document.getElementById("unit");
       const goal = <?php echo $bodylist['difference']; ?>;
-      const goal2 = <?php echo $bodylist['nowweights']; ?> ;
-      // var abc = document.getElementById('abc');
-      // var value = abc.getAttribute('value');
-      // console.log(value);
-      // console.log(dif);
      
-      if (goal <= 0) {
-      finish.style.display = 'block';
-      console.log("0kg以下,達成");
-      console.log(goal2);
+      if (goal <= 0 ) {
+         remaining.textContent =  goal +  'kg';
+         remaining.classList.add('my-color');
+         unit.textContent ='見事達成!' ;
+         console.log("0kg以下,達成");
       } else if (goal <= 0.5) {
          console.log("0〜0.5kgの間、もう少し");
       } else {
          console.log("0.5kg以上、まだまだ");
-      } 
-      
-      modalclose.addEventListener('click', () => {
-         finish.style.display = 'none';
-         console.log("xクリック");
-      });
-
-      addEventListener('click', (e) => {
-         if (e.target == finish) {
-         finish.style.display = 'none';
-         console.log("x以外クリック");
-         }
-      });
+      }
       
       const btn5 = document.querySelectorAll('.btn5');
       for (let i = 0; i < btn5.length; i++) {
