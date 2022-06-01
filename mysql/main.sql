@@ -36,3 +36,5 @@ CREATE TABLE bodies (
 INSERT INTO bodies (nowweights, goalweights, nowdate) VALUES ('%s', '%S', '%s');
 
 SELECT * FROM bodies;
+
+use todolists;

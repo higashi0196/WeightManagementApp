@@ -87,8 +87,8 @@ $bodylists = $getller->index3();
       <div>
          <a class="miyako">明日への一言</a>
          <a href="post.php" class="ishigaki"><button>投稿する</button></a>
-      </div>
-      
+      </div>       
+  
       <?php if ($wordlists): ?>
          <?php foreach ($wordlists as $wordtodo): ?>
             <textarea cols="50" rows="2" style="margin-left:30px">
@@ -99,9 +99,10 @@ $bodylists = $getller->index3();
          <textarea cols="50" rows="2" style="margin-left:30px">
    <?php echo 'todoなし' ?>
          </textarea> 
-       <?php endif; ?>     
-         <div class="aaa" data-id=<?php echo $wordtodo['id']; ?>>
-         <button style="margin-left:30px">削除</button></div>
+       <?php endif; ?>
+
+      <div class="aaa" data-id="<?php echo $wordtodo['id']; ?>">
+      <button style="margin-left:30px">削除</button></div>
 
    </main>
 
@@ -114,11 +115,15 @@ $bodylists = $getller->index3();
       const goal = <?php echo $bodylist['difference']; ?>;
      
       if (goal <= 0 ) {
-         remaining.textContent =  goal +  'kg';
-         remaining.classList.add('my-color');
-         unit.textContent ='見事達成!' ;
+         remaining.textContent =  goal + ' kg';
+         remaining.classList.add('remaining');
+         unit.textContent = '見事達成! やったぜ!' ;
+         unit.classList.add('unit');
          console.log("0kg以下,達成");
       } else if (goal <= 0.5) {
+         remaining.textContent = goal  + ' kg';
+         unit.textContent = 'あともう少し頑張ろう!' ;
+         unit.classList.add('unit2');
          console.log("0〜0.5kgの間、もう少し");
       } else {
          console.log("0.5kg以上、まだまだ");
@@ -153,7 +158,7 @@ $bodylists = $getller->index3();
 
       $(".aaa").click(function () {
       let todo_id = $(this).data('id');
-      if (confirm("本当に削除する？ id:" + todo_id)) {
+      if (confirm("本当に削除する？")) {
          $(".aaa").prop("disabled", true);
          let data = {};
          data.todo_id = todo_id;

@@ -134,7 +134,7 @@ class Database
 
    public static function getAll2(){
       $pdo = new PDO(DSN, USER, PASSWORD);
-      $stmt = $pdo->query('SELECT * FROM words;');
+      $stmt = $pdo->query('SELECT * FROM words ORDER BY id DESC LIMIT 1;');
       if($stmt) {
          $wordlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
       } else {
@@ -229,7 +229,8 @@ class Database
 
    public function postdelete() {
       try {
-         $query = sprintf("DELETE FROM words WHERE id = %s", $this->id);
+         // $query = sprintf("DELETE FROM words WHERE id = %s", $this->id);
+         $query = sprintf("TRUNCATE TABLE words");
          $pdo = new PDO(DSN, USER, PASSWORD);
          $result2 = $pdo->query($query);
          header('Location: ' . SITE_URL);

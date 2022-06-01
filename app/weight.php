@@ -24,9 +24,6 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
    }
 }
 
-$getller = new Todocontroller();
-$bodylists = $getller->index3();
-
 // <?php echo $wordtodo['content'];
 
 ?>

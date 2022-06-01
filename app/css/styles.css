@@ -20,11 +20,19 @@ td {
    text-decoration: line-through;
    color: #ccc;
    color: rgb(15, 40, 208);
-   color: red;
+   color:red;
 }
-.my-color {
+.remaining {
 text-decoration: line-through;
 color: #ccc;
+}
+
+.unit {
+   color:red;
+}
+
+.unit2 {
+   color:orangered;
 }
 
 /* input[type="checkbox"]:checked {
