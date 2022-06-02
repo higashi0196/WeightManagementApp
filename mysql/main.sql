@@ -7,21 +7,19 @@ CREATE TABLE todos (
    updated_at datetime NOT NULL
 );
 
-INSERT INTO todos (title, content, complete, created_at, upsated_at) VALUES ('sample', 'tests',0,now(),now());
-INSERT INTO todos (title, content, complete, created_at, updated_at) VALUES ('do', 'done',1,now(),now());
+INSERT INTO `todos` (`title`, `content`,  `complete`, `created_at`, `updated_at`) VALUES ('%s', '%s', 0, NOW(), NOW());
 
-UPDATE todos SET title = 'www',content = 'www',updated_at = NOW()  WHERE id = ;
+UPDATE `todos` SET `title` = '%s', `content` = '%s', updated_at = NOW() WHERE id = %s;
 
 SELECT * FROM todos;
 
 CREATE TABLE words (
    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
    content VARCHAR(255),
-   created_at datetime NOT NULL,
-   updated_at datetime NOT NULL
+   created_at datetime NOT NULL
 );
 
-INSERT INTO words (content , created_at, updated_at) VALUES ('language', now(), now());
+INSERT INTO `words` (`content`, `created_at`) VALUES ('%s', NOW());
 
 SELECT * FROM words;
 

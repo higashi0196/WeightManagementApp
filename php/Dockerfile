@@ -11,10 +11,10 @@ unzip \
 zip \
 && docker-php-ext-install pdo_mysql pdo_pgsql mysqli 
 
-# RUN locale-gen en_US.UTF-8  
-# ENV LANG en_US.UTF-8  
-# ENV LANGUAGE en_US:en  
-# ENV LC_ALL en_US.UTF-8
+ENV LANG ja_JP.UTF-8
+ENV LANGUAGE ja_JP:ja
+ENV LC_ALL=ja_JP.UTF-8
+RUN localedef -f UTF-8 -i ja_JP ja_JP.utf8mb4
 
 WORKDIR /var/www/html
 

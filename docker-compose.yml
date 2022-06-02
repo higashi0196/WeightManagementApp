@@ -8,11 +8,12 @@ services:
     depends_on: 
       - app
     volumes:
-      - ./docker/web/default.conf:/etc/nginx/conf.d/default.conf
+      # - ./docker/web/default.conf:/etc/nginx/conf.d/default.conf
+      - ./php/default.conf:/etc/nginx/conf.d/default.conf
       - .:/var/www/html
 
   app:
-    build: ./Dockerfile/Dockerfile/php
+    build: ./php/Dockerfile
     volumes:
       - .:/var/www/html
     depends_on:
@@ -26,11 +27,13 @@ services:
       MYSQL_DATABASE: todolists
       MYSQL_USER: hiagahi
       MYSQL_PASSWORD: higashi
-      MYSQL_ROOT_PASSWORD: Higashieast10!
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+      MYSQL_ROOT_PASSWORD: Higashieast10!       
+      TZ: Asia/Tokyo
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-time-zone=Asia/Tokyo
     ports:
       - "3303:3303"
     volumes:
       - mysql-data:/var/lib/mysql
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf
 volumes:
   mysql-data:

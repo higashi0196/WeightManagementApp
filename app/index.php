@@ -25,7 +25,7 @@ $bodylists = $getller->index3();
 
       <div class="miyako">
          <a action="./weight.php" method="POST"></a>
-         <a href="weight.php" class="ishigaki">体重記入</a>
+         <a href="weight.php" class="ishigaki"><button>体重記入</button></a>
       </div>
    
       <?php foreach ($bodylists as $bodylist): ?>
@@ -38,17 +38,17 @@ $bodylists = $getller->index3();
          <a id="unit">kg</a></span><br>
          <span style="margin:0 0 0 30px">(<?php echo $bodylist['nowdate']; ?> 現在)</span><br>
       <?php endforeach; ?>
-
+      
       <div>
          <a class="miyako">ToDoリスト</a>
          <a action="./create.php" method="POST"></a>
-         <a href="create.php" class="ishigaki">新規登録</a>  
+         <a href="create.php" class="ishigaki"><button>新規登録</button></a>  
       </div>
 
       <table>
          <thead>
             <tr>
-               <th scope="col"></th>
+               <!-- <th scope="col"></th> -->
                <th scope="col">タイトル</th>
                <th scope="col">目標</th>
                <th scope="col"></th>
@@ -63,11 +63,11 @@ $bodylists = $getller->index3();
                      <td><?php echo $todo['title']; ?></td>
                      <td><?php echo $todo['content']; ?></td> -->
 
-                     <td><input type="checkbox" id="done"></td>
+                     <!-- <td><input type="checkbox" id="done"></td> -->
                      <td id="aaa"><?php echo $todo['title']; ?></td>
                      <td id="bbb"><?php echo $todo['content']; ?></td> 
 
-                     <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn">編集</a></td>
+                     <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn"><button>編集</button></a></td>
                      <!-- jquery用 -->
                      <td><div class="delete-btn" data-id="<?php echo $todo['id']; ?>">
                      <button>jquery</button></div></td>
