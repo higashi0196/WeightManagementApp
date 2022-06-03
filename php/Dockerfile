@@ -18,6 +18,7 @@ RUN localedef -f UTF-8 -i ja_JP ja_JP.utf8mb4
 
 WORKDIR /var/www/html
 
-COPY ./app /var/www/html/
+# COPY ./app /var/www/html/
+# COPY  var/www/html/
 
 EXPOSE 3303
