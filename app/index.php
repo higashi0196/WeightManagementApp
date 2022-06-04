@@ -48,7 +48,6 @@ $bodylists = $getller->index3();
       <table>
          <thead>
             <tr>
-               <!-- <th scope="col"></th> -->
                <th scope="col">タイトル</th>
                <th scope="col">目標</th>
                <th scope="col"></th>
@@ -63,7 +62,6 @@ $bodylists = $getller->index3();
                      <td><?php echo $todo['title']; ?></td>
                      <td><?php echo $todo['content']; ?></td> -->
 
-                     <!-- <td><input type="checkbox" id="done"></td> -->
                      <td id="aaa"><?php echo $todo['title']; ?></td>
                      <td id="bbb"><?php echo $todo['content']; ?></td> 
 
@@ -185,7 +183,6 @@ $bodylists = $getller->index3();
                 }
             );
         }
-      //   location.reload();
     });
 
    $(".delete-btn").click(function () {
@@ -209,7 +206,7 @@ $bodylists = $getller->index3();
                   alert("failed to delete.");
                   $(".delete-btn").prop("disabled", false);
                }
-               },
+               }
                function () {
                   console.log("fail");
                   alert("fail");
@@ -218,26 +215,6 @@ $bodylists = $getller->index3();
             );
         }
     });
-
-   // const done = document.querySelectorAll("input[type='checkbox']");
-   //    const aaa = document.getElementById("aaa");
-   //    const bbb = document.getElementById("bbb");
-
-   //    for (let i = 0; i < done.length; i++) {
-   //       done[i].addEventListener('change', () => {
-   //       aaa.classList.toggle('my-color');
-   //       bbb.classList.toggle('my-color');
-   //       });
-   //    }
-   // const aaa = document.querySelectorAll('td')[1]
-   // const bbb = document.querySelectorAll('td')[2]
-   // const aaa = document.getElementsByTagName('td')[1]
-   // const bbb = document.getElementsByTagName('td')[2]
-
-      // const aaa = document.getElementById('.aaa');
-      // aaa.addEventListener('click', () => {
-         
-      // });
 
       // const btn5 = document.querySelectorAll('.btn5');
       // btn5.forEach(span => {

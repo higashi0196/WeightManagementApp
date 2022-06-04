@@ -27,7 +27,7 @@ services:
       MYSQL_DATABASE: todolists
       MYSQL_USER: hiagahi
       MYSQL_PASSWORD: higashi
-      MYSQL_ROOT_PASSWORD: Higashieast10!       
+      MYSQL_ROOT_PASSWORD: Higashieast10!
       TZ: Asia/Tokyo
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-time-zone=Asia/Tokyo
     ports:
