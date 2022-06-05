@@ -71,9 +71,6 @@ $bodylists = $getller->index3();
                      <!-- javascript用 -->
                      <td><div class="btn5"  data-id="<?php echo $todo['id']; ?>"><button>javascript</button></div></td>
                      <!-- javascript用 おわり-->
-                     <!-- javascript用 -->
-                     <td><div data-id="<?php echo $todo['id']; ?>"><button id="btn10">javascript2</button></div></td>
-                     <!-- javascript用 おわり-->
 
                <?php endforeach; ?>
             <?php else : ?>
@@ -107,6 +104,38 @@ $bodylists = $getller->index3();
    <!-- <script src="./js/main.js"></script> -->
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
+
+      $(".delete-btn").click(function () {
+         if(confirm("本当に削除する？")) {
+            $(".delete-btn").prop("disabled", true);
+            let todo_id = $(this).data('id');
+            let data = {};
+            data.todo_id = todo_id;
+            // console.log(todo_id);
+            $.ajax({
+               url: './delete.php',
+               type: 'post',
+               data: data
+            }).then(
+               function (data) {
+                  let json = JSON.parse(data);
+                  console.log("success", json);
+                  if(json.result ==  'success') {
+                     window.location.href = "./index.php";
+                  } else {
+                     alert("通信失敗");
+                     console.log("通信失敗");
+                     $(".delete-btn").prop("disabled", false);
+                  }
+               },
+               function () {
+                  console.log("fail");
+                  alert("fail");
+                  $(".delete-btn").prop("disabled", false);
+               }
+            );
+         }
+      });
       
       const remaining = document.getElementById("remaining");
       const unit = document.getElementById("unit");
@@ -183,29 +212,6 @@ $bodylists = $getller->index3();
                 }
             );
         }
-    });
-
-   $(".delete-btn").click(function () {
-      let data = {};
-      data.todo_id = 2;
-
-         $.ajax({
-            url: './delete.php',
-            type: 'post',
-            data: data
-         }).then(
-            function (data){
-               let json = JSON.parse(data);
-                  console.log("success", json);
-                  // alert("failed to delete.");
-                  // $(".delete-btn").prop("disabled", false);
-               },
-               function () {
-                  console.log("fail");
-                  alert("fail");
-                  // $(".delete-btn").prop("disabled", false);
-                }
-            );
     });
 
    // $(".delete-btn").click(function () {
