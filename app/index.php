@@ -58,9 +58,6 @@ $bodylists = $getller->index3();
             <?php if ($lists): ?>
                <?php foreach ($lists as $todo): ?>
                   <tr>
-                     <!-- <td><input type="checkbox" class="todo-checkbox" data-id="<?php echo $todo['id']; ?> " <?php if($todo['status']):?>checked<?php endif;?>></td>
-                     <td><?php echo $todo['title']; ?></td>
-                     <td><?php echo $todo['content']; ?></td> -->
 
                      <td id="aaa"><?php echo $todo['title']; ?></td>
                      <td id="bbb"><?php echo $todo['content']; ?></td> 
@@ -73,6 +70,9 @@ $bodylists = $getller->index3();
 
                      <!-- javascript用 -->
                      <td><div class="btn5"  data-id="<?php echo $todo['id']; ?>"><button>javascript</button></div></td>
+                     <!-- javascript用 おわり-->
+                     <!-- javascript用 -->
+                     <td><div data-id="<?php echo $todo['id']; ?>"><button id="btn10">javascript2</button></div></td>
                      <!-- javascript用 おわり-->
 
                <?php endforeach; ?>
@@ -126,12 +126,12 @@ $bodylists = $getller->index3();
       } else {
          console.log("0.5kg以上、まだまだ");
       }
-      
+
       const btn5 = document.querySelectorAll('.btn5');
       for (let i = 0; i < btn5.length; i++) {
       btn5[i].addEventListener('click', () => {
       let todo_id = $(btn5).data('id');
-      if (!confirm('本当に削除する？ id:' + todo_id)) {
+      if (!confirm('本当に削除する？')) {
          btn5.disabled = false;
          return;
       }
@@ -186,35 +186,58 @@ $bodylists = $getller->index3();
     });
 
    $(".delete-btn").click(function () {
-      let todo_id = $(this).data('id');
-      if (confirm("削除しますがよろしいですか？ id:" + todo_id)) {
-         $(".delete-btn").prop("disabled", true);
-         let data = {};
-         data.todo_id = todo_id;
+      let data = {};
+      data.todo_id = 2;
+
          $.ajax({
             url: './delete.php',
             type: 'post',
             data: data
          }).then(
-            function (data) {
+            function (data){
                let json = JSON.parse(data);
-               console.log("success", json);
-               if (json.result == 'success') {
-                  window.location.href = "./index.php";
-               } else {
-                  console.log("failed to delete.");
-                  alert("failed to delete.");
-                  $(".delete-btn").prop("disabled", false);
-               }
-               }
+                  console.log("success", json);
+                  // alert("failed to delete.");
+                  // $(".delete-btn").prop("disabled", false);
+               },
                function () {
                   console.log("fail");
                   alert("fail");
-                  $(".delete-btn").prop("disabled", false);
+                  // $(".delete-btn").prop("disabled", false);
                 }
             );
-        }
     });
+
+   // $(".delete-btn").click(function () {
+   //    let todo_id = $(this).data("id");
+   //    if (confirm("削除しますがよろしいですか？ id:" + todo_id)) {
+   //       $(".delete-btn").prop("disabled", true);
+   //       let data = {};
+   //       data.todo_id = todo_id;
+   //       $.ajax({
+   //          url: './delete.php',
+   //          type: 'post',
+   //          data: data
+   //       }).then(
+   //          function (data) {
+   //             let json = JSON.parse(data);
+   //             console.log("success", json);
+   //             if (json.result == 'success') {
+   //                window.location.href = "./index.php";
+   //             } else {
+   //                console.log("failed to delete.");
+   //                alert("failed to delete.");
+   //                $(".delete-btn").prop("disabled", false);
+   //             }
+   //             },
+   //             function () {
+   //                console.log("fail");
+   //                alert("fail");
+   //                $(".delete-btn").prop("disabled", false);
+   //              }
+   //          );
+   //      }
+   //  });
 
       // const btn5 = document.querySelectorAll('.btn5');
       // btn5.forEach(span => {

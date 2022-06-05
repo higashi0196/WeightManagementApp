@@ -23,7 +23,7 @@ $param = $data['param'];
    <title>編集画面</title>
    <link rel="stylesheet" href="./css/styles.css">
 </head>
-<body>
+<body class="miyako">
    <a class="edit-feeld">編集画面</a>
    <form method="POST" action="./edit.php">
       <div>
@@ -37,6 +37,6 @@ $param = $data['param'];
       <input type="hidden" name="todo_id" value="<?php echo $todo['id']; ?>">
       <input type="submit" class="edit-btn" value="更新">
    </form>
-   <a href="index.php">戻る</a>
+   <a href="index.php"><button>戻る</button></a>
 </body>
 </html>
