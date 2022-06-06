@@ -7,7 +7,6 @@ require_once('config.php');
 class Todocontroller {
 
    public function index() {
-      // $lists = Database::dbconnect($query);
       $lists = Database::getAll();
       return $lists;
    }
