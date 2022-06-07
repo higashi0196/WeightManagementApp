@@ -68,7 +68,7 @@ $bodylists = $getller->index3();
                      <!-- jquery用おわり -->
 
                      <!-- javascript用 -->
-                     <td><div id="btn5"  data-id="<?php echo $todo['id']; ?>"><button>javascript</button></div></td>
+                     <td><div id="button"  data-id="<?php echo $todo['id']; ?>"><button>javascript</button></div></td>
                      <!-- javascript用 おわり-->
 
                <?php endforeach; ?>
@@ -97,7 +97,6 @@ $bodylists = $getller->index3();
 
       <div class="aaa" data-id="<?php echo $wordtodo['id']; ?>">
       <button style="margin-left:30px">削除</button></div>
-
    </main>
 
    <!-- <script src="./js/main.js"></script> -->
@@ -122,6 +121,19 @@ $bodylists = $getller->index3();
       } else {
          console.log("0.5kg以上、まだまだ");
       }
+
+      let button = document.getElementById('button');  
+      button.addEventListener('click', function() {
+         let todo_id = button.dataset.id
+         let data = {};
+         data.todo_id = todo_id;
+         console.log(todo_id);
+         fetch('./delete.php', {
+         method: 'POST',
+         body: JSON.stringify(todo_id),
+         headers: { 'Content-Type': 'application/json' },
+         })
+      });
       
       $(".delete-done").click(function () {
          if(confirm("本当に削除する？")) {
@@ -155,64 +167,29 @@ $bodylists = $getller->index3();
          }
       });
 
-      // const btn5 = document.querySelectorAll('.btn5');
-      // if (!confirm('消して良い?')) {
-         // return;
-      // }
-      // btn5.forEach(span => {
-         const btn5 = document.getElementById('btn5');
-         btn5.addEventListener('click', () => {
-         // let todo_id = btn5.dataset.id;
-         // let data = {};
-         // data.todo_id = todo_id;
-         console.log(btn5.dataset.id);
-         fetch('./delete.php', {
-            method: 'POST',
-            body: new URLSearchParams({
-               // id:span.dataset,
-               id: btn5.dataset.id,
-            }),
-         }).then (
-            function (data) {
-            let json = JSON.parse(JSON.stringify(data));
-            console.log("success", json);
-            if(json.result ==  'success') {
-               window.location.href = "./index.php";
-            } 
-            }).then (
-               function () {
-                  alert("fail");
-                  console.log("fail");
-               });
-         // span.parentNode.remove();
-      });
-      // });
-
-      // const btn5 = document.querySelectorAll('.btn5');
-      // btn5.addEventListener('click', () => {
-      //    if (!confirm('本当に削除する？')) {
-      //    let todo_id = $(btn5).data('id');
+      // let button = document.getElementById('button');  
+      // button.addEventListener('click', function() {
+      //    let xhr = new XMLHttpRequest();
+      //    let todo_id = button.dataset.id
       //    let data = {};
       //    data.todo_id = todo_id;
-      //    XMLRequestDefaultHandler = function() {
-      //    var xml = new xmlRequest();
-      //    xml.open("POST", "http://localhost:8000/delete.php", true);
-      //    xml.onreadystatechange = function(data) {
-      //       if (xml.readyState === 4 || xml.status === 200) {
-      //          let json = JSON.parse(data);
-      //             console.log("success", json);
-      //             if(json.result ==  'success') {
-      //             window.location.href = "./index.php";
+      //    console.log(todo_id);
+      //    xhr.open("POST", "./delete.php", true);
+      //    xhr.setRequestHeader("Content-Type", "application/json");
+      //    xhr.send(data);
+      //    xhr.onreadystatechange = function() {
+      //       if (xhr.readyState === 4 && xhr.status === 200) {
+      //          let json = JSON.stringify(data);
+      //          console.log("おはよ");
+      //          console.log("success", json);
+      //          if(json.result ==  'success') {
+      //             window.location.href = "./delete.php";
+      //             return;
       //          } else {
-      //             alert("通信失敗");
       //             console.log("通信失敗");
-      //             $(".delete-btn").prop("disabled", false);
       //          }
-      //       };
-      //        }
+      //          }
       //       }
-      //          console.log("通信完了");
-      //    }
       //    });
       
       $(".aaa").click(function () {
