@@ -122,18 +122,31 @@ $bodylists = $getller->index3();
          console.log("0.5kg以上、まだまだ");
       }
 
-      let button = document.getElementById('button');  
-      button.addEventListener('click', function() {
-         let todo_id = button.dataset.id
-         let data = {};
-         data.todo_id = todo_id;
-         console.log(todo_id);
-         fetch('./delete.php', {
-         method: 'POST',
-         body: JSON.stringify(todo_id),
-         headers: { 'Content-Type': 'application/json' },
-         })
-      });
+      // let button = document.getElementById('button');  
+      // button.addEventListener('click', function() {
+      //    let todo_id = button.dataset.id
+      //    let data = {};
+      //    data.todo_id = todo_id;
+      //    console.log(todo_id);
+      //    fetch('http://localhost:8000/delete.php', {
+      //    method: 'POST',
+      //    body: JSON.stringify(todo_id),
+      //    headers: { 'Content-Type': 'application/json' },
+      //    }).then(response => {
+      //       return response.json();
+      //    })
+      //    .then(data => {
+      //       let json = JSON.parse(todo_id);
+      //       console.log(json);
+      //       if(json.result ==  'success') {
+      //          window.location.href = "./index.php";
+      //          return;
+      //       } else {
+      //          console.log("通信失敗");
+      //       }
+      //    })
+      //    .catch(error => {console.log('error'); });
+      // });
       
       $(".delete-done").click(function () {
          if(confirm("本当に削除する？")) {

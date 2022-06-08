@@ -12,10 +12,10 @@ class Database
    public $body;
    public $weight;
    public $data = array();
-   public $complete;
+   // public $complete;
 
-   const complete_uncomplete = 0;
-   const complete_complete = 1;
+   // const complete_uncomplete = 0;
+   // const complete_complete = 1;
 
    public function takeId() {
       return $this->id;
@@ -81,13 +81,13 @@ class Database
       $this->weightdata = $weightdata;
    }
 
-   public function takecomplete() {
-      return $this->$complete;
-   }
+   // public function takecomplete() {
+   //    return $this->$complete;
+   // }
 
-   public function setcomplete($complete) {
-      $this->$complete = $complete;
-   }
+   // public function setcomplete($complete) {
+   //    $this->$complete = $complete;
+   // }
 
    private static  $osaka;
    
@@ -218,7 +218,6 @@ class Database
          $query = sprintf("DELETE FROM todos WHERE id = %s", $this->id);
          $pdo = new PDO(DSN, USER, PASSWORD);
          $result = $pdo->query($query);
-         // header('Location: ' . SITE_URL);
       }  catch (PDOException $e) {
       //    エラーログ
       //    echo $e->getMessage();

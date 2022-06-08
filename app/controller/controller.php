@@ -3,6 +3,7 @@
 // controllerフォルダ todocontroller
 
 require_once('config.php');
+require_once('error.php');
 
 class Todocontroller {
 
@@ -23,15 +24,39 @@ class Todocontroller {
 
    public function create() {
 
-      $title = (filter_input(INPUT_POST, 'title'));
-      $content = (filter_input(INPUT_POST, 'content'));
+      $data = array(
+         "title" => $_POST['title'],
+         "content" => $_POST['content'],
+      );
 
-      $todo = new Database;
-      $todo->setTitle($title);
-      $todo->setContent($content);
-      $result = $todo->save();
+         $error = new ErrorValidation;
+         $error->setData($data);
+         if($error->check() === false){
+            $params = sprintf("?title=%s&content=%s", $_POST['title'], $_POST['content']);
+            header(sprintf("Location: ./create.php%s", $params));
+         };
+         exit;
+         
+      //    $error->setData($data);
+      //    if($error->errorcheck() === false) {
+      //    $error_sign = $error->getErrorSign();
 
-      header("Location: index.php");
+      //    session_start();
+      //    $_SESSION['error_sign'] = $error_sign;
+
+      //    $params = sprintf("?title=%s&content=%s", $_POST['title'], $_POST['content']);
+      //    header(sprintf("Location: ./create.php%s", $params));
+      //    return;
+      // }
+
+      // $valid_data = $error->getData();
+
+      // $todo = new Database;
+      // $todo->setTitle($title);
+      // $todo->setContent($content);
+      // $result = $todo->save();
+
+      // header("Location: index.php");
    }
 
    public function create2() {
@@ -116,7 +141,6 @@ class Todocontroller {
       $result = $todo->delete();
 
       return $result;
-      // header("Location: ./index.php");
    }
 
    public function postdelete() {
