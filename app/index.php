@@ -22,7 +22,6 @@ $bodylists = $getller->index3();
    <main>
 
       <h1>体重管理リスト</h1>
-
       <div class="miyako">
          <a action="./weight.php" method="POST"></a>
          <a href="weight.php" class="ishigaki"><button>体重記入</button></a>
@@ -82,7 +81,6 @@ $bodylists = $getller->index3();
          <a class="miyako">明日への一言</a>
          <a href="post.php" class="ishigaki"><button>投稿する</button></a>
       </div>       
-  
       <?php if ($wordlists): ?>
          <?php foreach ($wordlists as $wordtodo): ?>
             <textarea cols="50" rows="2" style="margin-left:30px">
@@ -94,9 +92,9 @@ $bodylists = $getller->index3();
    <?php echo 'todoなし' ?>
          </textarea> 
        <?php endif; ?>
-
       <div class="aaa" data-id="<?php echo $wordtodo['id']; ?>">
       <button style="margin-left:30px">削除</button></div>
+      
    </main>
 
    <!-- <script src="./js/main.js"></script> -->

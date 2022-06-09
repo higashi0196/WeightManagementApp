@@ -47,7 +47,7 @@ $bodylists = $getller->index3();
    
       <div style="padding-top:5px">
          <button type="submit">記入</button>
-         <a href="index.php">戻る</a>
+         <a href="index.php"><button>戻る</button></a>
       </div>
    </form>
 </body>

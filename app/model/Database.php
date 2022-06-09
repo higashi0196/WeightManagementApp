@@ -12,10 +12,6 @@ class Database
    public $body;
    public $weight;
    public $data = array();
-   // public $complete;
-
-   // const complete_uncomplete = 0;
-   // const complete_complete = 1;
 
    public function takeId() {
       return $this->id;
@@ -256,6 +252,11 @@ class Database
    }
 
    // ここからした
+
+   // public $complete;
+
+   // const complete_uncomplete = 0;
+   // const complete_complete = 1;
 
    public function updatecomplete() {
       try {
