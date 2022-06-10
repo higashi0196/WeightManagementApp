@@ -20,7 +20,7 @@ class Database
    public function setId($id) {
       $this->id = $id;
    }
-
+   
    public function takeTitle() {
       return $this->title;
    }
@@ -76,14 +76,6 @@ class Database
    public function setweightData($weightdata) {
       $this->weightdata = $weightdata;
    }
-
-   // public function takecomplete() {
-   //    return $this->$complete;
-   // }
-
-   // public function setcomplete($complete) {
-   //    $this->$complete = $complete;
-   // }
 
    private static  $osaka;
    
@@ -254,6 +246,13 @@ class Database
    // ここからした
 
    // public $complete;
+    // public function takecomplete() {
+   //    return $this->$complete;
+   // }
+
+   // public function setcomplete($complete) {
+   //    $this->$complete = $complete;
+   // }
 
    // const complete_uncomplete = 0;
    // const complete_complete = 1;

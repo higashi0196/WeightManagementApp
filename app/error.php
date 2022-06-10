@@ -1,39 +1,45 @@
 <?php
-class ErrorValidation {
+class TodoValidation {
+   public $title= array();
+   public $content= array();
+   public $error_msgs= array();
 
-   public $data = array();
+   public function setTitle($title) {
+      $this->title = $title;
+   }
 
-   public function setData($data) {
-      $this->data = $data;
+   public function takeTitle() {
+      return $this->title;
    }
    
-   public function getData($data) {
-      return $this->data;
+   public function setContent($content) {
+      $this->content = $content;
    }
 
-   public function check() {
-      $error_msgs = array();
-      if (isset($this->data['title']) && empty($this->data['title'])) {
-         $error_msgs[] = "タイトル空っぽ";
-      }
-      if (isset($this->data['content']) && empty($this->data['content'])) {
-         $error_msgs[] = "目標空っぽ";
-      }
+   public function takeContent() {
+      return $this->content;
+   }
 
-      if(count($error_msgs) > 0) {
+   public function setErrorMessages() {
+      return $this->error_msgs;
+  }
+
+  public function createcheck() {
+      if(isset($this->title['title']) && empty($this->title['title'])) {
+         $this->error_msgs[] = "タイトルが空です。";
+      }
+      if(isset($this->content['content']) && empty($this->content['content'])) {
+         $this->error_msgs[] = "タイトルが空です。";
+      }
+      if(count($this->error_msgs) > 0) {
          return false;
-      }
-      
-      return true;
-   }
-   
+     }
+  }
+
 }
 
-// public $error_sign = array();
+$errors = [];
 
-// public function getErrorSign() {
-//    return $this->error_sign;
-// }
 
 
 ?>

@@ -9,6 +9,7 @@ $wordlists = $getller->index2();
 $bodylists = $getller->index3();
 // $completes = $getller->completestatus();
 // $json = json_encode($employeeData);
+
 ?>
 
 <!DOCTYPE html>
@@ -88,7 +89,7 @@ $bodylists = $getller->index3();
             </textarea>      
          <?php endforeach; ?>
       <?php else : ?>
-         <textarea cols="50" rows="2" style="margin-left:30px">
+         <textarea cols="50" rows="3" style="margin-left:30px">
    <?php echo 'todoなし' ?>
          </textarea> 
        <?php endif; ?>

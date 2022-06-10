@@ -25,13 +25,13 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
    <title>明日への一言</title>
    <link rel="stylesheet" href="./css/styles.css">
 </head>
-<body>
+<body class="miyako">
    <form method="POST" action="./post.php">
-      <div class="miyako">
+      <div >
          <p class="kuroshima">明日への一言</p>
          <textarea name="content2" cols="30" rows="4"></textarea>
       </div>
-      <div class="miyako"> 
+      <div> 
          <button type="submit" class="post-btn">投稿する</button>
          <a href="index.php">戻る</a>
       </div>

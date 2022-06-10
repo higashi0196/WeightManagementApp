@@ -24,39 +24,31 @@ class Todocontroller {
 
    public function create() {
 
-      $data = array(
-         "title" => $_POST['title'],
-         "content" => $_POST['content'],
-      );
+      $title = (filter_input(INPUT_POST, 'title'));
+      $content = (filter_input(INPUT_POST, 'content'));
 
-         $error = new ErrorValidation;
-         $error->setData($data);
-         if($error->check() === false){
-            $params = sprintf("?title=%s&content=%s", $_POST['title'], $_POST['content']);
-            header(sprintf("Location: ./create.php%s", $params));
-         };
-         exit;
-         
-      //    $error->setData($data);
-      //    if($error->errorcheck() === false) {
-      //    $error_sign = $error->getErrorSign();
+      $validation = new TodoValidation;
+      $validation->setTitle($title);
+      $validation->setContent($content);
 
-      //    session_start();
-      //    $_SESSION['error_sign'] = $error_sign;
+      if($validation->createcheck() === false) {
+         $error_msgs = $validation->getErrorMessages();
 
-      //    $params = sprintf("?title=%s&content=%s", $_POST['title'], $_POST['content']);
-      //    header(sprintf("Location: ./create.php%s", $params));
-      //    return;
-      // }
+         session_start();
+         $_SESSION['error_msgs'] = $error_msgs;
+         header("Location: ./create.php");
+         return;
+      }
 
-      // $valid_data = $error->getData();
+      $valid_title = $validation->takeTitle();
+      $valid_content = $validation->takeContent();
 
-      // $todo = new Database;
-      // $todo->setTitle($title);
-      // $todo->setContent($content);
-      // $result = $todo->save();
+      $todo = new Database;
+      $todo->setTitle($title);
+      $todo->setContent($content);
+      $result = $todo->save();
 
-      // header("Location: index.php");
+      header("Location: ./index.php");
    }
 
    public function create2() {
