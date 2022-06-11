@@ -1,45 +1,59 @@
 <?php
 class TodoValidation {
-   public $title= array();
-   public $content= array();
-   public $error_msgs= array();
+   
+   public $data = array();
+   public $error_msgs = array();
+   public $content_msgs = array();
+   public $all_msgs = array();
 
-   public function setTitle($title) {
-      $this->title = $title;
+   public function setData($data) {
+      $this->data = $data;
+   }
+   public function getData() {
+      return $this->data;
    }
 
-   public function takeTitle() {
-      return $this->title;
+   public function getTitleErrorMessages() {
+      return $this->title_msgs;
    }
    
-   public function setContent($content) {
-      $this->content = $content;
+   public function getCotentErrorMessages() {
+      return $this->content_msgs;
+   }
+   
+   public function getAllErrorMessages() {
+      return $this->all_msgs;
    }
 
-   public function takeContent() {
-      return $this->content;
-   }
-
-   public function setErrorMessages() {
-      return $this->error_msgs;
-  }
-
-  public function createcheck() {
-      if(isset($this->title['title']) && empty($this->title['title'])) {
-         $this->error_msgs[] = "タイトルが空です。";
-      }
-      if(isset($this->content['content']) && empty($this->content['content'])) {
-         $this->error_msgs[] = "タイトルが空です。";
-      }
-      if(count($this->error_msgs) > 0) {
+  public function titlecheck() {
+      if(isset($this->data['title']) && empty($this->data['title'])) {
+         $this->title_msgs[] = "タイトルが空です。";
          return false;
-     }
-  }
+      } else if(50 < mb_strlen($this->data['title'], 'UTF-8')) {
+         $this->title_msgs[] = "タイトルは50文字以内で入力してください。";
+         return false;
+      }
+      return true;
+   }
 
+  public function contentcheck() {
+      if(isset($this->data['content']) && empty($this->data['content'])){
+         $this->content_msgs[] = "目標が空です。";
+         return false;
+      } else if(255 < mb_strlen($this->data['content'], 'UTF-8')) {
+         $this->content_msgs[] = "目標は255文字以内で入力してください。";
+         return false;
+      }
+      return true;
+   }
+
+  public function allcheck() {
+      if(isset($this->data['title']) && empty($this->data['title']) && isset($this->data['content']) && empty($this->data['content'])) {
+         $this->all_msgs[] = "タイトルと目標が空です。";
+         return false;
+      }
+      return true;
+   }
 }
-
-$errors = [];
-
-
 
 ?>

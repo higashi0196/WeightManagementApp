@@ -23,25 +23,33 @@ class Todocontroller {
    }
 
    public function create() {
-
-      $title = (filter_input(INPUT_POST, 'title'));
-      $content = (filter_input(INPUT_POST, 'content'));
+         
+      $data = array(
+         "title" => $_POST['title'],
+         "content" => $_POST['content'],
+     );
 
       $validation = new TodoValidation;
-      $validation->setTitle($title);
-      $validation->setContent($content);
-
-      if($validation->createcheck() === false) {
-         $error_msgs = $validation->getErrorMessages();
-
+      $validation->setData($data);
+      if($validation->allcheck() === false) {
+         $all_msgs = $validation->getAllErrorMessages();
          session_start();
-         $_SESSION['error_msgs'] = $error_msgs;
+         $_SESSION['all_msgs'] = $all_msgs;
          header("Location: ./create.php");
          return;
-      }
-
-      $valid_title = $validation->takeTitle();
-      $valid_content = $validation->takeContent();
+      } else if($validation->titlecheck() === false) {
+         $title_msgs = $validation->getTitleErrorMessages();
+         session_start();
+         $_SESSION['title_msgs'] = $title_msgs;
+         header("Location: ./create.php");
+         return;
+      } else if($validation->contentcheck() === false) {
+         $content_msgs = $validation->getCotentErrorMessages();
+         session_start();
+         $_SESSION['content_msgs'] = $content_msgs;
+         header("Location: ./create.php");
+         return;
+      } 
 
       $todo = new Database;
       $todo->setTitle($title);
