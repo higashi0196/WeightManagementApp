@@ -165,16 +165,16 @@ class Database
          return $result;
    }
 
-   public function save2() {
+   public function postsave() {
       try {
          $query = sprintf("INSERT INTO `words` (`content`, `created_at`) VALUES ('%s', NOW())",$this->content);
 
          $pdo = new PDO(DSN, USER, PASSWORD);
-         $result = $pdo->query($query);
+         $postresult = $pdo->query($query);
       } catch(Exception $e) {
          // エラーログ
       }
-         return $result2;
+         return $postresult;
    }
 
    public function hold() {

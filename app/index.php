@@ -179,31 +179,6 @@ $bodylists = $getller->index3();
          }
       });
 
-      // let button = document.getElementById('button');  
-      // button.addEventListener('click', function() {
-      //    let xhr = new XMLHttpRequest();
-      //    let todo_id = button.dataset.id
-      //    let data = {};
-      //    data.todo_id = todo_id;
-      //    console.log(todo_id);
-      //    xhr.open("POST", "./delete.php", true);
-      //    xhr.setRequestHeader("Content-Type", "application/json");
-      //    xhr.send(data);
-      //    xhr.onreadystatechange = function() {
-      //       if (xhr.readyState === 4 && xhr.status === 200) {
-      //          let json = JSON.stringify(data);
-      //          console.log("おはよ");
-      //          console.log("success", json);
-      //          if(json.result ==  'success') {
-      //             window.location.href = "./delete.php";
-      //             return;
-      //          } else {
-      //             console.log("通信失敗");
-      //          }
-      //          }
-      //       }
-      //    });
-      
       $(".aaa").click(function () {
       let todo_id = $(this).data('id');
       if (confirm("本当に削除する？")) {
@@ -235,6 +210,30 @@ $bodylists = $getller->index3();
         }
     });
 
+      // let button = document.getElementById('button');  
+      // button.addEventListener('click', function() {
+      //    let xhr = new XMLHttpRequest();
+      //    let todo_id = button.dataset.id
+      //    let data = {};
+      //    data.todo_id = todo_id;
+      //    console.log(todo_id);
+      //    xhr.open("POST", "./delete.php", true);
+      //    xhr.setRequestHeader("Content-Type", "application/json");
+      //    xhr.send(data);
+      //    xhr.onreadystatechange = function() {
+      //       if (xhr.readyState === 4 && xhr.status === 200) {
+      //          let json = JSON.stringify(data);
+      //          console.log("おはよ");
+      //          console.log("success", json);
+      //          if(json.result ==  'success') {
+      //             window.location.href = "./delete.php";
+      //             return;
+      //          } else {
+      //             console.log("通信失敗");
+      //          }
+      //          }
+      //       }
+      //    });
 
       // const btn5 = document.querySelectorAll('.btn5');
       // btn5.forEach(span => {

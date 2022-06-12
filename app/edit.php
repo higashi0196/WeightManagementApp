@@ -14,6 +14,14 @@ $data =  $getller->edit();
 $todo = $data['todo'];
 $param = $data['param'];
 
+session_start();
+$title_errors = $_SESSION['title_errors'];
+unset($_SESSION['title_errors']);
+$content_errors = $_SESSION['content_errors'];
+unset($_SESSION['content_errors']);
+$all_errors = $_SESSION['all_errors'];
+unset($_SESSION['all_errors']);
+
 ?>
 
 <!DOCTYPE html>
@@ -28,15 +36,30 @@ $param = $data['param'];
    <form method="POST" action="./edit.php">
       <div>
          <p class="taketomi">タイトル</p>
+         <?php if($title_errors):?>
+            <?php foreach ($title_errors as $title_error): ?>
+               <p><?php echo $title_error;?></p>
+            <?php endforeach;?>
+            <?endif;?>
          <input type="text" name="title" value="<?php echo $todo['title']; ?>">
       </div>
       <div>
          <p class="kohama">目標</p>
+         <?php if($content_errors):?>
+            <?php foreach ($content_errors as $content_error): ?>
+               <p><?php echo $content_error;?></p>
+            <?php endforeach;?>
+         <?endif;?>
          <textarea name="content"><?php echo $todo['content']; ?></textarea>
       </div>
       <input type="hidden" name="todo_id" value="<?php echo $todo['id']; ?>">
       <input type="submit" class="edit-btn" value="更新">
    </form>
    <a href="index.php"><button>戻る</button></a>
+   <?php if($all_errors):?>
+      <?php foreach ($all_errors as $all_error): ?>
+         <p><?php echo $all_error;?></p>
+      <?php endforeach;?>
+   <?endif;?>
 </body>
 </html>

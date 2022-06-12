@@ -1,7 +1,6 @@
 <?php
 
 require_once('config.php');
-// require_once('config.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $getller = new Todocontroller();
@@ -24,12 +23,13 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 
 session_start();
-$title_msgs = $_SESSION['title_msgs'];
-unset($_SESSION['title_msgs']);
-$content_msgs = $_SESSION['content_msgs'];
-unset($_SESSION['content_msgs']);
-$all_msgs = $_SESSION['all_msgs'];
-unset($_SESSION['all_msgs']);
+$title_errors = $_SESSION['title_errors'];
+unset($_SESSION['title_errors']);
+$content_errors = $_SESSION['content_errors'];
+unset($_SESSION['content_errors']);
+$all_errors = $_SESSION['all_errors'];
+unset($_SESSION['all_errors']);
+
 ?>
 
 <!DOCTYPE html>
@@ -44,27 +44,27 @@ unset($_SESSION['all_msgs']);
    <form method="POST" action="./create.php">
       <div>
          <p>タイトル</p>
-         <?php if($title_msgs):?>
-            <?php foreach ($title_msgs as $title_msg): ?>
-               <p><?php echo $title_msg;?></p>
+         <?php if($title_errors):?>
+            <?php foreach ($title_errors as $title_error): ?>
+               <p><?php echo $title_error;?></p>
             <?php endforeach;?>
             <?endif;?>
          <input type="text" name="title">
       </div>
       <div>
          <p>目標</p>
-         <?php if($content_msgs):?>
-            <?php foreach ($content_msgs as $content_msg): ?>
-               <p><?php echo $content_msg;?></p>
+         <?php if($content_errors):?>
+            <?php foreach ($content_errors as $content_error): ?>
+               <p><?php echo $content_error;?></p>
             <?php endforeach;?>
          <?endif;?>
          <textarea name="content"></textarea>
       </div>  
       <button type="submit">登録</button>
    </form>
-   <?php if($all_msgs):?>
-      <?php foreach ($all_msgs as $all_msg): ?>
-         <p><?php echo $all_msg;?></p>
+   <?php if($all_errors):?>
+      <?php foreach ($all_errors as $all_error): ?>
+         <p><?php echo $all_error;?></p>
       <?php endforeach;?>
    <?endif;?>
    <a href="index.php"><button>戻る</button></a>

@@ -1,20 +1,23 @@
 <?php
-
 require_once('config.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $getller = new Todocontroller();
-   $getller->create2();
+   $getller->postcreate();
    exit;
-   header('Location: ' . SITE_URL);
+   // header('Location: ' . SITE_URL);
 }
 
-$content = '';
+// $content = '';
 if($_SERVER['REQUEST_METHOD'] === 'GET') {
    if(isset($_GET['content'])) {
       $content = $_GET['content'];
    }
 }
+
+session_start();
+$post_errors = $_SESSION['post_errors'];
+unset($_SESSION['post_errors']);
 
 ?>
 
@@ -29,12 +32,17 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
    <form method="POST" action="./post.php">
       <div >
          <p class="kuroshima">明日への一言</p>
-         <textarea name="content2" cols="30" rows="4"></textarea>
+         <textarea name="postcontent" cols="30" rows="4"></textarea>
       </div>
       <div> 
          <button type="submit" class="post-btn">投稿する</button>
          <a href="index.php">戻る</a>
       </div>
    </form>
+   <?php if($post_errors):?>
+      <?php foreach ($post_errors as $post_error): ?>
+         <p><?php echo $post_error;?></p>
+      <?php endforeach;?>
+   <?endif;?>
 </body>
 </html>

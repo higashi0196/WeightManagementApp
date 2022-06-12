@@ -32,42 +32,57 @@ class Todocontroller {
       $validation = new TodoValidation;
       $validation->setData($data);
       if($validation->allcheck() === false) {
-         $all_msgs = $validation->getAllErrorMessages();
+         $all_errors = $validation->getAllErrorMessages();
          session_start();
-         $_SESSION['all_msgs'] = $all_msgs;
+         $_SESSION['all_errors'] = $all_errors;
          header("Location: ./create.php");
          return;
       } else if($validation->titlecheck() === false) {
-         $title_msgs = $validation->getTitleErrorMessages();
+         $title_errors = $validation->getTitleErrorMessages();
          session_start();
-         $_SESSION['title_msgs'] = $title_msgs;
+         $_SESSION['title_errors'] = $title_errors;
          header("Location: ./create.php");
          return;
       } else if($validation->contentcheck() === false) {
-         $content_msgs = $validation->getCotentErrorMessages();
+         $content_errors = $validation->getCotentErrorMessages();
          session_start();
-         $_SESSION['content_msgs'] = $content_msgs;
+         $_SESSION['content_errors'] = $content_errors;
          header("Location: ./create.php");
          return;
-      } 
+      }
+
+      $validation_data = $validation->getData();
 
       $todo = new Database;
-      $todo->setTitle($title);
-      $todo->setContent($content);
+      $todo->setTitle($validation_data['title']);
+      $todo->setcontent($validation_data['content']);
       $result = $todo->save();
 
       header("Location: ./index.php");
    }
 
-   public function create2() {
+   public function postcreate() {
 
-      $content = (filter_input(INPUT_POST, 'content2'));
+      $content = (filter_input(INPUT_POST, 'postcontent'));
+
+      $validation = new TodoValidation;
+      $validation->setContent($content);
+
+      if($validation->postcheck() === false) {
+         $post_errors = $validation->getPostErrorMessages();
+         session_start();
+         $_SESSION['post_errors'] = $post_errors;
+         header("Location: ./post.php");
+         return;
+      }
+      
+      $validation_content = $validation->getContent();
 
       $word = new Database;
-      $word->setContent($content);
-      $result2 = $word->save2();
+      $word->setcontent($validation_content);
+      $postresult = $word->postsave();
 
-      header("Location: index.php");
+      header("Location: ./index.php");
    }
 
    public function dietcreate() {
@@ -82,7 +97,7 @@ class Todocontroller {
       $physical->settoday($today);
       $result = $physical->hold();
 
-      header("Location: index.php");
+      header("Location: ./index.php");
    }
 
    public function edit() {
@@ -118,15 +133,35 @@ class Todocontroller {
          "title" => $_POST['title'],
          "content" => $_POST['content'],
       );
-   
-      $todo = new Database;
-      $datasetting = new Database;
 
-      $datasetting->setData($data);
-      $dataset = $datasetting->takeData();
-      $todo->setId($dataset['todo_id']);
-      $todo->setTitle($dataset['title']);
-      $todo->setContent($dataset['content']);
+      $validation = new TodoValidation;
+      $validation->setData($data);
+      if($validation->allcheck() === false) {
+         $all_errors = $validation->getAllErrorMessages();
+         session_start();
+         $_SESSION['all_errors'] = $all_errors;
+         header("Location: ./edit.php");
+         return;
+      } else if($validation->titlecheck() === false) {
+         $title_errors = $validation->getTitleErrorMessages();
+         session_start();
+         $_SESSION['title_errors'] = $title_errors;
+         header("Location: ./edit.php");
+         return;
+      } else if($validation->contentcheck() === false) {
+         $content_errors = $validation->getCotentErrorMessages();
+         session_start();
+         $_SESSION['content_errors'] = $content_errors;
+         header("Location: ./edit.php");
+         return;
+      }
+
+      $validation_data = $validation->getData();
+
+      $todo = new Database;
+      $todo->setId($validation_data['todo_id']);
+      $todo->setTitle($validation_data['title']);
+      $todo->setcontent($validation_data['content']);
       $result = $todo->update();
 
       header("Location: ./index.php");
