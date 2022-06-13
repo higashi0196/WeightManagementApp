@@ -87,15 +87,46 @@ class Todocontroller {
 
    public function dietcreate() {
 
-      $body = (filter_input(INPUT_POST, 'body'));
-      $weight = (filter_input(INPUT_POST, 'weight'));
-      $today = (filter_input(INPUT_POST, 'today'));
+      // "title" => $_POST['title'],
+      //    "content" => $_POST['content'],
+
+      $weightdata = array(
+         "body" => $_POST['body'],
+         "weight" => $_POST['weight'],
+         "today" => $_POST['today'],
+      );
+
+      $validation = new TodoValidation;
+      $validation->setWeightData($weightdata);
+
+       if($validation->weightcheck() === false) {
+         $weight_errors = $validation->getWeightErrorMessages();
+         session_start();
+         $_SESSION['weight_errors'] = $weight_errors;
+         header("Location: ./weight.php");
+         return;
+      } else if ($validation->todaycheck() === false){
+         $today_errors = $validation->getTodayErrorMessages();
+         session_start();
+         $_SESSION['today_errors'] = $today_errors;
+         header("Location: ./weight.php");
+         return;
+      }
+      //  else if($validation->bodycheck() === false) {
+      //    $body_errors = $validation->getBodyErrorMessages();
+      //    session_start();
+      //    $_SESSION['body_errors'] = $body_errors;
+      //    header("Location: ./weight.php");
+      //    return;
+      // }
+
+      $validation_weightdata = $validation->getWeightData();
 
       $physical = new Database;
-      $physical->setbody($body);
-      $physical->setweight($weight);
-      $physical->settoday($today);
-      $result = $physical->hold();
+      $physical->setbody($validation_weightdata['body']);
+      $physical->setweight($validation_weightdata['weight']);
+      $physical->settoday($validation_weightdata['today']);
+      $weightresult = $physical->weightsave();
 
       header("Location: ./index.php");
    }

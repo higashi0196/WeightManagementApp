@@ -81,20 +81,23 @@ $bodylists = $getller->index3();
       <div>
          <a class="miyako">明日への一言</a>
          <a href="post.php" class="ishigaki"><button>投稿する</button></a>
-      </div>       
-      <?php if ($wordlists): ?>
-         <?php foreach ($wordlists as $wordtodo): ?>
-            <textarea cols="50" rows="2" style="margin-left:30px">
-   <?php echo $wordtodo['content']; ?>
-            </textarea>      
-         <?php endforeach; ?>
-      <?php else : ?>
-         <textarea cols="50" rows="3" style="margin-left:30px">
-   <?php echo 'todoなし' ?>
-         </textarea> 
-       <?php endif; ?>
-      <div class="aaa" data-id="<?php echo $wordtodo['id']; ?>">
-      <button style="margin-left:30px">削除</button></div>
+         <a class="aaa" data-id="<?php echo $wordtodo['id']; ?>">
+         <button>削除</button></a>
+      </div>   
+   
+         <?php if ($wordlists): ?>
+            <?php foreach ($wordlists as $wordtodo): ?>
+               <textarea cols="50" rows="2" style="margin-left:30px">
+      <?php echo $wordtodo['content']; ?>
+               </textarea>      
+            <?php endforeach; ?>
+         <?php else : ?>
+            <textarea cols="50" rows="3" style="margin-left:30px">
+      <?php echo 'todoなし' ?>
+            </textarea> 
+         <?php endif; ?>
+         
+     
       
    </main>
 
@@ -186,29 +189,29 @@ $bodylists = $getller->index3();
          let data = {};
          data.todo_id = todo_id;
          $.ajax({
-            url: './delete.php',
+            url: './update_status.php',
             type: 'post',
             data: data
          }).then(
             function (data) {
                let json = JSON.parse(data);
                console.log("success", json);
-               if (json.result == 'success') {
+               if(json.result ==  'success') {
                   window.location.href = "./index.php";
                } else {
-                  console.log("failed to delete.");
-                  alert("failed to delete.");
-                  $(".aaa").prop("disabled", false);
+                  alert("通信失敗");
+                  console.log("通信失敗");
+                  $(".delete-btn").prop("disabled", false);
                }
                },
                function () {
                   console.log("fail");
                   alert("fail");
-                  $(".aaa").prop("disabled", false);
-                }
+                  $(".delete-done").prop("disabled", false);
+               }
             );
-        }
-    });
+         }
+      });
 
       // let button = document.getElementById('button');  
       // button.addEventListener('click', function() {

@@ -177,16 +177,16 @@ class Database
          return $postresult;
    }
 
-   public function hold() {
+   public function weightsave() {
       try {
          $query = sprintf("INSERT INTO bodies (nowweights,goalweights, nowdate) VALUES ('%s', '%s', '%s')",$this->weight,$this->body,$this->today);
 
          $pdo = new PDO(DSN, USER, PASSWORD);
-         $result = $pdo->query($query);
+         $weightresult = $pdo->query($query);
       } catch(Exception $e) {
          // エラーログ
       }
-         return $result;
+         return $weightresult;
    }
 
    public function update() {

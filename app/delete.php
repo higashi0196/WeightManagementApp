@@ -13,6 +13,6 @@ if($result) {
    $response['result'] = 'fail';
 }
 
-echo json_encode($response);;
+echo json_encode($response);
 
 ?>
