@@ -40,7 +40,7 @@ unset($_SESSION['all_errors']);
             <?php foreach ($title_errors as $title_error): ?>
                <p><?php echo $title_error;?></p>
             <?php endforeach;?>
-            <?endif;?>
+         <?endif;?>
          <input type="text" name="title" value="<?php echo $todo['title']; ?>">
       </div>
       <div>

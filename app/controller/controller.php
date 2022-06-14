@@ -172,18 +172,21 @@ class Todocontroller {
          session_start();
          $_SESSION['all_errors'] = $all_errors;
          header("Location: ./edit.php");
+         exit();
          return;
       } else if($validation->titlecheck() === false) {
          $title_errors = $validation->getTitleErrorMessages();
          session_start();
          $_SESSION['title_errors'] = $title_errors;
          header("Location: ./edit.php");
+         exit();
          return;
       } else if($validation->contentcheck() === false) {
          $content_errors = $validation->getCotentErrorMessages();
          session_start();
          $_SESSION['content_errors'] = $content_errors;
          header("Location: ./edit.php");
+         exit();
          return;
       }
 

@@ -64,7 +64,7 @@ class TodoValidation {
       return $this->today_errors;
    }
    
-  public function titlecheck() {
+   public function titlecheck() {
       if(isset($this->data['title']) && empty($this->data['title'])) {
          $this->title_errors[] = "タイトルが空です。";
          return false;
@@ -75,7 +75,7 @@ class TodoValidation {
       return true;
    }
 
-  public function contentcheck() {
+   public function contentcheck() {
       if(isset($this->data['content']) && empty($this->data['content'])){
          $this->content_errors[] = "目標が空です。";
          return false;
@@ -86,7 +86,7 @@ class TodoValidation {
       return true;
    }
 
-  public function allcheck() {
+   public function allcheck() {
       if(isset($this->data['title']) && empty($this->data['title']) && isset($this->data['content']) && empty($this->data['content'])) {
          $this->all_errors[] = "タイトルと目標が空です。";
          return false;
@@ -94,19 +94,19 @@ class TodoValidation {
       return true;
    }
 
-  public function postcheck() {
-   if(isset($this->content) && empty($this->content)){
-      $this->post_errors[] = "明日への一言が空です。";
-      return false;
-   } else if(255 < mb_strlen($this->content, 'UTF-8')) {
-      $this->post_errors[] = "明日への一言は255文字以内で入力してください。";
-      return false;
-   }
+   public function postcheck() {
+      if(isset($this->content) && empty($this->content)){
+         $this->post_errors[] = "明日への一言が空です。";
+         return false;
+      } else if(255 < mb_strlen($this->content, 'UTF-8')) {
+         $this->post_errors[] = "明日への一言は255文字以内で入力してください。";
+         return false;
+      }
       return true;
    }
 
      // body = 目標の体重
-     public function bodycheck() {
+   public function bodycheck() {
       if(isset($this->weightdata['body']) && empty($this->weightdata['body'])){
          $this->body_errors[] = "目標体重が空っぽです。";
          return false;
