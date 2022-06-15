@@ -62,7 +62,7 @@ unset($_SESSION['today_errors']);
          <?endif;?>
       <?php endif; ?>
       
-      <p>現在の体重 : <input type="text" name="weight"> kg</p>
+      <p>現在の体重 : <input type="text" name="weight" value=" <?php echo $bodylist['nowweights']; ?>"> kg</p>
          <?php if($weight_errors):?>
             <?php foreach ($weight_errors as $weight_error): ?>
                <p><?php echo $weight_error;?></p>

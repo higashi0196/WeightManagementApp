@@ -146,7 +146,7 @@ class Database
       $pdo = new PDO(DSN, USER, PASSWORD);
       $stmt = $pdo->query(sprintf('SELECT * FROM todos WHERE id = %s;', $todo_id));
       if($stmt) {
-          $todo = $stmt->fetch(PDO::FETCH_ASSOC);
+         $todo = $stmt->fetch(PDO::FETCH_ASSOC);
       } else {
          $todo = array();
       }

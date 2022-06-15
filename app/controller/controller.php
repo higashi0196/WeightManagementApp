@@ -31,23 +31,33 @@ class Todocontroller {
 
       $validation = new TodoValidation;
       $validation->setData($data);
+   
       if($validation->allcheck() === false) {
          $all_errors = $validation->getAllErrorMessages();
          session_start();
          $_SESSION['all_errors'] = $all_errors;
-         header("Location: ./create.php");
+
+         $params = sprintf("?todo_id=%s&title=%s&content=%s", $_POST['todo_id'], $_POST['title'], $_POST['content']);
+         header(sprintf("Location: ./create.php%s", $params));
+         // header(sprintf("Location: ./create.php"));
          return;
       } else if($validation->titlecheck() === false) {
          $title_errors = $validation->getTitleErrorMessages();
          session_start();
          $_SESSION['title_errors'] = $title_errors;
-         header("Location: ./create.php");
+
+         $params = sprintf("?todo_id=%s&title=%s&content=%s", $_POST['todo_id'], $_POST['title'], $_POST['content']);
+         header(sprintf("Location: ./create.php%s", $params));
+         // header(sprintf("Location: ./create.php"));
          return;
       } else if($validation->contentcheck() === false) {
          $content_errors = $validation->getCotentErrorMessages();
          session_start();
          $_SESSION['content_errors'] = $content_errors;
-         header("Location: ./create.php");
+
+         $params = sprintf("?todo_id=%s&title=%s&content=%s", $_POST['todo_id'], $_POST['title'], $_POST['content']);
+         header(sprintf("Location: ./create.php%s", $params));
+         // header(sprintf("Location: ./create.php"));
          return;
       }
 
@@ -55,8 +65,14 @@ class Todocontroller {
 
       $todo = new Database;
       $todo->setTitle($validation_data['title']);
-      $todo->setcontent($validation_data['content']);
+      $todo->setContent($validation_data['content']);
       $result = $todo->save();
+
+      if($result === false) {
+         $params = sprintf("?title=%s&content=%s", $validation_data['title'], $validation_data['content']);
+         header(sprintf("Location: ./create.php%s", $params));
+         return;
+     }
 
       header("Location: ./index.php");
    }
@@ -132,19 +148,19 @@ class Todocontroller {
    }
 
    public function edit() {
+      session_start();
 
       $todo_id = '';
-      $param = array();
-
+      $params = array();
       if($_SERVER['REQUEST_METHOD'] === 'GET') {
          if(isset($_GET['todo_id'])) {
             $todo_id = $_GET['todo_id'];
          }
          if(isset($_GET['title'])) {
-            $param['title'] = $_GET['title'];
+            $params['title'] = $_GET['title'];
          }
          if(isset($_GET['content'])) {
-            $param['content'] = $_GET['content'];
+            $params['content'] = $_GET['content'];
          }
       }
 
@@ -152,8 +168,9 @@ class Todocontroller {
 
       $data = array(
          "todo" => $todo,
-         "param" => $param,
-     );
+         "params" => $params,
+      );
+      
       return $data;
    }  
    
@@ -167,28 +184,44 @@ class Todocontroller {
 
       $validation = new TodoValidation;
       $validation->setData($data);
-      if($validation->allcheck() === false) {
-         $all_errors = $validation->getAllErrorMessages();
-         session_start();
-         $_SESSION['all_errors'] = $all_errors;
-         header("Location: ./edit.php");
-         exit();
-         return;
-      } else if($validation->titlecheck() === false) {
+
+      if($validation->titlecheck() === false) {
          $title_errors = $validation->getTitleErrorMessages();
+
          session_start();
          $_SESSION['title_errors'] = $title_errors;
-         header("Location: ./edit.php");
-         exit();
-         return;
-      } else if($validation->contentcheck() === false) {
-         $content_errors = $validation->getCotentErrorMessages();
-         session_start();
-         $_SESSION['content_errors'] = $content_errors;
-         header("Location: ./edit.php");
-         exit();
+
+         $params = sprintf("?todo_id=%s&title=%s&content=%s", $_POST['todo_id'], $_POST['title'], $_POST['content']);
+         header(sprintf("Location: ./edit.php%s", $params));
          return;
       }
+
+
+      // if($validation->allcheck() === false) {
+      //    $all_errors = $validation->getAllErrorMessages();
+      //    session_start();
+      //    $_SESSION['all_errors'] = $all_errors;
+
+      //    $params = sprintf("?todo_id=%s&title=%s&content=%s", $_POST['todo_id'], $_POST['title'], $_POST['content']);
+      //    header("Location: ./edit.php",$params);
+      //    return;
+      // } else if($validation->titlecheck() === false) {
+      //    $title_errors = $validation->getTitleErrorMessages();
+      //    session_start();
+      //    $_SESSION['title_errors'] = $title_errors;
+
+      //    $params = sprintf("?todo_id=%s&title=%s&content=%s", $_POST['todo_id'], $_POST['title'], $_POST['content']);
+      //    header("Location: ./edit.php",$params);
+      //    return;
+      // } else if($validation->contentcheck() === false) {
+      //    $content_errors = $validation->getCotentErrorMessages();
+      //    session_start();
+      //    $_SESSION['content_errors'] = $content_errors;
+
+      //    $params = sprintf("?todo_id=%s&title=%s&content=%s", $_POST['todo_id'], $_POST['title'], $_POST['content']);
+      //    header("Location: ./edit.php",$params);
+      //    return;
+      // }
 
       $validation_data = $validation->getData();
 

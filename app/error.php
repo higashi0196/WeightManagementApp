@@ -65,33 +65,30 @@ class TodoValidation {
    }
    
    public function titlecheck() {
-      if(isset($this->data['title']) && empty($this->data['title'])) {
+      if(empty($this->data['title'])) {
          $this->title_errors[] = "タイトルが空です。";
          return false;
       } else if(50 < mb_strlen($this->data['title'], 'UTF-8')) {
          $this->title_errors[] = "タイトルは50文字以内で入力してください。";
          return false;
-      }
-      return true;
+      } 
    }
 
    public function contentcheck() {
-      if(isset($this->data['content']) && empty($this->data['content'])){
+      if(empty($this->data['content'])){
          $this->content_errors[] = "目標が空です。";
          return false;
       } else if(255 < mb_strlen($this->data['content'], 'UTF-8')) {
          $this->content_errors[] = "目標は255文字以内で入力してください。";
          return false;
-      }
-      return true;
+      } 
    }
 
    public function allcheck() {
-      if(isset($this->data['title']) && empty($this->data['title']) && isset($this->data['content']) && empty($this->data['content'])) {
+      if(empty($this->data['title']) && empty($this->data['content'])) {
          $this->all_errors[] = "タイトルと目標が空です。";
          return false;
       }
-      return true;
    }
 
    public function postcheck() {
@@ -105,7 +102,7 @@ class TodoValidation {
       return true;
    }
 
-     // body = 目標の体重
+   //   body = 目標の体重
    public function bodycheck() {
       if(isset($this->weightdata['body']) && empty($this->weightdata['body'])){
          $this->body_errors[] = "目標体重が空っぽです。";
@@ -128,7 +125,7 @@ class TodoValidation {
       } else if (!is_numeric($this->weightdata['weight'])){
          $this->weight_errors[] = "数字で入力してください。";
          return false;
-      } else if (5 < mb_strlen($this->weightdata['weight'])) {
+      } else if (6 < mb_strlen($this->weightdata['weight'])) {
          $this->weight_errors[] = "入力ミス、５桁以下で小数点２以下までで入力ください。";
          return false;
       }

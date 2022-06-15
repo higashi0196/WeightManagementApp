@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once('config.php');
 
@@ -6,21 +7,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $getller = new Todocontroller();
    $getller->update();
    exit;
-   // header('Location: ' . SITE_URL);
 }
 
 $getller = new Todocontroller();
 $data =  $getller->edit();
 $todo = $data['todo'];
-$param = $data['param'];
+// $param = $data['param'];
 
-session_start();
-$title_errors = $_SESSION['title_errors'];
-unset($_SESSION['title_errors']);
-$content_errors = $_SESSION['content_errors'];
-unset($_SESSION['content_errors']);
-$all_errors = $_SESSION['all_errors'];
-unset($_SESSION['all_errors']);
+// $title_errors = $_SESSION['title_errors'];
+// unset($_SESSION['title_errors']);
+// $content_errors = $_SESSION['content_errors'];
+// unset($_SESSION['content_errors']);
+// $all_errors = $_SESSION['all_errors'];
+// unset($_SESSION['all_errors']);
 
 ?>
 
@@ -52,7 +51,7 @@ unset($_SESSION['all_errors']);
          <?endif;?>
          <textarea name="content"><?php echo $todo['content']; ?></textarea>
       </div>
-      <input type="hidden" name="todo_id" value="<?php echo $todo['id']; ?>">
+      <input type="hidden" name="todo_id" value="<?php echo $todo['todo_id']; ?>">
       <input type="submit" class="edit-btn" value="更新">
    </form>
    <a href="index.php"><button>戻る</button></a>
@@ -61,5 +60,7 @@ unset($_SESSION['all_errors']);
          <p><?php echo $all_error;?></p>
       <?php endforeach;?>
    <?endif;?>
+
+<?php session_destroy();?>
 </body>
 </html>
