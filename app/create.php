@@ -22,10 +22,6 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
    }
 }
 
-// session_start();
-// $error_msgs = $_SESSION['error_msgs'];
-// unset($_SESSION['error_msgs']);
-
 session_start();
 $title_errors = $_SESSION['title_errors'];
 unset($_SESSION['title_errors']);
@@ -52,7 +48,7 @@ unset($_SESSION['all_errors']);
             <?php foreach ($title_errors as $title_error): ?>
                <p><?php echo $title_error;?></p>
             <?php endforeach;?>
-            <?endif;?>
+         <?endif;?>
          <input type="text" name="title" value="<?php echo $title;?>">
       </div>
       <div>
@@ -72,14 +68,5 @@ unset($_SESSION['all_errors']);
       <?php endforeach;?>
    <?endif;?>
    <a href="index.php"><button>戻る</button></a>
-   <!-- <?php if($error_msgs):?>
-        <div>
-            <ul>
-                <?php foreach ($error_msgs as $error_msg): ?>
-                    <li><?php echo $error_msg;?></li>
-                <?php endforeach;?>
-            </ul>
-        </div>
-    <?endif;?> -->
 </body>
 </html>

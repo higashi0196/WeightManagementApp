@@ -142,9 +142,9 @@ class Database
       return $bodylists;
    }
    
-   public static function findId($todo_id) {
+   public static function findId($id) {
       $pdo = new PDO(DSN, USER, PASSWORD);
-      $stmt = $pdo->query(sprintf('SELECT * FROM todos WHERE id = %s;', $todo_id));
+      $stmt = $pdo->query(sprintf('SELECT * FROM todos WHERE id = %s;', $id));
       if($stmt) {
          $todo = $stmt->fetch(PDO::FETCH_ASSOC);
       } else {

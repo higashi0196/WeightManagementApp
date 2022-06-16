@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 require_once('config.php');
 
@@ -11,15 +10,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $getller = new Todocontroller();
 $data =  $getller->edit();
+// $bodylists = $getller->index3();
+$lists = $getller->index();
 $todo = $data['todo'];
-// $param = $data['param'];
+$params = $data['params'];
 
-// $title_errors = $_SESSION['title_errors'];
-// unset($_SESSION['title_errors']);
-// $content_errors = $_SESSION['content_errors'];
-// unset($_SESSION['content_errors']);
-// $all_errors = $_SESSION['all_errors'];
-// unset($_SESSION['all_errors']);
+session_start();
+$title_errors = $_SESSION['title_errors'];
+unset($_SESSION['title_errors']);
+$content_errors = $_SESSION['content_errors'];
+unset($_SESSION['content_errors']);
+$all_errors = $_SESSION['all_errors'];
+unset($_SESSION['all_errors']);
 
 ?>
 
@@ -40,7 +42,7 @@ $todo = $data['todo'];
                <p><?php echo $title_error;?></p>
             <?php endforeach;?>
          <?endif;?>
-         <input type="text" name="title" value="<?php echo $todo['title']; ?>">
+         <input type="text" name="title" value="<?php if(isset($params['title'])):?><?php echo $params['title'];?><?php else:?><?php echo $todo['title'];?><?php endif;?>">
       </div>
       <div>
          <p class="kohama">目標</p>
@@ -49,11 +51,12 @@ $todo = $data['todo'];
                <p><?php echo $content_error;?></p>
             <?php endforeach;?>
          <?endif;?>
-         <textarea name="content"><?php echo $todo['content']; ?></textarea>
+         <textarea name="content"><?php if(isset($params['content'])):?><?php echo $params['content'];?><?php else:?><?php echo $todo['content'];?><?php endif;?></textarea>
       </div>
-      <input type="hidden" name="todo_id" value="<?php echo $todo['todo_id']; ?>">
+      <input type="hidden" name="id" value="<?php echo $todo['id']; ?>">
       <input type="submit" class="edit-btn" value="更新">
    </form>
+
    <a href="index.php"><button>戻る</button></a>
    <?php if($all_errors):?>
       <?php foreach ($all_errors as $all_error): ?>
@@ -61,6 +64,5 @@ $todo = $data['todo'];
       <?php endforeach;?>
    <?endif;?>
 
-<?php session_destroy();?>
 </body>
 </html>
