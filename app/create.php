@@ -6,11 +6,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $getller = new Todocontroller();
    $getller->create();
    exit;
-   // header('Location: ' . SITE_URL);
 }
 
-$title = '';
-$content = '';
+// $title = '';
+// $content = '';
 if($_SERVER['REQUEST_METHOD'] === 'GET') {
 
    if(isset($_GET['title'])) {

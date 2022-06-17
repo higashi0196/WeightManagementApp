@@ -95,10 +95,7 @@ $bodylists = $getller->index3();
             <textarea cols="50" rows="3" style="margin-left:30px">
       <?php echo 'todoなし' ?>
             </textarea> 
-         <?php endif; ?>
-         
-     
-      
+         <?php endif; ?> 
    </main>
 
    <!-- <script src="./js/main.js"></script> -->

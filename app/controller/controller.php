@@ -99,7 +99,7 @@ class Todocontroller {
    }
 
    public function dietcreate() {
-
+   
       // "title" => $_POST['title'],
       //    "content" => $_POST['content'],
 
@@ -116,22 +116,27 @@ class Todocontroller {
          $weight_errors = $validation->getWeightErrorMessages();
          session_start();
          $_SESSION['weight_errors'] = $weight_errors;
-         header("Location: ./weight.php");
+
+         $weightparams = sprintf("?body=%s&weight=%s&today=%s", $_POST['body'], $_POST['weight'], $_POST['today']);
+         header(sprintf("Location: ./weight.php%s", $weightparams));
          return;
       } else if ($validation->todaycheck() === false){
          $today_errors = $validation->getTodayErrorMessages();
          session_start();
          $_SESSION['today_errors'] = $today_errors;
-         header("Location: ./weight.php");
+
+        $weightparams = sprintf("?body=%s&weight=%s&today=%s", $_POST['body'], $_POST['weight'], $_POST['today']);
+         header(sprintf("Location: ./weight.php%s",$weightparams));
+         return;
+      } else if($validation->bodycheck() === false) {
+         $body_errors = $validation->getBodyErrorMessages();
+         session_start();
+         $_SESSION['body_errors'] = $body_errors;
+
+        $weightparams = sprintf("?body=%s&weight=%s&today=%s", $_POST['body'], $_POST['weight'], $_POST['today']);
+         header(sprintf("Location: ./weight.php%s",$weightparams));
          return;
       }
-      //  else if($validation->bodycheck() === false) {
-      //    $body_errors = $validation->getBodyErrorMessages();
-      //    session_start();
-      //    $_SESSION['body_errors'] = $body_errors;
-      //    header("Location: ./weight.php");
-      //    return;
-      // }
 
       $validation_weightdata = $validation->getWeightData();
 
@@ -161,7 +166,7 @@ class Todocontroller {
       }
 
       $todo = Database::findId($todo_id);
-
+      
       $data = array(
          "todo" => $todo,
          "params" => $params,
