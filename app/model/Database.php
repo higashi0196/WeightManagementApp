@@ -141,6 +141,17 @@ class Database
       }
       return $bodylists;
    }
+
+   public static function getAll4(){
+      $pdo = new PDO(DSN, USER, PASSWORD);
+      $stmt = $pdo->query('SELECT goalweights FROM bodies ORDER BY id DESC LIMIT 1;');
+      if($stmt) {
+         $goallists = $stmt->fetch(PDO::FETCH_ASSOC);
+      } else {
+         $goallists = array();
+      }
+      return $goallists;
+   }
    
    public static function findId($id) {
       $pdo = new PDO(DSN, USER, PASSWORD);

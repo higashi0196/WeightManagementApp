@@ -9,12 +9,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $getller = new Todocontroller();
-$bodylists = $getller->index3();
+$goallists = $getller->index4();
 
 if($_SERVER['REQUEST_METHOD'] === 'GET') {
 
    if(isset($_GET['body'])) {
-      $body = $_GET['body'];
+      $weightparam['body'] = $_GET['body'];
    }
 
    if(isset($_GET['weight'])) {
@@ -29,12 +29,12 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
 session_start();
 $weight_errors = $_SESSION['weight_errors'];
 unset($_SESSION['weight_errors']);
-session_start();
 $body_errors = $_SESSION['body_errors'];
 unset($_SESSION['body_errors']);
-session_start();
 $today_errors = $_SESSION['today_errors'];
 unset($_SESSION['today_errors']);
+$weighttoday_errors = $_SESSION['weighttoday_errors'];
+unset($_SESSION['weighttoday_errors']);
 
 ?>
 
@@ -49,12 +49,7 @@ unset($_SESSION['today_errors']);
    <a>体重記録</a>
    
    <form method="POST" action="./weight.php">
-
-   <?php if ($bodylists): ?>
-      <?php foreach ($bodylists as $bodylist): ?>
-         <p>目標体重 : <input type="text" name="body" value=" <?php echo $bodylist['goalweights']; ?>"> kg</p>
-      <?php endforeach; ?>
-   <?php endif; ?>
+      <p>目標体重 : <input type="text" name="body" value="<?php if(isset($weightparam['body'])):?><?php echo $weightparam['body'];?><?php else:?><?php echo $goallists['goalweights'];?><?php endif;?>"> kg</p>
       
       <p>現在の体重 : <input type="text" name="weight" value="<?php echo $weightparam['weight']; ?>"> kg</p>
          <?php if($weight_errors):?>
@@ -66,6 +61,12 @@ unset($_SESSION['today_errors']);
          <?php if($today_errors):?>
             <?php foreach ($today_errors as $today_error): ?>
                <p><?php echo $today_error;?></p>
+            <?php endforeach;?>
+         <?endif;?>
+         
+         <?php if($weighttoday_errors):?>
+            <?php foreach ($weighttoday_errors as $weighttoday_error): ?>
+               <p><?php echo $weighttoday_error;?></p>
             <?php endforeach;?>
          <?endif;?>
       <div>

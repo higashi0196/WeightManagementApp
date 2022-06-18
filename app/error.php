@@ -11,6 +11,7 @@ class TodoValidation {
    public $weight_errors = array();
    public $body_errors = array();
    public $today_errors = array();
+   public $weighttoday_errors = array();
    
    public function setData($data) {
       $this->data = $data;
@@ -62,6 +63,10 @@ class TodoValidation {
 
    public function getTodayErrorMessages() {
       return $this->today_errors;
+   }
+
+   public function getWeightTodayErrorMessages() {
+      return $this->weighttoday_errors;
    }
    
    public function titlecheck() {
@@ -136,6 +141,14 @@ class TodoValidation {
    public function todaycheck() {
       if(isset($this->weightdata['today']) && empty($this->weightdata['today'])){
          $this->today_errors[] = "日付が選択されていません。";
+         return false;
+      }
+      return true;
+   }
+
+   public function weighttodaycheck() {
+      if( empty($this->weightdata['weight']) && empty($this->weightdata['today'])){
+         $this->$weighttoday_errors[] = "体重と日付が記入されていません。";
          return false;
       }
       return true;

@@ -22,6 +22,11 @@ class Todocontroller {
       return $bodylists;
    }
 
+   public function index4() {
+      $goallists = Database::getAll4();
+      return $goallists;
+   }
+
    public function create() {
          
       $data = array(
@@ -99,9 +104,6 @@ class Todocontroller {
    }
 
    public function dietcreate() {
-   
-      // "title" => $_POST['title'],
-      //    "content" => $_POST['content'],
 
       $weightdata = array(
          "body" => $_POST['body'],
@@ -126,7 +128,7 @@ class Todocontroller {
          $_SESSION['today_errors'] = $today_errors;
 
         $weightparams = sprintf("?body=%s&weight=%s&today=%s", $_POST['body'], $_POST['weight'], $_POST['today']);
-         header(sprintf("Location: ./weight.php%s",$weightparams));
+         header(sprintf("Location: ./weight.php%s", $weightparams));
          return;
       } else if($validation->bodycheck() === false) {
          $body_errors = $validation->getBodyErrorMessages();
@@ -134,7 +136,7 @@ class Todocontroller {
          $_SESSION['body_errors'] = $body_errors;
 
         $weightparams = sprintf("?body=%s&weight=%s&today=%s", $_POST['body'], $_POST['weight'], $_POST['today']);
-         header(sprintf("Location: ./weight.php%s",$weightparams));
+         header(sprintf("Location: ./weight.php%s", $weightparams));
          return;
       }
 
