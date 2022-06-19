@@ -114,10 +114,26 @@ class Todocontroller {
       $validation = new TodoValidation;
       $validation->setWeightData($weightdata);
 
-       if($validation->weightcheck() === false) {
+      if($validation->weighttodaycheck() === false) {
+         $weighttoday_errors = $validation->getWeightTodayErrorMessages();
+         session_start();
+         $_SESSION['weighttoday_errors'] = $weighttoday_errors;
+
+         $weightparams = sprintf("?body=%s&weight=%s&today=%s", $_POST['body'], $_POST['weight'], $_POST['today']);
+         header(sprintf("Location: ./weight.php%s", $weightparams));
+         return;
+      } else if($validation->weightcheck() === false) {
          $weight_errors = $validation->getWeightErrorMessages();
          session_start();
          $_SESSION['weight_errors'] = $weight_errors;
+
+         $weightparams = sprintf("?body=%s&weight=%s&today=%s", $_POST['body'], $_POST['weight'], $_POST['today']);
+         header(sprintf("Location: ./weight.php%s", $weightparams));
+         return;
+      } else if($validation->bodycheck() === false) {
+         $body_errors = $validation->getBodyErrorMessages();
+         session_start();
+         $_SESSION['body_errors'] = $body_errors;
 
          $weightparams = sprintf("?body=%s&weight=%s&today=%s", $_POST['body'], $_POST['weight'], $_POST['today']);
          header(sprintf("Location: ./weight.php%s", $weightparams));
@@ -127,15 +143,7 @@ class Todocontroller {
          session_start();
          $_SESSION['today_errors'] = $today_errors;
 
-        $weightparams = sprintf("?body=%s&weight=%s&today=%s", $_POST['body'], $_POST['weight'], $_POST['today']);
-         header(sprintf("Location: ./weight.php%s", $weightparams));
-         return;
-      } else if($validation->bodycheck() === false) {
-         $body_errors = $validation->getBodyErrorMessages();
-         session_start();
-         $_SESSION['body_errors'] = $body_errors;
-
-        $weightparams = sprintf("?body=%s&weight=%s&today=%s", $_POST['body'], $_POST['weight'], $_POST['today']);
+         $weightparams = sprintf("?body=%s&weight=%s&today=%s", $_POST['body'], $_POST['weight'], $_POST['today']);
          header(sprintf("Location: ./weight.php%s", $weightparams));
          return;
       }
@@ -234,6 +242,7 @@ class Todocontroller {
       $result = $todo->delete();
 
       return $result;
+      header("Location: ./index.php");
    }
 
    public function postdelete() {

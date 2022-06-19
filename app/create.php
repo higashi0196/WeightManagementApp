@@ -61,11 +61,11 @@ unset($_SESSION['all_errors']);
       </div>  
       <button type="submit">登録</button>
    </form>
+   <a href="index.php"><button>戻る</button></a>
    <?php if($all_errors):?>
       <?php foreach ($all_errors as $all_error): ?>
          <p><?php echo $all_error;?></p>
       <?php endforeach;?>
    <?endif;?>
-   <a href="index.php"><button>戻る</button></a>
 </body>
 </html>

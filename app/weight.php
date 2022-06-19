@@ -27,14 +27,14 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 
 session_start();
+$weighttoday_errors = $_SESSION['weighttoday_errors'];
+unset($_SESSION['weighttoday_errors']);
 $weight_errors = $_SESSION['weight_errors'];
 unset($_SESSION['weight_errors']);
 $body_errors = $_SESSION['body_errors'];
 unset($_SESSION['body_errors']);
 $today_errors = $_SESSION['today_errors'];
 unset($_SESSION['today_errors']);
-$weighttoday_errors = $_SESSION['weighttoday_errors'];
-unset($_SESSION['weighttoday_errors']);
 
 ?>
 
@@ -50,28 +50,35 @@ unset($_SESSION['weighttoday_errors']);
    
    <form method="POST" action="./weight.php">
       <p>目標体重 : <input type="text" name="body" value="<?php if(isset($weightparam['body'])):?><?php echo $weightparam['body'];?><?php else:?><?php echo $goallists['goalweights'];?><?php endif;?>"> kg</p>
+
+      <?php if($body_errors):?>
+         <?php foreach ($body_errors as $body_error): ?>
+            <p><?php echo $body_error;?></p>
+         <?php endforeach;?>
+      <?endif;?>
       
       <p>現在の体重 : <input type="text" name="weight" value="<?php echo $weightparam['weight']; ?>"> kg</p>
-         <?php if($weight_errors):?>
-            <?php foreach ($weight_errors as $weight_error): ?>
-               <p><?php echo $weight_error;?></p>
-            <?php endforeach;?>
-         <?endif;?>
-         <p>日付 : <input type="date" name="today"></p>
-         <?php if($today_errors):?>
-            <?php foreach ($today_errors as $today_error): ?>
-               <p><?php echo $today_error;?></p>
-            <?php endforeach;?>
-         <?endif;?>
-         
-         <?php if($weighttoday_errors):?>
-            <?php foreach ($weighttoday_errors as $weighttoday_error): ?>
-               <p><?php echo $weighttoday_error;?></p>
-            <?php endforeach;?>
-         <?endif;?>
-      <div>
-         <button type="submit">記入</button>
-      </div>
+
+      <?php if($weight_errors):?>
+         <?php foreach ($weight_errors as $weight_error): ?>
+            <p><?php echo $weight_error;?></p>
+         <?php endforeach;?>
+      <?endif;?>
+
+      <p>日付 : <input type="date" name="today" value="<?php echo $weightparam['today']; ?>"></p>
+      <?php if($today_errors):?>
+         <?php foreach ($today_errors as $today_error): ?>
+            <p><?php echo $today_error;?></p>
+         <?php endforeach;?>
+      <?endif;?>
+
+      <?php if($weighttoday_errors):?>
+         <?php foreach ($weighttoday_errors as $weighttoday_error): ?>
+            <p><?php echo $weighttoday_error;?></p>
+         <?php endforeach;?>
+      <?endif;?>
+
+      <button type="submit">記入</button>
    </form>
    <a href="index.php"><button>戻る</button></a>
 </body>

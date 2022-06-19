@@ -16,12 +16,12 @@ $todo = $data['todo'];
 $params = $data['params'];
 
 session_start();
+$all_errors = $_SESSION['all_errors'];
+unset($_SESSION['all_errors']);
 $title_errors = $_SESSION['title_errors'];
 unset($_SESSION['title_errors']);
 $content_errors = $_SESSION['content_errors'];
 unset($_SESSION['content_errors']);
-$all_errors = $_SESSION['all_errors'];
-unset($_SESSION['all_errors']);
 
 ?>
 

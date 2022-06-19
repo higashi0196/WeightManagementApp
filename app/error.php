@@ -104,7 +104,6 @@ class TodoValidation {
          $this->post_errors[] = "明日への一言は255文字以内で入力してください。";
          return false;
       }
-      return true;
    }
 
    //   body = 目標の体重
@@ -119,7 +118,6 @@ class TodoValidation {
          $this->body_errors[] = "入力ミス、５桁以下で小数点２以下までで入力ください。";
          return false;
       }
-      return true;
    }
 
    // weight = 現在の体重
@@ -134,24 +132,21 @@ class TodoValidation {
          $this->weight_errors[] = "入力ミス、５桁以下で小数点２以下までで入力ください。";
          return false;
       }
-      return true;
    }
 
    // today
    public function todaycheck() {
-      if(isset($this->weightdata['today']) && empty($this->weightdata['today'])){
+      if(empty($this->weightdata['today'])){
          $this->today_errors[] = "日付が選択されていません。";
          return false;
       }
-      return true;
    }
 
    public function weighttodaycheck() {
-      if( empty($this->weightdata['weight']) && empty($this->weightdata['today'])){
-         $this->$weighttoday_errors[] = "体重と日付が記入されていません。";
+      if(empty($this->weightdata['weight']) && empty($this->weightdata['today'])){
+         $this->weighttoday_errors[] = "体重と日付が記入されていません。";
          return false;
       }
-      return true;
    }
   
 }

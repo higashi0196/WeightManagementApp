@@ -217,6 +217,9 @@ class Database
          $query = sprintf("DELETE FROM todos WHERE id = %s", $this->id);
          $pdo = new PDO(DSN, USER, PASSWORD);
          $result = $pdo->query($query);
+
+         // header("Location: main.php");
+         // exit;
       }  catch (PDOException $e) {
       //    エラーログ
       //    echo $e->getMessage();
