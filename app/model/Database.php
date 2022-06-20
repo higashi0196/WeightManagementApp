@@ -218,12 +218,12 @@ class Database
          $pdo = new PDO(DSN, USER, PASSWORD);
          $result = $pdo->query($query);
 
-         // header("Location: main.php");
+         header("Location: index.php");
          // exit;
       }  catch (PDOException $e) {
       //    エラーログ
-      //    echo $e->getMessage();
-      //    exit;
+         echo $e->getMessage();
+         exit;
       }   
       return $result;
    }

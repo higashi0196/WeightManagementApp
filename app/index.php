@@ -45,7 +45,7 @@ $bodylists = $getller->index3();
          <a href="create.php" class="ishigaki"><button>新規登録</button></a>  
       </div>
 
-      <table>
+      <!-- <table>
          <thead>
             <tr>
                <th scope="col">タイトル</th>
@@ -55,17 +55,15 @@ $bodylists = $getller->index3();
             </tr>
          </thead>
          <tbody>
-            <tr>
-               <?php if ($lists): ?>
-                  <?php foreach ($lists as $todo): ?>
-                     <td ><?php echo $todo['title']; ?></td>
+            <?php if ($lists): ?>
+               <?php foreach ($lists as $todo):?>
+                  <tr>
+                     <td><?php echo $todo['title']; ?></td>
                      <td><?php echo $todo['content']; ?></td> 
-
                      <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn"><button>編集</button></a></td>
-                     <!-- jquery用 -->
-                     <td><span class="delete-done" data-id="<?php echo $todo['id']; ?>">
-                     <button>jquery</button></span></td>
+                     <td><span data-id="<?php echo $todo['id']; ?>" class="delete"><a href="delete.php?todo_id=<?php echo $todo['id']; ?>"><button>削除</button></a></span></td> -->
 
+                     <!-- jquery用 -->
                      <!-- <td><div class="delete-done" data-id="<?php echo $todo['id']; ?>">
                      <button>jquery</button></div></td> -->
                      <!-- jquery用おわり -->
@@ -74,13 +72,13 @@ $bodylists = $getller->index3();
                      <!-- <td><div id="button"  data-id="<?php echo $todo['id']; ?>"><button>javascript</button></div></td> -->
                      <!-- javascript用 おわり -->
 
-                  <?php endforeach; ?>
-               <?php else : ?>
-                  <td>Todoなし</td>
-               <?php endif; ?>
-            </tr> 
+                  <!-- </tr> 
+               <?php endforeach; ?>
+            <?php else : ?>
+               <td>Todoなし</td>
+            <?php endif; ?>
          </tbody>
-      </table>
+      </table> -->
 
       <div>
          <a class="miyako">明日への一言</a>
@@ -100,11 +98,40 @@ $bodylists = $getller->index3();
       <?php echo 'todoなし' ?>
             </textarea> 
          <?php endif; ?> 
+
+      <ul>
+         <?php foreach ($lists as $todo):?>
+         <li>
+            <?php echo $todo['title']; ?>
+            <?php echo $todo['content']; ?>
+            <a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn"><button>編集</button></a>
+            <span data-id="<?php echo $todo['id']; ?>" class="delete"><button>削除</button></span>
+         </li>
+         <?php endforeach; ?>
+      </ul>
+      <!-- <button>削除</button> -->
+      <!-- <a href="delete.php?todo_id=<?php echo $todo['id']; ?>"> -->
    </main>
 
    <!-- <script src="./js/main.js"></script> -->
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
+
+      const deletes = document.querySelectorAll('.delete');
+      deletes.forEach(span => {
+         span.addEventListener('click', () => {
+            if (!confirm('Are you sure?')) {
+            return;
+            }
+            fetch('/delete.php', {
+            method: 'POST',
+            body: new URLSearchParams({
+               id: span.dataset.todo_id,
+               }),
+            });
+            span.parentNode.remove();
+         });
+      });
       
       const remaining = document.getElementById("remaining");
       const unit = document.getElementById("unit");
@@ -154,31 +181,31 @@ $bodylists = $getller->index3();
       //    }
       // });
       
-      $(".delete-done").click(function () {
-         if(confirm("本当に削除する？")) {
-            let todo_id = $(this).data('id');
-            let data = {};
-            data.todo_id = todo_id;
-            console.log(todo_id);
-            $.ajax({
-               url: './delete.php',
-               type: 'post',
-               data: data
-            })
-            .then(
-               function (data) {
-                  let json = JSON.parse(data);
-                  if(json.result ==  'success') {
-                     window.location.href = "./index.php";
-                     console.log(json);
-                  } else {
-                     alert("通信失敗");
-                     console.log("通信失敗");
-                  }
-               }
-            );
-         }
-      });
+      // $(".delete-done").click(function () {
+      //    if(confirm("本当に削除する？")) {
+      //       let todo_id = $(this).data('id');
+      //       let data = {};
+      //       data.todo_id = todo_id;
+      //       console.log(todo_id);
+      //       $.ajax({
+      //          url: './delete.php',
+      //          type: 'post',
+      //          data: data
+      //       })
+      //       .then(
+      //          function (data) {
+      //             let json = JSON.parse(data);
+      //             if(json.result ==  'success') {
+      //                // window.location.href = "./index.php";
+      //                console.log(json);
+      //             } else {
+      //                alert("通信失敗");
+      //                console.log("通信失敗");
+      //             }
+      //          }
+      //       );
+      //    }
+      // });
 
       $(".aaa").click(function () {
       let todo_id = $(this).data('id');
@@ -256,4 +283,4 @@ $bodylists = $getller->index3();
 
    </script>
 </body>
-</html> 
+</html>
