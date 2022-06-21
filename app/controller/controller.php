@@ -235,7 +235,7 @@ class Todocontroller {
 
    public function delete() {
 
-      // $todo_id = $_POST['todo_id'];
+      $todo_id = $_POST['todo_id'];
       if($_SERVER['REQUEST_METHOD'] === 'GET') {
          if(isset($_GET['todo_id'])) {
             $todo_id = $_GET['todo_id'];
@@ -264,61 +264,4 @@ class Todocontroller {
       header("Location: ./index.php");
    }
 
-      // ここからした
-   public function updateStatus() {
-      error_log("updateStatus call.");
-      $todo_id = $_POST['todo_id'];
-      if(!$todo_id) {
-          error_log(sprintf("[TodoController][updateStatus]todo_id id not found. todo_id: %s", $todo_id));
-          return false;
-      }
-
-      // if(Database::isExistId($todo_id) === false) {
-      //     error_log(sprintf("[TodoController][updateStatus]record is not found. todo_id: %s", $todo_id));
-      //     return false;
-      // }
-
-      // $todo = Database::findId($todo_id);
-      // if(!$todo) {
-      //     error_log(sprintf("[TodoController][updateStatus]record is not found. todo_id: %s", $todo_id));
-      //     return false;
-      // }
-
-      $status = $todo['status'];
-      if($status == Database::STATUS_INCOMPLETE) {
-          $status = Database::STATUS_COMPLETED;
-      } else if($status == Database::STATUS_COMPLETED) {
-          $status = Database::STATUS_INCOMPLETE;
-      }
-
-      $todo = new Todo;
-      $todo->setId($todo_id);
-      $todo->setStatus($status);
-      $result = $todo->updateStatus();
-
-      error_log(print_r($result, true));
-
-      return $result;
-  }
-
-  public function completestatus() {
-
-   $todo_id = $_POST['todo_id'];
-   $todo = Database::findId($todo_id);
-
-   $complete = $todo['complete'];
-   if($complete === Database::complete_uncomplete) {
-      $complete = Database::complete_uncomplete;
-  } else if($complete === Database::complete_complete) {
-      $complete = Database::complete_uncomplete;
-  }
-
-   $todo = new Database;
-   $todo->setId($todo_id);
-   $todo->setcomplete($complete);
-   $result = $todo->updatecomplete();
-
-   return $result;
-   header("Location: ./index.php");
-}
 }

@@ -218,7 +218,7 @@ class Database
          $pdo = new PDO(DSN, USER, PASSWORD);
          $result = $pdo->query($query);
 
-         header("Location: index.php");
+         // header("Location: index.php");
          // exit;
       }  catch (PDOException $e) {
       //    エラーログ
@@ -256,75 +256,5 @@ class Database
       }
       return false;
    }
-
-   // ここからした
-
-   // public $complete;
-    // public function takecomplete() {
-   //    return $this->$complete;
-   // }
-
-   // public function setcomplete($complete) {
-   //    $this->$complete = $complete;
-   // }
-
-   // const complete_uncomplete = 0;
-   // const complete_complete = 1;
-
-   public function updatecomplete() {
-      try {
-         $query = sprintf("UPDATE `todos` SET `complete` = '%s', `updated_at` = '%s' WHERE id = %s",$this->status,date("Y-m-d H:i:s"),$this->id);
-
-         $pdo = new PDO(DSN, USER, PASSWORD);
-         $result = $pdo->query($query);
-      }  catch (PDOException $e) {
-         // エラーログ
-      }   
-         return $result;
-   }
-
-   const STATUS_INCOMPLETE = 0;
-   const STATUS_COMPLETED = 1;
-
-   const STATUS_INCOMPLETE_TXT = "未完了";
-   const STATUS_COMPLETED_TXT = "完了";
-
-   public function getStatus() {
-      return $this->status;
-  }
-
-   public function setStatus($status) {
-      $this->status = $status;
-  }
-
-   public function updateStatus() {
-      error_log("model updateStatus call.");
-      try {
-          $query = sprintf("UPDATE `todos` SET `status` = '%s', `updated_at` = '%s' WHERE id = %s",
-                  $this->status,
-                  date("Y-m-d H:i:s"),
-                  $this->id
-              );
-
-          error_log($query);
-
-          $pdo = new PDO(DSN, USERNAME, PASSWORD);
-          $pdo->beginTransaction();
-
-          $result = $pdo->query($query);
-
-          $pdo->commit();
-
-      } catch(Exception $e){
-          error_log("ステータス更新に失敗しました。");
-          error_log($e->getMessage());
-          error_log($e->getTraceAsString());
-
-          $pdo->rollBack();
-
-          return false;
-      }
-      return $result;
-   }
-
+   
 }
