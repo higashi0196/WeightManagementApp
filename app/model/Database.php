@@ -2,7 +2,7 @@
 
 // modleフォルダ todo.php
 
-// require_once('config.php');
+require_once('config.php');
 
 class Database
 {
@@ -218,8 +218,6 @@ class Database
          $pdo = new PDO(DSN, USER, PASSWORD);
          $result = $pdo->query($query);
 
-         // header("Location: index.php");
-         // exit;
       }  catch (PDOException $e) {
       //    エラーログ
          echo $e->getMessage();

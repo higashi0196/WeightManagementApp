@@ -61,8 +61,8 @@ $bodylists = $getller->index3();
                      <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn"><button>編集</button></a></td>
 
                      <!-- jquery用 -->
-                     <td><div class="listbtn2" data-id="<?php echo $todo['id']; ?>">
-                     <button>jquery</button></div></td>
+                     <td><div class="deletebtn" data-id="<?php echo $todo['id']; ?>">
+                     <button>削除</button></div></td>
                      <!-- jquery用おわり -->
 
                      <!-- javascript用 -->
@@ -97,12 +97,12 @@ $bodylists = $getller->index3();
          <?php endif; ?> 
          
       <ul>
-         <?php foreach ($lists as $todo):?>
+            <?php foreach ($lists as $todo):?>
          <li>
             <span><?php echo $todo['title']; ?></span>
             <span><?php echo $todo['content']; ?></span>
             <span><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn"><button>編集</button></a></span>
-            <span data-id="<?php echo $todo['id']; ?>"><button class="listbtn">削除</button></span>
+            <span data-id="<?php $todo['id']; ?>" class="listbtn"><button>削除</button></span>
          </li>
          <?php endforeach; ?>
       </ul>
@@ -112,78 +112,53 @@ $bodylists = $getller->index3();
    <!-- <script src="./js/main.js"></script> -->
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
-      
-      const listbtn = document.querySelectorAll('.listbtn');
-      // const listbtn =  document.getElementsByClassName('listbtn');
-      listbtn.forEach(span => {
-         span.addEventListener('click', () => {
-            if (!confirm('Are you sure?')) {
-               return;
-            }
-         fetch('./delete.php', {
-            method: 'POST',
-            body: new URLSearchParams({
-            id: span.dataset.id,
-            })
-            .then(response => {
-               return response.json(response);
-               // let json = JSON.parse(data);
-            })
-            .then(json => {
-               console.log(json);
-            })
-            .catch(error => {
-               console.log("失敗しました");
-            })
-            })
-         });
-         // span.parentNode.remove();
+    	
+      // const listbtn = document.querySelectorAll('.listbtn');
+      // listbtn.forEach(span => {
+      //    span.addEventListener('click', () => {
+      //       if (!confirm('Are you sure?')) {
+      //          return;
+      //       }
+      //    fetch('delete.php', {
+      //       method: 'POST',
+      //       body: new URLSearchParams({
+      //          id: span.dataset.id,
+      //       })
+      //    }).then(response => {
+      //       return response.json();
+      //       let json = JSON.parse();
+      //       }).then(json => {
+      //       console.log(json);
+      //       })
+      //    .catch(error => {
+      //       console.log("失敗しました");
+      //       })
+      //       span.parentNode.remove();
+      //    });
+      // });
+
+      $(document).on('click', '.deletebtn', function() {
+         if (!confirm("削除しますがよろしいですか？")) {
+         return;
+         }
+        $(this).parents('tr').remove();
       });
 
-      // $(".listbtn").each(span => {
-      //    span.click(functione () {
-      //       let data = {};
-      //       data.todo_id = 239;
-      //          $.ajax({
-      //             url: './delete.php',
-      //             type: 'post',
-      //             data: data,
-      //          }).then(function(data) {
-      //             let json = JSON.parse(data);
-      //             console.log("success",json);
-      //          }),(function(data){
-      //             console.log("非同期通信失敗");
-      //          })
-      //       })
-      // });
-      // });
-
-      // $(".listbtn2").on("click", function(){
-      //    $('ul').children().remove();
-      // });
-
-      // $(".listbtn2").click(function () {
-      //   let todo_id = $(this).data('id');
-      //   if (confirm("削除しますがよろしいですか？")) {
-      //       let data = {};
-      //       data.todo_id = 223;
-      //       data.todo_id = todo_id;
-      //       $.ajax({
-      //          url: './delete.php',
-      //          type: 'post',
-      //          data: data
-      //       }).done(function(data) {
-      //          let json = JSON.parse(data);
-      //          console.log(json);
-      //          window.location.href = "./index.php";
-      //       }).fail(function(data){
-      //          console.log("非同期通信失敗");
-      //       })
-      //       .always(function(data){ 
-      //          console.log("非同期通信失敗");
-      //       });
-      //    }
-      // });
+      $(".deletebtn").click(function () {
+         let todo_id = $(this).data('id');
+         let data = {};
+         data.todo_id = todo_id;
+         $.ajax({
+            url: './delete.php',
+            type: 'post',
+            data: data
+         }).done(function(data) {
+            let json = JSON.parse(data);
+            console.log(json);
+         }).fail(function(data){
+            console.log("非同期通信失敗");
+         })
+      });
       
       const remaining = document.getElementById("remaining");
       const unit = document.getElementById("unit");
