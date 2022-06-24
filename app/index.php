@@ -59,17 +59,9 @@ $bodylists = $getller->index3();
                      <td><?php echo $todo['title']; ?></td>
                      <td><?php echo $todo['content']; ?></td> 
                      <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn"><button>編集</button></a></td>
-
-                     <!-- jquery用 -->
                      <td><div class="deletebtn" data-id="<?php echo $todo['id']; ?>">
                      <button>削除</button></div></td>
-                     <!-- jquery用おわり -->
-
-                     <!-- javascript用 -->
-                     <!-- <td><div id="button"  data-id="<?php echo $todo['id']; ?>"><button>javascript</button></div></td> -->
-                     <!-- javascript用 おわり -->
-
-               </tr> 
+                  </tr> 
                <?php endforeach; ?>
             <?php else : ?>
                <td>Todoなし</td>
@@ -80,24 +72,25 @@ $bodylists = $getller->index3();
       <div>
          <a class="miyako">明日への一言</a>
          <a href="post.php" class="ishigaki"><button>投稿する</button></a>
-         <a class="aaa" data-id="<?php echo $wordtodo['id']; ?>">
+         <a class="wordbtn" data-id="<?php echo $wordtodo['id']; ?>">
          <button>削除</button></a>
       </div>   
 
          <?php if ($wordlists): ?>
-            <?php foreach ($wordlists as $wordtodo): ?>
-               <textarea cols="50" rows="2" style="margin-left:30px">
+            <?php foreach ($wordlists as $wordtodo): ?> 
+               <textarea cols="50" rows="2" style="margin-left:30px" >
       <?php echo $wordtodo['content']; ?>
                </textarea>      
             <?php endforeach; ?>
          <?php else : ?>
             <textarea cols="50" rows="3" style="margin-left:30px">
-      <?php echo 'todoなし' ?>
+            <?php echo "空っぽ"; ?>
             </textarea> 
          <?php endif; ?> 
-         
-      <ul>
-            <?php foreach ($lists as $todo):?>
+
+      <!-- リストタグ -->
+       <ul>
+         <?php foreach ($lists as $todo):?>
          <li>
             <span><?php echo $todo['title']; ?></span>
             <span><?php echo $todo['content']; ?></span>
@@ -107,6 +100,8 @@ $bodylists = $getller->index3();
          <?php endforeach; ?>
       </ul>
       <a href="delete.php?todo_id=<?php echo $todo['id']; ?>">
+      <!-- リストタグ -->
+
    </main>
 
    <!-- <script src="./js/main.js"></script> -->
@@ -116,7 +111,7 @@ $bodylists = $getller->index3();
       // const listbtn = document.querySelectorAll('.listbtn');
       // listbtn.forEach(span => {
       //    span.addEventListener('click', () => {
-      //       if (!confirm('Are you sure?')) {
+      //       if (!confirm('削除する?')) {
       //          return;
       //       }
       //    fetch('delete.php', {
@@ -141,7 +136,7 @@ $bodylists = $getller->index3();
          if (!confirm("削除しますがよろしいですか？")) {
          return;
          }
-        $(this).parents('tr').remove();
+         $(this).parents('tr').remove();
       });
 
       $(".deletebtn").click(function () {
@@ -156,7 +151,26 @@ $bodylists = $getller->index3();
             let json = JSON.parse(data);
             console.log(json);
          }).fail(function(data){
-            console.log("非同期通信失敗");
+            console.log("非同期通信 失敗");
+         })
+      });
+
+      $(".wordbtn").click(function () {
+         if (!confirm("削除しますか？")) {
+         return;
+         }
+         let post_id = $(this).data('id');
+         let data = {};
+         data.post_id = post_id;
+         $.ajax({
+            url: './postdelete.php',
+            type: 'post',
+            data: data
+         }).done(function(data){             
+            let json = JSON.parse(data);
+            console.log(json);
+         }).fail(function(data){
+            console.log("非同期通信 失敗");
          })
       });
       

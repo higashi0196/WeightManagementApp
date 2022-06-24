@@ -251,17 +251,11 @@ class Todocontroller {
 
    public function postdelete() {
 
-      // $todo_id = $_POST['todo_id'];
-      // if (empty($todo_id)) {
-      //    return;
-      // }
-
       $word = new Database;
-      $word->setId($todo_id);
-      $result2 = $word->postdelete();
-      return $result2;
+      // $word->setId($todo_id);
+      $postresult = $word->postdelete();
+      return $postresult;
       
-      header("Location: ./index.php");
    }
 
 }

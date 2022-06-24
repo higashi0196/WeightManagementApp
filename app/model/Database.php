@@ -230,14 +230,14 @@ class Database
       try {
          $query = sprintf("TRUNCATE TABLE words");
          $pdo = new PDO(DSN, USER, PASSWORD);
-         $result2 = $pdo->query($query);
-         header('Location: ' . SITE_URL);
+         $postdelete = $pdo->query($query);
+         // header('Location: ' . SITE_URL);
       }  catch (PDOException $e) {
          // エラーログ
          // echo $e->getMessage();
          exit;
       }   
-      return $result2;
+      return $postdelete;
    }
 
    public static function isExistById($todo_id) {

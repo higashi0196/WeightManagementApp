@@ -5,9 +5,9 @@ require_once('config.php');
 $getller = new Todocontroller();
 $result = $getller->delete();
 
-$response = 'success';
-echo json_encode($response);
+// $result = $getller->postdelete();
 
-// $result2 = $getller->postdelete();
+$response = '非同期通信 成功';
+echo json_encode($response);
 
 ?>
