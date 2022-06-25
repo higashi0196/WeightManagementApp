@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once('config.php');
 
@@ -74,19 +75,27 @@ $bodylists = $getller->index3();
          <a href="post.php" class="ishigaki"><button>投稿する</button></a>
          <a class="wordbtn" data-id="<?php echo $wordtodo['id']; ?>">
          <button>削除</button></a>
-      </div>   
+      </div>
 
-         <?php if ($wordlists): ?>
-            <?php foreach ($wordlists as $wordtodo): ?> 
-               <textarea cols="50" rows="2" style="margin-left:30px" >
-      <?php echo $wordtodo['content']; ?>
-               </textarea>      
-            <?php endforeach; ?>
-         <?php else : ?>
+      <div class="miyako">
+      <?php if ($wordlists): ?>
+         <?php foreach ($wordlists as $wordlist): ?> 
+            <p id="word"><?php echo $wordlist['content']; ?></p>
+         <?php endforeach; ?>
+      <?php else : ?>
+         <p>非同期通信成功!</p> 
+      <?php endif; ?> 
+      </div>
+
+      <?php if ($wordlists): ?>
+         <?php foreach ($wordlists as $wordlist): ?>
             <textarea cols="50" rows="3" style="margin-left:30px">
-            <?php echo "空っぽ"; ?>
-            </textarea> 
-         <?php endif; ?> 
+      <?php echo $wordlist['content']; ?>
+            </textarea>
+         <?php endforeach; ?>
+      <?php else : ?>
+         <textarea cols="50" rows="3" style="margin-left:30px">非同期通信成功!</textarea> 
+      <?php endif; ?> 
 
       <!-- リストタグ -->
        <ul>
@@ -155,6 +164,7 @@ $bodylists = $getller->index3();
          })
       });
 
+      const word = document.getElementById("word");
       $(".wordbtn").click(function () {
          if (!confirm("削除しますか？")) {
          return;
@@ -168,6 +178,8 @@ $bodylists = $getller->index3();
             data: data
          }).done(function(data){             
             let json = JSON.parse(data);
+            word.textContent = '非同期通信成功!';
+            // word.innerHTML = '非同期通信成功!';
             console.log(json);
          }).fail(function(data){
             console.log("非同期通信 失敗");
