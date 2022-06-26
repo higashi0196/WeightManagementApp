@@ -220,8 +220,8 @@ class Database
 
       }  catch (PDOException $e) {
       //    エラーログ
-         echo $e->getMessage();
-         exit;
+         // echo $e->getMessage();
+         // exit;
       }   
       return $result;
    }
@@ -231,7 +231,6 @@ class Database
          $query = sprintf("TRUNCATE TABLE words");
          $pdo = new PDO(DSN, USER, PASSWORD);
          $postdelete = $pdo->query($query);
-         // header('Location: ' . SITE_URL);
       }  catch (PDOException $e) {
          // エラーログ
          // echo $e->getMessage();

@@ -60,8 +60,8 @@ $bodylists = $getller->index3();
                      <td><?php echo $todo['title']; ?></td>
                      <td><?php echo $todo['content']; ?></td> 
                      <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn"><button>編集</button></a></td>
-                     <td><div class="deletebtn" data-id="<?php echo $todo['id']; ?>">
-                     <button>削除</button></div></td>
+                     <!-- <td><div id="deletebtn" data-id="<?php echo $todo['id']; ?>"><button>削除</button></div></td> -->
+                     <td class="deletebtn" data-id="<?php echo $todo['id']; ?>"><button>削除</button></td>
                   </tr> 
                <?php endforeach; ?>
             <?php else : ?>
@@ -87,18 +87,8 @@ $bodylists = $getller->index3();
       <?php endif; ?> 
       </div>
 
-      <?php if ($wordlists): ?>
-         <?php foreach ($wordlists as $wordlist): ?>
-            <textarea cols="50" rows="3" style="margin-left:30px">
-      <?php echo $wordlist['content']; ?>
-            </textarea>
-         <?php endforeach; ?>
-      <?php else : ?>
-         <textarea cols="50" rows="3" style="margin-left:30px">非同期通信成功!</textarea> 
-      <?php endif; ?> 
-
       <!-- リストタグ -->
-       <ul>
+      <ul>
          <?php foreach ($lists as $todo):?>
          <li>
             <span><?php echo $todo['title']; ?></span>
@@ -108,7 +98,6 @@ $bodylists = $getller->index3();
          </li>
          <?php endforeach; ?>
       </ul>
-      <a href="delete.php?todo_id=<?php echo $todo['id']; ?>">
       <!-- リストタグ -->
 
    </main>
@@ -116,73 +105,109 @@ $bodylists = $getller->index3();
    <!-- <script src="./js/main.js"></script> -->
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
-    	
-      // const listbtn = document.querySelectorAll('.listbtn');
-      // listbtn.forEach(span => {
-      //    span.addEventListener('click', () => {
-      //       if (!confirm('削除する?')) {
-      //          return;
-      //       }
-      //    fetch('delete.php', {
-      //       method: 'POST',
-      //       body: new URLSearchParams({
-      //          id: span.dataset.id,
-      //       })
-      //    }).then(response => {
-      //       return response.json();
-      //       let json = JSON.parse();
-      //       }).then(json => {
+
+      const deletebtn = document.querySelector('.deletebtn');
+      deletebtn.forEach(tr => {
+         deletebtn.addEventListener('click', () => {
+            if (!confirm('削除する?')) {
+               return;
+            }
+            let data = {};
+            data.todo_id = deletebtn;
+         fetch('./delete.php', {
+            method: 'POST',
+            data: data,
+         }).then(response => {
+            return response.json();
+         }).then(json => {
+         console.log(json);
+         })
+         .catch(error => {
+         console.log("失敗しました");
+         })
+            // tr.parentNode.remove();
+         });
+      });
+
+      //    $(".deletebtn").click(function () {
+      //    let todo_id = $(this).data('id');
+      //    let data = {};
+      //    data.todo_id = todo_id;
+      //    $.ajax({
+      //       url: './delete.php',
+      //       type: 'post',
+      //       data: data,
+      //    }).done(function(data) {
+      //       let json = JSON.parse(data);
       //       console.log(json);
-      //       })
-      //    .catch(error => {
-      //       console.log("失敗しました");
-      //       })
-      //       span.parentNode.remove();
-      //    });
+      //    }).then(function(data){
+      //       console.log("非同期通信 失敗");
+      //    })
       // });
 
-      $(document).on('click', '.deletebtn', function() {
-         if (!confirm("削除しますがよろしいですか？")) {
-         return;
-         }
-         $(this).parents('tr').remove();
-      });
+      // $(document).on('click', '.deletebtn', function() {
+      //    if (!confirm("削除しますがよろしいですか？")) {
+      //    return;
+      //    }
+      //    $(this).parents('tr').remove();
+      // });
 
-      $(".deletebtn").click(function () {
-         let todo_id = $(this).data('id');
-         let data = {};
-         data.todo_id = todo_id;
-         $.ajax({
-            url: './delete.php',
-            type: 'post',
-            data: data
-         }).done(function(data) {
-            let json = JSON.parse(data);
-            console.log(json);
-         }).fail(function(data){
-            console.log("非同期通信 失敗");
-         })
-      });
+      // $(".deletebtn").click(function () {
+      //    let todo_id = $(this).data('id');
+      //    let data = {};
+      //    data.todo_id = todo_id;
+      //    $.ajax({
+      //       url: './delete.php',
+      //       type: 'post',
+      //       data: data
+      //    }).done(function(data) {
+      //       let json = JSON.parse(data);
+      //       console.log(json);
+      //    }).fail(function(data){
+      //       console.log("非同期通信 失敗");
+      //    })
+      // });
+
+      // 明日への一言編
+
+      // const word = document.getElementById("word");
+      // $(".wordbtn").click(function () {
+      //    if (!confirm("削除しますか？")) {
+      //    return;
+      //    }
+      //    let post_id = $(this).data('id');
+      //    let data = {};
+      //    data.post_id = post_id;
+      //    $.ajax({
+      //       url: './postdelete.php',
+      //       type: 'post',
+      //       data: data
+      //    }).done(function(data){             
+      //       let json = JSON.parse(data);
+      //       word.textContent = '非同期通信成功!';
+      //       console.log(json);
+      //    }).fail(function(data){
+      //       console.log("非同期通信 失敗");
+      //    })
+      // });
 
       const word = document.getElementById("word");
-      $(".wordbtn").click(function () {
-         if (!confirm("削除しますか？")) {
-         return;
+      const wordbtn = document.querySelector('.wordbtn');
+      wordbtn.addEventListener('click', () => {
+         if (!confirm('削除する?')) {
+            return;
          }
-         let post_id = $(this).data('id');
-         let data = {};
-         data.post_id = post_id;
-         $.ajax({
-            url: './postdelete.php',
-            type: 'post',
-            data: data
-         }).done(function(data){             
-            let json = JSON.parse(data);
-            word.textContent = '非同期通信成功!';
-            // word.innerHTML = '非同期通信成功!';
-            console.log(json);
-         }).fail(function(data){
-            console.log("非同期通信 失敗");
+      fetch('./postdelete.php', {
+         method: 'POST',
+      }).then(response => {
+         return response.json();
+         })
+         .then(json => {
+         word.textContent = '非同期通信成功!';
+         console.log(json);
+         })
+         .catch(error => {
+         console.log("非同期通信が失敗しました");
          })
       });
       
