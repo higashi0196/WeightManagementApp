@@ -60,8 +60,9 @@ $bodylists = $getller->index3();
                      <td><?php echo $todo['title']; ?></td>
                      <td><?php echo $todo['content']; ?></td> 
                      <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn"><button>編集</button></a></td>
-                     <!-- <td><div id="deletebtn" data-id="<?php echo $todo['id']; ?>"><button>削除</button></div></td> -->
-                     <td class="deletebtn" data-id="<?php echo $todo['id']; ?>"><button>削除</button></td>
+                     <!-- <td id="deletebtn" data-id="<?php echo $todo['id']; ?>"><button>削除</button></td> -->
+                     <td class="deletebtn" data-id="todo_id=<?php echo $todo['id']?>"><button>削除</button></td>
+
                   </tr> 
                <?php endforeach; ?>
             <?php else : ?>
@@ -93,7 +94,7 @@ $bodylists = $getller->index3();
          <li>
             <span><?php echo $todo['title']; ?></span>
             <span><?php echo $todo['content']; ?></span>
-            <span><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn"><button>編集</button></a></span>
+            <span><a href="edit.php?todo_id<?php echo $todo['id']?>" class="editbtn"><button>編集</button></a></span>
             <span data-id="<?php $todo['id']; ?>" class="listbtn"><button>削除</button></span>
          </li>
          <?php endforeach; ?>
@@ -105,18 +106,15 @@ $bodylists = $getller->index3();
    <!-- <script src="./js/main.js"></script> -->
    <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
-
-      const deletebtn = document.querySelector('.deletebtn');
-      deletebtn.forEach(tr => {
+      // todoリスト編 fetch非同期通信
+      const deletebtns = document.querySelectorAll('.deletebtn');
+      deletebtns.forEach(deletebtn => {
          deletebtn.addEventListener('click', () => {
             if (!confirm('削除する?')) {
                return;
             }
-            let data = {};
-            data.todo_id = deletebtn;
          fetch('./delete.php', {
             method: 'POST',
-            data: data,
          }).then(response => {
             return response.json();
          }).then(json => {
@@ -125,26 +123,12 @@ $bodylists = $getller->index3();
          .catch(error => {
          console.log("失敗しました");
          })
-            // tr.parentNode.remove();
+         deletebtn.parentNode.remove();
          });
       });
 
-      //    $(".deletebtn").click(function () {
-      //    let todo_id = $(this).data('id');
-      //    let data = {};
-      //    data.todo_id = todo_id;
-      //    $.ajax({
-      //       url: './delete.php',
-      //       type: 'post',
-      //       data: data,
-      //    }).done(function(data) {
-      //       let json = JSON.parse(data);
-      //       console.log(json);
-      //    }).then(function(data){
-      //       console.log("非同期通信 失敗");
-      //    })
-      // });
 
+      // todoリスト編 ajax非同期通信
       // $(document).on('click', '.deletebtn', function() {
       //    if (!confirm("削除しますがよろしいですか？")) {
       //    return;
@@ -168,7 +152,7 @@ $bodylists = $getller->index3();
       //    })
       // });
 
-      // 明日への一言編
+      // 明日への一言編 ajax非同期通信
 
       // const word = document.getElementById("word");
       // $(".wordbtn").click(function () {
@@ -191,6 +175,7 @@ $bodylists = $getller->index3();
       //    })
       // });
 
+      // 明日への一言編 fetch非同期通信
       const word = document.getElementById("word");
       const wordbtn = document.querySelector('.wordbtn');
       wordbtn.addEventListener('click', () => {

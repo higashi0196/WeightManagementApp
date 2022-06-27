@@ -111,7 +111,7 @@ class Database
 
    public static function getAll(){
       $pdo = new PDO(DSN, USER, PASSWORD);
-      $stmt = $pdo->query('SELECT * FROM todos;');
+      $stmt = $pdo->query("SELECT * FROM todos");
       if($stmt) {
          $lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
       } else {
@@ -211,10 +211,11 @@ class Database
       }   
          return $result;
    }
-
+   // $query = sprintf("DELETE FROM todos WHERE id = %s", $this->id);
+   // ORDER BY id DESC LIMIT 1
    public function delete() {
       try {
-         $query = sprintf("DELETE FROM todos WHERE id = %s", $this->id);
+         $query = sprintf("DELETE FROM todos ORDER BY id DESC LIMIT 1", $this->id);
          $pdo = new PDO(DSN, USER, PASSWORD);
          $result = $pdo->query($query);
 

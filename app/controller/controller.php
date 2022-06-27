@@ -236,11 +236,11 @@ class Todocontroller {
    public function delete() {
 
       $todo_id = $_POST['todo_id'];
-      // if($_SERVER['REQUEST_METHOD'] === 'GET') {
-      //    if(isset($_GET['todo_id'])) {
-      //       $todo_id = $_GET['todo_id'];
-      //    }
-      // }
+      if($_SERVER['REQUEST_METHOD'] === 'GET') {
+         if(isset($_GET['todo_id'])) {
+            $todo_id = $_GET['todo_id'];
+         }
+      }
 
       $todo = new Database;
       $todo->setId($todo_id);
