@@ -211,11 +211,10 @@ class Database
       }   
          return $result;
    }
-   // $query = sprintf("DELETE FROM todos WHERE id = %s", $this->id);
-   // ORDER BY id DESC LIMIT 1
+
    public function delete() {
       try {
-         $query = sprintf("DELETE FROM todos ORDER BY id DESC LIMIT 1", $this->id);
+         $query = sprintf("DELETE FROM todos WHERE id = %s", $this->id);
          $pdo = new PDO(DSN, USER, PASSWORD);
          $result = $pdo->query($query);
 

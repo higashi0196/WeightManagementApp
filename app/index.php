@@ -59,10 +59,8 @@ $bodylists = $getller->index3();
                   <tr>
                      <td><?php echo $todo['title']; ?></td>
                      <td><?php echo $todo['content']; ?></td> 
-                     <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn"><button>編集</button></a></td>
-                     <!-- <td id="deletebtn" data-id="<?php echo $todo['id']; ?>"><button>削除</button></td> -->
-                     <td class="deletebtn" data-id="todo_id=<?php echo $todo['id']?>"><button>削除</button></td>
-
+                     <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn"><button>編集</button></a></td>       
+                     <td class="deletebtn" data-id="<?php echo $todo['id']?>"><button>削除</button></td>
                   </tr> 
                <?php endforeach; ?>
             <?php else : ?>
@@ -87,20 +85,6 @@ $bodylists = $getller->index3();
          <p>非同期通信成功!</p> 
       <?php endif; ?> 
       </div>
-
-      <!-- リストタグ -->
-      <ul>
-         <?php foreach ($lists as $todo):?>
-         <li>
-            <span><?php echo $todo['title']; ?></span>
-            <span><?php echo $todo['content']; ?></span>
-            <span><a href="edit.php?todo_id<?php echo $todo['id']?>" class="editbtn"><button>編集</button></a></span>
-            <span data-id="<?php $todo['id']; ?>" class="listbtn"><button>削除</button></span>
-         </li>
-         <?php endforeach; ?>
-      </ul>
-      <!-- リストタグ -->
-
    </main>
 
    <!-- <script src="./js/main.js"></script> -->
@@ -115,13 +99,16 @@ $bodylists = $getller->index3();
             }
          fetch('./delete.php', {
             method: 'POST',
+            body: new URLSearchParams({
+            todo_id: deletebtn.dataset.id,
+         }),
          }).then(response => {
             return response.json();
          }).then(json => {
-         console.log(json);
+            console.log(json);
          })
          .catch(error => {
-         console.log("失敗しました");
+            console.log("失敗しました");
          })
          deletebtn.parentNode.remove();
          });
@@ -153,7 +140,6 @@ $bodylists = $getller->index3();
       // });
 
       // 明日への一言編 ajax非同期通信
-
       // const word = document.getElementById("word");
       // $(".wordbtn").click(function () {
       //    if (!confirm("削除しますか？")) {
@@ -182,17 +168,17 @@ $bodylists = $getller->index3();
          if (!confirm('削除する?')) {
             return;
          }
-      fetch('./postdelete.php', {
-         method: 'POST',
-      }).then(response => {
-         return response.json();
+         fetch('./postdelete.php', {
+            method: 'POST',
+         }).then(response => {
+            return response.json();
          })
          .then(json => {
-         word.textContent = '非同期通信成功!';
-         console.log(json);
+            word.textContent = '非同期通信成功!';
+            console.log(json);
          })
          .catch(error => {
-         console.log("非同期通信が失敗しました");
+            console.log("非同期通信が失敗しました");
          })
       });
       
