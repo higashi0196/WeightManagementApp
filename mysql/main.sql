@@ -34,4 +34,14 @@ INSERT INTO bodies (nowweights, goalweights, nowdate) VALUES ('%s', '%S', '%s');
 
 SELECT * FROM bodies;
 
+CREATE TABLE pictures (
+   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   picture VARCHAR(255),
+   created_at datetime NOT NULL
+);
+
+INSERT INTO pictures (`picture`, `created_at`) VALUES ('%s', NOW())
+
+SELECT * FROM pictures;
+
 use todolists;

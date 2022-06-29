@@ -166,7 +166,7 @@ class Database
 
    public function save() {
       try {
-         $query = sprintf("INSERT INTO `todos` (`title`, `content`,  `complete`, `created_at`, `updated_at`) VALUES ('%s', '%s', 0, NOW(), NOW())",$this->title,$this->content);
+         $query = sprintf("INSERT INTO `todos` (`title`, `content`, `created_at`, `updated_at`) VALUES ('%s', '%s', NOW(), NOW())",$this->title,$this->content);
 
          $pdo = new PDO(DSN, USER, PASSWORD);
          $result = $pdo->query($query);

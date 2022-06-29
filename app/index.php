@@ -23,7 +23,6 @@ $bodylists = $getller->index3();
 
       <h1>体重管理リスト</h1>
       <div class="miyako">
-         <a action="./weight.php" method="POST"></a>
          <a href="weight.php" class="ishigaki"><button>体重記入</button></a>
       </div>
 
@@ -39,8 +38,12 @@ $bodylists = $getller->index3();
       <?php endforeach; ?>
 
       <div>
+         <a class="miyako">画像アップ</a>
+         <a href="picture.php" class="ishigaki"><button>移動</button></a>  
+      </div>
+
+      <div>
          <a class="miyako">ToDoリスト</a>
-         <a action="./create.php" method="POST"></a>
          <a href="create.php" class="ishigaki"><button>新規登録</button></a>  
       </div>
 
