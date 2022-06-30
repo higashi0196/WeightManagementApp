@@ -1,27 +1,25 @@
 /* index.php メインページ */
 
-/* body {
+body {
    text-align: center;
-} */
+}
 
 /* テーブル CSS */
+table {
+   margin-left: auto;
+   margin-right: auto;
+}
+
 th {
-   text-align: left;
+   text-align: center;
    padding-left: 30px;
 }
 
 td {
-   text-align: left;
-   /* padding: 0 0 0 10px; */
+   text-align: center;
    padding-left: 30px;
 }
 
-.done {
-   text-decoration: line-through;
-   color: #ccc;
-   color: rgb(15, 40, 208);
-   color:red;
-}
 .remaining {
 text-decoration: line-through;
 color: #ccc;
@@ -32,7 +30,7 @@ color: #ccc;
 }
 
 .unit2 {
-   color:orangered;
+   color:orange;
 }
 
 /* input[type="checkbox"]:checked {

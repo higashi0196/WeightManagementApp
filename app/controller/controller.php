@@ -7,6 +7,14 @@ require_once('error.php');
 
 class Todocontroller {
 
+   public function picturecreate() {
+
+      $picture = new Database;
+      $pictureresult = $picture->picturesave();
+
+      header("Location: ./index.php");
+   }
+
    public function index() {
       $lists = Database::getAll();
       return $lists;
@@ -69,12 +77,6 @@ class Todocontroller {
       $todo->setTitle($validation_data['title']);
       $todo->setContent($validation_data['content']);
       $result = $todo->save();
-
-   //    if($result === false) {
-   //       $params = sprintf("?title=%s&content=%s", $validation_data['title'], $validation_data['content']);
-   //       header(sprintf("Location: ./create.php%s", $params));
-   //       return;
-   //   }
 
       header("Location: ./index.php");
    }

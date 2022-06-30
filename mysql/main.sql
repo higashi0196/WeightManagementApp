@@ -40,7 +40,7 @@ CREATE TABLE pictures (
    created_at datetime NOT NULL
 );
 
-INSERT INTO pictures (`picture`, `created_at`) VALUES ('%s', NOW())
+INSERT INTO pictures (`picture`, `created_at`) VALUES ('%s', NOW());
 
 SELECT * FROM pictures;
 

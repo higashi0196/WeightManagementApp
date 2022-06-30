@@ -6,6 +6,19 @@ require_once('config.php');
 
 class Database
 {
+
+   public function picturesave() {
+      try {
+         $query = sprintf("INSERT INTO pictures (`picture`, `created_at`) VALUES ('%s', NOW())",$this->weight,$this->body,$this->today);
+
+         $pdo = new PDO(DSN, USER, PASSWORD);
+         $weightresult = $pdo->query($query);
+      } catch(Exception $e) {
+         // エラーログ
+      }
+         return $weightresult;
+   }
+   
    public $id;
    public $title;
    public $content;
