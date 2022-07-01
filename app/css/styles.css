@@ -2,6 +2,13 @@
 
 body {
    text-align: center;
+   background-image: url(./../images/picture7.jpg);
+   background-color: rgba(239, 240, 233, 0.003);
+   background-repeat: no-repeat;
+	background-position: center;
+   background-size: cover;
+   width: 100%;
+   min-height: 100vh;                             
 }
 
 /* テーブル CSS */
@@ -11,12 +18,12 @@ table {
 }
 
 th {
-   text-align: center;
+   text-align: left;
    padding-left: 30px;
 }
 
 td {
-   text-align: center;
+   text-align: left;
    padding-left: 30px;
 }
 
@@ -32,10 +39,6 @@ color: #ccc;
 .unit2 {
    color:orange;
 }
-
-/* input[type="checkbox"]:checked {
-box-shadow: 0 0 0 3px pink;
-} */
 
 /* テーブル CSS 終わり */
 
