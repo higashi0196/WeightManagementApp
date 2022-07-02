@@ -19,11 +19,8 @@ $bodylists = $getller->index3();
    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-
-   <h1>体重管理リスト</h1>
-   <div class="miyako">
-      <a href="weight.php" class="ishigaki"><button>体重記入</button></a>
-   </div>
+  
+   <h1><img src="./images/logo3.png" alt="" class="logo">体重管理リスト <img src="./images/logo3.png" class="logo"></h1>
 
    <?php foreach ($bodylists as $bodylist): ?>
       <span style="margin-left:30px" >目標体重 : 
@@ -36,14 +33,15 @@ $bodylists = $getller->index3();
       <span style="margin:0 0 0 30px">(<?php echo $bodylist['nowdate']; ?> 現在)</span><br>
    <?php endforeach; ?>
 
+   
    <div>
-      <a class="miyako">画像アップ</a>
-      <a href="picture.php" class="ishigaki"><button>移動</button></a>  
+      <a href="weight.php"><button class="weight-btn">体重記入</button></a>
+      <a href="picture.php"><button class="picutre-btn">画像アップ移動</button></a>  
    </div>
 
    <div>
-      <a class="miyako">ToDoリスト</a>
-      <a href="create.php" class="ishigaki"><button>新規登録</button></a>  
+      <a>ToDoリスト</a>
+      <a href="create.php"><button class="new-btn">新規登録</button></a>  
    </div>
 
    <table>
@@ -188,7 +186,6 @@ $bodylists = $getller->index3();
       const unit = document.getElementById("unit");
       const difference = <?php echo $bodylist['difference']; ?>;
       const goalweight = <?php echo $bodylist['goalweights']; ?>;
-      // const nowweight =<?php echo $bodylist['nowweights']; ?>;
      
       if (difference <= 0 ) {
          remaining.textContent =  difference + ' kg';
@@ -196,13 +193,13 @@ $bodylists = $getller->index3();
          unit.textContent = '見事達成! やったぜ!' ;
          unit.classList.add('unit');
          console.log("0kg以下,達成");
-      } else if (0 < goalweight * 0.01) {
+      } else if (0 < difference && difference < goalweight * 0.01) {
          remaining.textContent = difference + ' kg';
          unit.textContent = 'あともう少し頑張ろう!' ;
          unit.classList.add('unit2');
-         console.log("0〜0.5kgの間、もう少し");
+         console.log("もう少し,頑張ろう");
       } else {
-         console.log("0.5kg以上、まだまだ");
+         console.log("まだまだやな");
       }
 
    </script>

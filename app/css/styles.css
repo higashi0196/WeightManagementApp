@@ -44,12 +44,52 @@ color: #ccc;
 
 /* メインページ 開始 */
 h1 {
-   margin: 0 0 0 30px;
-   font-size: 25px;
+   text-align: center;
+   margin: 20px 0 5px 0 ;
+   font-size: 30px;
 }
-.ishigaki {
+
+.logo {
+   margin: 0 10px;
+   width: 50px;
+   height: 30px;
+}
+
+.weight-btn {
+   background: rgb(21, 233, 222);
+   border: 2px solid black;
+   margin: 10px 10px;
+   width: 80px;
+   height: 30px;
+   cursor : pointer;
+   padding: 0;
+   /* text-align: center; */
+}
+
+.picutre-btn {
+   background: rgb(21, 233, 222);
+   border: 2px solid black;
+   margin: 10px 10px;
+   width: 115px;
+   height: 30px;
+   padding: 0;
+   cursor : pointer;
+   /* text-align: center; */
+}
+
+.new-btn {
+   background: rgb(236, 227, 227);
+   border: 2px solid black;
+   margin: 10px 0 10px 10px;
+   width: 115px;
+   height: 30px;
+   padding: 0;
+   cursor : pointer;
+}
+
+/* .ishigaki {
    font-size: 20px;
-}
+} */
 .miyako{
    margin-left: 30px;
 }
