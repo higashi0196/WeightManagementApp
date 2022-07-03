@@ -1,31 +1,116 @@
 /* index.php メインページ */
 
 body {
-   text-align: center;
-   background-image: url(./../images/picture7.jpg);
+   width: 100%;
+   min-height: 100vh;
+   margin: 0;                        
    background-color: rgba(239, 240, 233, 0.003);
+   text-align: center;
+   /* font-family: "メイリオ", sans-serif; */
+   background-image: url(./../images/picture7.jpg);
    background-repeat: no-repeat;
 	background-position: center;
    background-size: cover;
-   width: 100%;
-   min-height: 100vh;                             
 }
+
+.all {
+   margin: 0 auto 0 auto;
+   max-width: 960px;
+}
+
+/* メインページ 開始 */
+h1 {
+   margin: 20px 0 5px 0 ;
+   font-size: 30px;
+   text-align: center;
+}
+
+.logo {
+   width: 50px;
+   height: 30px;
+   margin: 0 10px;
+}
+
+.weight-btn {
+   width: 80px;
+   height: 30px;
+   border: 2px solid black;
+   margin: 10px 10px;
+   padding: 0;
+   background-color: rgb(205, 220, 200);
+   cursor : pointer;
+   /* text-align: center; */
+}
+
+.picutre-btn {
+   width: 115px;
+   height: 30px;
+   border: 2px solid black;
+   margin: 10px 10px;
+   padding: 0;
+   background-color: rgb(205, 220, 200);
+   cursor : pointer;
+   /* text-align: center; */
+}
+
+.new-btn {
+   width: 115px;
+   height: 30px;
+   border: 2px solid black;
+   margin: 10px 0 10px 10px;
+   padding: 0;
+   background-color: rgb(205, 220, 200);
+   cursor : pointer;
+}
+
+h2 {
+   display: inline;
+   vertical-align: middle;
+   /* margin: 30px 0 0 5px; */
+   font-size: 25px;
+   /* font-weight: bold; */
+}
+
+.miyako{
+   margin-left: 30px;
+}
+/* メインページ 終わり */
 
 /* テーブル CSS */
 table {
+   border-collapse: collapse;
+   width: 400px;
    margin-left: auto;
    margin-right: auto;
 }
 
-th {
-   text-align: left;
-   padding-left: 30px;
+th,td {
+   border: 2px solid #878080;
+   padding: 4px;
+   text-align: center;
 }
 
-td {
+th {
+   background-color: #4e4d509f;
+   font-weight: bold;
+}
+
+.edit-btn {
+   background-color:rgb(231, 223, 73);
+   border-radius: 10px;
+   cursor : pointer;
+}
+
+.delete-btn {
+   background:#f00d0d9f;
+   border-radius: 10px;
+   cursor : pointer;
+}
+
+/* td {
    text-align: left;
    padding-left: 30px;
-}
+} */
 
 .remaining {
 text-decoration: line-through;
@@ -41,59 +126,6 @@ color: #ccc;
 }
 
 /* テーブル CSS 終わり */
-
-/* メインページ 開始 */
-h1 {
-   text-align: center;
-   margin: 20px 0 5px 0 ;
-   font-size: 30px;
-}
-
-.logo {
-   margin: 0 10px;
-   width: 50px;
-   height: 30px;
-}
-
-.weight-btn {
-   background: rgb(21, 233, 222);
-   border: 2px solid black;
-   margin: 10px 10px;
-   width: 80px;
-   height: 30px;
-   cursor : pointer;
-   padding: 0;
-   /* text-align: center; */
-}
-
-.picutre-btn {
-   background: rgb(21, 233, 222);
-   border: 2px solid black;
-   margin: 10px 10px;
-   width: 115px;
-   height: 30px;
-   padding: 0;
-   cursor : pointer;
-   /* text-align: center; */
-}
-
-.new-btn {
-   background: rgb(236, 227, 227);
-   border: 2px solid black;
-   margin: 10px 0 10px 10px;
-   width: 115px;
-   height: 30px;
-   padding: 0;
-   cursor : pointer;
-}
-
-/* .ishigaki {
-   font-size: 20px;
-} */
-.miyako{
-   margin-left: 30px;
-}
-/* メインページ 終わり */
 
 /* create.phpページ */
 .new-create {

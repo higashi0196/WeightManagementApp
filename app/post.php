@@ -30,7 +30,7 @@ unset($_SESSION['post_errors']);
 </head>
 <body class="miyako">
    <form method="POST" action="./post.php">
-      <div >
+      <div>
          <p class="kuroshima">明日への一言</p>
          <textarea name="postcontent" cols="30" rows="4"></textarea>
       </div>

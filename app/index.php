@@ -19,6 +19,7 @@ $bodylists = $getller->index3();
    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
+<div class="all">
   
    <h1><img src="./images/logo3.png" alt="" class="logo">体重管理リスト <img src="./images/logo3.png" class="logo"></h1>
 
@@ -36,12 +37,12 @@ $bodylists = $getller->index3();
    
    <div>
       <a href="weight.php"><button class="weight-btn">体重記入</button></a>
-      <a href="picture.php"><button class="picutre-btn">画像アップ移動</button></a>  
+      <a href="picture.php"><button class="picutre-btn">画像アップ移動</button></a>
    </div>
-
+   
    <div>
-      <a>ToDoリスト</a>
-      <a href="create.php"><button class="new-btn">新規登録</button></a>  
+      <h2>ToDoリスト</h2>
+      <a href="create.php"><button class="new-btn">新規登録</button></a>
    </div>
 
    <table>
@@ -49,8 +50,8 @@ $bodylists = $getller->index3();
          <tr>
             <th scope="col">タイトル</th>
             <th scope="col">目標</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
+            <th scope="col">更新</th>
+            <th scope="col">削除</th>
          </tr>
       </thead>
       <tbody>
@@ -59,8 +60,8 @@ $bodylists = $getller->index3();
                <tr>
                   <td><?php echo $todo['title']; ?></td>
                   <td><?php echo $todo['content']; ?></td> 
-                  <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn"><button>編集</button></a></td>       
-                  <td class="deletebtn" data-id="<?php echo $todo['id']?>"><button>削除</button></td>
+                  <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn"><button class="edit-btn">編集</button></a></td>       
+                  <td class="deletebtn" data-id="<?php echo $todo['id']?>"><button class="delete-btn">削除</button></td>
                </tr> 
             <?php endforeach; ?>
          <?php else : ?>
@@ -85,6 +86,7 @@ $bodylists = $getller->index3();
       <p>非同期通信成功!</p> 
    <?php endif; ?> 
    </div>
+</div>
 
    <!-- <script src="./js/main.js"></script> -->
    <script src="./js/jquery-3.6.0.min.js"></script>
