@@ -24,15 +24,26 @@ $bodylists = $getller->index3();
    <h1><img src="./images/logo3.png" alt="" class="logo">体重管理リスト <img src="./images/logo3.png" class="logo"></h1>
 
    <?php foreach ($bodylists as $bodylist): ?>
-      <span style="margin-left:30px" >目標体重 : 
-      <input type="text" value=" <?php echo $bodylist['goalweights']; ?>"> kg</span></br>
+      <span class="ideal-weight">目標体重 : </span>
+      <span class="goal-weight"><?php echo $bodylist['goalweights']; ?> kg</span></br>
+      <span class="ideal-weight"> 現在の体重 :  </span>
+      <span class="goal-weight"><?php echo $bodylist['nowweights']; ?> kg</span><br>
+      <span class="ideal-weight">目標達成まであと
+      <a id="remaining"><?php echo $bodylist['difference']; ?></a> 
+      <a id="unit">kg</a></span><br>
+      <span class="ideal-weight">(<?php echo $bodylist['nowdate']; ?> 現在)</span>
+   <?php endforeach; ?>
+
+   <!-- <?php foreach ($bodylists as $bodylist): ?>
+      <a class="ideal-weight">目標体重 : </a>
+      <a><input type="text" value=" <?php echo $bodylist['goalweights']; ?>"> kg</a></br>
       <span style="margin-left:30px"> 現在の体重 : 
       <input type="text" value=" <?php echo $bodylist['nowweights']; ?>"> kg</span><br>
       <span style="margin:0 0 0 30px">目標達成まであと
       <a id="remaining"><?php echo $bodylist['difference']; ?></a> 
       <a id="unit">kg</a></span><br>
-      <span style="margin:0 0 0 30px">(<?php echo $bodylist['nowdate']; ?> 現在)</span><br>
-   <?php endforeach; ?>
+      <span style="margin:0 0 0 30px">(<?php echo $bodylist['nowdate']; ?> 現在)</span>
+   <?php endforeach; ?> -->
 
    
    <div>
@@ -70,22 +81,23 @@ $bodylists = $getller->index3();
       </tbody>
    </table> 
 
-   <div>
-      <a class="miyako">明日への一言</a>
-      <a href="post.php" class="ishigaki"><button>投稿する</button></a>
+   <div class="postcreate">
+      <span> 〜 明日への一言 〜</span>
+      <a href="post.php" class="ishigaki"><button class="post-btn">投稿する</button></a>
       <a class="wordbtn" data-id="<?php echo $wordtodo['id']; ?>">
-      <button>削除</button></a>
+      <button class="postdlt-btn">削除</button></a>
    </div>
 
-   <div class="miyako">
+   <div class="message">
    <?php if ($wordlists): ?>
       <?php foreach ($wordlists as $wordlist): ?> 
          <p id="word"><?php echo $wordlist['content']; ?></p>
       <?php endforeach; ?>
    <?php else : ?>
-      <p>非同期通信成功!</p> 
+      <p id="word">明日への一言が入力できます</p> 
    <?php endif; ?> 
    </div>
+
 </div>
 
    <!-- <script src="./js/main.js"></script> -->
@@ -116,6 +128,47 @@ $bodylists = $getller->index3();
          });
       });
 
+      // 明日への一言編 fetch非同期通信
+      const word = document.getElementById("word");
+      const wordbtn = document.querySelector('.wordbtn');
+      wordbtn.addEventListener('click', () => {
+         if (!confirm('削除する?')) {
+            return;
+         }
+         fetch('./postdelete.php', {
+            method: 'POST',
+         }).then(response => {
+            return response.json();
+         })
+         .then(json => {
+            word.textContent = '明日への一言が入力できます';
+            word.classList.add('word');
+            console.log(json);
+         })
+         .catch(error => {
+            console.log("非同期通信が失敗しました");
+         })
+      });
+      
+      const remaining = document.getElementById("remaining");
+      const unit = document.getElementById("unit");
+      const difference = <?php echo $bodylist['difference']; ?>;
+      const goalweight = <?php echo $bodylist['goalweights']; ?>;
+     
+      if (difference <= 0 ) {
+         remaining.textContent =  difference + ' kg';
+         remaining.classList.add('remaining');
+         unit.textContent = '見事達成! やったぜ!' ;
+         unit.classList.add('unit');
+         console.log("0kg以下,達成");
+      } else if (0 < difference && difference < goalweight * 0.01) {
+         remaining.textContent = difference + ' kg';
+         unit.textContent = 'あともう少し頑張ろう!' ;
+         unit.classList.add('unit2');
+         console.log("もう少し,頑張ろう");
+      } else {
+         console.log("まだまだやな");
+      }
 
       // todoリスト編 ajax非同期通信
       // $(document).on('click', '.deletebtn', function() {
@@ -162,47 +215,6 @@ $bodylists = $getller->index3();
       //       console.log("非同期通信 失敗");
       //    })
       // });
-
-      // 明日への一言編 fetch非同期通信
-      const word = document.getElementById("word");
-      const wordbtn = document.querySelector('.wordbtn');
-      wordbtn.addEventListener('click', () => {
-         if (!confirm('削除する?')) {
-            return;
-         }
-         fetch('./postdelete.php', {
-            method: 'POST',
-         }).then(response => {
-            return response.json();
-         })
-         .then(json => {
-            word.textContent = '非同期通信成功!';
-            console.log(json);
-         })
-         .catch(error => {
-            console.log("非同期通信が失敗しました");
-         })
-      });
-      
-      const remaining = document.getElementById("remaining");
-      const unit = document.getElementById("unit");
-      const difference = <?php echo $bodylist['difference']; ?>;
-      const goalweight = <?php echo $bodylist['goalweights']; ?>;
-     
-      if (difference <= 0 ) {
-         remaining.textContent =  difference + ' kg';
-         remaining.classList.add('remaining');
-         unit.textContent = '見事達成! やったぜ!' ;
-         unit.classList.add('unit');
-         console.log("0kg以下,達成");
-      } else if (0 < difference && difference < goalweight * 0.01) {
-         remaining.textContent = difference + ' kg';
-         unit.textContent = 'あともう少し頑張ろう!' ;
-         unit.classList.add('unit2');
-         console.log("もう少し,頑張ろう");
-      } else {
-         console.log("まだまだやな");
-      }
 
    </script>
 </body>

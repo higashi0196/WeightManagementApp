@@ -8,8 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    exit;
 }
 
-// $title = '';
-// $content = '';
 if($_SERVER['REQUEST_METHOD'] === 'GET') {
 
    if(isset($_GET['title'])) {
@@ -38,20 +36,21 @@ unset($_SESSION['all_errors']);
    <title>新規登録</title>
    <link rel="stylesheet" href="./css/styles.css">
 </head>
-<body class="miyako">
-   <p>新規登録</p>
+<body class="all">
+   <p class="outline">新規登録</p>
    <form method="POST" action="./create.php">
       <div>
-         <p>タイトル</p>
-         <?php if($title_errors):?>
-            <?php foreach ($title_errors as $title_error): ?>
-               <p><?php echo $title_error;?></p>
-            <?php endforeach;?>
-         <?endif;?>
+         <p class="title">タイトル</p>
          <input type="text" name="title" value="<?php echo $title;?>">
       </div>
+      <?php if($title_errors):?>
+         <?php foreach ($title_errors as $title_error): ?>
+            <p><?php echo $title_error;?></p>
+         <?php endforeach;?>
+      <?endif;?>
+      
       <div>
-         <p>目標</p>
+         <p class="inside">目標</p>
          <?php if($content_errors):?>
             <?php foreach ($content_errors as $content_error): ?>
                <p><?php echo $content_error;?></p>

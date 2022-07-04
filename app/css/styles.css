@@ -19,8 +19,9 @@ body {
 }
 
 /* メインページ 開始 */
+
 h1 {
-   margin: 20px 0 5px 0 ;
+   margin: 20px 0 10px 0 ;
    font-size: 30px;
    text-align: center;
 }
@@ -29,6 +30,21 @@ h1 {
    width: 50px;
    height: 30px;
    margin: 0 10px;
+}
+
+.ideal-weight {
+   vertical-align: middle;
+   margin: 0 10px 10px 10px;
+   font-size: 20px;
+   font-weight: bold;
+}
+
+.goal-weight {
+   width: 10%;
+   padding: 3px 20px;
+   background-color:rgb(195, 195, 195); 
+   font-size: 20px;
+   font-weight: bold;
 }
 
 .weight-btn {
@@ -71,15 +87,12 @@ h2 {
    /* font-weight: bold; */
 }
 
-.miyako{
-   margin-left: 30px;
-}
-/* メインページ 終わり */
+/* メインページ 終了 */
 
-/* テーブル CSS */
+/* テーブル CSS  開始 */
 table {
    border-collapse: collapse;
-   width: 400px;
+   /* width: auto; */
    margin-left: auto;
    margin-right: auto;
 }
@@ -107,10 +120,86 @@ th {
    cursor : pointer;
 }
 
-/* td {
-   text-align: left;
-   padding-left: 30px;
-} */
+/* テーブル CSS 終了 */
+
+/* 明日への一言 css 開始 */
+.postcreate {
+   margin: 10px 0;
+}
+
+.postcreate > span {
+   display: inline;
+   margin-top: 10px;
+   padding-left: 5px;
+   font-size: 17px;
+   font-weight: bold;
+   /* border-left: solid 5px #ffc06e; */
+}
+
+.post-btn {
+   width: 75px;
+   height: 25px;
+   margin: 0 10px 0 20px;
+   margin-left: 10%;
+   border: 2px solid black;
+   background-color: rgba(15, 15, 130, 0.20);
+   border-radius: 5px;
+   cursor : pointer;
+}
+
+.postdlt-btn {
+   width: 50px;
+   height: 25px;
+   margin: 0 10px;
+   border: 2px solid black;
+   background-color:#f00d0d9f;
+   border-radius: 10px;
+   cursor : pointer;
+}
+
+.message {
+   position: relative;
+   width: 50%;
+   height: 10%;
+   margin: 0 auto;
+   border: dashed 2px white;
+   background-color: #2480b599;
+   border-radius: 8px;
+}
+
+#word {
+   margin: 0;
+   padding: 0.5em;
+   line-height: 1em;
+   text-align: justify;
+   font-size: 18px;
+   /* vertical-align: text-top; */
+}
+
+/* 明日への一言 css 終了 */
+
+/* create.phpページ 開始 */
+.outline {
+   margin: 8% auto 15px auto;
+   font-size: 25px;
+   font-weight: bold;
+}
+
+.title{
+   margin: 30px auto 5px;
+   font-size: 20px;
+}
+
+.inside {
+   margin: 30px auto 5px;
+   font-size: 20px;
+}
+.shinki-btn {
+   margin-left: 10px;
+}
+/* create.phpページ 終了 */
+
+/* javascript css 開始 */
 
 .remaining {
 text-decoration: line-through;
@@ -125,14 +214,4 @@ color: #ccc;
    color:orange;
 }
 
-/* テーブル CSS 終わり */
-
-/* create.phpページ */
-.new-create {
-   font-size: 20px;
-   margin-left: 30px;
-}
-.shinki-btn {
-   margin-left: 10px;
-}
-/* create.phpページ 終わり */
+/* javascript css 終了 */
