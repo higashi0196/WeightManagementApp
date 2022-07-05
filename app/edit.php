@@ -32,37 +32,39 @@ unset($_SESSION['content_errors']);
    <title>編集画面</title>
    <link rel="stylesheet" href="./css/styles.css">
 </head>
-<body class="miyako">
-   <a class="edit-feeld">編集画面</a>
-   <form method="POST" action="./edit.php">
-      <div>
-         <p class="taketomi">タイトル</p>
-         <?php if($title_errors):?>
-            <?php foreach ($title_errors as $title_error): ?>
-               <p><?php echo $title_error;?></p>
-            <?php endforeach;?>
-         <?endif;?>
-         <input type="text" name="title" value="<?php if(isset($params['title'])):?><?php echo $params['title'];?><?php else:?><?php echo $todo['title'];?><?php endif;?>">
-      </div>
-      <div>
-         <p class="kohama">目標</p>
-         <?php if($content_errors):?>
-            <?php foreach ($content_errors as $content_error): ?>
-               <p><?php echo $content_error;?></p>
-            <?php endforeach;?>
-         <?endif;?>
-         <textarea name="content"><?php if(isset($params['content'])):?><?php echo $params['content'];?><?php else:?><?php echo $todo['content'];?><?php endif;?></textarea>
-      </div>
-      <input type="hidden" name="id" value="<?php echo $todo['id']; ?>">
-      <input type="submit" class="edit-btn" value="更新">
-   </form>
-
-   <a href="index.php"><button>戻る</button></a>
+<body>
+   <p class="outline">編集画面</p>
    <?php if($all_errors):?>
       <?php foreach ($all_errors as $all_error): ?>
-         <p><?php echo $all_error;?></p>
+         <p class="error-log"><?php echo $all_error;?></p>
       <?php endforeach;?>
    <?endif;?>
+
+   <form method="POST" action="./edit.php">
+      <div>
+         <p class="title">タイトル</p>
+         <?php if($title_errors):?>
+            <?php foreach ($title_errors as $title_error): ?>
+               <p class="error-log"><?php echo $title_error;?></p>
+            <?php endforeach;?>
+         <?endif;?>
+         <input type="text" name="title" class="titleinput" value="<?php if(isset($params['title'])):?><?php echo $params['title'];?><?php else:?><?php echo $todo['title'];?><?php endif;?>">
+      </div>
+
+      <div>
+         <p class="title">目標</p>
+         <?php if($content_errors):?>
+            <?php foreach ($content_errors as $content_error): ?>
+               <p class="error-log"><?php echo $content_error;?></p>
+            <?php endforeach;?>
+         <?endif;?>
+         <input type="text" name="content" class="titleinput" value="<?php if(isset($params['content'])):?><?php echo $params['content'];?><?php else:?><?php echo $todo['content'];?><?php endif;?>">
+      </div>
+      <input type="hidden" name="id" value="<?php echo $todo['id']; ?>">
+      <button type="submit" class="register-btn">更新</button>
+   </form>
+
+   <a href="index.php"><button class="return-btn">戻る</button></a>
 
 </body>
 </html>

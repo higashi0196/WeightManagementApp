@@ -28,20 +28,21 @@ unset($_SESSION['post_errors']);
    <title>明日への一言</title>
    <link rel="stylesheet" href="./css/styles.css">
 </head>
-<body class="miyako">
+<body>
    <form method="POST" action="./post.php">
       <div>
-         <p class="kuroshima">明日への一言</p>
+         <p class="outline">明日への一言</p>
          <textarea name="postcontent" cols="30" rows="4"></textarea>
       </div>
       <div> 
          <button type="submit" class="post-btn">投稿する</button>
-         <a href="index.php">戻る</a>
       </div>
    </form>
+
+   <button class="return-btn"><a href="index.php">戻る</a></button>
    <?php if($post_errors):?>
       <?php foreach ($post_errors as $post_error): ?>
-         <p><?php echo $post_error;?></p>
+         <p class="error-log"><?php echo $post_error;?></p>
       <?php endforeach;?>
    <?endif;?>
 </body>

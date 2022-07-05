@@ -36,35 +36,38 @@ unset($_SESSION['all_errors']);
    <title>新規登録</title>
    <link rel="stylesheet" href="./css/styles.css">
 </head>
-<body class="all">
+<body>
    <p class="outline">新規登録</p>
+   <?php if($all_errors):?>
+      <?php foreach ($all_errors as $all_error): ?>
+         <p class="error-log"><?php echo $all_error;?></p>
+      <?php endforeach;?>
+   <?endif;?>
+
    <form method="POST" action="./create.php">
       <div>
          <p class="title">タイトル</p>
-         <input type="text" name="title" value="<?php echo $title;?>">
-      </div>
-      <?php if($title_errors):?>
-         <?php foreach ($title_errors as $title_error): ?>
-            <p><?php echo $title_error;?></p>
-         <?php endforeach;?>
-      <?endif;?>
-      
-      <div>
-         <p class="inside">目標</p>
-         <?php if($content_errors):?>
-            <?php foreach ($content_errors as $content_error): ?>
-               <p><?php echo $content_error;?></p>
+         <?php if($title_errors):?>
+            <?php foreach ($title_errors as $title_error): ?>
+               <p class="error-log"><?php echo $title_error;?></p>
             <?php endforeach;?>
          <?endif;?>
-         <textarea name="content"><?php echo $content;?></textarea>
+         <input type="text" name="title" class="titleinput" value="<?php echo $title;?>">
+      </div>
+      
+      <div>
+         <p class="title">目標</p>
+         <?php if($content_errors):?>
+            <?php foreach ($content_errors as $content_error): ?>
+               <p class="error-log"><?php echo $content_error;?></p>
+            <?php endforeach;?>
+         <?endif;?>
+         <input type="text" name="content" class="titleinput" value="<?php echo $content;?>">
       </div>  
-      <button type="submit">登録</button>
+      <button type="submit" class="register-btn">登録</button>
    </form>
-   <a href="index.php"><button>戻る</button></a>
-   <?php if($all_errors):?>
-      <?php foreach ($all_errors as $all_error): ?>
-         <p><?php echo $all_error;?></p>
-      <?php endforeach;?>
-   <?endif;?>
+
+   <a href="index.php"><button class="return-btn">戻る</button></a>
+   
 </body>
 </html>

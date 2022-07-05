@@ -1,4 +1,4 @@
-/* index.php メインページ */
+/* index.php & 共通 メインページ */
 
 body {
    width: 100%;
@@ -16,6 +16,60 @@ body {
 .all {
    margin: 0 auto 0 auto;
    max-width: 960px;
+}
+
+.titleinput {
+   width: 35%;
+   height: 20px;
+   border: 3px solid rgb(125, 124, 124);
+   margin: 0 auto 10px;
+   border-radius: 5px;
+}
+
+.textinput {
+   width: 35%;
+   height: 50px;
+   border: 3px solid rgb(125, 124, 124);
+   margin: 0 auto 10px;
+   border-radius: 5px;
+   resize: none;
+}
+
+.error-log {
+   margin: 0;
+   color: red;
+   font-size: 17px;
+   font-weight: bold;
+}
+
+.register-btn {
+   width: 65px;
+   height: auto;
+   /* height: 30px; */
+   border: 2px solid rgb(125, 124, 124);
+   margin: 10px auto;
+   padding:  0.1em;
+   background-color: rgba(44, 50, 216, 0.482);
+   font-size: 17px;
+   font-weight: bold;
+   border-radius: 5px;
+   cursor : pointer;
+}
+
+.return-btn {
+   /* position: absolute;
+   left: 60%;
+   transform: translateY(-42px); */
+   width: 65px;
+   height: auto;
+   border: 2px solid black;
+   margin: 10px auto;
+   padding: 0.1em;
+   background-color: rgb(248, 250, 248);
+   font-size: 17px;
+   font-weight: bold;
+   border-radius: 5px;
+   cursor : pointer;
 }
 
 /* メインページ 開始 */
@@ -82,9 +136,7 @@ h1 {
 h2 {
    display: inline;
    vertical-align: middle;
-   /* margin: 30px 0 0 5px; */
    font-size: 25px;
-   /* font-weight: bold; */
 }
 
 /* メインページ 終了 */
@@ -137,12 +189,15 @@ th {
 }
 
 .post-btn {
-   width: 75px;
-   height: 25px;
-   margin: 0 10px 0 20px;
-   margin-left: 10%;
+   width: 80px;
+   height: auto;
+   /* height: 30px; */
    border: 2px solid black;
-   background-color: rgba(15, 15, 130, 0.20);
+   margin: 0 10px 0 20px;
+   padding:  0.1em;
+   background-color: rgb(8, 197, 210);
+   font-size: 17px;
+   font-weight: bold;
    border-radius: 5px;
    cursor : pointer;
 }
@@ -163,7 +218,7 @@ th {
    height: 10%;
    margin: 0 auto;
    border: dashed 2px white;
-   background-color: #2480b599;
+   background-color: #10c6cf99;
    border-radius: 8px;
 }
 
@@ -174,6 +229,16 @@ th {
    text-align: justify;
    font-size: 18px;
    /* vertical-align: text-top; */
+}
+
+textarea {
+   width: 50%;
+   height: 10%;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   border-radius: 8px;
+   box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+   resize: none;
 }
 
 /* 明日への一言 css 終了 */
@@ -187,17 +252,44 @@ th {
 
 .title{
    margin: 30px auto 5px;
+   color: rgb(74, 73, 73);
    font-size: 20px;
 }
 
-.inside {
-   margin: 30px auto 5px;
-   font-size: 20px;
-}
-.shinki-btn {
-   margin-left: 10px;
-}
 /* create.phpページ 終了 */
+
+/* weight.phpページ 開始 */
+
+.bodytitle {
+   margin: 30px auto 5px;
+   color: black;
+   font-size: 20px;
+   font-weight: bold;
+}
+
+.weightinput {
+   width: 10%;
+   height: 20px;
+   /* border: 2px solid black; */
+   margin: 0 auto 10px;
+   padding: 0.3em;
+   font-size: 15px;
+   text-align: center;
+   border-radius: 5px;
+}
+
+.dayinput {
+   width: 25%;
+   height: 20px;
+   margin: 0 auto 10px;
+   padding: 0.3em;
+   font-size: 15px;
+   font-weight: bold;
+   text-align: center;
+   border-radius: 5px;
+}
+
+/* weight.phpページ 終了 */
 
 /* javascript css 開始 */
 
