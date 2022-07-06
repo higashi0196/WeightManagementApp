@@ -15,13 +15,18 @@ $bodylists = $getller->index3();
 <html lang="ja">
 <head> 
    <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
    <title>体重管理アプリ</title>
    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
 <div class="all">
-  
-   <h1><img src="./images/logo3.png" alt="" class="logo">体重管理リスト <img src="./images/logo3.png" class="logo"></h1>
+
+   <h1>
+      <img src="./images/logo3.png" alt="" class="logo">
+      体重管理リスト
+      <img src="./images/logo3.png" class="logo">
+   </h1>
 
    <?php foreach ($bodylists as $bodylist): ?>
       <span class="ideal-weight">目標体重 : </span>
@@ -33,18 +38,6 @@ $bodylists = $getller->index3();
       <a id="unit">kg</a></span><br>
       <span class="ideal-weight">(<?php echo $bodylist['nowdate']; ?> 現在)</span>
    <?php endforeach; ?>
-
-   <!-- <?php foreach ($bodylists as $bodylist): ?>
-      <a class="ideal-weight">目標体重 : </a>
-      <a><input type="text" value=" <?php echo $bodylist['goalweights']; ?>"> kg</a></br>
-      <span style="margin-left:30px"> 現在の体重 : 
-      <input type="text" value=" <?php echo $bodylist['nowweights']; ?>"> kg</span><br>
-      <span style="margin:0 0 0 30px">目標達成まであと
-      <a id="remaining"><?php echo $bodylist['difference']; ?></a> 
-      <a id="unit">kg</a></span><br>
-      <span style="margin:0 0 0 30px">(<?php echo $bodylist['nowdate']; ?> 現在)</span>
-   <?php endforeach; ?> -->
-
    
    <div>
       <a href="weight.php"><button class="weight-btn">体重記入</button></a>
@@ -83,7 +76,7 @@ $bodylists = $getller->index3();
 
    <div class="postcreate">
       <span> 〜 明日への一言 〜</span>
-      <a href="post.php" class="ishigaki"><button class="post-btn">投稿する</button></a>
+      <a href="post.php"><button class="post-btn">投稿する</button></a>
       <a class="wordbtn" data-id="<?php echo $wordtodo['id']; ?>">
       <button class="postdlt-btn">削除</button></a>
    </div>

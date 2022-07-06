@@ -33,6 +33,7 @@ unset($_SESSION['all_errors']);
 <html lang="ja">
 <head> 
    <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
    <title>新規登録</title>
    <link rel="stylesheet" href="./css/styles.css">
 </head>
@@ -52,6 +53,7 @@ unset($_SESSION['all_errors']);
                <p class="error-log"><?php echo $title_error;?></p>
             <?php endforeach;?>
          <?endif;?>
+         
          <input type="text" name="title" class="titleinput" value="<?php echo $title;?>">
       </div>
       

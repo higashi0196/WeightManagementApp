@@ -114,7 +114,7 @@ class TodoValidation {
       } else if (!is_numeric($this->weightdata['body'])){
          $this->body_errors[] = "数字で入力してください。";
          return false;
-      } else if (5 < mb_strlen($this->weightdata['body'])) {
+      } else if (6 < mb_strlen($this->weightdata['body'])) {
          $this->body_errors[] = "入力ミス、５桁以下で小数点２以下までで入力ください。";
          return false;
       }

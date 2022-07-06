@@ -21,38 +21,39 @@ body {
 .titleinput {
    width: 35%;
    height: 20px;
-   border: 3px solid rgb(125, 124, 124);
    margin: 0 auto 10px;
+   border: 3px solid rgb(125, 124, 124);
    border-radius: 5px;
 }
 
 .textinput {
    width: 35%;
    height: 50px;
-   border: 3px solid rgb(125, 124, 124);
    margin: 0 auto 10px;
+   border: 3px solid rgb(125, 124, 124);
    border-radius: 5px;
    resize: none;
 }
 
 .error-log {
+   /* width: 50%; */
    margin: 0;
    color: red;
    font-size: 17px;
    font-weight: bold;
+   text-shadow: 5px 5px 5px rgba(0,0,0,0.3);
 }
 
 .register-btn {
    width: 65px;
    height: auto;
-   /* height: 30px; */
-   border: 2px solid rgb(125, 124, 124);
    margin: 10px auto;
    padding:  0.1em;
+   border: 2px solid rgb(125, 124, 124);
+   border-radius: 5px;
    background-color: rgba(44, 50, 216, 0.482);
    font-size: 17px;
    font-weight: bold;
-   border-radius: 5px;
    cursor : pointer;
 }
 
@@ -62,35 +63,40 @@ body {
    transform: translateY(-42px); */
    width: 65px;
    height: auto;
-   border: 2px solid black;
    margin: 10px auto;
    padding: 0.1em;
+   border: 2px solid black;
+   border-radius: 5px;
    background-color: rgb(248, 250, 248);
    font-size: 17px;
    font-weight: bold;
-   border-radius: 5px;
    cursor : pointer;
 }
 
 /* メインページ 開始 */
 
 h1 {
-   margin: 20px 0 10px 0 ;
+   /* display: inline; */
+   /* margin-top: 30px; */
+   margin: 20px 10px 10px 20px;
    font-size: 30px;
    text-align: center;
+   vertical-align: middle;
 }
 
 .logo {
-   width: 50px;
+   display: inline;
+   width: 30px;
    height: 30px;
-   margin: 0 10px;
+   margin: 0 5px;
+   vertical-align: middle;
 }
 
 .ideal-weight {
-   vertical-align: middle;
    margin: 0 10px 10px 10px;
    font-size: 20px;
    font-weight: bold;
+   vertical-align: middle;
 }
 
 .goal-weight {
@@ -104,39 +110,40 @@ h1 {
 .weight-btn {
    width: 80px;
    height: 30px;
-   border: 2px solid black;
    margin: 10px 10px;
    padding: 0;
+   border: 2px solid black;
+   border-radius: 5px;
    background-color: rgb(205, 220, 200);
    cursor : pointer;
-   /* text-align: center; */
 }
 
 .picutre-btn {
    width: 115px;
    height: 30px;
-   border: 2px solid black;
    margin: 10px 10px;
    padding: 0;
+   border: 2px solid black;
+   border-radius: 5px;
    background-color: rgb(205, 220, 200);
    cursor : pointer;
-   /* text-align: center; */
 }
 
 .new-btn {
    width: 115px;
    height: 30px;
-   border: 2px solid black;
    margin: 10px 0 10px 10px;
    padding: 0;
+   border: 2px solid black;
+   border-radius: 5px;
    background-color: rgb(205, 220, 200);
    cursor : pointer;
 }
 
 h2 {
    display: inline;
-   vertical-align: middle;
    font-size: 25px;
+   vertical-align: middle;
 }
 
 /* メインページ 終了 */
@@ -144,14 +151,13 @@ h2 {
 /* テーブル CSS  開始 */
 table {
    border-collapse: collapse;
-   /* width: auto; */
    margin-left: auto;
    margin-right: auto;
 }
 
 th,td {
-   border: 2px solid #878080;
    padding: 4px;
+   border: 2px solid #878080;
    text-align: center;
 }
 
@@ -161,14 +167,14 @@ th {
 }
 
 .edit-btn {
-   background-color:rgb(231, 223, 73);
    border-radius: 10px;
+   background-color:rgb(231, 223, 73);
    cursor : pointer;
 }
 
 .delete-btn {
-   background:#f00d0d9f;
    border-radius: 10px;
+   background:#f00d0d9f;
    cursor : pointer;
 }
 
@@ -185,20 +191,18 @@ th {
    padding-left: 5px;
    font-size: 17px;
    font-weight: bold;
-   /* border-left: solid 5px #ffc06e; */
 }
 
 .post-btn {
    width: 80px;
    height: auto;
-   /* height: 30px; */
+   margin: 5px 10px 0 20px;
+   padding:  0.05em;
    border: 2px solid black;
-   margin: 0 10px 0 20px;
-   padding:  0.1em;
+   border-radius: 5px;
    background-color: rgb(8, 197, 210);
    font-size: 17px;
    font-weight: bold;
-   border-radius: 5px;
    cursor : pointer;
 }
 
@@ -207,8 +211,8 @@ th {
    height: 25px;
    margin: 0 10px;
    border: 2px solid black;
-   background-color:#f00d0d9f;
    border-radius: 10px;
+   background-color:#f00d0d9f;
    cursor : pointer;
 }
 
@@ -216,36 +220,38 @@ th {
    position: relative;
    width: 50%;
    height: 10%;
-   margin: 0 auto;
+   margin: 20px auto 30px;
    border: dashed 2px white;
-   background-color: #10c6cf99;
    border-radius: 8px;
+   background-color: #10c6cf99;
+   box-shadow: 8px 8px 5px rgba(0,0,0,0.3);
 }
 
 #word {
    margin: 0;
-   padding: 0.5em;
-   line-height: 1em;
-   text-align: justify;
+   padding: 0.3em;
    font-size: 18px;
-   /* vertical-align: text-top; */
+   text-align: center;
+   /* text-align: justify; */
 }
 
 textarea {
-   width: 50%;
-   height: 10%;
+   width: 300px;
+   height: 150px;
    margin-top: 10px;
    margin-bottom: 10px;
+   border: 3px solid black;;
    border-radius: 8px;
-   box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+   font-size: 20px;
+   box-shadow: 10px 10px 15px rgba(0,0,0,0.5);
    resize: none;
 }
 
 /* 明日への一言 css 終了 */
 
-/* create.phpページ 開始 */
+/* create.php & eidt.php ページ 開始 */
 .outline {
-   margin: 8% auto 15px auto;
+   margin: 5% auto 15px auto;
    font-size: 25px;
    font-weight: bold;
 }
@@ -253,10 +259,10 @@ textarea {
 .title{
    margin: 30px auto 5px;
    color: rgb(74, 73, 73);
-   font-size: 20px;
+   font-size: 22px;
 }
 
-/* create.phpページ 終了 */
+/* create.php & eidt.php ページ 終了 */
 
 /* weight.phpページ 開始 */
 
@@ -270,12 +276,11 @@ textarea {
 .weightinput {
    width: 10%;
    height: 20px;
-   /* border: 2px solid black; */
    margin: 0 auto 10px;
    padding: 0.3em;
+   border-radius: 5px;
    font-size: 15px;
    text-align: center;
-   border-radius: 5px;
 }
 
 .dayinput {
@@ -283,10 +288,10 @@ textarea {
    height: 20px;
    margin: 0 auto 10px;
    padding: 0.3em;
+   border-radius: 5px;
    font-size: 15px;
    font-weight: bold;
    text-align: center;
-   border-radius: 5px;
 }
 
 /* weight.phpページ 終了 */

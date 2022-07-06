@@ -25,6 +25,7 @@ unset($_SESSION['post_errors']);
 <html lang="ja">
 <head> 
    <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
    <title>明日への一言</title>
    <link rel="stylesheet" href="./css/styles.css">
 </head>
@@ -32,14 +33,14 @@ unset($_SESSION['post_errors']);
    <form method="POST" action="./post.php">
       <div>
          <p class="outline">明日への一言</p>
-         <textarea name="postcontent" cols="30" rows="4"></textarea>
+         <textarea name="postcontent" placeholder=" 明日への一言を入力できます"></textarea>
       </div>
       <div> 
          <button type="submit" class="post-btn">投稿する</button>
       </div>
    </form>
 
-   <button class="return-btn"><a href="index.php">戻る</a></button>
+   <a href="index.php"><button class="return-btn">戻る</button></a>
    <?php if($post_errors):?>
       <?php foreach ($post_errors as $post_error): ?>
          <p class="error-log"><?php echo $post_error;?></p>

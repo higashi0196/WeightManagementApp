@@ -42,11 +42,12 @@ unset($_SESSION['today_errors']);
 <html lang="ja">
 <head> 
    <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
    <title>新規登録</title>
    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-   <a class="outline">体重記録</a>
+   <p class="outline">体重記録</p>
    
    <form method="POST" action="./weight.php">
       <p class="bodytitle">目標体重 : <input type="text" name="body" class="weightinput" value="<?php if(isset($weightparam['body'])):?><?php echo $weightparam['body'];?><?php else:?><?php echo $goallists['goalweights'];?><?php endif;?>"> kg</p>
