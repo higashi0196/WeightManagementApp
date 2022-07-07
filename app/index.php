@@ -33,10 +33,10 @@ $bodylists = $getller->index3();
       <span class="goal-weight"><?php echo $bodylist['goalweights']; ?> kg</span></br>
       <span class="ideal-weight"> 現在の体重 :  </span>
       <span class="goal-weight"><?php echo $bodylist['nowweights']; ?> kg</span><br>
-      <span class="ideal-weight">目標達成まであと
+      <span class="ideal-weight">目標達成まであと </span>
       <a id="remaining"><?php echo $bodylist['difference']; ?></a> 
-      <a id="unit">kg</a></span><br>
-      <span class="ideal-weight">(<?php echo $bodylist['nowdate']; ?> 現在)</span>
+      <a id="unit">kg</a><br class="br">
+      <span class="ideal-day">(<?php echo $bodylist['nowdate']; ?> 現在)</span>
    <?php endforeach; ?>
    
    <div>

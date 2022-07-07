@@ -99,6 +99,13 @@ h1 {
    vertical-align: middle;
 }
 
+.ideal-day {
+   margin: 0 10px 10px 10px;
+   font-size: 20px;
+   font-weight: bold;
+   vertical-align: middle;
+}
+
 .goal-weight {
    width: 10%;
    padding: 3px 20px;
@@ -107,10 +114,28 @@ h1 {
    font-weight: bold;
 }
 
+#remaining {
+   font-size: 20px;
+   font-weight: bold;
+}
+
+.remaining { 
+   color: #ccc;
+   text-decoration: line-through;
+}
+   
+.unit {
+   color:red;
+}
+   
+.unit2 {
+   color:orange;
+}
+
 .weight-btn {
    width: 80px;
    height: 30px;
-   margin: 10px 10px;
+   margin: 10px;
    padding: 0;
    border: 2px solid black;
    border-radius: 5px;
@@ -121,18 +146,7 @@ h1 {
 .picutre-btn {
    width: 115px;
    height: 30px;
-   margin: 10px 10px;
-   padding: 0;
-   border: 2px solid black;
-   border-radius: 5px;
-   background-color: rgb(205, 220, 200);
-   cursor : pointer;
-}
-
-.new-btn {
-   width: 115px;
-   height: 30px;
-   margin: 10px 0 10px 10px;
+   margin: 10px;
    padding: 0;
    border: 2px solid black;
    border-radius: 5px;
@@ -144,6 +158,17 @@ h2 {
    display: inline;
    font-size: 25px;
    vertical-align: middle;
+}
+
+.new-btn {
+   width: 115px;
+   height: 30px;
+   margin: 10px 0 10px 10px;
+   padding: 0;
+   border: 2px solid black;
+   border-radius: 5px;
+   background-color: rgb(205, 220, 200);
+   cursor : pointer;
 }
 
 /* メインページ 終了 */
@@ -163,7 +188,13 @@ th,td {
 
 th {
    background-color: #4e4d509f;
+   /* font-size: 20px; */
    font-weight: bold;
+}
+
+td {
+   width: 300px;
+   word-wrap: break-word;
 }
 
 .edit-btn {
@@ -296,19 +327,132 @@ textarea {
 
 /* weight.phpページ 終了 */
 
-/* javascript css 開始 */
+/* スマートフォン向け CSS */
+@media (max-width: 767px) {
 
-.remaining {
-text-decoration: line-through;
-color: #ccc;
+   .all {
+      margin: 0 7px;
+   }
+
+   /* メインページ 開始 */
+   h1 {
+      margin: 10px 10px 7px;
+      font-size: 25px;
+   }
+
+   .logo {
+      width: 25px;
+      height: 20px;
+   }
+
+   .ideal-weight {
+      margin-right: 15px;
+      margin-bottom: 5px;
+      /* font-size: 20px; */
+   }
+
+  .ideal-day {
+      font-size: 15px;
+   }
+   
+   .goal-weight {
+      padding: 2px 10px;
+      font-size: 17px;
+   }
+
+   #remaining {
+      font-size: 17px;
+   }
+
+   .unit {
+      display: block;
+      font-size: 17px;
+      font-weight: bold;
+   }
+
+   .br {
+      display: none;
+   }
+
+   .weight-btn {
+      width: 70px;
+      height: auto;
+      margin: 5px;
+      padding: 1px;
+      
+   }
+   
+   .picutre-btn {
+      height: auto;
+      margin: 5px;
+      padding: 1px;
+   }
+
+   h2 {
+      font-size: 20px;
+   }
+   
+   .new-btn {
+      width: 85px;
+      height: auto;
+      margin: 0px 0px 10px 10px;
+      padding: 1px;
+   }
+
+   /* テーブル CSS  開始 */
+   table {
+      table-layout: fixed;
+      width: 400px;
+      /* height: auto; */
+      /* margin-left: auto;
+      margin-right: auto; */
+   }
+
+   th,td {
+      padding: 3px 4px;
+      box-sizing: border-box;
+      font-size: 15px;
+   }
+   
+   /* テーブル CSS  終了 */
+
+   /* メインページ 終了 */
+
+   /* 明日への一言 css 開始 */
+   .postcreate {
+      margin: 5px 0 0 0;
+   }
+   
+   .postcreate > span {
+      margin-top: 10px;
+      font-size: 15px;
+   }
+   
+   .post-btn {
+      width: 75px;
+      margin: 5px 5px 0 10px;
+      padding:  1px;
+      font-size: 13px;
+   }
+   
+   .message {
+      width: 80%;
+      height: auto;
+      margin: 15px auto;
+   }
+   
+   textarea {
+      width: 300px;
+      height: 150px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border: 3px solid black;;
+      border-radius: 8px;
+      font-size: 20px;
+      box-shadow: 10px 10px 15px rgba(0,0,0,0.5);
+      resize: none;
+   }
+
+   /* 明日への一言 css 終了 */
+
 }
-
-.unit {
-   color:red;
-}
-
-.unit2 {
-   color:orange;
-}
-
-/* javascript css 終了 */
