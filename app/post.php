@@ -35,16 +35,16 @@ unset($_SESSION['post_errors']);
          <p class="outline">明日への一言</p>
          <textarea name="postcontent" placeholder=" 明日への一言を入力できます"></textarea>
       </div>
+      <?php if($post_errors):?>
+         <?php foreach ($post_errors as $post_error): ?>
+            <p class="error-log"><?php echo $post_error;?></p>
+         <?php endforeach;?>
+      <?endif;?>
       <div> 
          <button type="submit" class="post-btn">投稿する</button>
       </div>
    </form>
 
    <a href="index.php"><button class="return-btn">戻る</button></a>
-   <?php if($post_errors):?>
-      <?php foreach ($post_errors as $post_error): ?>
-         <p class="error-log"><?php echo $post_error;?></p>
-      <?php endforeach;?>
-   <?endif;?>
 </body>
 </html>

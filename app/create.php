@@ -65,11 +65,11 @@ unset($_SESSION['all_errors']);
             <?php endforeach;?>
          <?endif;?>
          <input type="text" name="content" class="titleinput" value="<?php echo $content;?>">
-      </div>  
-      <button type="submit" class="register-btn">登録</button>
-   </form>
-
-   <a href="index.php"><button class="return-btn">戻る</button></a>
+      </div>
+         <button type="submit" class="register-btn">登録</button>
+      </form>
+      
+      <a href="index.php"><button class="return-btn">戻る</button></a>
    
 </body>
 </html>
