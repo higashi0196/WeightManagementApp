@@ -39,12 +39,7 @@ unset($_SESSION['all_errors']);
 </head>
 <body>
    <p class="outline">新規登録</p>
-   <?php if($all_errors):?>
-      <?php foreach ($all_errors as $all_error): ?>
-         <p class="error-log"><?php echo $all_error;?></p>
-      <?php endforeach;?>
-   <?endif;?>
-
+   
    <form method="POST" action="./create.php">
       <div>
          <p class="title">タイトル</p>
@@ -66,8 +61,13 @@ unset($_SESSION['all_errors']);
          <?endif;?>
          <input type="text" name="content" class="titleinput" value="<?php echo $content;?>">
       </div>
+      <?php if($all_errors):?>
+         <?php foreach ($all_errors as $all_error): ?>
+            <p class="error-log"><?php echo $all_error;?></p>
+         <?php endforeach;?>
+      <?endif;?>
          <button type="submit" class="register-btn">登録</button>
-      </form>
+   </form>
       
       <a href="index.php"><button class="return-btn">戻る</button></a>
    

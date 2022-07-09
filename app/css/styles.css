@@ -36,8 +36,7 @@ body {
 }
 
 .error-log {
-   /* width: 50%; */
-   margin: 0;
+   margin: 5px;
    color: red;
    font-size: 17px;
    font-weight: bold;
@@ -49,7 +48,7 @@ body {
    height: auto;
    margin: 10px auto;
    padding:  0.1em;
-   border: 2px solid rgba(125, 125, 125, 0.8);
+   border: 2px solid rgba(145, 125, 80, 0.8);
    border-radius: 5px;
    background-color: rgba(45, 50, 215, 0.5);
    font-size: 17px;
@@ -96,30 +95,35 @@ h1 {
 
 .ideal-weight {
    display: inline-block;
-   margin: 0 10px 10px 10px;
-   font-size: 20px;
-   font-weight: bold;
-   vertical-align: middle;
-}
-
-.ideal-day {
-   display: inline-block;
-   margin: 0 10px 10px 10px;
-   font-size: 20px;
+   margin: 7px 10px;
+   font-size: 23px;
    font-weight: bold;
    vertical-align: middle;
 }
 
 .goal-weight {
-   width: 10%;
-   padding: 3px 20px;
+   display: inline-block;
+   margin: 7px 0;
+   padding: 2px 10px;
    background-color:rgb(195, 195, 195); 
    font-size: 20px;
    font-weight: bold;
 }
 
+.ideal-day {
+   display: inline-block;
+   /* margin: 3px 10px; */
+   font-size: 20px;
+   font-weight: bold;
+   /* vertical-align: middle; */
+}
+
 #remaining {
    display: inline-block;
+   vertical-align: middle;
+   margin: 5px 0;
+   padding: 2px 10px;
+   background-color:rgb(195, 195, 195);
    font-size: 20px;
    font-weight: bold;
 }
@@ -136,44 +140,55 @@ h1 {
    
 .unit2 {
    color:orange;
+   display: block;
+   margin: 5px;
+   font-size: 20px;
+   font-weight: bold;
+}
+
+.br {
+   display: none;
 }
 
 .weight-btn {
-   width: 80px;
-   height: 30px;
+   width: 90px;
+   height: auto;
    margin: 10px;
-   padding: 0;
+   padding: 4px 5px;
    border: 2px solid black;
    border-radius: 5px;
    background-color: rgb(205, 220, 200);
+   font-size: 15px;
    cursor : pointer;
 }
 
 .picutre-btn {
-   width: 115px;
-   height: 30px;
+   width: 150px;
+   height: auto;
    margin: 10px;
-   padding: 0;
+   padding: 4px 5px;
    border: 2px solid black;
    border-radius: 5px;
    background-color: rgb(205, 220, 200);
+   font-size: 15px;
    cursor : pointer;
 }
 
 h2 {
    display: inline;
-   font-size: 25px;
+   font-size: 23px;
    vertical-align: middle;
 }
 
 .new-btn {
    width: 115px;
-   height: 30px;
+   height: auto;
    margin: 10px 0 10px 10px;
-   padding: 0;
+   padding: 2px;
    border: 2px solid black;
    border-radius: 5px;
    background-color: rgb(205, 220, 200);
+   font-size: 18px;
    cursor : pointer;
 }
 
@@ -183,24 +198,27 @@ h2 {
 table {
    border-collapse: collapse;
    table-layout: fixed;
-   margin-left: auto;
-   margin-right: auto;
+   width: 600px;
+   height: auto;
+   margin: 20px auto;
 }
 
 th,td {
-   padding: 4px;
-   border: 2px solid #878080;
-   text-align: center;
+   padding: 5px;
+   border: 3px solid #878080;
+   /* text-align: center; */
 }
 
 th {
    background-color: #4e4d509f;
-   /* font-size: 20px; */
+   font-size: 18px;
    font-weight: bold;
 }
 
 td {
-   width: 300px;
+   /* width: 300px; */
+   height: auto;
+   /* font-size: 18px; */
    word-wrap: break-word;
 }
 
@@ -221,20 +239,22 @@ td {
 /* 明日への一言 css 開始 */
 .postcreate {
    margin: 10px 0;
+   vertical-align: middle;
 }
 
 .postcreate > span {
    display: inline-block;
-   margin-top: 10px;
-   padding-left: 5px;
-   font-size: 17px;
+   /* vertical-align: middle; */
+   margin:10px 10px 0 10px;
+   font-size: 20px;
    font-weight: bold;
 }
 
 .post-btn {
+   /* vertical-align: middle; */
    width: 80px;
    height: auto;
-   margin: 5px 10px 0 20px;
+   margin:10px 10px 0 10px;
    padding:  0.05em;
    border: 2px solid black;
    border-radius: 5px;
@@ -245,9 +265,10 @@ td {
 }
 
 .postdlt-btn {
+   /* vertical-align: middle; */
    width: 50px;
-   height: 25px;
-   margin: 0 10px;
+   height: 30px;
+   margin:10px 10px 0 10px;
    border: 2px solid black;
    border-radius: 10px;
    background-color:#f00d0d9f;
@@ -273,6 +294,9 @@ td {
    /* text-align: justify; */
 }
 
+/* 明日への一言 css 終了 */
+
+/* post.php ページ 開始 */
 textarea {
    width: 300px;
    height: 150px;
@@ -285,7 +309,20 @@ textarea {
    resize: none;
 }
 
-/* 明日への一言 css 終了 */
+.post-btn2 {
+   width: 100px;
+   height: auto;
+   margin: 10px;
+   padding:  0.1em;
+   border: 2px solid black;
+   border-radius: 5px;
+   background-color: rgb(10, 200, 210);
+   font-size: 18px;
+   font-weight: bold;
+   cursor : pointer;
+}
+
+/* post.php ページ 終了 */
 
 /* create.php & eidt.php ページ 開始 */
 .outline {
@@ -358,23 +395,24 @@ textarea {
    }
 
    .register-btn {
-      position: absolute;
-      left: 30%;
+      /* position: absolute;
+      left: 30%; */
       /* top: 380px; */
-      top: 45%;
-      width: 65px;
-      height: auto;
-      margin: 10px auto;
+      /* top: 45%; */
+      width: 75px;
+      margin-top: 50px;
+      padding: 2px;
    }
    
    .return-btn {
-      position: absolute;
+      /* position: absolute;
       left: 60%;
-      top: 45%;
+      top: 45%; */
       /* top: 380px; */
-      width: 65px;
-      height: auto;
-      margin: 10px auto;
+      width: 75px;
+      margin-top: 40px;
+      margin-bottom: 40px;
+      padding: 2px;
    }
 
    /* 共通部分 終了 */
@@ -382,7 +420,6 @@ textarea {
    /* index.php 開始 */
    h1 {
       margin: 10px 10px 7px;
-      font-size: 25px;
    }
 
    .logo {
@@ -408,6 +445,7 @@ textarea {
    }
 
    #remaining {
+      padding: 3px 20px;
       font-size: 20px;
    }
 
@@ -417,6 +455,20 @@ textarea {
       font-size: 17px;
       font-weight: bold;
    }
+
+   #unit {
+      display: block;
+      margin: 2px;
+      font-size: 17px;
+      font-weight: bold;
+   }
+
+   /* .unit2 {
+      display: block;
+      margin: 2px;
+      font-size: 17px;
+      font-weight: bold;
+   } */
 
    .br {
       display: none;
@@ -447,8 +499,6 @@ textarea {
       padding: 1px;
    }
 
-   /* index.php 終了 */
-
    /* テーブル CSS  開始 */
    table {
       width: 400px;
@@ -468,8 +518,9 @@ textarea {
    }
    
    .postcreate > span {
-      margin-top: 10px;
-      font-size: 15px;
+      display:block;
+      margin-top: 20px;
+      font-size: 18px;
    }
    
    .post-btn {
@@ -478,20 +529,16 @@ textarea {
       padding:  1px;
       font-size: 13px;
    }
+
+   .postdlt-btn {
+      /* vertical-align: middle; */
+      height: 25px;
+   }
    
    .message {
       width: 80%;
       height: auto;
       margin: 15px auto;
-   }
-   
-   textarea {
-      width: 300px;
-      height: 150px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      border: 3px solid black;
-      font-size: 20px;
    }
 
    /* 明日への一言 css 終了 */
@@ -532,4 +579,14 @@ textarea {
 
    /* weight.phpページ 終了 */
 
+   /* post.php ページ 開始 */
+   textarea {
+      width: 300px;
+      height: 150px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border: 3px solid black;
+      font-size: 20px;
+   }
+   /* post.php ページ 終了 */
 }

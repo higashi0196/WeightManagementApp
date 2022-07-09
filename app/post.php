@@ -41,7 +41,7 @@ unset($_SESSION['post_errors']);
          <?php endforeach;?>
       <?endif;?>
       <div> 
-         <button type="submit" class="post-btn">投稿する</button>
+         <button type="submit" class="post-btn2">投稿する</button>
       </div>
    </form>
 
