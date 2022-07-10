@@ -45,7 +45,7 @@ $bodylists = $getller->index3();
    </div>
    
    <div>
-      <h2>ToDoリスト</h2>
+      <h2>〜 ToDoリスト 〜</h2>
       <a href="create.php"><button class="new-btn">新規登録</button></a>
    </div>
 
@@ -64,12 +64,15 @@ $bodylists = $getller->index3();
                <tr>
                   <td><?php echo $todo['title']; ?></td>
                   <td><?php echo $todo['content']; ?></td> 
-                  <td><a href="edit.php?todo_id=<?php echo $todo['id']?>" class="editbtn"><button class="edit-btn">編集</button></a></td>       
+                  <td><a href="edit.php?todo_id=<?php echo $todo['id']?>"><button class="edit-btn">編集</button></a></td>       
                   <td class="deletebtn" data-id="<?php echo $todo['id']?>"><button class="delete-btn">削除</button></td>
                </tr> 
             <?php endforeach; ?>
          <?php else : ?>
             <td>Todoなし</td>
+            <td>Todoなし</td>
+            <td></td>
+            <td></td>
          <?php endif; ?>
       </tbody>
    </table> 

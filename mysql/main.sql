@@ -30,17 +30,18 @@ CREATE TABLE bodies (
    nowdate date NOT NULL
 );
 
-INSERT INTO bodies (nowweights, goalweights, nowdate) VALUES ('%s', '%S', '%s');
+INSERT INTO `bodies` (`nowweights`, `goalweights`, `nowdate`) VALUES ('%s', '%S', '%s');
 
 SELECT * FROM bodies;
 
 CREATE TABLE pictures (
    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-   picture VARCHAR(255),
+   file_name VARCHAR(255),
+   file_path VARCHAR(255),
    created_at datetime NOT NULL
 );
 
-INSERT INTO pictures (`picture`, `created_at`) VALUES ('%s', NOW());
+INSERT INTO pictures (`file_name`, `file_path` `created_at`) VALUES ('%s','%s', NOW());
 
 SELECT * FROM pictures;
 
