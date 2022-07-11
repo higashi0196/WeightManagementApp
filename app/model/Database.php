@@ -9,14 +9,14 @@ class Database
 
    public function picturesave() {
       try {
-         $query = sprintf("INSERT INTO pictures (`picture`, `created_at`) VALUES ('%s', NOW())",$this->weight,$this->body,$this->today);
+         $query = sprintf("INSERT INTO pictures (`file_name`, `file_path` `created_at`) VALUES ('%s','%s', NOW());");
 
          $pdo = new PDO(DSN, USER, PASSWORD);
-         $weightresult = $pdo->query($query);
+         $pictureresult = $pdo->query($query);
       } catch(Exception $e) {
          // エラーログ
       }
-         return $weightresult;
+         return $pictureresult;
    }
    
    public $id;

@@ -11,9 +11,9 @@ require_once('config.php');
    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body class="miyako">
-   <form method="POST" action="./picture.php" enctype=”multipart/form-data”>
+   <form method="POST" action="./file_upload.php" enctype=”multipart/form-data”>
       <p class="kuroshima">画像アップロード</p>
-      <input type="file" name="picture">
+      <input type="file" name="img">
       <input type="submit" value="アプロード">
    </form>
    <a href="index.php">戻る</a>

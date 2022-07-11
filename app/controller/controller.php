@@ -7,14 +7,6 @@ require_once('error.php');
 
 class Todocontroller {
 
-   public function picturecreate() {
-
-      $picture = new Database;
-      $pictureresult = $picture->picturesave();
-
-      header("Location: ./index.php");
-   }
-
    public function index() {
       $lists = Database::getAll();
       return $lists;
@@ -33,6 +25,14 @@ class Todocontroller {
    public function index4() {
       $goallists = Database::getAll4();
       return $goallists;
+   }
+
+   public function picturecreate() {
+
+      $picture = new Database;
+      $pictureresult = $picture->picturesave();
+
+      header("Location: ./picture.php");
    }
 
    public function create() {
