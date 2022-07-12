@@ -27,14 +27,6 @@ class Todocontroller {
       return $goallists;
    }
 
-   public function picturecreate() {
-
-      $picture = new Database;
-      $pictureresult = $picture->picturesave();
-
-      header("Location: ./picture.php");
-   }
-
    public function create() {
          
       $data = array(

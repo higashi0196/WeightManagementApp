@@ -5,20 +5,7 @@
 require_once('config.php');
 
 class Database
-{
-
-   public function picturesave() {
-      try {
-         $query = sprintf("INSERT INTO pictures (`file_name`, `file_path` `created_at`) VALUES ('%s','%s', NOW());");
-
-         $pdo = new PDO(DSN, USER, PASSWORD);
-         $pictureresult = $pdo->query($query);
-      } catch(Exception $e) {
-         // エラーログ
-      }
-         return $pictureresult;
-   }
-   
+{  
    public $id;
    public $title;
    public $content;
@@ -90,7 +77,7 @@ class Database
       $this->weightdata = $weightdata;
    }
 
-   private static  $osaka;
+   private static $osaka;
    
    public static function get() {
       try {
@@ -206,6 +193,7 @@ class Database
          $query = sprintf("INSERT INTO bodies (nowweights,goalweights, nowdate) VALUES ('%s', '%s', '%s')",$this->weight,$this->body,$this->today);
 
          $pdo = new PDO(DSN, USER, PASSWORD);
+         
          $weightresult = $pdo->query($query);
       } catch(Exception $e) {
          // エラーログ

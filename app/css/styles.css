@@ -20,9 +20,12 @@ body {
 
 .titleinput {
    width: 35%;
-   height: 20px;
-   margin: 0 auto 10px;
-   border: 3px solid rgba(125, 125, 125, 0.8);
+   height: auto;
+   margin: 10px auto;
+   padding: 3px 5px;
+   /* padding: 0.2em; */
+   font-size: 18px;
+   border: 2px solid rgba(125, 125, 125, 0.8);
    border-radius: 5px;
 }
 
@@ -57,9 +60,6 @@ body {
 }
 
 .return-btn {
-   /* position: absolute;
-   left: 60%;
-   transform: translateY(-42px); */
    width: 65px;
    height: auto;
    margin: 10px auto;
@@ -77,8 +77,6 @@ body {
 /* index.php 開始 */
 
 h1 {
-   /* display: inline; */
-   /* margin-top: 30px; */
    margin: 20px 10px 10px 20px;
    font-size: 30px;
    text-align: center;
@@ -112,10 +110,8 @@ h1 {
 
 .ideal-day {
    display: inline-block;
-   /* margin: 3px 10px; */
    font-size: 20px;
    font-weight: bold;
-   /* vertical-align: middle; */
 }
 
 #remaining {
@@ -162,7 +158,7 @@ h1 {
    cursor : pointer;
 }
 
-.picutre-btn {
+/* .picutre-btn {
    width: 150px;
    height: auto;
    margin: 20px 10px 15px;
@@ -172,7 +168,7 @@ h1 {
    background-color: rgb(205, 220, 200);
    font-size: 15px;
    cursor : pointer;
-}
+} */
 
 h2 {
    display: inline-block;
@@ -200,7 +196,7 @@ h2 {
 table {
    border-collapse: collapse;
    table-layout: fixed;
-   width: 600px;
+   width: 750px;
    height: auto;
    margin: 20px auto;
    font-size: 18px;
@@ -273,7 +269,6 @@ td {
 }
 
 .postdlt-btn {
-   /* vertical-align: middle; */
    width: 65px;
    height: 35px;
    /* height: auto; */
@@ -379,6 +374,15 @@ textarea {
    text-align: center;
 }
 
+textarea {
+   width: 350px;
+   height: 200px;
+   margin: 15px auto;
+   padding: 5px 8px;
+   border: 4px solid black;
+   font-size: 20px;
+}
+
 /* weight.phpページ 終了 */
 
 /* スマートフォン向け CSS */
@@ -391,8 +395,9 @@ textarea {
 
    .titleinput {
       width: 250px;
-      height: 25px;
-      margin: 10px auto;
+      height: auto;
+      padding: 4px 6px;
+      font-size: 15px;
    }
    
    .textinput {
@@ -492,12 +497,12 @@ textarea {
       
    }
    
-   .picutre-btn {
+   /* .picutre-btn {
       width: 120px;
       height: auto;
       margin: 15px 7px 10px;
       padding: 3px;
-   }
+   } */
 
    h2 {
       font-size: 20px;
@@ -614,10 +619,8 @@ textarea {
    textarea {
       width: 300px;
       height: 150px;
-      margin-top: 10px;
-      margin-bottom: 10px;
+      margin-top: 10px auto;
       border: 3px solid black;
-      font-size: 20px;
    }
    /* post.php ページ 終了 */
 }

@@ -5,10 +5,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $getller = new Todocontroller();
    $getller->postcreate();
    exit;
-   // header('Location: ' . SITE_URL);
 }
 
-// $content = '';
 if($_SERVER['REQUEST_METHOD'] === 'GET') {
    if(isset($_GET['content'])) {
       $content = $_GET['content'];

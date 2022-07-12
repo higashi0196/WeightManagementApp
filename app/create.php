@@ -69,7 +69,7 @@ unset($_SESSION['all_errors']);
          <button type="submit" class="register-btn">登録</button>
    </form>
       
-      <a href="index.php"><button class="return-btn">戻る</button></a>
+   <a href="index.php"><button class="return-btn">戻る</button></a>
    
 </body>
 </html>
