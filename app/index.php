@@ -9,6 +9,8 @@ $lists = $getller->index();
 $wordlists = $getller->index2();
 $bodylists = $getller->index3();
 
+// <script>alert("Hello!");</script>
+
 ?>
 
 <!DOCTYPE html>
@@ -30,13 +32,13 @@ $bodylists = $getller->index3();
 
    <?php foreach ($bodylists as $bodylist): ?>
       <span class="ideal-weight">目標体重 : </span>
-      <span class="goal-weight"><?php echo $bodylist['goalweights']; ?> kg</span></br>
+      <span class="goal-weight"><?php echo h($bodylist['goalweights']); ?> kg</span></br>
       <span class="ideal-weight"> 現在の体重 :  </span>
-      <span class="goal-weight"><?php echo $bodylist['nowweights']; ?> kg</span><br>
+      <span class="goal-weight"><?php echo h($bodylist['nowweights']); ?> kg</span><br>
       <span class="ideal-weight">目標達成まであと </span>
-      <a id="remaining"><?php echo $bodylist['difference']; ?></a> 
+      <a id="remaining"><?php echo h($bodylist['difference']); ?></a> 
       <a id="unit">kg</a><br class="br">
-      <span class="ideal-day">(<?php echo $bodylist['nowdate']; ?> 現在)</span>
+      <span class="ideal-day">(<?php echo h($bodylist['nowdate']); ?> 現在)</span>
    <?php endforeach; ?>
    
    <div>
@@ -62,8 +64,8 @@ $bodylists = $getller->index3();
          <?php if ($lists): ?>
             <?php foreach ($lists as $todo):?>
                <tr>
-                  <td><?php echo $todo['title']; ?></td>
-                  <td><?php echo $todo['content']; ?></td> 
+                  <td><?php echo h($todo['title']); ?></td>
+                  <td><?php echo h($todo['content']); ?></td> 
                   <td><a href="edit.php?todo_id=<?php echo $todo['id']?>"><button class="edit-btn">編集</button></a></td>       
                   <td class="deletebtn" data-id="<?php echo $todo['id']?>"><button class="delete-btn">削除</button></td>
                </tr> 
@@ -80,14 +82,14 @@ $bodylists = $getller->index3();
    <div class="postcreate">
       <span> 〜 明日への一言 〜</span>
       <a href="post.php"><button class="post-btn">投稿する</button></a>
-      <a class="wordbtn" data-id="<?php echo $wordtodo['id']; ?>">
+      <a class="wordbtn" data-id="<?php echo h($wordtodo['id']); ?>">
       <button class="postdlt-btn">削除</button></a>
    </div>
 
    <div class="message">
    <?php if ($wordlists): ?>
       <?php foreach ($wordlists as $wordlist): ?> 
-         <p id="word"><?php echo $wordlist['content']; ?></p>
+         <p id="word"><?php echo h($wordlist['content']); ?></p>
       <?php endforeach; ?>
    <?php else : ?>
       <p id="word">明日への一言が入力できます</p> 

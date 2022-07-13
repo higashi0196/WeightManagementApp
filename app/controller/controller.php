@@ -5,6 +5,10 @@
 require_once('config.php');
 require_once('error.php');
 
+function h($str) {
+   return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+}
+
 class Todocontroller {
 
    public function index() {
