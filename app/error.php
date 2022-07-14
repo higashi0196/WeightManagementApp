@@ -68,6 +68,10 @@ class TodoValidation {
    public function getWeightTodayErrorMessages() {
       return $this->weighttoday_errors;
    }
+
+   public function getTokenErrorMessages() {
+      return $this->token_errors;
+   }
    
    public function titlecheck() {
       if(empty($this->data['title'])) {
@@ -90,14 +94,14 @@ class TodoValidation {
    }
 
    public function allcheck() {
-      if(empty($this->data['title']) && empty($this->data['content'])) {
+      if(empty($this->data['content'])) {
          $this->all_errors[] = "タイトルと目標が空です。";
          return false;
       }
    }
 
    public function postcheck() {
-      if(isset($this->content) && empty($this->content)){
+      if(empty($this->content)){
          $this->post_errors[] = "明日への一言が空です。";
          return false;
       } else if(255 < mb_strlen($this->content, 'UTF-8')) {
@@ -108,7 +112,7 @@ class TodoValidation {
 
    //   body = 目標の体重
    public function bodycheck() {
-      if(isset($this->weightdata['body']) && empty($this->weightdata['body'])){
+      if(empty($this->weightdata['body'])){
          $this->body_errors[] = "目標体重が空っぽです。";
          return false;
       } else if (!is_numeric($this->weightdata['body'])){
@@ -122,7 +126,7 @@ class TodoValidation {
 
    // weight = 現在の体重
    public function weightcheck() {
-      if(isset($this->weightdata['weight']) && empty($this->weightdata['weight'])){
+      if(empty($this->weightdata['weight'])){
          $this->weight_errors[] = "体重が空っぽです。";
          return false;
       } else if (!is_numeric($this->weightdata['weight'])){
@@ -134,7 +138,7 @@ class TodoValidation {
       }
    }
 
-   // today
+   // today 日付
    public function todaycheck() {
       if(empty($this->weightdata['today'])){
          $this->today_errors[] = "日付が選択されていません。";
@@ -142,8 +146,9 @@ class TodoValidation {
       }
    }
 
+   // 現在の体重＆日付のエラー
    public function weighttodaycheck() {
-      if(empty($this->weightdata['weight']) && empty($this->weightdata['today'])){
+      if(empty($this->weightdata['today'])){
          $this->weighttoday_errors[] = "体重と日付が記入されていません。";
          return false;
       }

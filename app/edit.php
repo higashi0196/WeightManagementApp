@@ -10,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $getller = new Todocontroller();
 $data =  $getller->edit();
-// $bodylists = $getller->index3();
 $lists = $getller->index();
 $todo = $data['todo'];
 $params = $data['params'];
@@ -37,7 +36,7 @@ unset($_SESSION['content_errors']);
    <p class="outline">編集画面</p>
    <?php if($all_errors):?>
       <?php foreach ($all_errors as $all_error): ?>
-         <p class="error-log"><?php echo $all_error;?></p>
+         <p class="error-log"><?php echo Utils::h($all_error);?></p>
       <?php endforeach;?>
    <?endif;?>
 
@@ -46,22 +45,22 @@ unset($_SESSION['content_errors']);
          <p class="title">タイトル</p>
          <?php if($title_errors):?>
             <?php foreach ($title_errors as $title_error): ?>
-               <p class="error-log"><?php echo $title_error;?></p>
+               <p class="error-log"><?php echo Utils::h($title_error);?></p>
             <?php endforeach;?>
          <?endif;?>
-         <input type="text" name="title" class="titleinput" value="<?php if(isset($params['title'])):?><?php echo $params['title'];?><?php else:?><?php echo $todo['title'];?><?php endif;?>">
+         <input type="text" name="title" class="titleinput" value="<?php if(isset($params['title'])):?><?php echo Utils::h($params['title']);?><?php else:?><?php echo Utils::h($todo['title']);?><?php endif;?>">
       </div>
 
       <div>
          <p class="title">目標</p>
          <?php if($content_errors):?>
             <?php foreach ($content_errors as $content_error): ?>
-               <p class="error-log"><?php echo $content_error;?></p>
+               <p class="error-log"><?php echo Utils::h($content_error);?></p>
             <?php endforeach;?>
          <?endif;?>
-         <input type="text" name="content" class="titleinput" value="<?php if(isset($params['content'])):?><?php echo $params['content'];?><?php else:?><?php echo $todo['content'];?><?php endif;?>">
+         <input type="text" name="content" class="titleinput" value="<?php if(isset($params['content'])):?><?php echo Utils::h($params['content']);?><?php else:?><?php echo Utils::h($todo['content']);?><?php endif;?>">
       </div>
-      <input type="hidden" name="id" value="<?php echo $todo['id']; ?>">
+      <input type="hidden" name="id" value="<?php echo Utils::h($todo['id']); ?>">
       <button type="submit" class="register-btn">更新</button>
    </form>
 

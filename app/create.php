@@ -3,6 +3,8 @@
 require_once('config.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+   Token::create();
+   // Token::validate();
    $getller = new Todocontroller();
    $getller->create();
    exit;
@@ -45,31 +47,30 @@ unset($_SESSION['all_errors']);
          <p class="title">タイトル</p>
          <?php if($title_errors):?>
             <?php foreach ($title_errors as $title_error): ?>
-               <p class="error-log"><?php echo $title_error;?></p>
+               <p class="error-log"><?php echo Utils::h($title_error);?></p>
             <?php endforeach;?>
          <?endif;?>
-         
-         <input type="text" name="title" class="titleinput" value="<?php echo $title;?>">
+         <input type="text" name="title" class="titleinput" value="<?php echo Utils::h($title);?>">
       </div>
       
       <div>
          <p class="title">目標</p>
          <?php if($content_errors):?>
             <?php foreach ($content_errors as $content_error): ?>
-               <p class="error-log"><?php echo $content_error;?></p>
+               <p class="error-log"><?php echo Utils::h($content_error);?></p>
             <?php endforeach;?>
          <?endif;?>
-         <input type="text" name="content" class="titleinput" value="<?php echo $content;?>">
+         <input type="text" name="content" class="titleinput" value="<?php echo Utils::h($content);?>">
       </div>
       <?php if($all_errors):?>
          <?php foreach ($all_errors as $all_error): ?>
-            <p class="error-log"><?php echo $all_error;?></p>
+            <p class="error-log"><?php echo Utils::h($all_error);?></p>
          <?php endforeach;?>
       <?endif;?>
-         <button type="submit" class="register-btn">登録</button>
+      <button type="submit" class="register-btn">登録</button>
+      <input type="hidden" name="token" value="<?= Utils::h($_SESSION['token']); ?>">
    </form>
       
    <a href="index.php"><button class="return-btn">戻る</button></a>
-   
 </body>
 </html>

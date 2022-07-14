@@ -50,32 +50,32 @@ unset($_SESSION['today_errors']);
    <p class="outline">体重記録</p>
    
    <form method="POST" action="./weight.php">
-      <p class="bodytitle">目標体重 : <input type="text" name="body" class="weightinput" value="<?php if(isset($weightparam['body'])):?><?php echo $weightparam['body'];?><?php else:?><?php echo $goallists['goalweights'];?><?php endif;?>"> kg</p>
+      <p class="bodytitle">目標体重 : <input type="text" name="body" class="weightinput" value="<?php if(isset($weightparam['body'])):?><?php echo Utils::h($weightparam['body']);?><?php else:?><?php echo Utils::h($goallists['goalweights']);?><?php endif;?>"> kg</p>
 
       <?php if($body_errors):?>
          <?php foreach ($body_errors as $body_error): ?>
-            <p class="error-log"><?php echo $body_error;?></p>
+            <p class="error-log"><?php echo Utils::h($body_error);?></p>
          <?php endforeach;?>
       <?endif;?>
       
-      <p class="bodytitle">現在の体重 : <input type="text" name="weight" class="weightinput" value="<?php echo $weightparam['weight']; ?>"> kg</p>
+      <p class="bodytitle">現在の体重 : <input type="text" name="weight" class="weightinput" value="<?php echo Utils::h($weightparam['weight']); ?>"> kg</p>
 
       <?php if($weight_errors):?>
          <?php foreach ($weight_errors as $weight_error): ?>
-            <p class="error-log"><?php echo $weight_error;?></p>
+            <p class="error-log"><?php echo Utils::h($weight_error);?></p>
          <?php endforeach;?>
       <?endif;?>
 
-      <p class="bodytitle">日付 : <input type="date" name="today" class="dayinput" value="<?php echo $weightparam['today']; ?>"></p>
+      <p class="bodytitle">日付 : <input type="date" name="today" class="dayinput" value="<?php echo Utils::h($weightparam['today']); ?>"></p>
       <?php if($today_errors):?>
          <?php foreach ($today_errors as $today_error): ?>
-            <p class="error-log"><?php echo $today_error;?></p>
+            <p class="error-log"><?php echo Utils::h($today_error);?></p>
          <?php endforeach;?>
       <?endif;?>
 
       <?php if($weighttoday_errors):?>
          <?php foreach ($weighttoday_errors as $weighttoday_error): ?>
-            <p class="error-log"><?php echo $weighttoday_error;?></p>
+            <p class="error-log"><?php echo Utils::h($weighttoday_error);?></p>
          <?php endforeach;?>
       <?endif;?>
       <button type="submit" class="register-btn">記入</button>

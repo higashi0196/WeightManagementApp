@@ -5,9 +5,29 @@
 require_once('config.php');
 require_once('error.php');
 
-function h($str) {
-   return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+class Utils {
+   public static function h($str) {
+      return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+   }
 }
+
+class Token {
+   public static function create() {
+      if (!isset($_SESSION['token'])) {
+         $_SESSION['token'] = bin2hex(random_bytes(32));
+      }
+   }
+
+   public static function validate() {
+      if (
+         empty($_SESSION['token']) ||
+         $_SESSION['token'] !== filter_input(INPUT_POST, 'token')
+         ) {
+            exit('Invalid post request');
+         }
+      }
+   }
+
 
 class Todocontroller {
 
@@ -252,7 +272,6 @@ class Todocontroller {
       $word = new Database;
       $postresult = $word->postdelete();
       return $postresult;
-      
    }
 
 }

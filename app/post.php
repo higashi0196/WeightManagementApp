@@ -31,16 +31,14 @@ unset($_SESSION['post_errors']);
    <form method="POST" action="./post.php">
       <div>
          <p class="outline">明日への一言</p>
-         <textarea name="postcontent" placeholder=" 明日への一言を入力できます"></textarea>
+         <textarea name="postcontent" placeholder="明日への一言を入力できます"></textarea>
       </div>
       <?php if($post_errors):?>
          <?php foreach ($post_errors as $post_error): ?>
-            <p class="error-log"><?php echo $post_error;?></p>
+            <p class="error-log"><?php echo Utils::h($post_error);?></p>
          <?php endforeach;?>
       <?endif;?>
-      <div> 
-         <button type="submit" class="post-btn2">投稿する</button>
-      </div>
+      <button type="submit" class="post-btn2">投稿する</button>
    </form>
 
    <a href="index.php"><button class="return-btn">戻る</button></a>
