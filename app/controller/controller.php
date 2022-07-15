@@ -20,14 +20,14 @@ class Token {
 
    public static function validate() {
       if (
+         empty($_POST['token']) ||
          empty($_SESSION['token']) ||
          $_SESSION['token'] !== filter_input(INPUT_POST, 'token')
          ) {
-            exit('Invalid post request');
-         }
+         exit('Invalid post request');
       }
    }
-
+}
 
 class Todocontroller {
 

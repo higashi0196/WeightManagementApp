@@ -171,7 +171,8 @@ class Database
          $pdo = new PDO(DSN, USER, PASSWORD);
          $result = $pdo->query($query);
       } catch(Exception $e) {
-         // エラーログ
+         error_log("新規作成に失敗しました。");
+         error_log($e->getMessage());
       }
          return $result;
    }

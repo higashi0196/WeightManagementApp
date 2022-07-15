@@ -122,7 +122,7 @@ $bodylists = $getller->index3();
          .catch(error => {
             console.log("失敗しました");
          })
-         deletebtn.parentNode.remove();
+            deletebtn.parentNode.remove();
          });
       });
 
