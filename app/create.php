@@ -9,8 +9,6 @@ $token->create();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $getller = new Todocontroller();
    $getller->create();
-   // $token2 = new Tokenvalidate();
-   // $token2->validate();
    exit;
 }
 
@@ -25,13 +23,14 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
    }
 }
 
-session_start();
 $title_errors = $_SESSION['title_errors'];
 unset($_SESSION['title_errors']);
 $content_errors = $_SESSION['content_errors'];
 unset($_SESSION['content_errors']);
 $all_errors = $_SESSION['all_errors'];
 unset($_SESSION['all_errors']);
+$token_errors = $_SESSION['token_errors'];
+unset($_SESSION['token_errors']);
 
 ?>
 
@@ -45,8 +44,14 @@ unset($_SESSION['all_errors']);
 </head>
 <body>
    <p class="outline">新規登録</p>
+
    
    <form method="POST" action="./create.php">
+      <?php if($token_errors):?>
+         <?php foreach ($token_errors as $token_error): ?>
+            <p class="error-log"><?php echo Utils::h($token_error);?></p>
+         <?php endforeach;?>
+      <?endif;?>
       <div>
          <p class="title">タイトル</p>
          <?php if($title_errors):?>

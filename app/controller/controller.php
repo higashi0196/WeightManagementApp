@@ -24,7 +24,7 @@ class Token {
          empty($_SESSION['token']) ||
          $_SESSION['token'] !== filter_input(INPUT_POST, 'token')
          ) {
-         exit('Invalid post request');
+         header("Location: ./create.php");
       }
    }
 }
@@ -60,10 +60,16 @@ class Todocontroller {
 
       $validation = new TodoValidation;
       $validation->setData($data);
-   
-      if($validation->allcheck() === false) {
+
+      if($validation->tokencheck() === false) {
+         $token_errors = $validation->getTokenErrorMessages();
+         // session_start();
+         $_SESSION['token_errors'] = $token_errors;
+         header("Location: ./create.php");
+         return;
+      } else if($validation->allcheck() === false) {
          $all_errors = $validation->getAllErrorMessages();
-         session_start();
+         // session_start();
          $_SESSION['all_errors'] = $all_errors;
 
          $params = sprintf("?todo_id=%s&title=%s&content=%s", $_POST['todo_id'], $_POST['title'], $_POST['content']);
@@ -71,7 +77,7 @@ class Todocontroller {
          return;
       } else if($validation->titlecheck() === false) {
          $title_errors = $validation->getTitleErrorMessages();
-         session_start();
+         // session_start();
          $_SESSION['title_errors'] = $title_errors;
 
          $params = sprintf("?todo_id=%s&title=%s&content=%s", $_POST['todo_id'], $_POST['title'], $_POST['content']);
@@ -79,7 +85,7 @@ class Todocontroller {
          return;
       } else if($validation->contentcheck() === false) {
          $content_errors = $validation->getCotentErrorMessages();
-         session_start();
+         // session_start();
          $_SESSION['content_errors'] = $content_errors;
 
          $params = sprintf("?todo_id=%s&title=%s&content=%s",$_POST['todo_id'], $_POST['title'], $_POST['content']);
@@ -104,9 +110,15 @@ class Todocontroller {
       $validation = new TodoValidation;
       $validation->setContent($content);
 
-      if($validation->postcheck() === false) {
+      if($validation->tokencheck() === false) {
+         $token_errors = $validation->getTokenErrorMessages();
+         // session_start();
+         $_SESSION['token_errors'] = $token_errors;
+         header("Location: ./post.php");
+         return;
+      } else if($validation->postcheck() === false) {
          $post_errors = $validation->getPostErrorMessages();
-         session_start();
+         // session_start();
          $_SESSION['post_errors'] = $post_errors;
          header("Location: ./post.php");
          return;

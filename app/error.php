@@ -1,6 +1,7 @@
 <?php
 class TodoValidation {
    
+   public $token_errors = array();
    public $data = array();
    public $weightdata = array();
    public $content = array();
@@ -37,6 +38,10 @@ class TodoValidation {
       return $this->content;
    }
 
+   public function getTokenErrorMessages() {
+      return $this->token_errors;
+   }
+
    public function getTitleErrorMessages() {
       return $this->title_errors;
    }
@@ -69,8 +74,15 @@ class TodoValidation {
       return $this->weighttoday_errors;
    }
 
-   public function getTokenErrorMessages() {
-      return $this->token_errors;
+   public function tokencheck() {
+      if (
+         empty($_POST['token']) ||
+         empty($_SESSION['token']) ||
+         $_SESSION['token'] !== filter_input(INPUT_POST, 'token')
+         ) {
+            $this->token_errors[] = "不正なアクセスがありました。";
+            return false;
+      }
    }
    
    public function titlecheck() {
