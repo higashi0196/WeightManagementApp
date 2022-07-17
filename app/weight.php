@@ -2,6 +2,10 @@
 
 require_once('config.php');
 
+session_start();
+$token = new Token();
+$token->create();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $getller = new Todocontroller();
    $getller->dietcreate();
@@ -26,7 +30,8 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
    }
 }
 
-session_start();
+$token_errors = $_SESSION['token_errors'];
+unset($_SESSION['token_errors']);
 $weighttoday_errors = $_SESSION['weighttoday_errors'];
 unset($_SESSION['weighttoday_errors']);
 $weight_errors = $_SESSION['weight_errors'];
@@ -50,6 +55,13 @@ unset($_SESSION['today_errors']);
    <p class="outline">体重記録</p>
    
    <form method="POST" action="./weight.php">
+
+      <?php if($token_errors):?>
+         <?php foreach ($token_errors as $token_error): ?>
+            <p class="error-log"><?php echo Utils::h($token_error);?></p>
+         <?php endforeach;?>
+      <?endif;?>
+
       <p class="bodytitle">目標体重 : <input type="text" name="body" class="weightinput" value="<?php if(isset($weightparam['body'])):?><?php echo Utils::h($weightparam['body']);?><?php else:?><?php echo Utils::h($goallists['goalweights']);?><?php endif;?>"> kg</p>
 
       <?php if($body_errors):?>
@@ -78,6 +90,7 @@ unset($_SESSION['today_errors']);
             <p class="error-log"><?php echo Utils::h($weighttoday_error);?></p>
          <?php endforeach;?>
       <?endif;?>
+      <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
       <button type="submit" class="register-btn">記入</button>
    </form>
 

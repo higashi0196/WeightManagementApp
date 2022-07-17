@@ -23,14 +23,14 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
    }
 }
 
+$token_errors = $_SESSION['token_errors'];
+unset($_SESSION['token_errors']);
 $title_errors = $_SESSION['title_errors'];
 unset($_SESSION['title_errors']);
 $content_errors = $_SESSION['content_errors'];
 unset($_SESSION['content_errors']);
 $all_errors = $_SESSION['all_errors'];
 unset($_SESSION['all_errors']);
-$token_errors = $_SESSION['token_errors'];
-unset($_SESSION['token_errors']);
 
 ?>
 
@@ -45,13 +45,14 @@ unset($_SESSION['token_errors']);
 <body>
    <p class="outline">新規登録</p>
 
-   
    <form method="POST" action="./create.php">
+      
       <?php if($token_errors):?>
          <?php foreach ($token_errors as $token_error): ?>
             <p class="error-log"><?php echo Utils::h($token_error);?></p>
          <?php endforeach;?>
       <?endif;?>
+
       <div>
          <p class="title">タイトル</p>
          <?php if($title_errors):?>
@@ -76,8 +77,8 @@ unset($_SESSION['token_errors']);
             <p class="error-log"><?php echo Utils::h($all_error);?></p>
          <?php endforeach;?>
       <?endif;?>
-      <button type="submit" class="register-btn">登録</button>
       <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
+      <button type="submit" class="register-btn">登録</button>
    </form>
       
    <a href="index.php"><button class="return-btn">戻る</button></a>

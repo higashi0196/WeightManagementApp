@@ -9,8 +9,6 @@ $lists = $getller->index();
 $wordlists = $getller->index2();
 $bodylists = $getller->index3();
 
-// <script>alert("Hello!");</script>
-
 ?>
 
 <!DOCTYPE html>
@@ -31,15 +29,29 @@ $bodylists = $getller->index3();
    </h1>
 
    <?php foreach ($bodylists as $bodylist): ?>
+      <p class="ideal-weight">目標体重 : </p>
+      <p class="goal-weight"><?php echo Utils::h($bodylist['goalweights']); ?> kg</p></br>
+      <p class="ideal-weight"> 現在の体重 :  </p>
+      <p class="goal-weight"><?php echo Utils::h($bodylist['nowweights']); ?> kg</p><br>
+      <p class="ideal-weight">目標達成まであと </p>
+      <p id="remaining"><?php echo Utils::h($bodylist['difference']); ?> kg</p>
+      <p class="unit">見事達成！やったぜ！</p>
+      <p id="unit">kg</p>
+      <br class="br">
+      <p class="ideal-day">(<?php echo Utils::h($bodylist['nowdate']); ?> 現在)</p>
+   <?php endforeach; ?>
+
+   <!-- <?php foreach ($bodylists as $bodylist): ?>
       <span class="ideal-weight">目標体重 : </span>
       <span class="goal-weight"><?php echo Utils::h($bodylist['goalweights']); ?> kg</span></br>
       <span class="ideal-weight"> 現在の体重 :  </span>
       <span class="goal-weight"><?php echo Utils::h($bodylist['nowweights']); ?> kg</span><br>
       <span class="ideal-weight">目標達成まであと </span>
-      <a id="remaining"><?php echo Utils::h($bodylist['difference']); ?></a> 
-      <a id="unit">kg</a><br class="br">
-      <span class="ideal-day">(<?php echo Utils::h($bodylist['nowdate']); ?> 現在)</span>
-   <?php endforeach; ?>
+      <a id="remaining"><?php echo Utils::h($bodylist['difference']); ?> kg</a>
+      <p id="unit">kg</p>
+      <br class="br">
+      <p class="ideal-day">(<?php echo Utils::h($bodylist['nowdate']); ?> 現在)</p>
+   <?php endforeach; ?> -->
    
    <div>
       <a href="weight.php"><button class="weight-btn">体重記入</button></a>
@@ -152,19 +164,26 @@ $bodylists = $getller->index3();
       const unit = document.getElementById("unit");
       const difference = <?php echo $bodylist['difference']; ?>;
       const goalweight = <?php echo $bodylist['goalweights']; ?>;
+      const unit5 = document.querySelector('.unit');
+      const unit6 = document.querySelector('.unit2');
      
-      if (difference <= 0 ) {
-         remaining.textContent =  difference + ' kg';
-         remaining.classList.add('remaining');
-         unit.textContent = '見事達成! やったぜ!' ;
-         unit.classList.add('unit');
+      if (difference <= 0) {
+         unit5.style.display = 'block';
+         // remaining.textContent =  difference ;
+         // remaining.classList.add('remaining');
+         // unit.textContent = '見事達成! やったぜ!' ;
+         // unit.classList.add('unit');
          console.log("0kg以下,達成");
-      } else if (0 < difference && difference < goalweight * 0.01) {
-         remaining.textContent = difference + ' kg';
-         unit.textContent = 'あともう少し頑張ろう!' ;
-         unit.classList.add('unit2');
+      } else if (difference < goalweight * 0.01) {
+         unit5.style.display = 'block';
+         unit5.classList.add('unit2');
+         unit5.textContent ='あともう少し頑張ろう!' ;
+         // remaining.textContent = difference;
+         // unit.textContent = 'あともう少し頑張ろう!' ;
+         // unit.classList.add('unit2');
          console.log("もう少し,頑張ろう");
       } else {
+         unit5.style.display = 'none';
          console.log("まだまだやな");
       }
 

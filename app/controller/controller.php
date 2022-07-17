@@ -144,9 +144,15 @@ class Todocontroller {
       $validation = new TodoValidation;
       $validation->setWeightData($weightdata);
 
-      if($validation->weighttodaycheck() === false) {
+      if($validation->tokencheck() === false) {
+         $token_errors = $validation->getTokenErrorMessages();
+         // session_start();
+         $_SESSION['token_errors'] = $token_errors;
+         header("Location: ./weight.php");
+         return;
+      } else if($validation->weighttodaycheck() === false) {
          $weighttoday_errors = $validation->getWeightTodayErrorMessages();
-         session_start();
+         // session_start();
          $_SESSION['weighttoday_errors'] = $weighttoday_errors;
 
          $weightparams = sprintf("?body=%s&weight=%s&today=%s", $_POST['body'], $_POST['weight'], $_POST['today']);
@@ -154,7 +160,7 @@ class Todocontroller {
          return;
       } else if($validation->weightcheck() === false) {
          $weight_errors = $validation->getWeightErrorMessages();
-         session_start();
+         // session_start();
          $_SESSION['weight_errors'] = $weight_errors;
 
          $weightparams = sprintf("?body=%s&weight=%s&today=%s", $_POST['body'], $_POST['weight'], $_POST['today']);
@@ -162,7 +168,7 @@ class Todocontroller {
          return;
       } else if($validation->bodycheck() === false) {
          $body_errors = $validation->getBodyErrorMessages();
-         session_start();
+         // session_start();
          $_SESSION['body_errors'] = $body_errors;
 
          $weightparams = sprintf("?body=%s&weight=%s&today=%s", $_POST['body'], $_POST['weight'], $_POST['today']);
@@ -170,7 +176,7 @@ class Todocontroller {
          return;
       } else if ($validation->todaycheck() === false){
          $today_errors = $validation->getTodayErrorMessages();
-         session_start();
+         // session_start();
          $_SESSION['today_errors'] = $today_errors;
 
          $weightparams = sprintf("?body=%s&weight=%s&today=%s", $_POST['body'], $_POST['weight'], $_POST['today']);
@@ -226,9 +232,15 @@ class Todocontroller {
       $validation = new TodoValidation;
       $validation->setData($data);
 
-      if($validation->allcheck() === false) {
+      if($validation->tokencheck() === false) {
+         $token_errors = $validation->getTokenErrorMessages();
+         // session_start();
+         $_SESSION['token_errors'] = $token_errors;
+         header("Location: ./edit.php");
+         return;
+      } else if($validation->allcheck() === false) {
          $all_errors = $validation->getAllErrorMessages();
-         session_start();
+         // session_start();
          $_SESSION['all_errors'] = $all_errors;
 
          $params = sprintf("?id=%s&title=%s&content=%s",$_POST['id'], $_POST['title'], $_POST['content']);
@@ -236,7 +248,7 @@ class Todocontroller {
          return;
       } else if($validation->titlecheck() === false) {
          $title_errors = $validation->getTitleErrorMessages();
-         session_start();
+         // session_start();
          $_SESSION['title_errors'] = $title_errors;
 
          $params = sprintf("?id=%s&title=%s&content=%s",$_POST['id'], $_POST['title'], $_POST['content']);
@@ -244,7 +256,7 @@ class Todocontroller {
          return;
       } else if($validation->contentcheck() === false) {
          $content_errors = $validation->getCotentErrorMessages();
-         session_start();
+         // session_start();
          $_SESSION['content_errors'] = $content_errors;
 
          $params = sprintf("?id=%s&title=%s&content=%s",$_POST['id'], $_POST['title'], $_POST['content']);

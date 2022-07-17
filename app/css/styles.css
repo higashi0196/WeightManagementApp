@@ -39,8 +39,8 @@ body {
 
 .error-log {
    margin: 8px;
-   color: rgb(210, 55, 25);
-   font-size: 20px;
+   color: rgb(230, 50, 50);
+   font-size: 22px;
    font-weight: bold;
    text-shadow: 3px 3px 3px rgba(0,0,0,0.3);
 }
@@ -91,6 +91,7 @@ h1 {
 }
 
 .ideal-weight {
+   /* display: block; */
    display: inline-block;
    margin: 7px 10px;
    font-size: 23px;
@@ -108,7 +109,8 @@ h1 {
 }
 
 .ideal-day {
-   display: inline-block;
+   /* display: inline-block; */
+   margin:0;
    font-size: 20px;
    font-weight: bold;
 }
@@ -118,19 +120,25 @@ h1 {
    vertical-align: middle;
    margin: 5px 0;
    padding: 2px 10px;
+   color: black;
+   /* color: red; */
    background-color:rgb(195, 195, 195);
    font-size: 20px;
    font-weight: bold;
 }
 
-.remaining { 
+/* .remaining { 
    display: inline-block;
-   color: #ccc;
+   color: red;
    text-decoration: line-through;
-}
+} */
    
 .unit {
    color:red;
+   display: block;
+   margin: 3px;
+   font-size: 20px;
+   font-weight: bold;
 }
    
 .unit2 {

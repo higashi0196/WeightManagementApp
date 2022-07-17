@@ -2,6 +2,10 @@
 
 require_once('config.php');
 
+session_start();
+$token = new Token();
+$token->create();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $getller = new Todocontroller();
    $getller->update();
@@ -14,7 +18,8 @@ $lists = $getller->index();
 $todo = $data['todo'];
 $params = $data['params'];
 
-session_start();
+$token_errors = $_SESSION['token_errors'];
+unset($_SESSION['token_errors']);
 $all_errors = $_SESSION['all_errors'];
 unset($_SESSION['all_errors']);
 $title_errors = $_SESSION['title_errors'];
@@ -34,11 +39,18 @@ unset($_SESSION['content_errors']);
 </head>
 <body>
    <p class="outline">編集画面</p>
+
+   <?php if($token_errors):?>
+      <?php foreach ($token_errors as $token_error): ?>
+         <p class="error-log"><?php echo Utils::h($token_error);?></p>
+      <?php endforeach;?>
+   <?php endif;?>
+
    <?php if($all_errors):?>
       <?php foreach ($all_errors as $all_error): ?>
          <p class="error-log"><?php echo Utils::h($all_error);?></p>
       <?php endforeach;?>
-   <?endif;?>
+   <?php endif;?>
 
    <form method="POST" action="./edit.php">
       <div>
@@ -61,6 +73,7 @@ unset($_SESSION['content_errors']);
          <input type="text" name="content" class="titleinput" value="<?php if(isset($params['content'])):?><?php echo Utils::h($params['content']);?><?php else:?><?php echo Utils::h($todo['content']);?><?php endif;?>">
       </div>
       <input type="hidden" name="id" value="<?php echo Utils::h($todo['id']); ?>">
+      <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
       <button type="submit" class="register-btn">更新</button>
    </form>
 

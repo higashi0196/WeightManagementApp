@@ -106,7 +106,7 @@ class TodoValidation {
    }
 
    public function allcheck() {
-      if(empty($this->data['content'])) {
+      if(empty($this->data['title']) && empty($this->data['content'])) {
          $this->all_errors[] = "タイトルと目標が空です。";
          return false;
       }
