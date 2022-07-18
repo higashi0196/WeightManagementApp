@@ -29,8 +29,6 @@ $title_errors = $_SESSION['title_errors'];
 unset($_SESSION['title_errors']);
 $content_errors = $_SESSION['content_errors'];
 unset($_SESSION['content_errors']);
-$all_errors = $_SESSION['all_errors'];
-unset($_SESSION['all_errors']);
 
 ?>
 
@@ -46,7 +44,7 @@ unset($_SESSION['all_errors']);
    <p class="outline">新規登録</p>
 
    <form method="POST" action="./create.php">
-      
+
       <?php if($token_errors):?>
          <?php foreach ($token_errors as $token_error): ?>
             <p class="error-log"><?php echo Utils::h($token_error);?></p>
@@ -72,11 +70,6 @@ unset($_SESSION['all_errors']);
          <?endif;?>
          <input type="text" name="content" class="titleinput" value="<?php echo Utils::h($content);?>">
       </div>
-      <?php if($all_errors):?>
-         <?php foreach ($all_errors as $all_error): ?>
-            <p class="error-log"><?php echo Utils::h($all_error);?></p>
-         <?php endforeach;?>
-      <?endif;?>
       <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
       <button type="submit" class="register-btn">登録</button>
    </form>

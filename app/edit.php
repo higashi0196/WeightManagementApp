@@ -20,8 +20,6 @@ $params = $data['params'];
 
 $token_errors = $_SESSION['token_errors'];
 unset($_SESSION['token_errors']);
-$all_errors = $_SESSION['all_errors'];
-unset($_SESSION['all_errors']);
 $title_errors = $_SESSION['title_errors'];
 unset($_SESSION['title_errors']);
 $content_errors = $_SESSION['content_errors'];
@@ -43,12 +41,6 @@ unset($_SESSION['content_errors']);
    <?php if($token_errors):?>
       <?php foreach ($token_errors as $token_error): ?>
          <p class="error-log"><?php echo Utils::h($token_error);?></p>
-      <?php endforeach;?>
-   <?php endif;?>
-
-   <?php if($all_errors):?>
-      <?php foreach ($all_errors as $all_error): ?>
-         <p class="error-log"><?php echo Utils::h($all_error);?></p>
       <?php endforeach;?>
    <?php endif;?>
 

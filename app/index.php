@@ -29,29 +29,15 @@ $bodylists = $getller->index3();
    </h1>
 
    <?php foreach ($bodylists as $bodylist): ?>
-      <p class="ideal-weight">目標体重 : </p>
+      <p class="ideal-weight">目標体重 :</p>
       <p class="goal-weight"><?php echo Utils::h($bodylist['goalweights']); ?> kg</p></br>
-      <p class="ideal-weight"> 現在の体重 :  </p>
+      <p class="ideal-weight"> 現在の体重 :</p>
       <p class="goal-weight"><?php echo Utils::h($bodylist['nowweights']); ?> kg</p><br>
-      <p class="ideal-weight">目標達成まであと </p>
-      <p id="remaining"><?php echo Utils::h($bodylist['difference']); ?> kg</p>
-      <p class="unit">見事達成！やったぜ！</p>
-      <p id="unit">kg</p>
-      <br class="br">
+      <p class="ideal-weight">目標達成まであと :</p>
+      <p class="goal-weight"><?php echo Utils::h($bodylist['difference']); ?> kg</p>
+      <p class="achieve">見事達成！やったぜ！</p>
       <p class="ideal-day">(<?php echo Utils::h($bodylist['nowdate']); ?> 現在)</p>
    <?php endforeach; ?>
-
-   <!-- <?php foreach ($bodylists as $bodylist): ?>
-      <span class="ideal-weight">目標体重 : </span>
-      <span class="goal-weight"><?php echo Utils::h($bodylist['goalweights']); ?> kg</span></br>
-      <span class="ideal-weight"> 現在の体重 :  </span>
-      <span class="goal-weight"><?php echo Utils::h($bodylist['nowweights']); ?> kg</span><br>
-      <span class="ideal-weight">目標達成まであと </span>
-      <a id="remaining"><?php echo Utils::h($bodylist['difference']); ?> kg</a>
-      <p id="unit">kg</p>
-      <br class="br">
-      <p class="ideal-day">(<?php echo Utils::h($bodylist['nowdate']); ?> 現在)</p>
-   <?php endforeach; ?> -->
    
    <div>
       <a href="weight.php"><button class="weight-btn">体重記入</button></a>
@@ -85,7 +71,7 @@ $bodylists = $getller->index3();
          <?php else : ?>
             <td>Todoなし</td>
             <td>Todoなし</td>
-            <td></td>
+            <td>Todoなし</td>
             <td></td>
          <?php endif; ?>
       </tbody>
@@ -110,8 +96,6 @@ $bodylists = $getller->index3();
 
 </div>
 
-   <!-- <script src="./js/main.js"></script> -->
-   <script src="./js/jquery-3.6.0.min.js"></script>
    <script>
       
       // todoリスト編 fetch非同期通信
@@ -160,78 +144,23 @@ $bodylists = $getller->index3();
          })
       });
       
-      const remaining = document.getElementById("remaining");
-      const unit = document.getElementById("unit");
       const difference = <?php echo $bodylist['difference']; ?>;
       const goalweight = <?php echo $bodylist['goalweights']; ?>;
-      const unit5 = document.querySelector('.unit');
-      const unit6 = document.querySelector('.unit2');
+      const achieve = document.querySelector('.achieve');
+      const achieve2 = document.querySelector('.achieve2');
      
       if (difference <= 0) {
-         unit5.style.display = 'block';
-         // remaining.textContent =  difference ;
-         // remaining.classList.add('remaining');
-         // unit.textContent = '見事達成! やったぜ!' ;
-         // unit.classList.add('unit');
+         achieve.style.display = 'block';
          console.log("0kg以下,達成");
       } else if (difference < goalweight * 0.01) {
-         unit5.style.display = 'block';
-         unit5.classList.add('unit2');
-         unit5.textContent ='あともう少し頑張ろう!' ;
-         // remaining.textContent = difference;
-         // unit.textContent = 'あともう少し頑張ろう!' ;
-         // unit.classList.add('unit2');
+         achieve.style.display = 'block';
+         achieve.classList.add('achieve2');
+         achieve.textContent ='あともう少し頑張ろう!';
          console.log("もう少し,頑張ろう");
       } else {
-         unit5.style.display = 'none';
+         achieve.style.display = 'none';
          console.log("まだまだやな");
       }
-
-      // todoリスト編 ajax非同期通信
-      // $(document).on('click', '.deletebtn', function() {
-      //    if (!confirm("削除しますがよろしいですか？")) {
-      //    return;
-      //    }
-      //    $(this).parents('tr').remove();
-      // });
-
-      // $(".deletebtn").click(function () {
-      //    let todo_id = $(this).data('id');
-      //    let data = {};
-      //    data.todo_id = todo_id;
-      //    $.ajax({
-      //       url: './delete.php',
-      //       type: 'post',
-      //       data: data
-      //    }).done(function(data) {
-      //       let json = JSON.parse(data);
-      //       console.log(json);
-      //    }).fail(function(data){
-      //       console.log("非同期通信 失敗");
-      //    })
-      // });
-
-      // 明日への一言編 ajax非同期通信
-      // const word = document.getElementById("word");
-      // $(".wordbtn").click(function () {
-      //    if (!confirm("削除しますか？")) {
-      //    return;
-      //    }
-      //    let post_id = $(this).data('id');
-      //    let data = {};
-      //    data.post_id = post_id;
-      //    $.ajax({
-      //       url: './postdelete.php',
-      //       type: 'post',
-      //       data: data
-      //    }).done(function(data){             
-      //       let json = JSON.parse(data);
-      //       word.textContent = '非同期通信成功!';
-      //       console.log(json);
-      //    }).fail(function(data){
-      //       console.log("非同期通信 失敗");
-      //    })
-      // });
 
    </script>
 </body>

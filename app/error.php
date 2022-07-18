@@ -85,7 +85,14 @@ class TodoValidation {
       }
    }
    
-   public function titlecheck() {
+   public function todocheck() {
+
+      if(empty($this->data['title']) && empty($this->data['content'])) {
+         $this->title_errors[] = "タイトルが空です。";
+         $this->content_errors[] = "目標が空です。";
+         return false;
+      } 
+
       if(empty($this->data['title'])) {
          $this->title_errors[] = "タイトルが空です。";
          return false;
@@ -93,27 +100,18 @@ class TodoValidation {
          $this->title_errors[] = "タイトルは50文字以内で入力してください。";
          return false;
       } 
-   }
 
-   public function contentcheck() {
-      if(empty($this->data['content'])){
+      if(empty($this->data['content'])) {
          $this->content_errors[] = "目標が空です。";
          return false;
       } else if(255 < mb_strlen($this->data['content'], 'UTF-8')) {
          $this->content_errors[] = "目標は255文字以内で入力してください。";
          return false;
-      } 
-   }
-
-   public function allcheck() {
-      if(empty($this->data['title']) && empty($this->data['content'])) {
-         $this->all_errors[] = "タイトルと目標が空です。";
-         return false;
       }
    }
 
    public function postcheck() {
-      if(empty($this->content)){
+      if(empty($this->content)) {
          $this->post_errors[] = "明日への一言が空です。";
          return false;
       } else if(255 < mb_strlen($this->content, 'UTF-8')) {
@@ -122,49 +120,100 @@ class TodoValidation {
       }
    }
 
-   //   body = 目標の体重
-   public function bodycheck() {
-      if(empty($this->weightdata['body'])){
+   public function weightheck() {
+
+      if(empty($this->weightdata['body']) && empty($this->weightdata['weight']) && empty($this->weightdata['today'])) {
+         $this->body_errors[] = "目標体重が空っぽです。";
+         $this->weight_errors[] = "体重が空っぽです。";
+         $this->today_errors[] = "日付が選択されていません。";
+         return false;
+      } else if(empty($this->weightdata['body']) && empty($this->weightdata['weight'])){
+         $this->body_errors[] = "目標体重が空っぽです。";
+         $this->weight_errors[] = "体重が空っぽです。";
+         return false;
+      } else if(empty($this->weightdata['body']) && empty($this->weightdata['today'])){
+         $this->body_errors[] = "目標体重が空っぽです。";
+         $this->today_errors[] = "日付が選択されていません。";
+         return false;
+      }
+
+      if(empty($this->weightdata['weight']) && empty($this->weightdata['today'])) {
+         $this->weight_errors[] = "体重が空っぽです。";
+         $this->today_errors[] = "日付が選択されていません。";
+         return false;
+      }
+
+      if(empty($this->weightdata['body'])) {
          $this->body_errors[] = "目標体重が空っぽです。";
          return false;
-      } else if (!is_numeric($this->weightdata['body'])){
+      } else if (!is_numeric($this->weightdata['body'])) {
          $this->body_errors[] = "数字で入力してください。";
          return false;
       } else if (6 < mb_strlen($this->weightdata['body'])) {
          $this->body_errors[] = "入力ミス、５桁以下で小数点２以下までで入力ください。";
          return false;
       }
-   }
 
-   // weight = 現在の体重
-   public function weightcheck() {
-      if(empty($this->weightdata['weight'])){
+      if(empty($this->weightdata['weight'])) {
          $this->weight_errors[] = "体重が空っぽです。";
          return false;
-      } else if (!is_numeric($this->weightdata['weight'])){
+      } else if (!is_numeric($this->weightdata['weight'])) {
          $this->weight_errors[] = "数字で入力してください。";
          return false;
       } else if (6 < mb_strlen($this->weightdata['weight'])) {
          $this->weight_errors[] = "入力ミス、５桁以下で小数点２以下までで入力ください。";
          return false;
       }
-   }
 
-   // today 日付
-   public function todaycheck() {
-      if(empty($this->weightdata['today'])){
+      if(empty($this->weightdata['today'])) {
          $this->today_errors[] = "日付が選択されていません。";
          return false;
       }
    }
 
+   //    body = 目標の体重
+   // public function bodycheck() {
+   //    if(empty($this->weightdata['body'])){
+   //       $this->body_errors[] = "目標体重が空っぽです。";
+   //       return false;
+   //    } else if (!is_numeric($this->weightdata['body'])){
+   //       $this->body_errors[] = "数字で入力してください。";
+   //       return false;
+   //    } else if (6 < mb_strlen($this->weightdata['body'])) {
+   //       $this->body_errors[] = "入力ミス、５桁以下で小数点２以下までで入力ください。";
+   //       return false;
+   //    }
+   // }
+
+   // weight = 現在の体重
+   // public function weightcheck() {
+   //    if(empty($this->weightdata['weight'])){
+   //       $this->weight_errors[] = "体重が空っぽです。";
+   //       return false;
+   //    } else if (!is_numeric($this->weightdata['weight'])){
+   //       $this->weight_errors[] = "数字で入力してください。";
+   //       return false;
+   //    } else if (6 < mb_strlen($this->weightdata['weight'])) {
+   //       $this->weight_errors[] = "入力ミス、５桁以下で小数点２以下までで入力ください。";
+   //       return false;
+   //    }
+   // }
+
+   // today 日付
+   // public function todaycheck() {
+   //    if(empty($this->weightdata['today'])){
+   //       $this->today_errors[] = "日付が選択されていません。";
+   //       return false;
+   //    }
+   // }
+
    // 現在の体重＆日付のエラー
-   public function weighttodaycheck() {
-      if(empty($this->weightdata['today'])){
-         $this->weighttoday_errors[] = "体重と日付が記入されていません。";
-         return false;
-      }
-   }
+   // public function weighttodaycheck() {
+   //    if(empty($this->weightdata['today'])){
+   //       $this->weighttoday_errors[] = "体重と日付が記入されていません。";
+   //       return false;
+   //    }
+   // }
   
 }
 

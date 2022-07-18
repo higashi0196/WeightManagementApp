@@ -32,8 +32,6 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 $token_errors = $_SESSION['token_errors'];
 unset($_SESSION['token_errors']);
-$weighttoday_errors = $_SESSION['weighttoday_errors'];
-unset($_SESSION['weighttoday_errors']);
 $weight_errors = $_SESSION['weight_errors'];
 unset($_SESSION['weight_errors']);
 $body_errors = $_SESSION['body_errors'];
@@ -85,11 +83,6 @@ unset($_SESSION['today_errors']);
          <?php endforeach;?>
       <?endif;?>
 
-      <?php if($weighttoday_errors):?>
-         <?php foreach ($weighttoday_errors as $weighttoday_error): ?>
-            <p class="error-log"><?php echo Utils::h($weighttoday_error);?></p>
-         <?php endforeach;?>
-      <?endif;?>
       <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
       <button type="submit" class="register-btn">記入</button>
    </form>

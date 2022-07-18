@@ -91,7 +91,6 @@ h1 {
 }
 
 .ideal-weight {
-   /* display: block; */
    display: inline-block;
    margin: 7px 10px;
    font-size: 23px;
@@ -109,48 +108,23 @@ h1 {
 }
 
 .ideal-day {
-   /* display: inline-block; */
    margin:0;
    font-size: 20px;
    font-weight: bold;
 }
-
-#remaining {
-   display: inline-block;
-   vertical-align: middle;
-   margin: 5px 0;
-   padding: 2px 10px;
-   color: black;
-   /* color: red; */
-   background-color:rgb(195, 195, 195);
-   font-size: 20px;
-   font-weight: bold;
-}
-
-/* .remaining { 
-   display: inline-block;
-   color: red;
-   text-decoration: line-through;
-} */
    
-.unit {
+.achieve {
    color:red;
-   display: block;
-   margin: 3px;
-   font-size: 20px;
-   font-weight: bold;
-}
-   
-.unit2 {
-   color:orange;
-   display: block;
    margin: 5px;
    font-size: 20px;
    font-weight: bold;
 }
-
-.br {
-   display: none;
+   
+.achieve2 {
+   color:orange;
+   margin: 5px;
+   font-size: 20px;
+   font-weight: bold;
 }
 
 .weight-btn {
@@ -220,7 +194,6 @@ th {
 }
 
 td {
-   /* width: 300px; */
    height: auto;
    word-wrap: break-word;
 }
@@ -253,19 +226,16 @@ td {
 
 .postcreate > span {
    display: inline-block;
-   /* vertical-align: middle; */
    margin:10px 10px 0 10px;
    font-size: 20px;
    font-weight: bold;
 }
 
 .post-btn {
-   /* vertical-align: middle; */
    width: 90px;
    height: auto;
    margin:10px 10px 0 10px;
    padding: 2px;
-   /* padding:  0.1em; */
    border: 2px solid black;
    border-radius: 5px;
    background-color: rgb(10, 200, 210);
@@ -277,7 +247,6 @@ td {
 .postdlt-btn {
    width: 65px;
    height: 35px;
-   /* height: auto; */
    margin:10px 10px 0 10px;
    padding: 2px;
    border: 2px solid black;
@@ -302,7 +271,6 @@ td {
    padding: 0.3em;
    font-size: 18px;
    text-align: center;
-   /* text-align: justify; */
 }
 
 /* 明日への一言 css 終了 */
@@ -388,9 +356,9 @@ textarea {
 @media (max-width: 767px) {
 
    /* 共通部分 開始 */
-   .all {
+   /* .all {
       margin: 0 7px;
-   }
+   } */
 
    .titleinput {
       width: 250px;
@@ -413,20 +381,12 @@ textarea {
    }
 
    .register-btn {
-      /* position: absolute;
-      left: 30%; */
-      /* top: 380px; */
-      /* top: 45%; */
       width: 75px;
       margin-top: 50px;
       padding: 2px;
    }
    
    .return-btn {
-      /* position: absolute;
-      left: 60%;
-      top: 45%; */
-      /* top: 380px; */
       width: 75px;
       margin-top: 40px;
       margin-bottom: 40px;
@@ -462,34 +422,14 @@ textarea {
       font-size: 17px;
    }
 
-   #remaining {
-      padding: 3px 10px;
+   .achieve {
+      margin: 3px;
       font-size: 17px;
    }
-
-   .unit {
-      display: block;
-      margin: 2px;
-      font-size: 17px;
-      font-weight: bold;
-   }
-
-   #unit {
-      display: block;
-      margin: 2px;
-      font-size: 17px;
-      font-weight: bold;
-   }
-
-   /* .unit2 {
-      display: block;
-      margin: 2px;
-      font-size: 17px;
-      font-weight: bold;
-   } */
-
-   .br {
-      display: none;
+      
+   .achieve2 {
+      margin: 3px;
+      font-size: 18px;
    }
 
    .weight-btn {
@@ -521,7 +461,8 @@ textarea {
 
    /* テーブル CSS  開始 */
    table {
-      width: 400px;
+      width: 95%;
+      /* width: 400px; */
    }
 
    th,td {
@@ -533,7 +474,6 @@ textarea {
    .edit-btn {
       width: 60px;
       height: auto;
-      /* height: 28px; */
       padding:1px;
       background-color:rgb(230, 225, 75);
       font-size: 13px;
@@ -542,7 +482,6 @@ textarea {
    .delete-btn {
       width: 60px;
       height: auto;
-      /* height: 25px; */
       font-size: 13px;
    }
    

@@ -17,16 +17,6 @@ class Token {
          $_SESSION['token'] = bin2hex(random_bytes(32));
       }
    }
-
-   public static function validate() {
-      if (
-         empty($_POST['token']) ||
-         empty($_SESSION['token']) ||
-         $_SESSION['token'] !== filter_input(INPUT_POST, 'token')
-         ) {
-         header("Location: ./create.php");
-      }
-   }
 }
 
 class Todocontroller {
@@ -63,32 +53,16 @@ class Todocontroller {
 
       if($validation->tokencheck() === false) {
          $token_errors = $validation->getTokenErrorMessages();
-         // session_start();
          $_SESSION['token_errors'] = $token_errors;
          header("Location: ./create.php");
          return;
-      } else if($validation->allcheck() === false) {
-         $all_errors = $validation->getAllErrorMessages();
-         // session_start();
-         $_SESSION['all_errors'] = $all_errors;
-
-         $params = sprintf("?todo_id=%s&title=%s&content=%s", $_POST['todo_id'], $_POST['title'], $_POST['content']);
-         header(sprintf("Location: ./create.php%s", $params));
-         return;
-      } else if($validation->titlecheck() === false) {
+      } else if($validation->todocheck() === false) {
          $title_errors = $validation->getTitleErrorMessages();
-         // session_start();
-         $_SESSION['title_errors'] = $title_errors;
-
-         $params = sprintf("?todo_id=%s&title=%s&content=%s", $_POST['todo_id'], $_POST['title'], $_POST['content']);
-         header(sprintf("Location: ./create.php%s", $params));
-         return;
-      } else if($validation->contentcheck() === false) {
          $content_errors = $validation->getCotentErrorMessages();
-         // session_start();
+         $_SESSION['title_errors'] = $title_errors;
          $_SESSION['content_errors'] = $content_errors;
 
-         $params = sprintf("?todo_id=%s&title=%s&content=%s",$_POST['todo_id'], $_POST['title'], $_POST['content']);
+         $params = sprintf("?todo_id=%s&title=%s&content=%s", $_POST['todo_id'], $_POST['title'], $_POST['content']);
          header(sprintf("Location: ./create.php%s", $params));
          return;
       }
@@ -112,13 +86,11 @@ class Todocontroller {
 
       if($validation->tokencheck() === false) {
          $token_errors = $validation->getTokenErrorMessages();
-         // session_start();
          $_SESSION['token_errors'] = $token_errors;
          header("Location: ./post.php");
          return;
       } else if($validation->postcheck() === false) {
          $post_errors = $validation->getPostErrorMessages();
-         // session_start();
          $_SESSION['post_errors'] = $post_errors;
          header("Location: ./post.php");
          return;
@@ -146,43 +118,24 @@ class Todocontroller {
 
       if($validation->tokencheck() === false) {
          $token_errors = $validation->getTokenErrorMessages();
-         // session_start();
          $_SESSION['token_errors'] = $token_errors;
          header("Location: ./weight.php");
          return;
-      } else if($validation->weighttodaycheck() === false) {
-         $weighttoday_errors = $validation->getWeightTodayErrorMessages();
-         // session_start();
-         $_SESSION['weighttoday_errors'] = $weighttoday_errors;
-
-         $weightparams = sprintf("?body=%s&weight=%s&today=%s", $_POST['body'], $_POST['weight'], $_POST['today']);
-         header(sprintf("Location: ./weight.php%s", $weightparams));
-         return;
-      } else if($validation->weightcheck() === false) {
+      }
+      
+      if($validation->weightheck() === false) {
+   
          $weight_errors = $validation->getWeightErrorMessages();
-         // session_start();
-         $_SESSION['weight_errors'] = $weight_errors;
-
-         $weightparams = sprintf("?body=%s&weight=%s&today=%s", $_POST['body'], $_POST['weight'], $_POST['today']);
-         header(sprintf("Location: ./weight.php%s", $weightparams));
-         return;
-      } else if($validation->bodycheck() === false) {
          $body_errors = $validation->getBodyErrorMessages();
-         // session_start();
-         $_SESSION['body_errors'] = $body_errors;
-
-         $weightparams = sprintf("?body=%s&weight=%s&today=%s", $_POST['body'], $_POST['weight'], $_POST['today']);
-         header(sprintf("Location: ./weight.php%s", $weightparams));
-         return;
-      } else if ($validation->todaycheck() === false){
          $today_errors = $validation->getTodayErrorMessages();
-         // session_start();
+         $_SESSION['weight_errors'] = $weight_errors;
+         $_SESSION['body_errors'] = $body_errors;
          $_SESSION['today_errors'] = $today_errors;
 
          $weightparams = sprintf("?body=%s&weight=%s&today=%s", $_POST['body'], $_POST['weight'], $_POST['today']);
          header(sprintf("Location: ./weight.php%s", $weightparams));
          return;
-      }
+      } 
 
       $validation_weightdata = $validation->getWeightData();
 
@@ -234,29 +187,15 @@ class Todocontroller {
 
       if($validation->tokencheck() === false) {
          $token_errors = $validation->getTokenErrorMessages();
-         // session_start();
          $_SESSION['token_errors'] = $token_errors;
          header("Location: ./edit.php");
          return;
-      } else if($validation->allcheck() === false) {
-         $all_errors = $validation->getAllErrorMessages();
-         // session_start();
-         $_SESSION['all_errors'] = $all_errors;
+      }
 
-         $params = sprintf("?id=%s&title=%s&content=%s",$_POST['id'], $_POST['title'], $_POST['content']);
-         header(sprintf("Location: ./edit.php%s", $params));
-         return;
-      } else if($validation->titlecheck() === false) {
+      if($validation->todocheck() === false) {
          $title_errors = $validation->getTitleErrorMessages();
-         // session_start();
-         $_SESSION['title_errors'] = $title_errors;
-
-         $params = sprintf("?id=%s&title=%s&content=%s",$_POST['id'], $_POST['title'], $_POST['content']);
-         header(sprintf("Location: ./edit.php%s", $params));
-         return;
-      } else if($validation->contentcheck() === false) {
          $content_errors = $validation->getCotentErrorMessages();
-         // session_start();
+         $_SESSION['title_errors'] = $title_errors;
          $_SESSION['content_errors'] = $content_errors;
 
          $params = sprintf("?id=%s&title=%s&content=%s",$_POST['id'], $_POST['title'], $_POST['content']);
