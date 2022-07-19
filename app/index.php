@@ -64,7 +64,7 @@ $bodylists = $getller->index3();
                <tr>
                   <td><?php echo Utils::h($todo['title']); ?></td>
                   <td><?php echo Utils::h($todo['content']); ?></td> 
-                  <td><a href="edit.php?todo_id=<?php echo $todo['id']?>"><button class="edit-btn">編集</button></a></td>       
+                  <td><a href="edit.php?id=<?php echo $todo['id']?>"><button class="edit-btn">編集</button></a></td>       
                   <td class="deletebtn" data-id="<?php echo $todo['id']?>"><button class="delete-btn">削除</button></td>
                </tr> 
             <?php endforeach; ?>

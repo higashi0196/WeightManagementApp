@@ -47,24 +47,24 @@ unset($_SESSION['content_errors']);
    <form method="POST" action="./edit.php">
       <div>
          <p class="title">タイトル</p>
+         <input type="text" name="title" class="titleinput" value="<?php if(isset($params['title'])):?><?php echo Utils::h($params['title']);?><?php else:?><?php echo Utils::h($todo['title']);?><?php endif;?>">
          <?php if($title_errors):?>
             <?php foreach ($title_errors as $title_error): ?>
                <p class="error-log"><?php echo Utils::h($title_error);?></p>
             <?php endforeach;?>
          <?endif;?>
-         <input type="text" name="title" class="titleinput" value="<?php if(isset($params['title'])):?><?php echo Utils::h($params['title']);?><?php else:?><?php echo Utils::h($todo['title']);?><?php endif;?>">
       </div>
 
       <div>
          <p class="title">目標</p>
+         <input type="text" name="content" class="titleinput" value="<?php if(isset($params['content'])):?><?php echo Utils::h($params['content']);?><?php else:?><?php echo Utils::h($todo['content']);?><?php endif;?>">
          <?php if($content_errors):?>
             <?php foreach ($content_errors as $content_error): ?>
                <p class="error-log"><?php echo Utils::h($content_error);?></p>
             <?php endforeach;?>
          <?endif;?>
-         <input type="text" name="content" class="titleinput" value="<?php if(isset($params['content'])):?><?php echo Utils::h($params['content']);?><?php else:?><?php echo Utils::h($todo['content']);?><?php endif;?>">
       </div>
-      <input type="hidden" name="id" value="<?php echo Utils::h($todo['id']); ?>">
+      <input type="hidden" name="id" value="<?php echo Utils::h($todo['id']);?>">
       <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
       <button type="submit" class="register-btn">更新</button>
    </form>

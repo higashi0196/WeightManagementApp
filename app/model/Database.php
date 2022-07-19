@@ -241,9 +241,9 @@ class Database
       return $postdelete;
    }
 
-   public static function isExistById($todo_id) {
+   public static function isExistById($id) {
       $pdo = new PDO(DSN, USER, PASSWORD);
-      $stmt = $pdo->query(sprintf('select * from todos where id = %s;', $todo_id));
+      $stmt = $pdo->query(sprintf('select * from todos where id = %s;', $id));
       if($stmt) {
          $todo = $stmt->fetch(PDO::FETCH_ASSOC);
       } else {
@@ -255,5 +255,19 @@ class Database
       }
       return false;
    }
+   // public static function isExistById($todo_id) {
+   //    $pdo = new PDO(DSN, USER, PASSWORD);
+   //    $stmt = $pdo->query(sprintf('select * from todos where id = %s;', $todo_id));
+   //    if($stmt) {
+   //       $todo = $stmt->fetch(PDO::FETCH_ASSOC);
+   //    } else {
+   //       $todo = array();
+   //    }
+
+   //    if($todo) {
+   //       return true;
+   //    }
+   //    return false;
+   // }
    
 }

@@ -150,11 +150,10 @@ class Todocontroller {
 
    public function edit() {
 
-      $todo_id = '';
       $params = array();
       if($_SERVER['REQUEST_METHOD'] === 'GET') {
-         if(isset($_GET['todo_id'])) {
-            $todo_id = $_GET['todo_id'];
+         if(isset($_GET['id'])) {
+            $id = $_GET['id'];
          }
          if(isset($_GET['title'])) {
             $params['title'] = $_GET['title'];
@@ -164,7 +163,7 @@ class Todocontroller {
          }
       }
 
-      $todo = Database::findId($todo_id);
+      $todo = Database::findId($id);
       
       $data = array(
          "todo" => $todo,

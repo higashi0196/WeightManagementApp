@@ -53,22 +53,22 @@ unset($_SESSION['content_errors']);
 
       <div>
          <p class="title">タイトル</p>
+         <input type="text" name="title" class="titleinput" value="<?php echo Utils::h($title);?>">
          <?php if($title_errors):?>
             <?php foreach ($title_errors as $title_error): ?>
                <p class="error-log"><?php echo Utils::h($title_error);?></p>
             <?php endforeach;?>
          <?endif;?>
-         <input type="text" name="title" class="titleinput" value="<?php echo Utils::h($title);?>">
       </div>
       
       <div>
          <p class="title">目標</p>
+         <input type="text" name="content" class="titleinput" value="<?php echo Utils::h($content);?>">
          <?php if($content_errors):?>
             <?php foreach ($content_errors as $content_error): ?>
                <p class="error-log"><?php echo Utils::h($content_error);?></p>
             <?php endforeach;?>
          <?endif;?>
-         <input type="text" name="content" class="titleinput" value="<?php echo Utils::h($content);?>">
       </div>
       <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
       <button type="submit" class="register-btn">登録</button>
