@@ -13,7 +13,7 @@ class Database
    public $weight;
    public $data = array();
 
-   public function takeId() {
+   public function getId() {
       return $this->id;
    }
 
@@ -21,7 +21,7 @@ class Database
       $this->id = $id;
    }
    
-   public function takeTitle() {
+   public function getTitle() {
       return $this->title;
    }
 
@@ -29,7 +29,7 @@ class Database
       $this->title = $title;
    }
    
-   public function takeContent() {
+   public function getContent() {
       return $this->content;
    }
 
@@ -37,7 +37,7 @@ class Database
       $this->content = $content;
    }
 
-   public function takebody() {
+   public function getbody() {
       return $this->body;
    }
 
@@ -45,7 +45,7 @@ class Database
       $this->body = $body;
    }
 
-   public function takeweight() {
+   public function getweight() {
       return $this->weight;
    }
 
@@ -53,7 +53,7 @@ class Database
       $this->weight = $weight;
    }
 
-   public function taketoday() {
+   public function gettoday() {
       return $this->today;
    }
 
@@ -61,7 +61,7 @@ class Database
       $this->today = $today;
    }
 
-   public function takeData() {
+   public function getData() {
       return $this->data;
    }
 
@@ -69,7 +69,7 @@ class Database
       $this->data = $data;
    }
 
-   public function takeweightData() {
+   public function getweightData() {
       return $this->weightdata;
    }
 
@@ -101,88 +101,77 @@ class Database
    public static function dbconnect(){
       $pdo = new PDO(DSN, USER, PASSWORD);
       $stmt = $pdo->query('SELECT * FROM todos;');
-      if($stmt) {
-         $lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
-      } else {
-         $lists = array();
-      }
+      $lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
       return $lists;
    }
 
    public static function getAll(){
       $pdo = new PDO(DSN, USER, PASSWORD);
       $stmt = $pdo->query("SELECT * FROM todos");
-      if($stmt) {
-         $lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
-      } else {
-         $lists = array();
-      }
+      $lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
       return $lists;
    }
 
    public static function getAll2(){
       $pdo = new PDO(DSN, USER, PASSWORD);
       $stmt = $pdo->query('SELECT * FROM words ORDER BY id DESC LIMIT 1;');
-      if($stmt) {
-         $wordlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
-      } else {
-         $wordlists = array();
-      }
+      $wordlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
       return $wordlists;
    }
 
    public static function getAll3(){
       $pdo = new PDO(DSN, USER, PASSWORD);
       $stmt = $pdo->query('SELECT * FROM bodies ORDER BY id DESC LIMIT 1;');
-      if($stmt) {
-         $bodylists = $stmt->fetchAll(PDO::FETCH_ASSOC);
-      } else {
-         $bodylists = array();
-      }
+      $bodylists = $stmt->fetchAll(PDO::FETCH_ASSOC);
       return $bodylists;
    }
 
    public static function getAll4(){
       $pdo = new PDO(DSN, USER, PASSWORD);
       $stmt = $pdo->query('SELECT goalweights FROM bodies ORDER BY id DESC LIMIT 1;');
-      if($stmt) {
-         $goallists = $stmt->fetch(PDO::FETCH_ASSOC);
-      } else {
-         $goallists = array();
-      }
+      $goallists = $stmt->fetch(PDO::FETCH_ASSOC);
       return $goallists;
    }
    
    public static function findId($id) {
       $pdo = new PDO(DSN, USER, PASSWORD);
-      $stmt = $pdo->query(sprintf('SELECT * FROM todos WHERE id = %s;', $id));
-      if($stmt) {
-         $todo = $stmt->fetch(PDO::FETCH_ASSOC);
-      } else {
-         $todo = array();
-      }
+      // $stmt = $pdo->query(sprintf('SELECT * FROM todos WHERE id = %s;', $id));
+      $sql = "SELECT * FROM todos WHERE id = :id";
+      $stmt = $pdo->prepare($sql);
+      $stmt->bindValue('id', $id);
+      $stmt->execute();
+      $todo = $stmt->fetch(PDO::FETCH_ASSOC);
       return $todo;
   }
 
    public function save() {
       try {
-         $query = sprintf("INSERT INTO `todos` (`title`, `content`, `created_at`, `updated_at`) VALUES ('%s', '%s', NOW(), NOW())",$this->title,$this->content);
-
          $pdo = new PDO(DSN, USER, PASSWORD);
-         $result = $pdo->query($query);
+         $sql = "INSERT INTO todos (title, content, created_at, updated_at) VALUES ('$this->title', '$this->content', NOW(), NOW())";
+
+         $stmt = $pdo->prepare($sql);
+         $stmt->bindValue('title', $title);
+         $stmt->bindValue('content', $content);
+         $stmt->execute();
+         $result = $stmt->fetchAll();
+      
       } catch(Exception $e) {
-         error_log("新規作成に失敗しました。");
          error_log($e->getMessage());
+         error_log("新規作成に失敗しました。");
       }
          return $result;
    }
 
    public function postsave() {
       try {
-         $query = sprintf("INSERT INTO `words` (`content`, `created_at`) VALUES ('%s', NOW())",$this->content);
-
          $pdo = new PDO(DSN, USER, PASSWORD);
-         $postresult = $pdo->query($query);
+         $sql = "INSERT INTO words (content, created_at) VALUES ('$this->content', NOW())";
+
+         $stmt = $pdo->prepare($sql);
+         $stmt->bindValue('content', $content);
+         $stmt->execute();
+         $postresult = $stmt->fetchAll();
+
       } catch(Exception $e) {
          // エラーログ
       }
@@ -191,11 +180,16 @@ class Database
 
    public function weightsave() {
       try {
-         $query = sprintf("INSERT INTO bodies (nowweights,goalweights, nowdate) VALUES ('%s', '%s', '%s')",$this->weight,$this->body,$this->today);
-
          $pdo = new PDO(DSN, USER, PASSWORD);
+         $sql = "INSERT INTO bodies (nowweights, goalweights, nowdate) VALUES ('$this->weight', '$this->body', '$this->today')";
+
+         $stmt = $pdo->prepare($sql);
+         $stmt->bindValue('nowweights', $nowweights);
+         $stmt->bindValue('goalweights', $goalweights);
+         $stmt->bindValue('nowdate', $nowdate);
+         $stmt->execute();
          
-         $weightresult = $pdo->query($query);
+         $weightresult = $stmt->fetchAll();
       } catch(Exception $e) {
          // エラーログ
       }
@@ -204,10 +198,16 @@ class Database
 
    public function update() {
       try {
-         $query = sprintf("UPDATE `todos` SET `title` = '%s', `content` = '%s', updated_at = NOW() WHERE id = %s",$this->title,$this->content,$this->id);
-
          $pdo = new PDO(DSN, USER, PASSWORD);
-         $result = $pdo->query($query);
+         $sql = "UPDATE todos SET title = '$this->title', content = '$this->content', updated_at = NOW() WHERE id = '$this->id'";
+
+         $stmt = $pdo->prepare($sql);
+         $stmt->bindValue('title', $title);
+         $stmt->bindValue('content', $content);
+         $stmt->bindValue('id', $id);
+         $stmt->execute();
+         $result = $stmt->fetchAll();
+
       }  catch (PDOException $e) {
          // エラーログ
       }   
@@ -216,9 +216,13 @@ class Database
 
    public function delete() {
       try {
-         $query = sprintf("DELETE FROM todos WHERE id = %s", $this->id);
          $pdo = new PDO(DSN, USER, PASSWORD);
-         $result = $pdo->query($query);
+         $sql = "DELETE FROM todos WHERE id = $this->id";
+
+         $stmt = $pdo->prepare($sql);
+         $stmt->bindValue('id', $id);
+         $stmt->execute();
+         $result = $stmt->fetch();
 
       }  catch (PDOException $e) {
       //    エラーログ
@@ -230,9 +234,11 @@ class Database
 
    public function postdelete() {
       try {
-         $query = sprintf("TRUNCATE TABLE words");
          $pdo = new PDO(DSN, USER, PASSWORD);
-         $postdelete = $pdo->query($query);
+         $sql = "TRUNCATE TABLE words";
+         $stmt = $pdo->prepare($sql);
+         $stmt->execute();
+         $result = $stmt->fetch();
       }  catch (PDOException $e) {
          // エラーログ
          // echo $e->getMessage();

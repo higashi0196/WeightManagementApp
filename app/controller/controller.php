@@ -70,6 +70,7 @@ class Todocontroller {
       $validation_data = $validation->getData();
 
       $todo = new Database;
+      // $todo->setTitle($title);
       $todo->setTitle($validation_data['title']);
       $todo->setContent($validation_data['content']);
       $result = $todo->save();
@@ -215,15 +216,15 @@ class Todocontroller {
 
    public function delete() {
 
-      $todo_id = $_POST['todo_id'];
+      $id = $_POST['id'];
       if($_SERVER['REQUEST_METHOD'] === 'GET') {
-         if(isset($_GET['todo_id'])) {
-            $todo_id = $_GET['todo_id'];
+         if(isset($_GET['id'])) {
+            $id = $_GET['id'];
          }
       }
 
       $todo = new Database;
-      $todo->setId($todo_id);
+      $todo->setId($id);
       $result = $todo->delete();
 
       return $result;

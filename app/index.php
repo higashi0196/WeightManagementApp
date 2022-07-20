@@ -90,7 +90,7 @@ $bodylists = $getller->index3();
          <p id="word"><?php echo Utils::h($wordlist['content']); ?></p>
       <?php endforeach; ?>
    <?php else : ?>
-      <p id="word">明日への一言が入力できます</p> 
+      <p id="word">明日への一言を入力できます</p> 
    <?php endif; ?> 
    </div>
 
@@ -102,13 +102,13 @@ $bodylists = $getller->index3();
       const deletebtns = document.querySelectorAll('.deletebtn');
       deletebtns.forEach(deletebtn => {
          deletebtn.addEventListener('click', () => {
-            if (!confirm('削除する?')) {
+            if (!confirm('削除しますか?')) {
                return;
             }
          fetch('./delete.php', {
             method: 'POST',
             body: new URLSearchParams({
-            todo_id: deletebtn.dataset.id,
+            id: deletebtn.dataset.id,
          }),
          }).then(response => {
             return response.json();
@@ -116,7 +116,7 @@ $bodylists = $getller->index3();
             console.log(json);
          })
          .catch(error => {
-            console.log("失敗しました");
+            console.log("削除に失敗しました");
          })
             deletebtn.parentNode.remove();
          });
@@ -135,12 +135,12 @@ $bodylists = $getller->index3();
             return response.json();
          })
          .then(json => {
-            word.textContent = '明日への一言が入力できます';
+            word.textContent = '明日への一言を入力できます';
             word.classList.add('word');
             console.log(json);
          })
          .catch(error => {
-            console.log("非同期通信が失敗しました");
+            console.log("削除に失敗しました");
          })
       });
       
