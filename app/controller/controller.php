@@ -21,27 +21,30 @@ class Token {
 
 class Todocontroller {
 
-   public function index() {
-      $lists = Database::getAll();
-      return $lists;
+   public function todos() {
+      $todolists = Database::todogetAll();
+      return $todolists;
    }
 
-   public function index2() {
-      $wordlists = Database::getAll2();
+   public function words() {
+      $wordlists = Database::wordgetAll();
       return $wordlists;
    }
 
-   public function index3() {
-      $bodylists = Database::getAll3();
+   public function bodies() {
+      $bodylists = Database::bodiesgetAll();
       return $bodylists;
    }
 
-   public function index4() {
-      $goallists = Database::getAll4();
+   public function goals() {
+      $goallists = Database::goalget();
       return $goallists;
    }
 
    public function create() {
+
+   // $title = $_POST['title'];
+   // $content = $_POST['content'];
          
       $data = array(
          "title" => $_POST['title'],
@@ -62,7 +65,7 @@ class Todocontroller {
          $_SESSION['title_errors'] = $title_errors;
          $_SESSION['content_errors'] = $content_errors;
 
-         $params = sprintf("?todo_id=%s&title=%s&content=%s", $_POST['todo_id'], $_POST['title'], $_POST['content']);
+         $params = sprintf("?id=%s&title=%s&content=%s", $_POST['id'], $_POST['title'], $_POST['content']);
          header(sprintf("Location: ./create.php%s", $params));
          return;
       }
@@ -71,6 +74,7 @@ class Todocontroller {
 
       $todo = new Database;
       // $todo->setTitle($title);
+      // $todo->setContent($content);
       $todo->setTitle($validation_data['title']);
       $todo->setContent($validation_data['content']);
       $result = $todo->save();

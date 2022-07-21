@@ -5,9 +5,9 @@ require_once(__DIR__ .'/config.php');
 
 $pdo = Database::get();
 $getller = new Todocontroller();
-$lists = $getller->index();
-$wordlists = $getller->index2();
-$bodylists = $getller->index3();
+$todolists = $getller->todos();
+$wordlists = $getller->words();
+$bodylists = $getller->bodies();
 
 ?>
 
@@ -59,8 +59,8 @@ $bodylists = $getller->index3();
          </tr>
       </thead>
       <tbody>
-         <?php if ($lists): ?>
-            <?php foreach ($lists as $todo):?>
+         <?php if ($todolists): ?>
+            <?php foreach ($todolists as $todo):?>
                <tr>
                   <td><?php echo Utils::h($todo['title']); ?></td>
                   <td><?php echo Utils::h($todo['content']); ?></td> 
@@ -87,6 +87,7 @@ $bodylists = $getller->index3();
    <div class="message">
    <?php if ($wordlists): ?>
       <?php foreach ($wordlists as $wordlist): ?> 
+         <!-- <textarea id="word"><?php echo Utils::h($wordlist['content']); ?></textarea> -->
          <p id="word"><?php echo Utils::h($wordlist['content']); ?></p>
       <?php endforeach; ?>
    <?php else : ?>

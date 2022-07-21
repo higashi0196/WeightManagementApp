@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $getller = new Todocontroller();
-$goallists = $getller->index4();
+$goallists = $getller->goals();
 
 if($_SERVER['REQUEST_METHOD'] === 'GET') {
 

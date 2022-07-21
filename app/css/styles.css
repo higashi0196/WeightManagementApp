@@ -269,9 +269,13 @@ td {
 
 #word {
    margin: 0;
+   /* margin-left:1em;
+   text-indent:-1em; */
    padding: 0.3em;
    font-size: 18px;
    text-align: center;
+   /* text-indent: 1em; */
+   white-space: pre-wrap;
 }
 
 /* 明日への一言 css 終了 */
@@ -335,6 +339,7 @@ textarea {
    font-size: 20px;
    box-shadow: 10px 10px 15px rgba(0,0,0,0.5);
    resize: none;
+   white-space: pre-wrap;
 }
 
 .post-btn2 {

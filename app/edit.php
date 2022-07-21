@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $getller = new Todocontroller();
 $data =  $getller->edit();
-$lists = $getller->index();
+$todolists = $getller->todos();
 $todo = $data['todo'];
 $params = $data['params'];
 
