@@ -36,7 +36,8 @@ $bodylists = $getller->bodies();
       <p class="ideal-weight">目標達成まであと :</p>
       <p class="goal-weight"><?php echo Utils::h($bodylist['difference']); ?> kg</p>
       <p class="achieve">見事達成！やったぜ！</p>
-      <p class="ideal-day">(<?php echo Utils::h($bodylist['nowdate']); ?> 現在)</p>
+      <p class="ideal-day">
+      (<?php echo Utils::h($bodylist['nowdate']); ?> 現在)</p>
    <?php endforeach; ?>
    
    <div>
@@ -58,21 +59,18 @@ $bodylists = $getller->bodies();
             <th scope="col">削除</th>
          </tr>
       </thead>
-      <tbody>
-         <?php if ($todolists): ?>
-            <?php foreach ($todolists as $todo):?>
-               <tr>
-                  <td><?php echo Utils::h($todo['title']); ?></td>
-                  <td><?php echo Utils::h($todo['content']); ?></td> 
-                  <td><a href="edit.php?id=<?php echo $todo['id']?>"><button class="edit-btn">編集</button></a></td>       
-                  <td class="deletebtn" data-id="<?php echo $todo['id']?>"><button class="delete-btn">削除</button></td>
-               </tr> 
-            <?php endforeach; ?>
-         <?php else : ?>
-            <td>Todoなし</td>
-            <td>Todoなし</td>
-            <td>Todoなし</td>
-            <td></td>
+         <tbody>
+         <?php foreach ($todolists as $todo):?>
+            <tr>
+               <td><?php echo Utils::h($todo['title']); ?></td>
+               <td><?php echo Utils::h($todo['content']); ?></td> 
+               <td><a href="edit.php?id=<?php echo $todo['id']?>"><button class="edit-btn">編集</button></a></td>       
+               <td><button class="delete-btn" data-id="<?php echo $todo['id']?>">削除</button></td>
+            </tr> 
+         <?php endforeach; ?>
+         <?php if (empty($todolists)): ?>
+            <td><?php echo Utils::h('todoなし'); ?></td>
+            <td><?php echo Utils::h('todoなし'); ?></td>
          <?php endif; ?>
       </tbody>
    </table> 
@@ -87,7 +85,6 @@ $bodylists = $getller->bodies();
    <div class="message">
    <?php if ($wordlists): ?>
       <?php foreach ($wordlists as $wordlist): ?> 
-         <!-- <textarea id="word"><?php echo Utils::h($wordlist['content']); ?></textarea> -->
          <p id="word"><?php echo Utils::h($wordlist['content']); ?></p>
       <?php endforeach; ?>
    <?php else : ?>
@@ -99,17 +96,17 @@ $bodylists = $getller->bodies();
 
    <script>
       
-      // todoリスト編 fetch非同期通信
-      const deletebtns = document.querySelectorAll('.deletebtn');
-      deletebtns.forEach(deletebtn => {
-         deletebtn.addEventListener('click', () => {
+      // todoリスト 削除ボタン非同期通信
+      const deletebtns = document.querySelectorAll('.delete-btn');
+      deletebtns.forEach(btn => {
+         btn.addEventListener('click', () => {
             if (!confirm('削除しますか?')) {
                return;
             }
          fetch('./delete.php', {
             method: 'POST',
             body: new URLSearchParams({
-            id: deletebtn.dataset.id,
+            id: btn.dataset.id,
          }),
          }).then(response => {
             return response.json();
@@ -119,11 +116,11 @@ $bodylists = $getller->bodies();
          .catch(error => {
             console.log("削除に失敗しました");
          })
-            deletebtn.parentNode.remove();
+            btn.closest('tr').remove();
          });
       });
 
-      // 明日への一言編 fetch非同期通信
+      // 明日への一言編 削除ボタン非同期通信
       const word = document.getElementById("word");
       const wordbtn = document.querySelector('.wordbtn');
       wordbtn.addEventListener('click', () => {

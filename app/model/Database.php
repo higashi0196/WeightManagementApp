@@ -1,6 +1,7 @@
 <?php
 
 // modleフォルダ todo.php
+session_start();
 
 require_once('config.php');
 
@@ -11,7 +12,6 @@ class Database
    public $content;
    public $body;
    public $weight;
-   public $data = array();
 
    public function getId() {
       return $this->id;
@@ -148,7 +148,7 @@ class Database
       try {
          $pdo = new PDO(DSN, USER, PASSWORD);
          // $sql = "INSERT INTO todos (title, content, created_at, updated_at) VALUES (:title, :content, NOW(), NOW())";
-         $sql = "INSERT INTO todos (title, content, created_at, updated_at) VALUES ('$this->title', '$this->content', NOW(), NOW())";
+         $sql = "INSERT INTO todos (title, content, created_at, updated_at) VALUES ($this->title, '$this->content', NOW(), NOW())";
 
          $stmt = $pdo->prepare($sql);
          $stmt->bindValue('title', $title);

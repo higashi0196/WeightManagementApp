@@ -11,6 +11,8 @@ body {
    background-repeat: no-repeat;
 	background-position: center;
    background-size: cover;
+   user-select: none;
+   cursor:default;
 }
 
 .all {
@@ -22,7 +24,6 @@ body {
    width: 35%;
    height: auto;
    margin: 10px auto 0;
-   /* margin: 10px auto; */
    padding: 3px 5px;
    font-size: 18px;
    border: 2px solid rgba(125, 125, 125, 0.8);
@@ -269,8 +270,6 @@ td {
 
 #word {
    margin: 0;
-   /* margin-left:1em;
-   text-indent:-1em; */
    padding: 0.3em;
    font-size: 18px;
    text-align: center;
@@ -323,6 +322,7 @@ td {
    font-size: 20px;
    font-weight: bold;
    text-align: center;
+   cursor: pointer;
 }
 
 /* weight.phpページ 終了 */
