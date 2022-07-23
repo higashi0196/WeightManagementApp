@@ -1,7 +1,6 @@
 <?php
 
 // controllerフォルダ todocontroller
-session_start();
 require_once('config.php');
 require_once('error.php');
 
@@ -43,8 +42,8 @@ class Todocontroller {
 
    public function create() {
 
-   $title = $_POST['title'];
-   $content = $_POST['content'];
+   // $title = $_POST['title'];
+   // $content = $_POST['content'];
          
       $data = array(
          "title" => $_POST['title'],
@@ -73,10 +72,10 @@ class Todocontroller {
       $validation_data = $validation->getData();
 
       $todo = new Database;
-      $todo->setTitle($title);
-      $todo->setContent($content);
-      // $todo->setTitle($validation_data['title']);
-      // $todo->setContent($validation_data['content']);
+      // $todo->setTitle($title);
+      // $todo->setContent($content);
+      $todo->setTitle($validation_data['title']);
+      $todo->setContent($validation_data['content']);
       $result = $todo->save();
 
       header("Location: ./index.php");

@@ -12,6 +12,9 @@ class Database
    public $content;
    public $body;
    public $weight;
+   public $today;
+   public $data;
+   public $weightdata;
 
    public function getId() {
       return $this->id;
@@ -93,7 +96,7 @@ class Database
          }
          return self::$osaka;
       } catch (PDOException $e) {
-         echo $e->getMessage();
+         echo $e->getMessage()  . PHP_EOL;
          exit;
       }
    }
@@ -105,29 +108,41 @@ class Database
    //    return $lists;
    // }
 
-   public static function todogetAll(){
-      $pdo = new PDO(DSN, USER, PASSWORD);
+   public static function todogetAll() {
+      $pdo = new PDO(DSN, USER, PASSWORD,  [
+         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+         PDO::ATTR_EMULATE_PREPARES => false,
+      ]);
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
       $stmt = $pdo->query("SELECT * FROM todos");
       $todolists = $stmt->fetchAll(PDO::FETCH_ASSOC);
       return $todolists;
    }
 
-   public static function wordgetAll(){
+   public static function wordgetAll() {
       $pdo = new PDO(DSN, USER, PASSWORD);
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
       $stmt = $pdo->query('SELECT * FROM words ORDER BY id DESC LIMIT 1;');
       $wordlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
       return $wordlists;
    }
 
-   public static function bodiesgetAll(){
+   public static function bodiesgetAll() {
       $pdo = new PDO(DSN, USER, PASSWORD);
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
       $stmt = $pdo->query('SELECT * FROM bodies ORDER BY id DESC LIMIT 1;');
       $bodylists = $stmt->fetchAll(PDO::FETCH_ASSOC);
       return $bodylists;
    }
 
-   public static function goalget(){
+   public static function goalget() {
       $pdo = new PDO(DSN, USER, PASSWORD);
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
       $stmt = $pdo->query('SELECT goalweights FROM bodies ORDER BY id DESC LIMIT 1;');
       $goallists = $stmt->fetch(PDO::FETCH_ASSOC);
       return $goallists;
@@ -135,6 +150,8 @@ class Database
    
    public static function findId($id) {
       $pdo = new PDO(DSN, USER, PASSWORD);
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
       $sql = "SELECT * FROM todos WHERE id = :id";
 
       $stmt = $pdo->prepare($sql);
@@ -146,19 +163,28 @@ class Database
 
    public function save() {
       try {
-         $pdo = new PDO(DSN, USER, PASSWORD);
-         // $sql = "INSERT INTO todos (title, content, created_at, updated_at) VALUES (:title, :content, NOW(), NOW())";
-         $sql = "INSERT INTO todos (title, content, created_at, updated_at) VALUES ($this->title, '$this->content', NOW(), NOW())";
+         $pdo = new PDO(DSN, USER, PASSWORD
+         // ,[
+         //    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+         //    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+         //    PDO::ATTR_EMULATE_PREPARES => false,
+         // ]
+      );
+         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+         $sql = "INSERT INTO todos (title, content, created_at, updated_at) VALUES ('$this->title', '$this->content', NOW(), NOW())";
+         // $pdo->beginTransaction();
 
          $stmt = $pdo->prepare($sql);
          $stmt->bindValue('title', $title);
          $stmt->bindValue('content', $content);
          $stmt->execute();
-      
+         
+         // $pdo->commit();
+         
       } catch(Exception $e) {
-         echo $e->getMessage();
-         error_log($e->getMessage());
-         error_log("新規作成に失敗しました。");
+         // $pdo->rollBack();
+         echo "新規作成に失敗しました。" . $e->getMessage();
          exit;
       }
    }
@@ -166,6 +192,8 @@ class Database
    public function postsave() {
       try {
          $pdo = new PDO(DSN, USER, PASSWORD);
+         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
          $sql = "INSERT INTO words (content, created_at) VALUES ('$this->content', NOW())";
 
          $stmt = $pdo->prepare($sql);
@@ -173,14 +201,17 @@ class Database
          $stmt->execute();
 
       } catch(Exception $e) {
-         echo $e->getMessage();
-         exit;
+          // $pdo->rollBack();
+          echo "明日への一言の入力に失敗しました。" . $e->getMessage();
+          exit;
       }
    }
 
    public function weightsave() {
       try {
          $pdo = new PDO(DSN, USER, PASSWORD);
+         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
          $sql = "INSERT INTO bodies (nowweights, goalweights, nowdate) VALUES ('$this->weight', '$this->body', '$this->today')";
 
          $stmt = $pdo->prepare($sql);
@@ -190,14 +221,17 @@ class Database
          $stmt->execute();
          
       } catch(Exception $e) {
-         echo $e->getMessage();
-         exit;
+          // $pdo->rollBack();
+          echo "体重入力に失敗しました。" . $e->getMessage();
+          exit;
       }
    }
 
    public function update() {
       try {
          $pdo = new PDO(DSN, USER, PASSWORD);
+         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
          $sql = "UPDATE todos SET title = '$this->title', content = '$this->content', updated_at = NOW() WHERE id = '$this->id'";
 
          $stmt = $pdo->prepare($sql);
@@ -207,14 +241,17 @@ class Database
          $stmt->execute();
 
       }  catch (PDOException $e) {
-         echo $e->getMessage();
-         exit;
+          // $pdo->rollBack();
+          echo "更新に失敗しました。" . $e->getMessage();
+          exit;
       }   
    }
 
    public function delete() {
       try {
          $pdo = new PDO(DSN, USER, PASSWORD);
+         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
          $sql = "DELETE FROM todos WHERE id = $this->id";
 
          $stmt = $pdo->prepare($sql);
@@ -222,22 +259,26 @@ class Database
          $stmt->execute();
 
       }  catch (PDOException $e) {
-         echo $e->getMessage();
-         exit;
+          // $pdo->rollBack();
+          echo "削除に失敗しました。" . $e->getMessage();
+          exit;
       }   
    }
 
    public function postdelete() {
       try {
          $pdo = new PDO(DSN, USER, PASSWORD);
+         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
          $sql = "TRUNCATE TABLE words";
 
          $stmt = $pdo->prepare($sql);
          $stmt->execute();
 
       }  catch (PDOException $e) {
-         echo $e->getMessage();
-         exit;
+          // $pdo->rollBack();
+          echo "削除に失敗しました。" . $e->getMessage();
+          exit;
       }   
    }
    
