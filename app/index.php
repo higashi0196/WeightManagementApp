@@ -21,7 +21,6 @@ $bodylists = $getller->bodies();
 </head>
 <body>
 <div class="all">
-
    <h1>
       <img src="./images/logo3.png" alt="" class="logo">
       体重管理リスト

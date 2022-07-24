@@ -72,8 +72,6 @@ class Todocontroller {
       $validation_data = $validation->getData();
 
       $todo = new Database;
-      // $todo->setTitle($title);
-      // $todo->setContent($content);
       $todo->setTitle($validation_data['title']);
       $todo->setContent($validation_data['content']);
       $result = $todo->save();

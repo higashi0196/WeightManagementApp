@@ -13,9 +13,7 @@ class Database
    public $body;
    public $weight;
    public $today;
-   public $data;
-   public $weightdata;
-
+   
    public function getId() {
       return $this->id;
    }
@@ -62,22 +60,6 @@ class Database
 
    public function settoday($today) {
       $this->today = $today;
-   }
-
-   public function getData() {
-      return $this->data;
-   }
-
-   public function setData($data) {
-      $this->data = $data;
-   }
-
-   public function getweightData() {
-      return $this->weightdata;
-   }
-
-   public function setweightData($weightdata) {
-      $this->weightdata = $weightdata;
    }
 
    private static $osaka;
@@ -163,28 +145,23 @@ class Database
 
    public function save() {
       try {
-         $pdo = new PDO(DSN, USER, PASSWORD
-         // ,[
-         //    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-         //    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
-         //    PDO::ATTR_EMULATE_PREPARES => false,
-         // ]
-      );
+         
+         $pdo = new PDO(DSN, USER, PASSWORD);
          $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
          $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
          $sql = "INSERT INTO todos (title, content, created_at, updated_at) VALUES ('$this->title', '$this->content', NOW(), NOW())";
-         // $pdo->beginTransaction();
 
+         $pdo->beginTransaction();
          $stmt = $pdo->prepare($sql);
          $stmt->bindValue('title', $title);
          $stmt->bindValue('content', $content);
          $stmt->execute();
          
-         // $pdo->commit();
+         $pdo->commit();
          
       } catch(Exception $e) {
-         // $pdo->rollBack();
          echo "新規作成に失敗しました。" . $e->getMessage();
+         $pdo->rollBack();
          exit;
       }
    }
@@ -196,9 +173,12 @@ class Database
          $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
          $sql = "INSERT INTO words (content, created_at) VALUES ('$this->content', NOW())";
 
+         // $pdo->beginTransaction();
          $stmt = $pdo->prepare($sql);
          $stmt->bindValue('content', $content);
          $stmt->execute();
+
+         // $pdo->commit();
 
       } catch(Exception $e) {
           // $pdo->rollBack();
@@ -214,11 +194,14 @@ class Database
          $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
          $sql = "INSERT INTO bodies (nowweights, goalweights, nowdate) VALUES ('$this->weight', '$this->body', '$this->today')";
 
+         // $pdo->beginTransaction();
          $stmt = $pdo->prepare($sql);
          $stmt->bindValue('nowweights', $weight);
          $stmt->bindValue('goalweights', $body);
          $stmt->bindValue('nowdate', $today);
          $stmt->execute();
+
+         // $pdo->commit();
          
       } catch(Exception $e) {
           // $pdo->rollBack();
@@ -234,11 +217,14 @@ class Database
          $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
          $sql = "UPDATE todos SET title = '$this->title', content = '$this->content', updated_at = NOW() WHERE id = '$this->id'";
 
+         // $pdo->beginTransaction();
          $stmt = $pdo->prepare($sql);
          $stmt->bindValue('title', $title);
          $stmt->bindValue('content', $content);
          $stmt->bindValue('id', $id);
          $stmt->execute();
+
+         // $pdo->commit();
 
       }  catch (PDOException $e) {
           // $pdo->rollBack();
@@ -254,9 +240,12 @@ class Database
          $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
          $sql = "DELETE FROM todos WHERE id = $this->id";
 
+         // $pdo->beginTransaction();
          $stmt = $pdo->prepare($sql);
          $stmt->bindValue('id', $id);
          $stmt->execute();
+
+         // $pdo->commit();
 
       }  catch (PDOException $e) {
           // $pdo->rollBack();
@@ -272,8 +261,11 @@ class Database
          $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
          $sql = "TRUNCATE TABLE words";
 
+         // $pdo->beginTransaction();
          $stmt = $pdo->prepare($sql);
          $stmt->execute();
+
+         // $pdo->commit();
 
       }  catch (PDOException $e) {
           // $pdo->rollBack();
