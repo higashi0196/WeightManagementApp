@@ -1,3 +1,6 @@
+
+use todolists;
+
 CREATE TABLE todos (
    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
    title VARCHAR(50), 
@@ -6,9 +9,9 @@ CREATE TABLE todos (
    updated_at datetime NOT NULL
 );
 
-INSERT INTO `todos` (`title`, `content`, `created_at`, `updated_at`) VALUES ('%s', '%s', NOW(), NOW());
+INSERT INTO todos (title, content, created_at, updated_at) VALUES ('%s', '%s', NOW(), NOW());
 
-UPDATE `todos` SET `title` = '%s', `content` = '%s', updated_at = NOW() WHERE id = %s;
+UPDATE todos SET title = '', content = '', updated_at = NOW() WHERE id = '';
 
 SELECT * FROM todos;
 
@@ -18,7 +21,7 @@ CREATE TABLE words (
    created_at datetime NOT NULL
 );
 
-INSERT INTO `words` (`content`, `created_at`) VALUES ('%s', NOW());
+INSERT INTO words (content, created_at) VALUES ('', NOW());
 
 SELECT * FROM words;
 
@@ -30,7 +33,7 @@ CREATE TABLE bodies (
    nowdate date NOT NULL
 );
 
-INSERT INTO `bodies` (`nowweights`, `goalweights`, `nowdate`) VALUES ('%s', '%S', '%s');
+INSERT INTO bodies (nowweights, goalweights, nowdate) VALUES ('', '', '');
 
 SELECT * FROM bodies;
 
@@ -41,8 +44,6 @@ CREATE TABLE pictures (
    created_at datetime NOT NULL
 );
 
-INSERT INTO pictures (`file_name`, `file_path` `created_at`) VALUES ('%s','%s', NOW());
+INSERT INTO pictures (file_name, file_path, created_at) VALUES ('', '', NOW());
 
 SELECT * FROM pictures;
-
-use todolists;

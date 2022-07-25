@@ -22,9 +22,9 @@ $bodylists = $getller->bodies();
 <body>
 <div class="all">
    <h1>
-      <img src="./images/logo3.png" alt="" class="logo">
+      <img src="./logos/logo3.png" alt="" class="logo">
       体重管理リスト
-      <img src="./images/logo3.png" class="logo">
+      <img src="./logos/logo3.png" class="logo">
    </h1>
 
    <?php foreach ($bodylists as $bodylist): ?>
@@ -41,7 +41,7 @@ $bodylists = $getller->bodies();
    
    <div>
       <a href="weight.php"><button class="weight-btn">体重記入</button></a>
-      <!-- <a href="picture.php"><button class="picutre-btn">画像アップ移動</button></a> -->
+      <a href="file.php"><button class="picutre-btn">画像アップ移動</button></a>
    </div>
    
    <div>
