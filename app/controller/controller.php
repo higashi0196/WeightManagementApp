@@ -79,6 +79,13 @@ class Todocontroller {
       header("Location: ./index.php");
    }
 
+   // public function pictures() {
+
+   //    $img = new Database;
+   //    $imgresult = $img->filesave();
+   //    return $imgresult;
+   // }
+
    public function postcreate() {
 
       $content = (filter_input(INPUT_POST, 'postcontent'));

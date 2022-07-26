@@ -1,6 +1,7 @@
 <?php
 
 require_once('config.php');
+// session_start();
 
 $file = $_FILES['img'];
 $filename = basename($file['name']);
@@ -9,8 +10,7 @@ $fil_err = $file['error'];
 $filesize = $file['size'];
 $upload_dir = './images/';
 $save_filename = date('YmdHis') . $filename;
-$save_path = $upload_dir.$save_filename;
-
+$save_path = $upload_dir . $save_filename;
 
 // ファイルサイズが1MB未満か？
 if($filesize > 1048576 || $file_err == 2) {
@@ -29,22 +29,35 @@ if(!in_array(strtolower($file_ext), $allow_ext)) {
 if (is_uploaded_file($tmp_path)) {
    if(move_uploaded_file($tmp_path, $save_path)) {
       echo $filename . 'を'. $upload_dir. ' アップしました。';
-      $result = filesave($filename, $save_path);
+      // $getller = new Todocontroller();
+      // $getller->pictures();
+     
+      try {
+         $pdo = new PDO(DSN, USER, PASSWORD);
+         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+   
+         $sql = "INSERT INTO pictures (file_name, file_path, created_at) VALUES ('$filename', '$save_path', NOW())";
+         $stmt = $pdo->prepare($sql);
+         $stmt->bindValue('file_name', $filename);
+         $stmt->bindValue('file_path', $save_path);
+         $imgresult = $stmt->execute();
+         return $imgresult;
+   
+         } catch (PDOException $e) {
+            $pdo->rollBack();
+            echo "画像アップロードに失敗しました。" . $e->getMessage();
+            return $imgresult;
+         }   
 
-      if ($result) {
-         echo 'データベースの保存に成功！';
       } else {
-         echo 'データベースの保存に失敗';
+         echo 'ファイルが保存できませんでした。';
       }
-
    } else {
-      echo 'ファイルが保存できませんでした。';
-   }
-} else {
-   echo 'ファイルが選択されていません。';
+      echo 'ファイルが選択されていません。';
 };
 
-// var_dump($file);
+var_dump($file);
 ?>
 
 <a href="./file.php">戻る</a>

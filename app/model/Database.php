@@ -13,6 +13,9 @@ class Database
    public $body;
    public $weight;
    public $today;
+   // public $filename;
+   // public $save_path;
+   
 
    public function getId() {
       return $this->id;
@@ -61,6 +64,23 @@ class Database
    public function settoday($today) {
       $this->today = $today;
    }
+
+   
+   // public function getFilename() {
+   //    return $this->filename;
+   // }
+   
+   // public function setFilenamey($filenamey) {
+   //    $this->filenamey = $filenamey;
+   // }
+
+   // public function getSave_path() {
+   //    return $this->save_path;
+   // }
+
+   // public function setSave_path($save_path) {
+   //    $this->today = $today;
+   // }
 
    private static $osaka;
    
@@ -142,6 +162,28 @@ class Database
       $todo = $stmt->fetch(PDO::FETCH_ASSOC);
       return $todo;
   }
+
+   // public function filesave() {
+   //    try {
+   //       $pdo = new PDO(DSN, USER, PASSWORD);
+   //       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   //       $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+
+   //       $sql = "INSERT INTO pictures (file_name, file_path, created_at) VALUES ('$filename', '$save_path', NOW())";
+   //       $sql = "INSERT INTO pictures (file_name, file_path, created_at) VALUES ('$this->filename', '$this->save_path', NOW())";
+   //       $stmt = $pdo->prepare($sql);
+   //       $stmt->bindValue('$this->file_name', $filename);
+   //       $stmt->bindValue('$this->file_path', $save_path);
+
+   //       $imgresult = $stmt->execute();
+   //       return $imgresult;
+
+   //    } catch (PDOException $e) {
+   //       $pdo->rollBack();
+   //       echo "画像アップロードに失敗しました。" . $e->getMessage();
+   //       return $imgresult;
+   //    }   
+   // }
 
    public function save() {
       try {
@@ -272,29 +314,6 @@ class Database
           echo "削除に失敗しました。" . $e->getMessage();
           exit;
       }   
-   }
-
-   public function filesave($filename, $save_path) {
-      $result = false;
-      try {
-         $pdo = new PDO(DSN, USER, PASSWORD);
-         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-   
-         $sql = "INSERT INTO pictures (file_name, file_path, created_at) VALUES (?, ?, NOW())";
-         $stmt = $pdo->prepare($sql);
-         $stmt->bindValue(1, $filename);
-         $stmt->bindValue(2, $save_path);
-         // $stmt->bindValue(3, $id);
-         // $stmt->execute();
-         $result = $stmt->execute();
-         return $result;
-
-      } catch (PDOException $e) {
-         // $pdo->rollBack();
-         echo "画像アップロードに失敗しました。" . $e->getMessage();
-         exit;
-     }   
    }
    
 }
