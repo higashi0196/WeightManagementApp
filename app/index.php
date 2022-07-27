@@ -41,7 +41,7 @@ $bodylists = $getller->bodies();
    
    <div>
       <a href="weight.php"><button class="weight-btn">体重記入</button></a>
-      <a href="file.php"><button class="picutre-btn">画像アップ移動</button></a>
+      <a href="file.php"><button class="picutre-btn">画像アップロード</button></a>
    </div>
    
    <div>

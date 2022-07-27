@@ -7,7 +7,7 @@ body {
    background-color: rgba(239, 240, 233, 0.003);
    text-align: center;
    /* font-family: "メイリオ", sans-serif; */
-   background-image: url(./../images/picture7.jpg);
+   background-image: url(./../logos/picture7.jpg);
    background-repeat: no-repeat;
 	background-position: center;
    background-size: cover;
@@ -141,8 +141,8 @@ h1 {
    cursor : pointer;
 }
 
-/* .picutre-btn {
-   width: 150px;
+.picutre-btn {
+   width: 140px;
    height: auto;
    margin: 20px 10px 15px;
    padding: 4px 5px;
@@ -151,7 +151,7 @@ h1 {
    background-color: rgb(205, 220, 200);
    font-size: 15px;
    cursor : pointer;
-} */
+}
 
 h2 {
    display: inline-block;
@@ -446,12 +446,10 @@ textarea {
       
    }
    
-   /* .picutre-btn {
-      width: 120px;
-      height: auto;
+   .picutre-btn {
       margin: 15px 7px 10px;
       padding: 3px;
-   } */
+   }
 
    h2 {
       font-size: 20px;
