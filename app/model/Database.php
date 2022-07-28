@@ -13,8 +13,8 @@ class Database
    public $body;
    public $weight;
    public $today;
-   // public $filename;
-   // public $save_path;
+   public $filename;
+   public $save_path;
    
 
    public function getId() {
@@ -41,46 +41,45 @@ class Database
       $this->content = $content;
    }
 
-   public function getbody() {
+   public function getBody() {
       return $this->body;
    }
 
-   public function setbody($body) {
+   public function setBody($body) {
       $this->body = $body;
    }
 
-   public function getweight() {
+   public function getWeight() {
       return $this->weight;
    }
 
-   public function setweight($weight) {
+   public function setWeight($weight) {
       $this->weight = $weight;
    }
 
-   public function gettoday() {
+   public function getToday() {
       return $this->today;
    }
 
-   public function settoday($today) {
+   public function setToday($today) {
       $this->today = $today;
    }
 
+   public function getFilename() {
+      return $this->filename;
+   }
    
-   // public function getFilename() {
-   //    return $this->filename;
-   // }
-   
-   // public function setFilenamey($filenamey) {
-   //    $this->filenamey = $filenamey;
-   // }
+   public function setFilename($filename) {
+      $this->filename = $filename;
+   }
 
-   // public function getSave_path() {
-   //    return $this->save_path;
-   // }
+   public function getSave_path() {
+      return $this->save_path;
+   }
 
-   // public function setSave_path($save_path) {
-   //    $this->today = $today;
-   // }
+   public function setSave_path($save_path) {
+      $this->save_path = $save_path;
+   }
 
    private static $osaka;
    
@@ -149,6 +148,15 @@ class Database
       $goallists = $stmt->fetch(PDO::FETCH_ASSOC);
       return $goallists;
    }
+
+   public function fileget() {
+      $pdo = new PDO(DSN, USER, PASSWORD);
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+      $stmt = $pdo->query('SELECT * FROM pictures;');
+      $filelists = $stmt->fetch(PDO::FETCH_ASSOC);
+      return $filelists;
+   }
    
    public static function findId($id) {
       $pdo = new PDO(DSN, USER, PASSWORD);
@@ -163,31 +171,25 @@ class Database
       return $todo;
   }
 
-   // public function filesave() {
-   //    try {
-   //       $pdo = new PDO(DSN, USER, PASSWORD);
-   //       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   //       $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+   public function filesave($filename,$save_path) {
+      try {
+         $pdo = new PDO(DSN, USER, PASSWORD);
+         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+         $sql = "INSERT INTO pictures (file_name, file_path, created_at) VALUES (?, ?, NOW())";
+         $stmt = $pdo->prepare($sql);
+         $stmt->bindValue(1, $filename);
+         $stmt->bindValue(2, $save_path);
+         $stmt->execute();
 
-   //       $sql = "INSERT INTO pictures (file_name, file_path, created_at) VALUES ('$filename', '$save_path', NOW())";
-   //       $sql = "INSERT INTO pictures (file_name, file_path, created_at) VALUES ('$this->filename', '$this->save_path', NOW())";
-   //       $stmt = $pdo->prepare($sql);
-   //       $stmt->bindValue('$this->file_name', $filename);
-   //       $stmt->bindValue('$this->file_path', $save_path);
+      } catch (PDOException $e) {
+         echo "画像アップロードに失敗しました。" . $e->getMessage();
 
-   //       $imgresult = $stmt->execute();
-   //       return $imgresult;
-
-   //    } catch (PDOException $e) {
-   //       $pdo->rollBack();
-   //       echo "画像アップロードに失敗しました。" . $e->getMessage();
-   //       return $imgresult;
-   //    }   
-   // }
+      }   
+   }
 
    public function save() {
       try {
-         
          $pdo = new PDO(DSN, USER, PASSWORD);
          $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
          $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);

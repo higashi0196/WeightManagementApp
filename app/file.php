@@ -6,10 +6,16 @@ require_once('config.php');
 // $token = new Token();
 // $token->create();
 
-// $getller = new Todocontroller();
-// $getller->pictures();
-// exit;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+   $getller = new Todocontroller();
+   $getller->pictures();
+   exit;
+}
 
+$getller = new Todocontroller();
+// $getller->files();
+$files = $getller->files();
+var_dump($files);
 ?>
 
 <!DOCTYPE html>
@@ -22,11 +28,18 @@ require_once('config.php');
 </head>
 <body>
 <p class="outline">画像アップロード</p>
-<form action="file_upload.php" method="POST" enctype="multipart/form-data">
+<form action="file.php" method="POST" enctype="multipart/form-data">
+<!-- <form action="file_upload.php" method="POST" enctype="multipart/form-data"> -->
    <input type="file" name="img">
    <input type="hidden" name="MAX_FILE_SIZE" value="1048576">
    <input type="submit" value="送信する">
 </form>
 <a href="index.php"><button class="return-btn">戻る</button></a>
+<div>
+   <?php foreach ($files as $file): ?> 
+      <img src="<?php echo "{$file['file_path']}"; ?>" alt="">
+      <p><?php echo $file; ?></p>
+   <?php endforeach; ?>
+</div>
 </body>
 </html>

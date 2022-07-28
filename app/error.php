@@ -96,8 +96,8 @@ class TodoValidation {
       if(empty($this->content)) {
          $this->post_errors[] = "明日への一言が空です。";
          return false;
-      } else if(50 < mb_strlen($this->content, 'UTF-8')) {
-         $this->post_errors[] = "50文字以内で入力してください。";
+      } else if(255 < mb_strlen($this->content, 'UTF-8')) {
+         $this->post_errors[] = "255文字以内で入力してください。";
          return false;
       }
    }
