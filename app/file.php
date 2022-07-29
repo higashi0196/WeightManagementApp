@@ -2,7 +2,7 @@
 
 require_once('config.php');
 
-// session_start();
+session_start();
 // $token = new Token();
 // $token->create();
 
@@ -13,9 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $getller = new Todocontroller();
-// $getller->files();
-$files = $getller->files();
-var_dump($files);
+$filelists = $getller->files();
+
 ?>
 
 <!DOCTYPE html>
@@ -36,9 +35,9 @@ var_dump($files);
 </form>
 <a href="index.php"><button class="return-btn">戻る</button></a>
 <div>
-   <?php foreach ($files as $file): ?> 
-      <img src="<?php echo "{$file['file_path']}"; ?>" alt="">
-      <p><?php echo $file; ?></p>
+   <?php foreach ($filelists as $filelist): ?> 
+      <img src="<?php echo $filelist['file_path']; ?>" alt=""><br>
+      <!-- <p><?php echo $filelist['file_path']; ?></p> -->
    <?php endforeach; ?>
 </div>
 </body>

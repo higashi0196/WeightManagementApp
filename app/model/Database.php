@@ -149,12 +149,12 @@ class Database
       return $goallists;
    }
 
-   public function fileget() {
+   public function fileAllget() {
       $pdo = new PDO(DSN, USER, PASSWORD);
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-      $stmt = $pdo->query('SELECT * FROM pictures;');
-      $filelists = $stmt->fetch(PDO::FETCH_ASSOC);
+      $stmt = $pdo->query("SELECT * FROM pictures");
+      $filelists = $stmt->fetchAll(PDO::FETCH_ASSOC);
       return $filelists;
    }
    

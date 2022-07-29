@@ -41,7 +41,7 @@ class Todocontroller {
    }
 
    public function files() {
-      $filelists = Database::fileget();
+      $filelists = Database::fileAllget();
       return $filelists;
    }
 
@@ -91,8 +91,7 @@ class Todocontroller {
       $tmp_path = $file['tmp_name'];
       $fil_err = $file['error'];
       $filesize = $file['size'];
-      $upload_dir = 'images/';
-      // $upload_dir = './images/';
+      $upload_dir = './images/';
       $save_filename = date('YmdHis') . $filename;
       $save_path = $upload_dir . $save_filename;
 
