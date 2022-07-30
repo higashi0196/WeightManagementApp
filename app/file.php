@@ -15,6 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $getller = new Todocontroller();
 $filelists = $getller->files();
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -28,17 +30,24 @@ $filelists = $getller->files();
 <body>
 <p class="outline">画像アップロード</p>
 <form action="file.php" method="POST" enctype="multipart/form-data">
-<!-- <form action="file_upload.php" method="POST" enctype="multipart/form-data"> -->
-   <input type="file" name="img">
+   <div>
+      <input type="file" name="img" class="fileinput">
+      <p class="memo">☆ 一言メモ ☆</p>
+      <textarea name="comment" class="comment"></textarea>
+   </div>
+   <button type="submit" class="file-btn">送信</button>
    <input type="hidden" name="MAX_FILE_SIZE" value="1048576">
-   <input type="submit" value="送信する">
 </form>
 <a href="index.php"><button class="return-btn">戻る</button></a>
-<div>
-   <?php foreach ($filelists as $filelist): ?> 
-      <img src="<?php echo $filelist['file_path']; ?>" alt=""><br>
-      <!-- <p><?php echo $filelist['file_path']; ?></p> -->
-   <?php endforeach; ?>
-</div>
+<li>
+   <ul>
+      <?php foreach ($filelists as $filelist): ?> 
+         <img src="<?php echo $filelist['file_path']; ?>" alt=""  >
+         <p><?php echo $filelist['comment']; ?></p>
+      <?php endforeach; ?>
+   </ul>
+</li>
+<script>
+</script>
 </body>
 </html>

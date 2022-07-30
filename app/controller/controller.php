@@ -94,7 +94,16 @@ class Todocontroller {
       $upload_dir = './images/';
       $save_filename = date('YmdHis') . $filename;
       $save_path = $upload_dir . $save_filename;
+      $comment = filter_input(INPUT_POST, 'comment',FILTER_SANITIZE_SPECIAL_CHARS);
 
+      // コメントが入力されているかどうか？
+      if (empty($comment)) {
+         echo 'コメントの入力をお願いします。';
+      }
+      // 255文字以内か？
+      if (strlen($comment) > 255) {
+         echo 'コメントは255文字以内でお願いします。';
+      }
       // ファイルサイズが1MB未満か？
       if($filesize > 1048576 || $file_err == 2) {
          echo 'ファイルは1MB未満でお願いします。';
@@ -113,9 +122,14 @@ class Todocontroller {
          if(move_uploaded_file($tmp_path, $save_path)) {
             echo $filename . 'を'. $upload_dir. ' アップしました。';
             $img = new Database;
-            $imgresult = $img->filesave($filename,$save_path);
-            return $imgresult;
-            header("Location: ./file.php");
+            $imgresult = $img->filesave($filename,$save_path,$comment);
+            
+            // return $imgresult;
+            // header("Location: ./file.php");
+
+            // $result = $todo->save();
+
+            // header("Location: ./index.php");
 
             } else {
                echo 'ファイルが保存できませんでした。';
@@ -123,6 +137,7 @@ class Todocontroller {
          } else {
             echo 'ファイルが選択されていません。';
       };
+      // header("Location: ./file.php");
    }
 
    public function postcreate() {

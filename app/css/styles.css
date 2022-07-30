@@ -358,6 +358,62 @@ textarea {
 
 /* post.php ページ 終了 */
 
+/* file.php ページ 開始 */
+
+.fileinput {
+   /* display: inline-block; */
+   width: 350px;
+   height: auto;
+   margin: 20px auto 0;
+   padding: 3px;
+   font-size: 18px;
+   color: rgb(170, 170, 154);
+}
+
+.memo {
+   width: 400px;
+   height: 30px;
+   margin: 20px auto 0;
+   padding: 0;
+   font-size: 20px;
+   text-align: left;
+}
+
+.comment {
+   display: inline-block;
+   width: 300px;
+   height: 80px;
+   margin: 15px auto;
+   padding: 5px 8px;
+   border: 2px solid black;
+   border-radius: 8px;
+   font-size: 16px;
+   box-shadow: 10px 10px 15px rgba(0,0,0,0.5);
+   resize: none;
+   white-space: pre-wrap;
+}
+
+img {
+   width:250px;
+   height:300px;
+}
+
+.file-btn {
+   width: 80px;
+   height: auto;
+   margin: 10px;
+   margin-bottom: 20px;
+   padding:  0.1em;
+   border: 2px solid black;
+   border-radius: 5px;
+   background-color: rgb(70, 210, 10);
+   font-size: 18px;
+   font-weight: bold;
+   cursor : pointer;
+}
+
+/* file.php ページ 終了 */
+
 /* スマートフォン向け CSS */
 @media (max-width: 767px) {
 

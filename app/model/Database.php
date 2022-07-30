@@ -171,15 +171,16 @@ class Database
       return $todo;
   }
 
-   public function filesave($filename,$save_path) {
+   public function filesave($filename,$save_path,$comment) {
       try {
          $pdo = new PDO(DSN, USER, PASSWORD);
          $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
          $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-         $sql = "INSERT INTO pictures (file_name, file_path, created_at) VALUES (?, ?, NOW())";
+         $sql = "INSERT INTO pictures (file_name, file_path, comment,created_at) VALUES (?, ?, ?, NOW())";
          $stmt = $pdo->prepare($sql);
          $stmt->bindValue(1, $filename);
          $stmt->bindValue(2, $save_path);
+         $stmt->bindValue(3, $comment);
          $stmt->execute();
 
       } catch (PDOException $e) {
