@@ -86,6 +86,18 @@ class Todocontroller {
 
    public function pictures() {
 
+      $filedata = array(
+         "file" => $_FILES['img'],
+         "filename" => basename($file['name']),
+         "tmp_path" => $file['tmp_name'],
+         "fil_err" => $file['error'],
+         "filesize" => $file['size'],
+         // "tmp_path" => $file['tmp_name'],
+         // "tmp_path" => $file['tmp_name'],
+         // "tmp_path" => $file['tmp_name'],
+         "comment" => $_POST['comment'],
+      );
+
       $file = $_FILES['img'];
       $filename = basename($file['name']);
       $tmp_path = $file['tmp_name'];
@@ -96,18 +108,19 @@ class Todocontroller {
       $save_path = $upload_dir . $save_filename;
       $comment = filter_input(INPUT_POST, 'comment',FILTER_SANITIZE_SPECIAL_CHARS);
 
-      // コメントが入力されているかどうか？
-      if (empty($comment)) {
-         echo 'コメントの入力をお願いします。';
-      }
-      // 255文字以内か？
-      if (strlen($comment) > 255) {
-         echo 'コメントは255文字以内でお願いします。';
-      }
       // ファイルサイズが1MB未満か？
-      if($filesize > 1048576 || $file_err == 2) {
-         echo 'ファイルは1MB未満でお願いします。';
-      }
+      // if($filesize > 1048576 || $file_err == 2) {
+      //    echo 'ファイルは1MB未満でお願いします。';
+      // }
+      
+      // コメントが入力されているかどうか？
+      // if (empty($comment)) {
+      //    echo 'コメントの入力をお願いします。';
+      // }
+      // 255文字以内か？
+      // if (strlen($comment) > 255) {
+      //    echo 'コメントは255文字以内でお願いします。';
+      // }
 
       // 拡張は画像形式か？
       $allow_ext = array('jpg','jpeg','png');
@@ -120,16 +133,37 @@ class Todocontroller {
       // ファイルがあるかどうか？
       if (is_uploaded_file($tmp_path)) {
          if(move_uploaded_file($tmp_path, $save_path)) {
-            echo $filename . 'を'. $upload_dir. ' アップしました。';
+            // echo $filename . 'を'. $upload_dir. ' アップしました。';
+            
+            $validation = new TodoValidation;
+            $validation->setFileData($filedata);
+            if($validation->tokencheck() === false) {
+               $token_errors = $validation->getTokenErrorMessages();
+               $_SESSION['token_errors'] = $token_errors;
+               header("Location: ./file.php");
+               return;
+            } 
+            if($validation->filecheck() === false) {
+               $comment_errors = $validation->getCommentErrorMessages();
+               $_SESSION['comment_errors'] = $comment_errors;
+               header("Location: ./file.php");
+               return;
+            } 
+
+            if($validation->filecheck() === false) {
+               $filesize_errors = $validation->getFileSizeErrorMessages();
+               $_SESSION['filesize_errors'] = $filesize_errors;
+               header("Location: ./file.php");
+               return;
+            } 
+            
+            $validation_filedata = $validation->getFileData();
+
             $img = new Database;
             $imgresult = $img->filesave($filename,$save_path,$comment);
-            
-            // return $imgresult;
+
             // header("Location: ./file.php");
-
-            // $result = $todo->save();
-
-            // header("Location: ./index.php");
+            header("Location: ./file_upload.php");
 
             } else {
                echo 'ファイルが保存できませんでした。';
@@ -137,7 +171,6 @@ class Todocontroller {
          } else {
             echo 'ファイルが選択されていません。';
       };
-      // header("Location: ./file.php");
    }
 
    public function postcreate() {
@@ -297,6 +330,22 @@ class Todocontroller {
       $word = new Database;
       $postresult = $word->postdelete();
       return $postresult;
+   }
+
+   public function filedelete() {
+
+      $id = $_POST['id'];
+      if($_SERVER['REQUEST_METHOD'] === 'GET') {
+         if(isset($_GET['id'])) {
+            $id = $_GET['id'];
+         }
+      }
+
+      $fileimg = new Database;
+      $fileimg->setId($id);
+      $fileresult = $fileimg->filedelete();
+
+      return $fileresult;
    }
 
 }

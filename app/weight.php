@@ -83,8 +83,8 @@ unset($_SESSION['today_errors']);
          <?php endforeach;?>
       <?endif;?>
 
-      <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
       <button type="submit" class="register-btn">記入</button>
+      <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
    </form>
 
    <a href="index.php"><button class="return-btn">戻る</button></a>

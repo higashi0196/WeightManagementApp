@@ -24,6 +24,14 @@ class TodoValidation {
       return $this->content;
    }
 
+   public function setFileData($filedata) {
+      $this->filedata = $filedata;
+   }
+   
+   public function getFileData() {
+      return $this->filedata;
+   }
+   
    public function getTokenErrorMessages() {
       return $this->token_errors;
    }
@@ -56,6 +64,14 @@ class TodoValidation {
       return $this->today_errors;
    }
 
+   public function getFileSizeErrorMessages() {
+      return $this->filesize_errors;
+   }
+
+   public function getCommentErrorMessages() {
+      return $this->comment_errors;
+   }
+
    public function tokencheck() {
       if (
          empty($_POST['token']) ||
@@ -65,6 +81,23 @@ class TodoValidation {
             $this->token_errors[] = "不正なアクセスがありました。";
             return false;
       }
+   }
+
+   public function filecheck() {
+
+      if(1048576 < $this->filedata['filesize']) {
+         $this->filesize_errors[] = "ファイルは1MB未満でお願いします。";
+         return false;
+      }
+
+      if(empty($this->filedata['comment'])) {
+         $this->comment_errors[] = "メモが空です。";
+         return false;
+      } else if(255 < mb_strlen($this->filedata['comment'], 'UTF-8')) {
+         $this->comment_errors[] = "255文字以内で入力してください。";
+         return false;
+      } 
+
    }
    
    public function todocheck() {
@@ -161,6 +194,8 @@ class TodoValidation {
          return false;
       }
    }
+
+   
   
 }
 

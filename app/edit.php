@@ -64,9 +64,9 @@ unset($_SESSION['content_errors']);
             <?php endforeach;?>
          <?endif;?>
       </div>
+      <button type="submit" class="register-btn">更新</button>
       <input type="hidden" name="id" value="<?php echo Utils::h($todo['id']);?>">
       <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
-      <button type="submit" class="register-btn">更新</button>
    </form>
 
    <a href="index.php"><button class="return-btn">戻る</button></a>

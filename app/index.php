@@ -63,8 +63,8 @@ $bodylists = $getller->bodies();
             <tr>
                <td><?php echo Utils::h($todo['title']); ?></td>
                <td><?php echo Utils::h($todo['content']); ?></td> 
-               <td><a href="edit.php?id=<?php echo $todo['id']?>"><button class="edit-btn">編集</button></a></td>       
-               <td><button class="delete-btn" data-id="<?php echo $todo['id']?>">削除</button></td>
+               <td><a href="edit.php?id=<?php echo Utils::h($todo['id'])?>"><button class="edit-btn">編集</button></a></td>       
+               <td><button class="delete-btn" data-id="<?php echo Utils::h($todo['id'])?>">削除</button></td>
             </tr> 
          <?php endforeach; ?>
          <?php if (empty($todolists)): ?>

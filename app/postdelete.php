@@ -6,8 +6,8 @@ require_once('config.php');
 $getller = new Todocontroller();
 $postresult = $getller->postdelete();
 
-$response2 = '非同期通信 成功';
-$json = json_encode($response2);
+$postresponse = '非同期通信＆削除 成功';
+$json = json_encode($postresponse);
 echo $json;
 
 ?>

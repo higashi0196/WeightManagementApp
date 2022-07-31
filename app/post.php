@@ -51,8 +51,8 @@ unset($_SESSION['token_errors']);
          <?php endforeach;?>
       <?endif;?>
 
-      <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
       <button type="submit" class="post-btn2">投稿する</button>
+      <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
    </form>
 
    <a href="index.php"><button class="return-btn">戻る</button></a>

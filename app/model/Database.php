@@ -318,5 +318,26 @@ class Database
           exit;
       }   
    }
+
+   public function filedelete() {
+      try {
+         $pdo = new PDO(DSN, USER, PASSWORD);
+         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+         $sql = "DELETE FROM pictures WHERE id = $this->id";
+
+         // $pdo->beginTransaction();
+         $stmt = $pdo->prepare($sql);
+         $stmt->bindValue('id', $id);
+         $stmt->execute();
+
+         // $pdo->commit();
+
+      }  catch (PDOException $e) {
+          // $pdo->rollBack();
+          echo "削除に失敗しました。" . $e->getMessage();
+          exit;
+      }   
+   }
    
 }
