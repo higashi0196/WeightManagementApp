@@ -21,6 +21,10 @@ $filesize_errors = $_SESSION['filesize_errors'];
 unset($_SESSION['filesize_errors']);
 $comment_errors = $_SESSION['comment_errors'];
 unset($_SESSION['comment_errors']);
+$filetype_errors = $_SESSION['filetype_errors'];
+unset($_SESSION['filetype_errors']);
+$file_errors = $_SESSION['file_errors'];
+unset($_SESSION['file_errors']);
 
 ?>
 
@@ -35,12 +39,6 @@ unset($_SESSION['comment_errors']);
 <body>
 <p class="outline">画像アップロード</p>
 <form action="file.php" method="POST" enctype="multipart/form-data">
-   <?php if($token_errors):?>
-      <?php foreach ($token_errors as $token_error): ?>
-         <p class="error-log"><?php echo Utils::h($token_error);?></p>
-      <?php endforeach;?>
-   <?endif;?>
-
    <div>
       <input type="file" name="img" class="fileinput">
       <p class="memo">☆ 一言メモ ☆</p>
@@ -56,9 +54,28 @@ unset($_SESSION['comment_errors']);
          <p class="error-log"><?php echo Utils::h($filesize_error);?></p>
       <?php endforeach;?>
    <?endif;?>
+
    <?php if($comment_errors):?>
       <?php foreach ($comment_errors as $comment_error): ?>
          <p class="error-log"><?php echo Utils::h($comment_error);?></p>
+      <?php endforeach;?>
+   <?endif;?>
+
+   <?php if($filetype_errors):?>
+      <?php foreach ($filetype_errors as $filetype_error): ?>
+         <p class="error-log"><?php echo Utils::h($filetype_error);?></p>
+      <?php endforeach;?>
+   <?endif;?>
+
+   <?php if($token_errors):?>
+      <?php foreach ($token_errors as $token_error): ?>
+         <p class="error-log"><?php echo Utils::h($token_error);?></p>
+      <?php endforeach;?>
+   <?endif;?>
+
+   <?php if($file_errors):?>
+      <?php foreach ($file_errors as $file_error): ?>
+         <p class="error-log"><?php echo Utils::h($file_error);?></p>
       <?php endforeach;?>
    <?endif;?>
 <a href="index.php"><button class="return-btn">戻る</button></a>

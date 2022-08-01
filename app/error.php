@@ -1,5 +1,6 @@
 <?php
 class TodoValidation {
+
    public function getData() {
       return $this->data;
    }
@@ -72,6 +73,14 @@ class TodoValidation {
       return $this->comment_errors;
    }
 
+   public function getFiletypeErrorMessages() {
+      return $this->filetype_errors;
+   }
+
+   public function getFileErrorMessages() {
+      return $this->file_errors;
+   }
+
    public function tokencheck() {
       if (
          empty($_POST['token']) ||
@@ -84,7 +93,7 @@ class TodoValidation {
    }
 
    public function filecheck() {
-
+      
       if(1048576 < $this->filedata['filesize']) {
          $this->filesize_errors[] = "ファイルは1MB未満でお願いします。";
          return false;
@@ -96,7 +105,25 @@ class TodoValidation {
       } else if(255 < mb_strlen($this->filedata['comment'], 'UTF-8')) {
          $this->comment_errors[] = "255文字以内で入力してください。";
          return false;
-      } 
+      }
+
+      // $allow_ext = array('jpg','jpeg','png');
+      // $file_ext = pathinfo($filename, PATHINFO_EXTENSION);
+      // if(!in_array(strtolower($file_ext), $allow_ext)) {
+      //    $this->filetype_errors[] = "画像ファイルの末尾をjpg,jpeg,pngのどれかにしてください。";
+      //    return false;
+      //    echo '画像ファイルの末尾をjpg,jpeg,pngのどれかにしてください。';
+      // }
+
+      // if ($ext !== 'jpg' || $ext !== 'jpeg' || $ext !== 'png') {
+      //    $this->filetype_errors[] = "画像ファイルの末尾をjpg,jpeg,pngのどれかにしてください。";
+      //    return false;
+      // }
+
+      // if(empty($this->filedata['tmp_name']) && isset($this->filedata['tmp_name'])) {
+      //    $this->file_errors[] = "ファイルを選択して下さい";
+      //    return false;
+      // }
 
    }
    
@@ -194,8 +221,6 @@ class TodoValidation {
          return false;
       }
    }
-
-   
   
 }
 

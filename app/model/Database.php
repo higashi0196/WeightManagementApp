@@ -81,6 +81,14 @@ class Database
       $this->save_path = $save_path;
    }
 
+   public function getComment() {
+      return $this->comment;
+   }
+
+   public function setComment($comment) {
+      $this->comment = $comment;
+   }
+
    private static $osaka;
    
    public static function get() {
@@ -170,6 +178,24 @@ class Database
       $todo = $stmt->fetch(PDO::FETCH_ASSOC);
       return $todo;
   }
+
+   // public function filesave() {
+   //    try {
+   //       $pdo = new PDO(DSN, USER, PASSWORD);
+   //       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   //       $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+   //       $sql = "INSERT INTO pictures (file_name, file_path, comment,created_at) VALUES ($this->filename, $this->save_path, $this->comment, NOW())";
+   //       $stmt = $pdo->prepare($sql);
+   //       $stmt->bindValue('file_name', $filename);
+   //       $stmt->bindValue('file_path', $save_path);
+   //       $stmt->bindValue('comment', $comment);
+   //       $stmt->execute();
+
+   //    } catch (PDOException $e) {
+   //       echo "画像アップロードに失敗しました。" . $e->getMessage();
+
+   //    }   
+   // }
 
    public function filesave($filename,$save_path,$comment) {
       try {
