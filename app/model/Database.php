@@ -211,7 +211,8 @@ class Database
 
       } catch (PDOException $e) {
          echo "画像アップロードに失敗しました。" . $e->getMessage();
-
+         // $pdo->rollBack();
+         // exit;
       }   
    }
 

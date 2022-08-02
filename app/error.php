@@ -73,8 +73,8 @@ class TodoValidation {
       return $this->comment_errors;
    }
 
-   public function getFiletypeErrorMessages() {
-      return $this->filetype_errors;
+   public function getFileModelErrorMessages() {
+      return $this->filemodel_errors;
    }
 
    public function getFileErrorMessages() {
@@ -93,6 +93,13 @@ class TodoValidation {
    }
 
    public function filecheck() {
+      $allow_ext = array('jpg','jpeg','png','git','pdf');
+      $file_ext = pathinfo($filename, PATHINFO_EXTENSION);
+      if (!in_array(strtolower($file_ext), $allow_ext)) {
+         $this->filemodel_errors[] = "画像ファイルの末尾をjpg,jpeg,pngのどれかにしてください。";
+         return;
+         // return false;
+      }
       
       if(1048576 < $this->filedata['filesize']) {
          $this->filesize_errors[] = "ファイルは1MB未満でお願いします。";
@@ -107,21 +114,16 @@ class TodoValidation {
          return false;
       }
 
-      // $allow_ext = array('jpg','jpeg','png');
-      // $file_ext = pathinfo($filename, PATHINFO_EXTENSION);
+      // $arrImagetype = array('jpg','jpeg','png','git','pdf');
+      // $filetype = pathinfo($save_path,PATHINFO_EXTENSION);
+      // if (!in_array(strtolower($filetype), $arrImagetype)) {
+      //    $this->filemodel_errors[] = "画像ファイルの末尾をjpg,jpeg,pngのどれかにしてください。";
+      //    return false;
+      // }
+
+      // if($filetype !== 'jpg' || $filetype !== 'jpeg' || $filetype !== 'png'|| $filetype !== 'git'|| $filetype !== 'pdf')
       // if(!in_array(strtolower($file_ext), $allow_ext)) {
       //    $this->filetype_errors[] = "画像ファイルの末尾をjpg,jpeg,pngのどれかにしてください。";
-      //    return false;
-      //    echo '画像ファイルの末尾をjpg,jpeg,pngのどれかにしてください。';
-      // }
-
-      // if ($ext !== 'jpg' || $ext !== 'jpeg' || $ext !== 'png') {
-      //    $this->filetype_errors[] = "画像ファイルの末尾をjpg,jpeg,pngのどれかにしてください。";
-      //    return false;
-      // }
-
-      // if(empty($this->filedata['tmp_name']) && isset($this->filedata['tmp_name'])) {
-      //    $this->file_errors[] = "ファイルを選択して下さい";
       //    return false;
       // }
 

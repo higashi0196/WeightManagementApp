@@ -21,8 +21,8 @@ $filesize_errors = $_SESSION['filesize_errors'];
 unset($_SESSION['filesize_errors']);
 $comment_errors = $_SESSION['comment_errors'];
 unset($_SESSION['comment_errors']);
-$filetype_errors = $_SESSION['filetype_errors'];
-unset($_SESSION['filetype_errors']);
+$filemodel_errors = $_SESSION['filemodel_errors'];
+unset($_SESSION['filemodel_errors']);
 $file_errors = $_SESSION['file_errors'];
 unset($_SESSION['file_errors']);
 
@@ -61,9 +61,9 @@ unset($_SESSION['file_errors']);
       <?php endforeach;?>
    <?endif;?>
 
-   <?php if($filetype_errors):?>
-      <?php foreach ($filetype_errors as $filetype_error): ?>
-         <p class="error-log"><?php echo Utils::h($filetype_error);?></p>
+   <?php if($filemodel_errors):?>
+      <?php foreach ($filemodel_errors as $filemodel_error): ?>
+         <p class="error-log"><?php echo Utils::h($filemodel_error);?></p>
       <?php endforeach;?>
    <?endif;?>
 
