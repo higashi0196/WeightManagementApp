@@ -88,6 +88,7 @@ class Todocontroller {
 
       $filedata = array(
          "file" => $_FILES['img'],
+         "fileid" => $_FILES['id'],
          "filename" => basename($file['name']),
          "tmp_path" => $file['tmp_name'],
          "fil_err" => $file['error'],
@@ -96,9 +97,9 @@ class Todocontroller {
          "filetype" => pathinfo($save_path,PATHINFO_EXTENSION),
          "$arrImagetype" => array('jpg','jpeg','png','git','pdf'),
       );
-      // "tmp_path" => $file['tmp_name'],
 
       $file = $_FILES['img'];
+      $fileid = $_FILES['id'];
       $filename = basename($file['name']);
       $tmp_path = $file['tmp_name'];
       $fil_err = $file['error'];
@@ -110,73 +111,66 @@ class Todocontroller {
       $arrImagetype = array('jpg','jpeg','png','git','pdf');
       $comment = filter_input(INPUT_POST, 'comment',FILTER_SANITIZE_SPECIAL_CHARS);
 
-      // if($validation->filecheck() === false) {
-      //    $filetype_errors = $validation->getFileTypeErrorMessages();
-      //    $_SESSION['filetype_errors'] = $filetype_errors;
-      //    header("Location: ./file.php");
-      //    return;
-      // }
+      $validation = new TodoValidation;
+      $validation->setFileData($filedata);
 
-      
-      // $allow_ext = array('jpg','jpeg','png','git','pdf');
-      // $file_ext = pathinfo($filename, PATHINFO_EXTENSION);
-      // if(!in_array(strtolower($file_ext), $allow_ext)) {
-      //    $validation = new TodoValidation;
-      //    $validation->tokencheck();
-      //    $filemodel_errors = $validation->getFileModelErrorMessages();
-      //    $_SESSION['filemodel_errors'] = $filemodel_errors;
-      //    header("Location: ./file.php");
-      //    return;
-      //    echo "ファイルの末を変更してください";
-      // }
-      
+      if($validation->tokencheck() === false) {
+         $token_errors = $validation->getTokenErrorMessages();
+         $_SESSION['token_errors'] = $token_errors;
+         header("Location: ./file.php");
+         return;
+      }
 
-      // 拡張 書き換え　8/2開始
-      // $filetype = pathinfo($save_path,PATHINFO_EXTENSION);
-      // $arrImagetype = array('jpg','jpeg','png','git','pdf');
-      if(in_array(strtolower($filetype), $arrImagetype)) {
-         
-         // ファイルがあるかどうか？ 
-         if(move_uploaded_file($tmp_path, $save_path)) {
-            $validation = new TodoValidation;
-            $validation->setFileData($filedata);
-            if($validation->tokencheck() === false) {
-               $token_errors = $validation->getTokenErrorMessages();
-               $_SESSION['token_errors'] = $token_errors;
-               header("Location: ./file.php");
-               return;
-            } 
-            if($validation->filecheck() === false) {
-               $comment_errors = $validation->getCommentErrorMessages();
-               $filesize_errors = $validation->getFileSizeErrorMessages();
-               $_SESSION['comment_errors'] = $comment_errors;
-               $_SESSION['filesize_errors'] = $filesize_errors;
+      if (!is_uploaded_file($tmp_path)) {
+         $validation->filecheck();
+         $file_errors = $validation->getFileErrorMessages();
+         $_SESSION['file_errors'] = $file_errors;
+         header("Location: ./file.php");
+         return;
+      }
 
-            // $file_errors = $validation->getFileErrorMessages();
-            // $_SESSION['file_errors'] = $file_errors;
-
-               header("Location: ./file.php");
-               return;
-            } 
-      
-            $validation_filedata = $validation->getFileData();
-
-            $img = new Database;
-            $imgresult = $img->filesave($filename,$save_path,$comment);
-            header("Location: ./file_upload.php");
-         } 
-      } 
-      else if(!in_array(strtolower($filetype), $arrImagetype))
-      {
-         $validation = new TodoValidation;
+      if(!in_array(strtolower($filetype), $arrImagetype)) {
          $validation->filecheck();
          $filemodel_errors = $validation->getFileModelErrorMessages();
          $_SESSION['filemodel_errors'] = $filemodel_errors;
          header("Location: ./file.php");
          return;
-         echo "ファイルの末を変更してください";
+      } 
+
+      if($validation->filecheck() === false) {
+         $filesize_errors = $validation->getFileSizeErrorMessages();
+         $comment_errors = $validation->getCommentErrorMessages();
+         $_SESSION['filesize_errors'] = $filesize_errors;
+         $_SESSION['comment_errors'] = $comment_errors;
+         header("Location: ./file.php");
+
+         $fileparams = sprintf("?id=%s&weight=%s&comment=%s", $_FILE['id'], $_POST['weight'], $_POST['today']);
+         header(sprintf("Location: ./file.php%s", $fileparams));
+         // $weightparams = sprintf("?body=%s&weight=%s&today=%s", $_POST['body'], $_POST['weight'], $_POST['today']);
+         // header(sprintf("Location: ./weight.php%s", $weightparams));
+         return;
       }
 
+      // $validation_data = $validation->getData();
+
+      // $validation_weightdata = $validation->getWeightData();
+      // $physical = new Database;
+      // $physical->setbody($validation_weightdata['body']);
+      // $physical->setweight($validation_weightdata['weight']);
+      // $physical->settoday($validation_weightdata['today']);
+
+
+      // $validation_filedata = $validation->getFileData();
+      // $imagefile->setTmp_path($validation_FileData['tmp_path']);
+      // $imagefile->setSave_path($validation_FileData['save_path']);
+      // $imagefile->setComment($validation_FileData['comment']);
+
+      if(move_uploaded_file($tmp_path, $save_path)) {
+         $img = new Database;
+         $imgresult = $img->filesave($filename,$save_path,$comment);
+         header("Location: ./file.php");
+         // header("Location: ./file_upload.php");
+      }
    }
 
    public function postcreate() {

@@ -93,39 +93,39 @@ class TodoValidation {
    }
 
    public function filecheck() {
-      $allow_ext = array('jpg','jpeg','png','git','pdf');
-      $file_ext = pathinfo($filename, PATHINFO_EXTENSION);
-      if (!in_array(strtolower($file_ext), $allow_ext)) {
-         $this->filemodel_errors[] = "画像ファイルの末尾をjpg,jpeg,pngのどれかにしてください。";
-         return;
-         // return false;
+
+      if (!is_uploaded_file($tmp_path) && empty($this->filedata['comment'])) {
+         $this->file_errors[] = "画像ファイルとメモを入力してください";
+      } else if (!is_uploaded_file($tmp_path)) {
+         $this->file_errors[] = "画像ファイルが選択されていません。";
       }
       
-      if(1048576 < $this->filedata['filesize']) {
+      $allow_ext = array('jpg','jpeg','png','git','pdf');
+      $file_ext = pathinfo($filename, PATHINFO_EXTENSION);
+      if (!in_array(strtolower($file_ext), $allow_ext) && empty($this->filedata['comment'])) {
+         $this->filemodel_errors[] = "画像ファイルの末尾をjpg,jpeg,png,git,pdfのどれかにして、メモを入力してください";
+      } else
+      if (!in_array(strtolower($file_ext), $allow_ext)) {
+         $this->filemodel_errors[] = "画像ファイルの末尾をjpg,jpeg,png,git,pdfのどれかにしてください。";
+      }
+
+      if(1048576 < $this->filedata['filesize'] || $this->filedata['fil_err'] == 2) {
          $this->filesize_errors[] = "ファイルは1MB未満でお願いします。";
          return false;
       }
 
       if(empty($this->filedata['comment'])) {
-         $this->comment_errors[] = "メモが空です。";
+         $this->comment_errors[] = "メモを入力してください";
          return false;
       } else if(255 < mb_strlen($this->filedata['comment'], 'UTF-8')) {
          $this->comment_errors[] = "255文字以内で入力してください。";
          return false;
       }
 
-      // $arrImagetype = array('jpg','jpeg','png','git','pdf');
-      // $filetype = pathinfo($save_path,PATHINFO_EXTENSION);
-      // if (!in_array(strtolower($filetype), $arrImagetype)) {
-      //    $this->filemodel_errors[] = "画像ファイルの末尾をjpg,jpeg,pngのどれかにしてください。";
-      //    return false;
-      // }
-
-      // if($filetype !== 'jpg' || $filetype !== 'jpeg' || $filetype !== 'png'|| $filetype !== 'git'|| $filetype !== 'pdf')
-      // if(!in_array(strtolower($file_ext), $allow_ext)) {
-      //    $this->filetype_errors[] = "画像ファイルの末尾をjpg,jpeg,pngのどれかにしてください。";
-      //    return false;
-      // }
+      if($counter >= 4) {
+         $this->comment_errors[] = "画像は5件まで入力できます。";
+         return false;
+      }
 
    }
    

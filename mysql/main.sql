@@ -41,7 +41,7 @@ CREATE TABLE pictures (
    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
    file_name VARCHAR(255),
    file_path VARCHAR(255) UNIQUE KEY,
-   comment VARCHAR(255) NULL,
+   comment VARCHAR(255) NOT NULL,
    created_at DATETIME NOT NULL
 );
 

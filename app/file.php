@@ -49,6 +49,25 @@ unset($_SESSION['file_errors']);
    <input type="hidden" name="MAX_FILE_SIZE" value="1048576">
    <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
 </form>
+
+   <?php if($token_errors):?> 
+      <?php foreach ($token_errors as $token_error): ?>
+         <p class="error-log"><?php echo Utils::h($token_error);?></p>
+      <?php endforeach;?>
+   <?endif;?>
+
+   <?php if($file_errors):?>
+      <?php foreach ($file_errors as $file_error): ?>
+         <p class="error-log"><?php echo Utils::h($file_error);?></p>
+      <?php endforeach;?>
+   <?endif;?>
+
+   <?php if($filemodel_errors):?>
+      <?php foreach ($filemodel_errors as $filemodel_error): ?>
+         <p class="error-log"><?php echo Utils::h($filemodel_error);?></p>
+      <?php endforeach;?>
+   <?endif;?>
+
    <?php if($filesize_errors):?>
       <?php foreach ($filesize_errors as $filesize_error): ?>
          <p class="error-log"><?php echo Utils::h($filesize_error);?></p>
@@ -60,40 +79,18 @@ unset($_SESSION['file_errors']);
          <p class="error-log"><?php echo Utils::h($comment_error);?></p>
       <?php endforeach;?>
    <?endif;?>
-
-   <?php if($filemodel_errors):?>
-      <?php foreach ($filemodel_errors as $filemodel_error): ?>
-         <p class="error-log"><?php echo Utils::h($filemodel_error);?></p>
-      <?php endforeach;?>
-   <?endif;?>
-
-   <?php if($token_errors):?>
-      <?php foreach ($token_errors as $token_error): ?>
-         <p class="error-log"><?php echo Utils::h($token_error);?></p>
-      <?php endforeach;?>
-   <?endif;?>
-
-   <?php if($file_errors):?>
-      <?php foreach ($file_errors as $file_error): ?>
-         <p class="error-log"><?php echo Utils::h($file_error);?></p>
-      <?php endforeach;?>
-   <?endif;?>
+   
 <a href="index.php"><button class="return-btn">戻る</button></a>
 
 <ul>
-   <?php
-      $counter = 0;
-      foreach ($filelists as $filelist): ?> 
+   <?php $counter = 0; foreach ($filelists as $filelist): ?> 
       <li>
          <img src="<?php echo Utils::h($filelist['file_path']); ?>" alt="">
          <p><?php echo Utils::h($filelist['comment']); ?></p>
          <p class="filedelete-btn" data-id="<?php echo Utils::h($filelist['id']); ?>">
          <button class="postdlt-btn">削除</button></p>
       </li>
-      <?php
-      if ($counter >= 4) {break;} 
-      $counter++;
-      endforeach; ?>
+      <?php if ($counter >= 4) {break;} $counter++; endforeach; ?>
 </ul>
 
 <script>
