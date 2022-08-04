@@ -237,7 +237,7 @@ td {
    width: 90px;
    height: auto;
    margin:10px 10px 0 10px;
-   padding: 2px;
+   padding: 3px 0;
    border: 2px solid black;
    border-radius: 5px;
    background-color: rgb(10, 200, 210);
@@ -250,10 +250,12 @@ td {
    width: 65px;
    height: 35px;
    margin:10px 10px 0 10px;
-   padding: 2px;
+   padding: 3px 0;
    border: 2px solid black;
    border-radius: 5px;
    background-color:rgb(225, 45, 25);
+   font-size: 17px;
+   font-weight: bold;
    cursor : pointer;
 }
 
@@ -393,16 +395,16 @@ textarea {
    white-space: pre-wrap;
 }
 
-img {
-   width: 250px;
-   height: 300px;
+.number {
+   margin: 5px;
+   color: orangered;
+   font-size: 20px;
 }
 
 .file-btn {
    width: 80px;
    height: auto;
-   margin: 10px;
-   margin-bottom: 20px;
+   margin: 10px auto 20px;
    padding:  0.1em;
    border: 2px solid black;
    border-radius: 5px;
@@ -410,6 +412,60 @@ img {
    font-size: 18px;
    font-weight: bold;
    cursor : pointer;
+}
+
+ol {
+   list-style-type: none;
+   margin: 0px;
+   padding: 0px;
+}
+
+li {
+   margin: 20px auto 0;
+   border-top: 2.5px solid rgb(148, 216, 221);
+}
+
+img {
+   width: 280px;
+   height: 300px;
+   margin: 20px;
+}
+
+.list-memo {
+   display: inline-block;
+   margin: 20px 5px;
+   color:rgb(215, 200, 200);
+   /* background-color: rgb(33, 227, 198); */
+   font-size: 20px;
+   vertical-align: top;
+}
+
+.list-comment {
+   width: 270px;
+   height: auto;
+   margin: 20px 0;
+   padding: 2px;
+   border: dashed 2px gray;
+   border-radius: 3px;
+   color:black;
+   background-color: rgb(180, 175, 175);
+   font-size: 18px;
+   box-shadow: 8px 8px 5px rgba(0,0,0,0.3);
+   white-space: pre-wrap;
+}
+
+.filedelete-btn {
+   width: 70px;
+   height: auto;
+   margin: 20px 0;
+   padding: 2px 0;
+   border: 2px solid black;
+   border-radius: 5px;
+   background-color:rgb(225, 45, 25);
+   font-size: 15px;
+   font-weight: bold;
+   cursor : pointer;
+   vertical-align: top;
 }
 
 /* file.php ページ 終了 */
@@ -559,17 +615,14 @@ img {
    }
    
    .post-btn {
-      width: 75px;
-      height: auto;
+      width: 80px;
       margin: 10px;
-      padding: 2px;
       font-size: 15px;
    }
 
    .postdlt-btn {
-      height: auto;
+      width: 55px;
       margin: 10px;
-      padding: 2px;
       font-size: 15px;
    }
    
@@ -626,4 +679,143 @@ img {
    }
    
    /* post.php ページ 終了 */
+
+   /* file.php ページ 開始 */
+
+/* .fileinput {
+   width: 350px;
+   height: auto;
+   margin: 20px auto 0;
+   padding: 3px;
+   font-size: 18px;
+   color: rgb(170, 170, 154);
+} */
+.fileinput {
+   width: 320px;
+   margin: 25px 0 0 40px;
+   font-size: 15px;
+}
+
+/* .memo {
+   width: 400px;
+   height: 30px;
+   margin: 20px auto 0;
+   padding: 0;
+   font-size: 20px;
+   text-align: left;
+} */
+.memo {
+   width: 150px;
+   height: 25px;
+   margin: 25px 0 0 45px;
+   font-size: 18px;
+}
+
+/* .comment {
+   display: inline-block;
+   width: 300px;
+   height: 80px;
+   margin: 15px auto;
+   padding: 5px 8px;
+   border: 2px solid black;
+   border-radius: 8px;
+   font-size: 16px;
+   box-shadow: 10px 10px 15px rgba(0,0,0,0.5);
+   resize: none;
+   white-space: pre-wrap;
+} */
+.comment {
+   width: 65%;
+   height: 70px;
+   margin-bottom: 0;
+}
+
+/* .number {
+   margin: 5px;
+   color: orangered;
+   font-size: 20px;
+} */
+.number {
+   margin: 8px 0 0;
+   font-size: 18px;
+   font-weight: bold;
+}
+
+/* .file-btn {
+   width: 80px;
+   height: auto;
+   margin: 10px ;
+   margin-bottom: 20px;
+   padding:  0.1em;
+   border: 2px solid black;
+   border-radius: 5px;
+   background-color: rgb(70, 210, 10);
+   font-size: 18px;
+   font-weight: bold;
+   cursor : pointer;
+} */
+.file-btn {
+   margin: 20px 0 0;
+   font-size: 16px;
+}
+
+/* 〜〜〜〜〜〜〜〜〜〜〜〜 */
+/* 明日8/5ここから開始 */
+/* 〜〜〜〜〜〜〜〜〜〜〜〜 */
+
+ol {
+   list-style-type: none;
+   margin: 0px;
+   padding: 0px;
+}
+
+li {
+   margin: 20px auto 0;
+   border-top: 2.5px solid rgb(148, 216, 221);
+}
+
+img {
+   width: 280px;
+   height: 300px;
+   margin: 20px;
+}
+
+.list-memo {
+   display: inline-block;
+   margin: 20px 5px;
+   color:rgb(215, 200, 200);
+   /* background-color: rgb(33, 227, 198); */
+   font-size: 20px;
+   vertical-align: top;
+}
+
+.list-comment {
+   width: 270px;
+   height: auto;
+   margin: 20px 0;
+   padding: 2px;
+   border: dashed 2px gray;
+   border-radius: 3px;
+   color:black;
+   background-color: rgb(180, 175, 175);
+   font-size: 18px;
+   box-shadow: 8px 8px 5px rgba(0,0,0,0.3);
+   white-space: pre-wrap;
+}
+
+.filedelete-btn {
+   width: 70px;
+   height: auto;
+   margin: 20px 0;
+   padding: 2px 0;
+   border: 2px solid black;
+   border-radius: 5px;
+   background-color:rgb(225, 45, 25);
+   font-size: 15px;
+   font-weight: bold;
+   cursor : pointer;
+   vertical-align: top;
+}
+
+/* file.php ページ 終了 */
 }

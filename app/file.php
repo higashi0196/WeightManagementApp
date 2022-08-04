@@ -38,13 +38,13 @@ unset($_SESSION['file_errors']);
 </head>
 <body>
 <p class="outline">画像アップロード</p>
-<form action="file.php" method="POST" enctype="multipart/form-data">
+<form action="./file.php" method="POST" enctype="multipart/form-data">
    <div>
       <input type="file" name="img" class="fileinput">
       <p class="memo">☆ 一言メモ ☆</p>
       <textarea name="comment" class="comment"></textarea>
    </div>
-   <p>※画像は5件までアップロードできます。</p>
+   <p class="number">※画像は5件までアップロードできます。</p>
    <button type="submit" class="file-btn">送信</button>
    <input type="hidden" name="MAX_FILE_SIZE" value="1048576">
    <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
@@ -82,16 +82,18 @@ unset($_SESSION['file_errors']);
    
 <a href="index.php"><button class="return-btn">戻る</button></a>
 
-<ul>
+<ol>
    <?php $counter = 0; foreach ($filelists as $filelist): ?> 
       <li>
+         <!-- <?php echo Utils::h($counter + 1); ?> -->
          <img src="<?php echo Utils::h($filelist['file_path']); ?>" alt="">
-         <p><?php echo Utils::h($filelist['comment']); ?></p>
-         <p class="filedelete-btn" data-id="<?php echo Utils::h($filelist['id']); ?>">
-         <button class="postdlt-btn">削除</button></p>
+         <a class="list-memo"> 〜〜  一言メモ 〜〜 
+            <p class="list-comment"><?php echo Utils::h($filelist['comment']); ?></p>
+         </a>
+         <button class="filedelete-btn" data-id="<?php echo Utils::h($filelist['id']); ?>">削除</button>
       </li>
       <?php if ($counter >= 4) {break;} $counter++; endforeach; ?>
-</ul>
+</ol>
 
 <script>
   
