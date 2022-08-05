@@ -6,10 +6,11 @@ session_start();
 $token = new Token();
 $token->create();
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $getller = new Todocontroller();
    $getller->pictures();
-   exit;
+   // exit;
 }
 
 $getller = new Todocontroller();

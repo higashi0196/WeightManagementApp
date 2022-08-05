@@ -109,7 +109,8 @@ class Todocontroller {
       $save_path = $upload_dir . $save_filename;
       $filetype = pathinfo($save_path,PATHINFO_EXTENSION);
       $arrImagetype = array('jpg','jpeg','png','git','pdf');
-      $comment = filter_input(INPUT_POST, 'comment',FILTER_SANITIZE_SPECIAL_CHARS);
+      $comment = filter_input(INPUT_POST, 'comment');
+      // $comment = filter_input(INPUT_POST, 'comment',FILTER_SANITIZE_SPECIAL_CHARS);
 
       $validation = new TodoValidation;
       $validation->setFileData($filedata);
