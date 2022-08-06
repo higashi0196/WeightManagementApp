@@ -6,11 +6,10 @@ session_start();
 $token = new Token();
 $token->create();
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $getller = new Todocontroller();
    $getller->pictures();
-   // exit;
+   exit;
 }
 
 $getller = new Todocontroller();
@@ -43,7 +42,8 @@ unset($_SESSION['file_errors']);
    <div>
       <input type="file" name="img" class="fileinput">
       <p class="memo">☆ 一言メモ ☆</p>
-      <textarea name="comment" class="comment"></textarea>
+      <!-- <textarea name="comment" class="comment"><?php echo Utils::h($comment);?></textarea> -->
+      <input type="text" name="comment" class="comment" value="<?php echo Utils::h($comment);?>">
    </div>
    <p class="number">※画像は5件までアップロードできます。</p>
    <button type="submit" class="file-btn">送信</button>
@@ -84,7 +84,7 @@ unset($_SESSION['file_errors']);
 <a href="index.php"><button class="return-btn">戻る</button></a>
 
 <ol>
-   <?php $counter = 0; foreach ($filelists as $filelist): ?> 
+   <?php foreach ($filelists as $filelist): ?> 
       <li>
          <!-- <?php echo Utils::h($counter + 1); ?> -->
          <img src="<?php echo Utils::h($filelist['file_path']); ?>" alt="">
@@ -93,8 +93,22 @@ unset($_SESSION['file_errors']);
          </a>
          <button class="filedelete-btn" data-id="<?php echo Utils::h($filelist['id']); ?>">削除</button>
       </li>
-      <?php if ($counter >= 4) {break;} $counter++; endforeach; ?>
+      <?php endforeach; ?>
 </ol>
+
+
+<!-- <ol>
+   <?php $counter = 0; $counter++; foreach ($filelists as $filelist): ?> 
+      <li>
+         <?php echo Utils::h($counter + 1); ?>
+         <img src="<?php echo Utils::h($filelist['file_path']); ?>" alt="">
+         <a class="list-memo"> 〜〜  一言メモ 〜〜 
+            <p class="list-comment"><?php echo Utils::h($filelist['comment']); ?></p>
+         </a>
+         <button class="filedelete-btn" data-id="<?php echo Utils::h($filelist['id']); ?>">削除</button>
+      </li>
+      <?php if ($counter >= 4) {break;} $counter++; endforeach; ?>
+</ol> -->
 
 <script>
   

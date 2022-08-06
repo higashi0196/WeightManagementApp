@@ -122,11 +122,6 @@ class TodoValidation {
          return false;
       }
 
-      if($counter >= 4) {
-         $this->comment_errors[] = "画像は5件まで入力できます。";
-         return false;
-      }
-
    }
    
    public function todocheck() {

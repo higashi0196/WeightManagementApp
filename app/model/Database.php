@@ -134,7 +134,7 @@ class Database
       $pdo = new PDO(DSN, USER, PASSWORD);
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-      $stmt = $pdo->query('SELECT * FROM words ORDER BY id DESC LIMIT 1;');
+      $stmt = $pdo->query('SELECT * FROM words ORDER BY id DESC LIMIT 1');
       $wordlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
       return $wordlists;
    }
@@ -143,7 +143,7 @@ class Database
       $pdo = new PDO(DSN, USER, PASSWORD);
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-      $stmt = $pdo->query('SELECT * FROM bodies ORDER BY id DESC LIMIT 1;');
+      $stmt = $pdo->query('SELECT * FROM bodies ORDER BY id DESC LIMIT 1');
       $bodylists = $stmt->fetchAll(PDO::FETCH_ASSOC);
       return $bodylists;
    }
@@ -152,7 +152,7 @@ class Database
       $pdo = new PDO(DSN, USER, PASSWORD);
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-      $stmt = $pdo->query('SELECT goalweights FROM bodies ORDER BY id DESC LIMIT 1;');
+      $stmt = $pdo-query('SELECT goalweights FROM bodies ORDER BY id DESC LIMIT 1');
       $goallists = $stmt->fetch(PDO::FETCH_ASSOC);
       return $goallists;
    }
