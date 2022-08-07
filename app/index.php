@@ -68,8 +68,12 @@ $bodylists = $getller->bodies();
             </tr> 
          <?php endforeach; ?>
          <?php if (empty($todolists)): ?>
+            <tr>
             <td><?php echo Utils::h('todoなし'); ?></td>
             <td><?php echo Utils::h('todoなし'); ?></td>
+            <td class="no-todo"></td>
+            <td>
+         </tr>
          <?php endif; ?>
       </tbody>
    </table> 

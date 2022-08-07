@@ -44,14 +44,6 @@ class TodoValidation {
    public function getCotentErrorMessages() {
       return $this->content_errors;
    }
-
-   public function getAllErrorMessages() {
-      return $this->all_errors;
-   }
-   
-   public function getPostErrorMessages() {
-      return $this->post_errors;
-   }
    
    public function getWeightErrorMessages() {
       return $this->weight_errors;
@@ -65,20 +57,24 @@ class TodoValidation {
       return $this->today_errors;
    }
 
-   public function getFileSizeErrorMessages() {
-      return $this->filesize_errors;
+   public function getPostErrorMessages() {
+      return $this->post_errors;
    }
 
-   public function getCommentErrorMessages() {
-      return $this->comment_errors;
+   public function getFileErrorMessages() {
+      return $this->file_errors;
    }
 
    public function getFileModelErrorMessages() {
       return $this->filemodel_errors;
    }
 
-   public function getFileErrorMessages() {
-      return $this->file_errors;
+   public function getFileSizeErrorMessages() {
+      return $this->filesize_errors;
+   }
+
+   public function getCommentErrorMessages() {
+      return $this->comment_errors;
    }
 
    public function tokencheck() {
@@ -90,38 +86,6 @@ class TodoValidation {
             $this->token_errors[] = "不正なアクセスがありました。";
             return false;
       }
-   }
-
-   public function filecheck() {
-
-      if (!is_uploaded_file($tmp_path) && empty($this->filedata['comment'])) {
-         $this->file_errors[] = "画像ファイルとメモを入力してください";
-      } else if (!is_uploaded_file($tmp_path)) {
-         $this->file_errors[] = "画像ファイルが選択されていません。";
-      }
-      
-      $allow_ext = array('jpg','jpeg','png','git','pdf');
-      $file_ext = pathinfo($filename, PATHINFO_EXTENSION);
-      if (!in_array(strtolower($file_ext), $allow_ext) && empty($this->filedata['comment'])) {
-         $this->filemodel_errors[] = "画像ファイルの末尾をjpg,jpeg,png,git,pdfのどれかにして、メモを入力してください";
-      } else
-      if (!in_array(strtolower($file_ext), $allow_ext)) {
-         $this->filemodel_errors[] = "画像ファイルの末尾をjpg,jpeg,png,git,pdfのどれかにしてください。";
-      }
-
-      if(1048576 < $this->filedata['filesize'] || $this->filedata['fil_err'] == 2) {
-         $this->filesize_errors[] = "ファイルは1MB未満でお願いします。";
-         return false;
-      }
-
-      if(empty($this->filedata['comment'])) {
-         $this->comment_errors[] = "メモを入力してください";
-         return false;
-      } else if(255 < mb_strlen($this->filedata['comment'], 'UTF-8')) {
-         $this->comment_errors[] = "255文字以内で入力してください。";
-         return false;
-      }
-
    }
    
    public function todocheck() {
@@ -145,16 +109,6 @@ class TodoValidation {
          return false;
       } else if(50 < mb_strlen($this->data['content'], 'UTF-8')) {
          $this->content_errors[] = "50文字以内で入力してください。";
-         return false;
-      }
-   }
-
-   public function postcheck() {
-      if(empty($this->content)) {
-         $this->post_errors[] = "明日への一言が空です。";
-         return false;
-      } else if(255 < mb_strlen($this->content, 'UTF-8')) {
-         $this->post_errors[] = "255文字以内で入力してください。";
          return false;
       }
    }
@@ -217,6 +171,48 @@ class TodoValidation {
          $this->today_errors[] = "日付が選択されていません。";
          return false;
       }
+   }
+
+   public function postcheck() {
+      if(empty($this->content)) {
+         $this->post_errors[] = "明日への一言が空です。";
+         return false;
+      } else if(255 < mb_strlen($this->content, 'UTF-8')) {
+         $this->post_errors[] = "255文字以内で入力してください。";
+         return false;
+      }
+   }
+
+   public function filecheck() {
+
+      if (!is_uploaded_file($tmp_path) && empty($this->filedata['comment'])) {
+         $this->file_errors[] = "画像ファイルとメモを入力してください";
+      } else if (!is_uploaded_file($tmp_path)) {
+         $this->file_errors[] = "画像ファイルが選択されていません。";
+      }
+      
+      $allow_ext = array('jpg','jpeg','png','git','pdf');
+      $file_ext = pathinfo($filename, PATHINFO_EXTENSION);
+      if (!in_array(strtolower($file_ext), $allow_ext) && empty($this->filedata['comment'])) {
+         $this->filemodel_errors[] = "画像ファイルの末尾をjpg,jpeg,png,git,pdfのどれかにして、メモを入力してください";
+      } else
+      if (!in_array(strtolower($file_ext), $allow_ext)) {
+         $this->filemodel_errors[] = "画像ファイルの末尾をjpg,jpeg,png,git,pdfのどれかにしてください。";
+      }
+
+      if(1048576 < $this->filedata['filesize'] || $this->filedata['fil_err'] == 2) {
+         $this->filesize_errors[] = "ファイルは1MB未満でお願いします。";
+         return false;
+      }
+
+      if(empty($this->filedata['comment'])) {
+         $this->comment_errors[] = "メモを入力してください";
+         return false;
+      } else if(255 < mb_strlen($this->filedata['comment'], 'UTF-8')) {
+         $this->comment_errors[] = "255文字以内で入力してください。";
+         return false;
+      }
+
    }
   
 }

@@ -18,15 +18,15 @@ $goallists = $getller->goals();
 if($_SERVER['REQUEST_METHOD'] === 'GET') {
 
    if(isset($_GET['body'])) {
-      $weightparam['body'] = $_GET['body'];
+      $body = $_GET['body'];
    }
 
    if(isset($_GET['weight'])) {
-      $weightparam['weight'] = $_GET['weight'];
+      $weight = $_GET['weight'];
    }
 
    if(isset($_GET['today'])) {
-      $weightparam['today'] = $_GET['today'];
+      $today = $_GET['today'];
    }
 }
 
@@ -60,7 +60,7 @@ unset($_SESSION['today_errors']);
          <?php endforeach;?>
       <?endif;?>
 
-      <p class="bodytitle">目標体重 : <input type="text" name="body" class="weightinput" value="<?php if(isset($weightparam['body'])):?><?php echo Utils::h($weightparam['body']);?><?php else:?><?php echo Utils::h($goallists['goalweights']);?><?php endif;?>"> kg</p>
+      <p class="bodytitle">目標体重 : <input type="text" name="body" class="weightinput" value="<?php if(isset($body)):?><?php echo Utils::h($body);?><?php else:?><?php echo Utils::h($goallists['goalweights']);?><?php endif;?>"> kg</p>
 
       <?php if($body_errors):?>
          <?php foreach ($body_errors as $body_error): ?>
@@ -68,7 +68,7 @@ unset($_SESSION['today_errors']);
          <?php endforeach;?>
       <?endif;?>
       
-      <p class="bodytitle">現在の体重 : <input type="text" name="weight" class="weightinput" value="<?php echo Utils::h($weightparam['weight']); ?>"> kg</p>
+      <p class="bodytitle">現在の体重 : <input type="text" name="weight" class="weightinput" value="<?php echo Utils::h($weight); ?>"> kg</p>
 
       <?php if($weight_errors):?>
          <?php foreach ($weight_errors as $weight_error): ?>
@@ -76,7 +76,7 @@ unset($_SESSION['today_errors']);
          <?php endforeach;?>
       <?endif;?>
 
-      <p class="bodytitle">日付 : <input type="date" name="today" class="dayinput" value="<?php echo Utils::h($weightparam['today']); ?>"></p>
+      <p class="bodytitle">日付 : <input type="date" name="today" class="dayinput" value="<?php echo Utils::h($today); ?>"></p>
       <?php if($today_errors):?>
          <?php foreach ($today_errors as $today_error): ?>
             <p class="error-log"><?php echo Utils::h($today_error);?></p>

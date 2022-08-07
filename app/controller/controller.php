@@ -92,20 +92,12 @@ class Todocontroller {
    public function pictures() {
    
       $filedata = array(
-         "file" => $_FILES['img'],
-         "fileid" => $_FILES['id'],
-         "filename" => basename($file['name']),
-         "tmp_path" => $file['tmp_name'],
          "fil_err" => $file['error'],
          "filesize" => $file['size'],
          "comment" => $_POST['comment'],
-         "filetype" => pathinfo($save_path,PATHINFO_EXTENSION),
-         "$arrImagetype" => array('jpg','jpeg','png','git','pdf'),
-         "save_path" => './images/'. date('YmdHis') .basename($file['name']),
       );
 
       $file = $_FILES['img'];
-      $fileid = $_FILES['id'];
       $filename = basename($file['name']);
       $tmp_path = $file['tmp_name'];
       $fil_err = $file['error'];
@@ -116,7 +108,6 @@ class Todocontroller {
       $filetype = pathinfo($save_path,PATHINFO_EXTENSION);
       $arrImagetype = array('jpg','jpeg','png','git','pdf');
       $comment = filter_input(INPUT_POST, 'comment');
-      // $comment = filter_input(INPUT_POST, 'comment',FILTER_SANITIZE_SPECIAL_CHARS);
 
       $validation = new TodoValidation;
       $validation->setFileData($filedata);
@@ -125,9 +116,8 @@ class Todocontroller {
       if($validation->tokencheck() === false) {
          $token_errors = $validation->getTokenErrorMessages();
          $_SESSION['token_errors'] = $token_errors;
-         // header("Location: ./file.php");
 
-         $fileparams = sprintf("?filename=%s&save_path=%s&comment=%s", $_POST['filename'], $_POST['save_path'], $_POST['comment']);
+         $fileparams = sprintf("?comment=%s", $_POST['comment']);
          header(sprintf("Location: ./file.php%s", $fileparams));
          return;
       }
@@ -136,9 +126,8 @@ class Todocontroller {
          $validation->filecheck();
          $file_errors = $validation->getFileErrorMessages();
          $_SESSION['file_errors'] = $file_errors;
-         // header("Location: ./file.php");
 
-         $fileparams = sprintf("?filename=%s&save_path=%s&comment=%s", $_POST['filename'], $_POST['save_path'], $_POST['comment']);
+         $fileparams = sprintf("?comment=%s", $_POST['comment']);
          header(sprintf("Location: ./file.php%s", $fileparams));
          return;
       }
@@ -147,9 +136,8 @@ class Todocontroller {
          $validation->filecheck();
          $filemodel_errors = $validation->getFileModelErrorMessages();
          $_SESSION['filemodel_errors'] = $filemodel_errors;
-         // header("Location: ./file.php");
 
-         $fileparams = sprintf("?filename=%s&save_path=%s&comment=%s", $_POST['filename'], $_POST['save_path'], $_POST['comment']);
+         $fileparams = sprintf("?comment=%s", $_POST['comment']);
          header(sprintf("Location: ./file.php%s", $fileparams));
          return;
       } 
@@ -159,34 +147,22 @@ class Todocontroller {
          $comment_errors = $validation->getCommentErrorMessages();
          $_SESSION['filesize_errors'] = $filesize_errors;
          $_SESSION['comment_errors'] = $comment_errors;
-         // header("Location: ./file.php");
 
-         $fileparams = sprintf("?filename=%s&save_path=%s&comment=%s", $_POST['filename'], $_POST['save_path'], $_POST['comment']);
+         $fileparams = sprintf("?comment=%s", $_POST['comment']);
          header(sprintf("Location: ./file.php%s", $fileparams));
-         // $weightparams = sprintf("?body=%s&weight=%s&today=%s", $_POST['body'], $_POST['weight'], $_POST['today']);
-         // header(sprintf("Location: ./weight.php%s", $weightparams));
          return;
       }
 
-      // $physical = new Database;
-      // $physical->setbody($validation_weightdata['body']);
-      // $physical->setweight($validation_weightdata['weight']);
-      // $physical->settoday($validation_weightdata['today']);
-
-      // $validation_filedata = $validation->getFileData();
-      // $img->setTmp_path($validation_FileData['filename']);
-      // $img->setSave_path($validation_FileData['save_path']);
-      // $img->setComment($validation_FileData['comment']);
-
       if(move_uploaded_file($tmp_path, $save_path)) {
+    
          $validation_filedata = $validation->getFileData();
          $img = new Database;
-         $img->setFilename($validation_FileData['filename']);
-         $img->setSave_path($validation_FileData['save_path']);
-         $img->setComment($validation_FileData['comment']);
+         $img->setFilename($validation_filedata['filename']);
+         $img->setSave_path($validation_filedata['save_path']);
+         $img->setComment($validation_filedata['comment']);
+
          $imgresult = $img->filesave($filename,$save_path,$comment);
          header("Location: ./file.php");
-         // header("Location: ./file_upload.php");
       }
    }
 

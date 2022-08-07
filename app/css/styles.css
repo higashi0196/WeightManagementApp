@@ -275,7 +275,6 @@ td {
    padding: 0.3em;
    font-size: 18px;
    text-align: center;
-   /* text-indent: 1em; */
    white-space: pre-wrap;
 }
 
@@ -402,10 +401,10 @@ textarea {
 }
 
 .file-btn {
-   width: 80px;
+   width: 120px;
    height: auto;
-   margin: 10px auto 20px;
-   padding:  0.1em;
+   margin: 10px auto 15px;
+   padding:  2px;
    border: 2px solid black;
    border-radius: 5px;
    background-color: rgb(70, 210, 10);
@@ -707,6 +706,7 @@ img {
 
    .file-btn {
       margin: 20px 0 0;
+      padding: 1px;
       font-size: 16px;
    }
 

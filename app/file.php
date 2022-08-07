@@ -15,6 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $getller = new Todocontroller();
 $filelists = $getller->files();
 
+if($_SERVER['REQUEST_METHOD'] === 'GET') {
+
+   if(isset($_GET['comment'])) {
+      $comment = $_GET['comment'];
+   }
+}
+
 $token_errors = $_SESSION['token_errors'];
 unset($_SESSION['token_errors']);
 $filesize_errors = $_SESSION['filesize_errors'];
@@ -42,11 +49,10 @@ unset($_SESSION['file_errors']);
    <div>
       <input type="file" name="img" class="fileinput">
       <p class="memo">☆ 一言メモ ☆</p>
-      <!-- <textarea name="comment" class="comment"><?php echo Utils::h($comment);?></textarea> -->
-      <input type="text" name="comment" class="comment" value="<?php echo Utils::h($comment);?>">
+      <textarea name="comment" class="comment"><?php echo Utils::h($comment);?></textarea>
    </div>
    <p class="number">※画像は5件までアップロードできます。</p>
-   <button type="submit" class="file-btn">送信</button>
+   <button type="submit" class="file-btn">アップロード</button>
    <input type="hidden" name="MAX_FILE_SIZE" value="1048576">
    <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
 </form>

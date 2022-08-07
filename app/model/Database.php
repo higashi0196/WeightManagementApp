@@ -152,7 +152,7 @@ class Database
       $pdo = new PDO(DSN, USER, PASSWORD);
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-      $stmt = $pdo-query('SELECT goalweights FROM bodies ORDER BY id DESC LIMIT 1');
+      $stmt = $pdo->query('SELECT goalweights FROM bodies ORDER BY id DESC LIMIT 1');
       $goallists = $stmt->fetch(PDO::FETCH_ASSOC);
       return $goallists;
    }
@@ -178,24 +178,6 @@ class Database
       $todo = $stmt->fetch(PDO::FETCH_ASSOC);
       return $todo;
   }
-
-   // public function filesave() {
-   //    try {
-   //       $pdo = new PDO(DSN, USER, PASSWORD);
-   //       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   //       $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-   //       $sql = "INSERT INTO pictures (file_name, file_path, comment,created_at) VALUES ($this->filename, $this->save_path, $this->comment, NOW())";
-   //       $stmt = $pdo->prepare($sql);
-   //       $stmt->bindValue('file_name', $filename);
-   //       $stmt->bindValue('file_path', $save_path);
-   //       $stmt->bindValue('comment', $comment);
-   //       $stmt->execute();
-
-   //    } catch (PDOException $e) {
-   //       echo "画像アップロードに失敗しました。" . $e->getMessage();
-
-   //    }   
-   // }
 
    public function filesave($filename,$save_path,$comment) {
       try {
