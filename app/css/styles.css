@@ -218,6 +218,14 @@ td {
    cursor : pointer;
 }
 
+.no-todo {
+   height: 50px;
+   font-size: 20px;
+   font-weight: bold;
+   font-style: oblique;
+   text-shadow: 2px 2px 4px gray; 
+}
+
 /* テーブル CSS 終了 */
 
 /* 明日への一言 css 開始 */

@@ -23,8 +23,8 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
    }
 }
 
-$token_errors = $_SESSION['token_errors'];
-unset($_SESSION['token_errors']);
+$token_errors = $_SESSION['token_error'];
+unset($_SESSION['token_error']);
 $title_errors = $_SESSION['title_errors'];
 unset($_SESSION['title_errors']);
 $content_errors = $_SESSION['content_errors'];
