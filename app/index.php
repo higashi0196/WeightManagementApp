@@ -49,6 +49,7 @@ $bodylists = $getller->bodies();
       <a href="create.php"><button class="new-btn">新規登録</button></a>
    </div>
 
+   <?php if ($todolists): ?>
    <table>
       <thead>
          <tr>
@@ -59,21 +60,22 @@ $bodylists = $getller->bodies();
          </tr>
       </thead>
          <tbody>
-         <?php foreach ($todolists as $todo):?>
-            <tr>
-               <td><?php echo Utils::h($todo['title']); ?></td>
-               <td><?php echo Utils::h($todo['content']); ?></td> 
-               <td><a href="edit.php?id=<?php echo Utils::h($todo['id'])?>"><button class="edit-btn">編集</button></a></td>       
-               <td><button class="delete-btn" data-id="<?php echo Utils::h($todo['id'])?>">削除</button></td>
-            </tr> 
-         <?php endforeach; ?>
-         <?php if (empty($todolists)): ?>
-            <tr>
-               <td colspan="4" class="no-todo"><?php echo Utils::h(' ToDo なし'); ?></td>
-            </tr>
-         <?php endif; ?>
-      </tbody>
-   </table> 
+            <?php foreach ($todolists as $todo):?>
+               <tr>
+                  <td><?php echo Utils::h($todo['title']); ?></td>
+                  <td><?php echo Utils::h($todo['content']); ?></td> 
+                  <td><a href="edit.php?id=<?php echo Utils::h($todo['id'])?>"><button class="edit-btn">編集</button></a></td>       
+                  <td><button class="delete-btn" data-id="<?php echo Utils::h($todo['id'])?>">削除</button></td>
+               </tr> 
+            <?php endforeach; ?>
+            <!-- <tr>
+               <td colspan="4"><a class="todo">todoなし</a></td>
+            </tr> -->
+         </tbody>
+      </table> 
+      <?php else: ?>
+         <a class="todo">todoなし</a>
+      <?php endif; ?> 
 
    <div class="postcreate">
       <span> 〜 明日への一言 〜</span>
@@ -119,6 +121,19 @@ $bodylists = $getller->bodies();
             btn.closest('tr').remove();
          });
       });
+
+      var row = tbl1.rows.length;
+      const todos = document.querySelector('.todo');
+      // const tbls = document.querySelector('tbl1');
+      // console.log(tttt);
+      if (row <= 1) {
+         todos.style.display = 'none';
+         console.log("行数:" + row);
+      } else {
+         todos.style.display = 'none';
+         console.log("行数:" + row);
+         console.log('aaaa');
+      }
 
       // 明日への一言編 削除ボタン非同期通信
       const word = document.getElementById("word");
