@@ -50,7 +50,7 @@ $bodylists = $getller->bodies();
    </div>
 
    <?php if ($todolists): ?>
-   <table>
+   <table id="tbl1">
       <thead>
          <tr>
             <th scope="col">タイトル</th>
@@ -59,23 +59,30 @@ $bodylists = $getller->bodies();
             <th scope="col">削除</th>
          </tr>
       </thead>
-         <tbody>
-            <?php foreach ($todolists as $todo):?>
-               <tr>
-                  <td><?php echo Utils::h($todo['title']); ?></td>
-                  <td><?php echo Utils::h($todo['content']); ?></td> 
-                  <td><a href="edit.php?id=<?php echo Utils::h($todo['id'])?>"><button class="edit-btn">編集</button></a></td>       
-                  <td><button class="delete-btn" data-id="<?php echo Utils::h($todo['id'])?>">削除</button></td>
-               </tr> 
-            <?php endforeach; ?>
-            <!-- <tr>
-               <td colspan="4"><a class="todo">todoなし</a></td>
-            </tr> -->
-         </tbody>
-      </table> 
-      <?php else: ?>
-         <a class="todo">todoなし</a>
-      <?php endif; ?> 
+      <tbody>
+         <?php foreach ($todolists as $todo):?>
+            <tr>
+               <td><?php echo Utils::h($todo['title']); ?></td>
+               <td><?php echo Utils::h($todo['content']); ?></td> 
+               <td><a href="edit.php?id=<?php echo Utils::h($todo['id'])?>"><button class="edit-btn">編集</button></a></td>       
+               <td><button class="delete-btn" data-id="<?php echo Utils::h($todo['id'])?>">削除</button></td>
+            </tr> 
+         <?php endforeach; ?>
+      </tbody>
+   </table> 
+   <?php else: ?>
+      <table id="tbl1" class="tb">
+         <thead>
+            <tr class="subject">
+               <th scope="col">タイトル</th>
+               <th scope="col">目標</th>
+               <th scope="col">更新</th>
+               <th scope="col">削除</th>
+            </tr>
+         </thead>
+      </table>
+      <a class="todo">todoなし</a>
+   <?php endif; ?>
 
    <div class="postcreate">
       <span> 〜 明日への一言 〜</span>
@@ -122,17 +129,13 @@ $bodylists = $getller->bodies();
          });
       });
 
-      var row = tbl1.rows.length;
-      const todos = document.querySelector('.todo');
-      // const tbls = document.querySelector('tbl1');
-      // console.log(tttt);
-      if (row <= 1) {
-         todos.style.display = 'none';
+      let row = tbl1.rows.length;
+      const subject = document.querySelector('.subject');
+      if (1 < row) {
          console.log("行数:" + row);
-      } else {
-         todos.style.display = 'none';
+      } else if (row = 1) {
          console.log("行数:" + row);
-         console.log('aaaa');
+         subject.style.display = 'none';
       }
 
       // 明日への一言編 削除ボタン非同期通信

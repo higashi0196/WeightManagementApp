@@ -226,6 +226,11 @@ td {
    text-shadow: 2px 2px 4px gray; 
 }
 
+.tb {
+   margin: 3px;
+   /* margin: 5px auto; */
+}
+
 /* テーブル CSS 終了 */
 
 /* 明日への一言 css 開始 */
