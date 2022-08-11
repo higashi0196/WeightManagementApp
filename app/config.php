@@ -5,5 +5,7 @@ const USER = 'root';
 const PASSWORD = 'Nanahigashi10!';
 define ('SITE_URL', 'http://' . $_SERVER['HTTP_HOST']);
 
+// require('./model/Database.php');
+// require('./controller/controller.php');
 require_once('./model/Database.php');
 require_once('./controller/controller.php');

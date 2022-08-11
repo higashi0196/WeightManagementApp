@@ -1,8 +1,9 @@
 <?php
 
 // controllerフォルダ todocontroller
-require_once('config.php');
-require_once('error.php');
+// require_once('./../config.php');
+require_once('./config.php');
+require_once('./error.php');
 
 class Utils {
    public static function h($str) {

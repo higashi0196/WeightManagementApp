@@ -1,13 +1,19 @@
 <?php
 session_start();
 
-require_once(__DIR__ .'/config.php');
+// require_once(__DIR__ .'./../../config.php');
+require_once('config.php');
 
 $pdo = Database::get();
 $getller = new Todocontroller();
 $todolists = $getller->todos();
 $wordlists = $getller->words();
 $bodylists = $getller->bodies();
+
+foreach ($bodylists as $bodylist):
+$difference = json_encode($bodylist['difference']);
+$goalweights = json_encode($bodylist['goalweights']);
+endforeach;
 
 ?>
 
@@ -103,80 +109,100 @@ $bodylists = $getller->bodies();
 
 </div>
 
+<script src="js/main.js"></script>
+
    <script>
-      
       // todoリスト 削除ボタン非同期通信
-      const deletebtns = document.querySelectorAll('.delete-btn');
-      deletebtns.forEach(btn => {
-         btn.addEventListener('click', () => {
-            if (!confirm('削除しますか?')) {
-               return;
-            }
-         fetch('./delete.php', {
-            method: 'POST',
-            body: new URLSearchParams({
-            id: btn.dataset.id,
-         }),
-         }).then(response => {
-            return response.json();
-         }).then(json => {
-            console.log(json);
-         })
-         .catch(error => {
-            console.log("削除に失敗しました");
-         })
-            btn.closest('tr').remove();
-         });
-      });
-
-      let row = tbl1.rows.length;
-      const subject = document.querySelector('.subject');
-      if (1 < row) {
-         console.log("行数:" + row);
-      } else if (row = 1) {
-         console.log("行数:" + row);
-         subject.style.display = 'none';
-      }
-
-      // 明日への一言編 削除ボタン非同期通信
-      const word = document.getElementById("word");
-      const wordbtn = document.querySelector('.wordbtn');
-      wordbtn.addEventListener('click', () => {
-         if (!confirm('削除する?')) {
+   const deletebtns = document.querySelectorAll('.delete-btn');
+   deletebtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+         if (!confirm('削除しますか?')) {
             return;
          }
-         fetch('./postdelete.php', {
-            method: 'POST',
-         }).then(response => {
-            return response.json();
-         })
-         .then(json => {
-            word.textContent = '明日への一言を入力できます';
-            word.classList.add('word');
-            console.log(json);
-         })
-         .catch(error => {
-            console.log("削除に失敗しました");
-         })
+      fetch('./delete.php', {
+         method: 'POST',
+         body: new URLSearchParams({
+         id: btn.dataset.id,
+      }),
+      }).then(response => {
+         return response.json();
+      }).then(json => {
+         console.log(json);
+      })
+      .catch(error => {
+         console.log("削除に失敗しました");
+      })
+         btn.closest('tr').remove();
       });
-      
-      const difference = <?php echo $bodylist['difference']; ?>;
-      const goalweight = <?php echo $bodylist['goalweights']; ?>;
-      const achieve = document.querySelector('.achieve');
-      const achieve2 = document.querySelector('.achieve2');
-     
-      if (difference <= 0) {
-         achieve.style.display = 'block';
-         console.log("0kg以下,達成");
-      } else if (difference < goalweight * 0.01) {
-         achieve.style.display = 'block';
-         achieve.classList.add('achieve2');
-         achieve.textContent ='あともう少し頑張ろう!';
-         console.log("もう少し,頑張ろう");
-      } else {
-         achieve.style.display = 'none';
-         console.log("まだまだやな");
+   });
+
+   // 明日への一言編 削除ボタン非同期通信
+   const word = document.getElementById("word");
+   const wordbtn = document.querySelector('.wordbtn');
+   wordbtn.addEventListener('click', () => {
+      if (!confirm('削除する?')) {
+         return;
       }
+      fetch('./postdelete.php', {
+         method: 'POST',
+      }).then(response => {
+         return response.json();
+      })
+      .then(json => {
+         word.textContent = '明日への一言を入力できます';
+         word.classList.add('word');
+         console.log(json);
+      })
+      .catch(error => {
+         console.log("削除に失敗しました");
+      })
+   });
+
+
+   let row = tbl1.rows.length;
+   const subject = document.querySelector('.subject');
+   if (1 < row) {
+      console.log("行数:" + row);
+   } else if (row = 1) {
+      // console.log("行数:" + row);
+      // subject.style.display = 'none';
+      // subject.remove();
+
+      fetch('./postdelete.php', {
+         method: 'POST',
+      }).then(response => {
+         return response.json();
+      })
+      .then(json => {
+         subject.style.display = 'none';
+         subject.remove();
+         console.log("行数:" + row);
+         console.log(json);
+      })
+      .catch(error => {
+         console.log("削除に失敗しました");
+      })
+      subject.remove();
+   }
+
+   
+   const difference = <?php echo $bodylist['difference']; ?>;
+   const goalweight = <?php echo $bodylist['goalweights']; ?>;
+   const achieve = document.querySelector('.achieve');
+   const achieve2 = document.querySelector('.achieve2');
+   
+   if (difference <= 0) {
+      achieve.style.display = 'block';
+      console.log("0kg以下,達成");
+   } else if (difference < goalweight * 0.01) {
+      achieve.style.display = 'block';
+      achieve.classList.add('achieve2');
+      achieve.textContent ='あともう少し頑張ろう!';
+      console.log("もう少し,頑張ろう");
+   } else {
+      achieve.style.display = 'none';
+      console.log("まだまだやな");
+   }
 
    </script>
 </body>
