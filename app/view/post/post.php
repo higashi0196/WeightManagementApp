@@ -1,14 +1,14 @@
 <?php
-require_once('config.php');
-// require_once(__DIR__ .'./../../config.php');
+
+require_once('./../../controller/controller.php');
 
 session_start();
 $token = new Token();
 $token->create();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-   $getller = new Todocontroller();
-   $getller->postcreate();
+   $postcontroller = new Postcontroller();
+   $postcontroller->postcreate();
    exit;
 }
 
@@ -31,7 +31,7 @@ unset($_SESSION['token_errors']);
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <title>明日への一言</title>
-   <link rel="stylesheet" href="./css/styles.css">
+   <link rel="stylesheet" href="./../../css/styles.css">
 </head>
 <body>
    <form method="POST" action="./post.php">
@@ -56,6 +56,6 @@ unset($_SESSION['token_errors']);
       <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
    </form>
 
-   <a href="index.php"><button class="return-btn">戻る</button></a>
+   <a href="./../todo/index.php"><button class="return-btn">戻る</button></a>
 </body>
 </html>

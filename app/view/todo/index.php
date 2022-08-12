@@ -1,19 +1,20 @@
 <?php
 session_start();
 
-// require_once(__DIR__ .'./../../config.php');
-require_once('config.php');
+require_once('./../../controller/controller.php');
 
-$pdo = Database::get();
-$getller = new Todocontroller();
-$todolists = $getller->todos();
-$wordlists = $getller->words();
-$bodylists = $getller->bodies();
+// $pdo = Database::get();
+$todocontroller = new Todocontroller();
+$todolists = $todocontroller->todos();
+$postcontroller = new Postcontroller();
+$postlists = $postcontroller->posts();
+$weightcontroller = new Weightcontroller();
+$weightlists = $weightcontroller->weights();
 
-foreach ($bodylists as $bodylist):
-$difference = json_encode($bodylist['difference']);
-$goalweights = json_encode($bodylist['goalweights']);
-endforeach;
+// foreach ($bodylists as $bodylist):
+// $difference = json_encode($bodylist['difference']);
+// $goalweights = json_encode($bodylist['goalweights']);
+// endforeach;
 
 ?>
 
@@ -23,7 +24,7 @@ endforeach;
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <title>体重管理アプリ</title>
-   <link rel="stylesheet" href="./css/styles.css">
+   <link rel="stylesheet" href="./../../css/styles.css">
 </head>
 <body>
 <div class="all">
@@ -33,21 +34,21 @@ endforeach;
       <img src="./logos/logo3.png" class="logo">
    </h1>
 
-   <?php foreach ($bodylists as $bodylist): ?>
+   <?php foreach ($weightlists as $weightlist): ?>
       <p class="ideal-weight">目標体重 :</p>
-      <p class="goal-weight"><?php echo Utils::h($bodylist['goalweights']); ?> kg</p></br>
+      <p class="goal-weight"><?php echo Utils::h($weightlist['goalweights']); ?> kg</p></br>
       <p class="ideal-weight"> 現在の体重 :</p>
-      <p class="goal-weight"><?php echo Utils::h($bodylist['nowweights']); ?> kg</p><br>
+      <p class="goal-weight"><?php echo Utils::h($weightlist['nowweights']); ?> kg</p><br>
       <p class="ideal-weight">目標達成まであと :</p>
-      <p class="goal-weight"><?php echo Utils::h($bodylist['difference']); ?> kg</p>
+      <p class="goal-weight"><?php echo Utils::h($weightlist['difference']); ?> kg</p>
       <p class="achieve">見事達成！やったぜ！</p>
       <p class="ideal-day">
-      (<?php echo Utils::h($bodylist['nowdate']); ?> 現在)</p>
+      (<?php echo Utils::h($weightlist['nowdate']); ?> 現在)</p>
    <?php endforeach; ?>
    
    <div>
-      <a href="weight.php"><button class="weight-btn">体重記入</button></a>
-      <a href="file.php"><button class="picutre-btn">画像アップロード</button></a>
+      <a href="./../weight/weight.php"><button class="weight-btn">体重記入</button></a>
+      <a href="./../file/file.php"><button class="picutre-btn">画像アップロード</button></a>
    </div>
    
    <div>
@@ -92,15 +93,15 @@ endforeach;
 
    <div class="postcreate">
       <span> 〜 明日への一言 〜</span>
-      <a href="post.php"><button class="post-btn">投稿する</button></a>
+      <a href="./../post/post.php"><button class="post-btn">投稿する</button></a>
       <a class="wordbtn" data-id="<?php echo Utils::h($wordtodo['id']); ?>">
       <button class="postdlt-btn">削除</button></a>
    </div>
 
    <div class="message">
-   <?php if ($wordlists): ?>
-      <?php foreach ($wordlists as $wordlist): ?> 
-         <p id="word"><?php echo Utils::h($wordlist['content']); ?></p>
+   <?php if ($postlists): ?>
+      <?php foreach ($postlists as $postlist): ?> 
+         <p id="word"><?php echo Utils::h($postlist['content']); ?></p>
       <?php endforeach; ?>
    <?php else : ?>
       <p id="word">明日への一言を入力できます</p> 
@@ -109,7 +110,7 @@ endforeach;
 
 </div>
 
-<script src="js/main.js"></script>
+<!-- <script src="js/main.js"></script> -->
 
    <script>
       // todoリスト 削除ボタン非同期通信
@@ -143,7 +144,7 @@ endforeach;
       if (!confirm('削除する?')) {
          return;
       }
-      fetch('./postdelete.php', {
+      fetch('./../post/postdelete.php', {
          method: 'POST',
       }).then(response => {
          return response.json();
@@ -159,35 +160,35 @@ endforeach;
    });
 
 
-   let row = tbl1.rows.length;
-   const subject = document.querySelector('.subject');
-   if (1 < row) {
-      console.log("行数:" + row);
-   } else if (row = 1) {
-      // console.log("行数:" + row);
-      // subject.style.display = 'none';
-      // subject.remove();
+   // let row = tbl1.rows.length;
+   // const subject = document.querySelector('.subject');
+   // if (1 < row) {
+   //    console.log("行数:" + row);
+   // } else if (row = 1) {
+   //    console.log("行数:" + row);
+   //    subject.style.display = 'none';
+   //    subject.remove();
 
-      fetch('./postdelete.php', {
-         method: 'POST',
-      }).then(response => {
-         return response.json();
-      })
-      .then(json => {
-         subject.style.display = 'none';
-         subject.remove();
-         console.log("行数:" + row);
-         console.log(json);
-      })
-      .catch(error => {
-         console.log("削除に失敗しました");
-      })
-      subject.remove();
-   }
+   //    fetch('./postdelete.php', {
+   //       method: 'POST',
+   //    }).then(response => {
+   //       return response.json();
+   //    })
+   //    .then(json => {
+   //       subject.style.display = 'none';
+   //       subject.remove();
+   //       console.log("行数:" + row);
+   //       console.log(json);
+   //    })
+   //    .catch(error => {
+   //       console.log("削除に失敗しました");
+   //    })
+   //    subject.remove();
+   // }
 
    
-   const difference = <?php echo $bodylist['difference']; ?>;
-   const goalweight = <?php echo $bodylist['goalweights']; ?>;
+   const difference = <?php echo $weightlist['difference']; ?>;
+   const goalweight = <?php echo $weightlist['goalweights']; ?>;
    const achieve = document.querySelector('.achieve');
    const achieve2 = document.querySelector('.achieve2');
    

@@ -1,20 +1,19 @@
 <?php
 
-require_once('config.php');
-// require_once(__DIR__ .'./../../config.php');
+require_once('./../../controller/controller.php');
 
 session_start();
 $token = new Token();
 $token->create();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-   $getller = new Todocontroller();
-   $getller->pictures();
+   $filecontroller = new Filecontroller();
+   $filecontroller->picturecreate();
    exit;
 }
 
-$getller = new Todocontroller();
-$filelists = $getller->files();
+$filecontroller = new Filecontroller();
+$filelists = $filecontroller->files();
 
 if($_SERVER['REQUEST_METHOD'] === 'GET') {
 
@@ -42,7 +41,7 @@ unset($_SESSION['file_errors']);
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <title>画像アップロード</title>
-   <link rel="stylesheet" href="./css/styles.css">
+   <link rel="stylesheet" href="./../../css/styles.css">
 </head>
 <body>
 <p class="outline">画像アップロード</p>
@@ -88,7 +87,7 @@ unset($_SESSION['file_errors']);
       <?php endforeach;?>
    <?endif;?>
    
-<a href="index.php"><button class="return-btn">戻る</button></a>
+   <a href="./../todo/index.php"><button class="return-btn">戻る</button></a>
 
 <ol>
    <?php foreach ($filelists as $filelist): ?> 

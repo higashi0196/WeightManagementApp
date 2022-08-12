@@ -1,19 +1,19 @@
 <?php
 
-require_once('config.php');
+require_once('./../../controller/controller.php');
 
 session_start();
 $token = new Token();
 $token->create();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-   $getller = new Todocontroller();
-   $getller->dietcreate();
+   $weightcontroller = new Weightcontroller();
+   $weightcontroller->dietcreate();
    exit;
 }
 
-$getller = new Todocontroller();
-$goallists = $getller->goals();
+$weightcontroller = new Weightcontroller();
+$goallists = $weightcontroller->goals();
 
 if($_SERVER['REQUEST_METHOD'] === 'GET') {
 
@@ -47,7 +47,7 @@ unset($_SESSION['today_errors']);
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <title>新規登録</title>
-   <link rel="stylesheet" href="./css/styles.css">
+   <link rel="stylesheet" href="./../../css/styles.css">
 </head>
 <body>
    <p class="outline">体重記録</p>
@@ -87,6 +87,6 @@ unset($_SESSION['today_errors']);
       <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
    </form>
 
-   <a href="index.php"><button class="return-btn">戻る</button></a>
+   <a href="./../todo/index.php"><button class="return-btn">戻る</button></a>
 </body>
 </html>

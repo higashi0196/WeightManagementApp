@@ -1,15 +1,14 @@
 <?php
 
-require_once('config.php');
-// require_once(__DIR__ .'./../../config.php');
+require_once('./../../controller/controller.php');
 
 session_start();
 $token = new Token();
 $token->create();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-   $getller = new Todocontroller();
-   $getller->create();
+   $todocontroller = new Todocontroller();
+   $todocontroller->todocreate();
    exit;
 }
 
@@ -39,7 +38,7 @@ unset($_SESSION['content_errors']);
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <title>新規登録</title>
-   <link rel="stylesheet" href="./css/styles.css">
+   <link rel="stylesheet" href="./../../css/styles.css">
 </head>
 <body>
    <p class="outline">新規登録</p>

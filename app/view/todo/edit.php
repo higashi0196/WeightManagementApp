@@ -1,21 +1,20 @@
 <?php
 
-require_once('config.php');
-// require_once(__DIR__ .'./../../config.php');
+require_once('./../../controller/controller.php');
 
 session_start();
 $token = new Token();
 $token->create();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-   $getller = new Todocontroller();
-   $getller->update();
+   $todocontroller = new Todocontroller();
+   $todocontroller->update();
    exit;
 }
 
-$getller = new Todocontroller();
-$data =  $getller->edit();
-$todolists = $getller->todos();
+$todocontroller = new Todocontroller();
+$data =  $todocontroller->edit();
+$todolists = $todocontroller->todos();
 $todo = $data['todo'];
 $params = $data['params'];
 
@@ -34,7 +33,7 @@ unset($_SESSION['content_errors']);
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <title>編集画面</title>
-   <link rel="stylesheet" href="./css/styles.css">
+   <link rel="stylesheet" href="./../../css/styles.css">
 </head>
 <body>
    <p class="outline">編集画面</p>

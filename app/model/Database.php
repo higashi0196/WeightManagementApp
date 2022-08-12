@@ -1,10 +1,8 @@
 <?php
 
-// modleフォルダ todo.php
 session_start();
 
-// require_once('/../config.php');
-require_once('config.php');
+require_once('./../../config/config.php');
 
 class Database
 {  
@@ -131,7 +129,7 @@ class Database
       return $todolists;
    }
 
-   public static function wordgetAll() {
+   public static function postgetAll() {
       $pdo = new PDO(DSN, USER, PASSWORD);
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -140,7 +138,7 @@ class Database
       return $wordlists;
    }
 
-   public static function bodiesgetAll() {
+   public static function weightsgetAll() {
       $pdo = new PDO(DSN, USER, PASSWORD);
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -204,7 +202,7 @@ class Database
          $pdo = new PDO(DSN, USER, PASSWORD);
          $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
          $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-         $sql = "INSERT INTO todos (title, content, created_at, updated_at) VALUES ('$this->title', '$this->content', NOW(), NOW())";
+         $sql = "INSERT INTO todo (title, content, created_at, updated_at) VALUES ('$this->title', '$this->content', NOW(), NOW())";
 
          $pdo->beginTransaction();
          $stmt = $pdo->prepare($sql);
@@ -215,7 +213,14 @@ class Database
          $pdo->commit();
          
       } catch(Exception $e) {
-         echo "新規作成に失敗しました。" . $e->getMessage();
+         // $redirectUrl = "http://www.example.com/404.html";
+         // header("HTTP/1.0 404 Not Found");
+         // print(file_get_contents($redirectUrl));
+
+         // error_log("新規作成に失敗しました。");
+         // error_log($e->getMessage());
+         // echo "新規作成に失敗しました。" . $e->getMessage();
+
          $pdo->rollBack();
          exit;
       }

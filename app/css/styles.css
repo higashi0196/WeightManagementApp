@@ -7,7 +7,7 @@ body {
    background-color: rgba(239, 240, 233, 0.003);
    text-align: center;
    /* font-family: "メイリオ", sans-serif; */
-   background-image: url(./../logos/logo1.jpg);
+   background-image: url(./../view/todo/logos/logo1.jpg);
    background-repeat: no-repeat;
 	background-position: center;
    background-size: cover;
