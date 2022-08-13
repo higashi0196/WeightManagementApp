@@ -191,6 +191,10 @@ class Database
          $stmt->execute();
 
       } catch (PDOException $e) {
+         $errorUrl = "./../../view/error/404.php";
+         header( "HTTP/1.1 404 Not Found" );
+         print(file_get_contents($errorUrl));
+
          echo "画像アップロードに失敗しました。" . $e->getMessage();
          // $pdo->rollBack();
          // exit;
@@ -202,7 +206,7 @@ class Database
          $pdo = new PDO(DSN, USER, PASSWORD);
          $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
          $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-         $sql = "INSERT INTO todo (title, content, created_at, updated_at) VALUES ('$this->title', '$this->content', NOW(), NOW())";
+         $sql = "INSERT INTO todos (title, content, created_at, updated_at) VALUES ('$this->title', '$this->content', NOW(), NOW())";
 
          $pdo->beginTransaction();
          $stmt = $pdo->prepare($sql);
@@ -213,12 +217,14 @@ class Database
          $pdo->commit();
          
       } catch(Exception $e) {
-         // $redirectUrl = "http://www.example.com/404.html";
-         // header("HTTP/1.0 404 Not Found");
-         // print(file_get_contents($redirectUrl));
+         $errorUrl = "./../../view/error/404.php";
+         header( "HTTP/1.1 404 Not Found" );
+         print(file_get_contents($errorUrl));
 
-         // error_log("新規作成に失敗しました。");
-         // error_log($e->getMessage());
+         // header('Location: ./../../view/error/404.php');
+
+         error_log("新規作成に失敗しました。");
+         error_log($e->getMessage());
          // echo "新規作成に失敗しました。" . $e->getMessage();
 
          $pdo->rollBack();
@@ -241,6 +247,10 @@ class Database
          // $pdo->commit();
 
       } catch(Exception $e) {
+
+         $errorUrl = "./../../view/error/404.php";
+         header( "HTTP/1.1 404 Not Found" );
+         print(file_get_contents($errorUrl));
           // $pdo->rollBack();
           echo "明日への一言の入力に失敗しました。" . $e->getMessage();
           exit;
@@ -264,6 +274,11 @@ class Database
          // $pdo->commit();
          
       } catch(Exception $e) {
+
+         $errorUrl = "./../../view/error/404.php";
+         header( "HTTP/1.1 404 Not Found" );
+         print(file_get_contents($errorUrl));
+
           // $pdo->rollBack();
           echo "体重入力に失敗しました。" . $e->getMessage();
           exit;
@@ -287,6 +302,11 @@ class Database
          // $pdo->commit();
 
       }  catch (PDOException $e) {
+
+         $errorUrl = "./../../view/error/404.php";
+         header( "HTTP/1.1 404 Not Found" );
+         print(file_get_contents($errorUrl));
+
           // $pdo->rollBack();
           echo "更新に失敗しました。" . $e->getMessage();
           exit;
@@ -308,6 +328,11 @@ class Database
          // $pdo->commit();
 
       }  catch (PDOException $e) {
+
+         $errorUrl = "./../../view/error/404.php";
+         header( "HTTP/1.1 404 Not Found" );
+         print(file_get_contents($errorUrl));
+
           // $pdo->rollBack();
           echo "削除に失敗しました。" . $e->getMessage();
           exit;
@@ -328,6 +353,11 @@ class Database
          // $pdo->commit();
 
       }  catch (PDOException $e) {
+
+         $errorUrl = "./../../view/error/404.php";
+         header( "HTTP/1.1 404 Not Found" );
+         print(file_get_contents($errorUrl));
+
           // $pdo->rollBack();
           echo "削除に失敗しました。" . $e->getMessage();
           exit;
@@ -349,6 +379,11 @@ class Database
          // $pdo->commit();
 
       }  catch (PDOException $e) {
+
+         $errorUrl = "./../../view/error/404.php";
+         header( "HTTP/1.1 404 Not Found" );
+         print(file_get_contents($errorUrl));
+
           // $pdo->rollBack();
           echo "削除に失敗しました。" . $e->getMessage();
           exit;

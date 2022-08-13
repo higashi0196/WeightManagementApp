@@ -29,9 +29,9 @@ $weightlists = $weightcontroller->weights();
 <body>
 <div class="all">
    <h1>
-      <img src="./logos/logo3.png" alt="" class="logo">
+      <img src="./../logos/logo3.png" alt="" class="logo">
       体重管理リスト
-      <img src="./logos/logo3.png" class="logo">
+      <img src="./../logos/logo3.png" class="logo">
    </h1>
 
    <?php foreach ($weightlists as $weightlist): ?>

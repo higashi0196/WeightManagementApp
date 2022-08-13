@@ -2,7 +2,7 @@
 
 require_once('./../../controller/controller.php');
 
-$todocontroler = new Todocontroller();
+$todocontroller = new Todocontroller();
 $result = $todocontroller->delete();
 
 $response = '非同期通信 成功';
