@@ -11,9 +11,10 @@ $postlists = $postcontroller->posts();
 $weightcontroller = new Weightcontroller();
 $weightlists = $weightcontroller->weights();
 
-// foreach ($bodylists as $bodylist):
-// $difference = json_encode($bodylist['difference']);
-// $goalweights = json_encode($bodylist['goalweights']);
+// $json_array = json_encode($weightlists);
+// foreach ($weightlists as $weightlist):
+// $difference = json_encode($weightlist['difference']);
+// $goalweights = json_encode($weightlist['goalweights']);
 // endforeach;
 
 ?>
@@ -110,10 +111,15 @@ $weightlists = $weightcontroller->weights();
 
 </div>
 
-<!-- <script src="js/main.js"></script> -->
+<script type="text/javascript">
+   let difference = "<?php echo $weightlist['difference']; ?>";
+   let goalweight = "<?php echo $weightlist['goalweights']; ?>";
+</script>
 
-   <script>
-      // todoリスト 削除ボタン非同期通信
+<script type="text/javascript" src="./../../js/main.js"></script>
+   <!-- <script>
+   
+      todoリスト 削除ボタン非同期通信
    const deletebtns = document.querySelectorAll('.delete-btn');
    deletebtns.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -131,13 +137,14 @@ $weightlists = $weightcontroller->weights();
          console.log(json);
       })
       .catch(error => {
+         window.location.href = './../../view/error/404.php';
          console.log("削除に失敗しました");
       })
          btn.closest('tr').remove();
       });
    });
 
-   // 明日への一言編 削除ボタン非同期通信
+   明日への一言編 削除ボタン非同期通信
    const word = document.getElementById("word");
    const wordbtn = document.querySelector('.wordbtn');
    wordbtn.addEventListener('click', () => {
@@ -155,36 +162,37 @@ $weightlists = $weightcontroller->weights();
          console.log(json);
       })
       .catch(error => {
+         window.location.href = './../../view/error/404.php';
          console.log("削除に失敗しました");
       })
    });
 
 
-   // let row = tbl1.rows.length;
-   // const subject = document.querySelector('.subject');
-   // if (1 < row) {
-   //    console.log("行数:" + row);
-   // } else if (row = 1) {
-   //    console.log("行数:" + row);
-   //    subject.style.display = 'none';
-   //    subject.remove();
+   let row = tbl1.rows.length;
+   const subject = document.querySelector('.subject');
+   if (1 < row) {
+      console.log("行数:" + row);
+   } else if (row = 1) {
+      console.log("行数:" + row);
+      subject.style.display = 'none';
+      subject.remove();
 
-   //    fetch('./postdelete.php', {
-   //       method: 'POST',
-   //    }).then(response => {
-   //       return response.json();
-   //    })
-   //    .then(json => {
-   //       subject.style.display = 'none';
-   //       subject.remove();
-   //       console.log("行数:" + row);
-   //       console.log(json);
-   //    })
-   //    .catch(error => {
-   //       console.log("削除に失敗しました");
-   //    })
-   //    subject.remove();
-   // }
+      fetch('./postdelete.php', {
+         method: 'POST',
+      }).then(response => {
+         return response.json();
+      })
+      .then(json => {
+         subject.style.display = 'none';
+         subject.remove();
+         console.log("行数:" + row);
+         console.log(json);
+      })
+      .catch(error => {
+         console.log("削除に失敗しました");
+      })
+      subject.remove();
+   }
 
    
    const difference = <?php echo $weightlist['difference']; ?>;
@@ -205,6 +213,6 @@ $weightlists = $weightcontroller->weights();
       console.log("まだまだやな");
    }
 
-   </script>
+   </script> -->
 </body>
 </html>

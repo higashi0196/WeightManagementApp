@@ -561,7 +561,7 @@ img {
    }
 
    .weight-btn {
-      width: 80px;
+      width: 90px;
       height: auto;
       margin: 15px 7px 10px;
       padding: 3px;
@@ -720,6 +720,8 @@ img {
    }
 
    .file-btn {
+      width: 120px;
+      height: 35px;
       margin: 20px 0 0;
       padding: 1px;
       font-size: 16px;

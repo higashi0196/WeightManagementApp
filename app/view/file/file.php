@@ -135,6 +135,7 @@ unset($_SESSION['file_errors']);
          console.log(json);
       })
       .catch(error => {
+         window.location.href = './../../view/error/404.php';
          console.log("画像削除に失敗しました");
       })
       filebtn.parentNode.remove();

@@ -25,7 +25,6 @@ class Todocontroller {
    }
 
    public function todocreate() {
-
       $data = array(
          "title" => $_POST['title'],
          "content" => $_POST['content'],
@@ -56,12 +55,12 @@ class Todocontroller {
       $todo->setTitle($validation_data['title']);
       $todo->setContent($validation_data['content']);
       $result = $todo->save();
-
       header("Location: ./index.php");
+     
    }
 
    public function edit() {
-
+      $id = '';
       $params = array();
       if($_SERVER['REQUEST_METHOD'] === 'GET') {
          if(isset($_GET['id'])) {
@@ -136,7 +135,7 @@ class Todocontroller {
 
       $todo = new Database;
       $todo->setId($id);
-      $result = $todo->delete();
+      $result = $todo->tododelete();
 
       return $result;
    }
