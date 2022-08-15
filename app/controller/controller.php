@@ -23,7 +23,7 @@ class Todocontroller {
       $todolists = Database::todogetAll();
       return $todolists;
    }
-
+  
    public function todocreate() {
       $data = array(
          "title" => $_POST['title'],

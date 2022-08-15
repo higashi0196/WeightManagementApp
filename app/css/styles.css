@@ -219,6 +219,7 @@ td {
 }
 
 .todo {
+   /* display: none; */
    height: 50px;
    font-size: 20px;
    font-weight: bold;

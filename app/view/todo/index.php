@@ -11,12 +11,6 @@ $postlists = $postcontroller->posts();
 $weightcontroller = new Weightcontroller();
 $weightlists = $weightcontroller->weights();
 
-// $json_array = json_encode($weightlists);
-// foreach ($weightlists as $weightlist):
-// $difference = json_encode($weightlist['difference']);
-// $goalweights = json_encode($weightlist['goalweights']);
-// endforeach;
-
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +52,7 @@ $weightlists = $weightcontroller->weights();
    </div>
 
    <?php if ($todolists): ?>
-   <table id="tbl1">
+   <table>
       <thead>
          <tr>
             <th scope="col">タイトル</th>
@@ -73,24 +67,26 @@ $weightlists = $weightcontroller->weights();
                <td><?php echo Utils::h($todo['title']); ?></td>
                <td><?php echo Utils::h($todo['content']); ?></td> 
                <td><a href="edit.php?id=<?php echo Utils::h($todo['id'])?>"><button class="edit-btn">編集</button></a></td>       
-               <td><button class="delete-btn" data-id="<?php echo Utils::h($todo['id'])?>">削除</button></td>
+               <td><button class="delete-btn" data-id="<?php echo Utils::h($todo['id'])?>">削除</button></td> 
+               <!-- <td class="aaa">明日への一言を入力できます<td>   -->
             </tr> 
          <?php endforeach; ?>
       </tbody>
-   </table> 
-   <?php else: ?>
-      <table id="tbl1" class="tb">
-         <thead>
-            <tr class="subject">
-               <th scope="col">タイトル</th>
-               <th scope="col">目標</th>
-               <th scope="col">更新</th>
-               <th scope="col">削除</th>
-            </tr>
-         </thead>
-      </table>
-      <a class="todo">todoなし</a>
+      </table> 
+   <?php elseif(empty($todolists)): ?>
+   <table>
+      <thead>
+         <tr>
+            <th scope="col">タイトル</th>
+            <th scope="col">目標</th>
+            <th scope="col">更新</th>
+            <th scope="col">削除</th>
+         </tr>
+      </thead>
+   </table>
+      <p class="todo">ToDoが空です</p> 
    <?php endif; ?>
+   
 
    <div class="postcreate">
       <span> 〜 明日への一言 〜</span>
@@ -112,107 +108,11 @@ $weightlists = $weightcontroller->weights();
 </div>
 
 <script type="text/javascript">
-   let difference = "<?php echo $weightlist['difference']; ?>";
-   let goalweight = "<?php echo $weightlist['goalweights']; ?>";
+   const difference = "<?php echo $weightlist['difference']; ?>";
+   const goalweight = "<?php echo $weightlist['goalweights']; ?>";
 </script>
 
 <script type="text/javascript" src="./../../js/main.js"></script>
-   <!-- <script>
-   
-      todoリスト 削除ボタン非同期通信
-   const deletebtns = document.querySelectorAll('.delete-btn');
-   deletebtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-         if (!confirm('削除しますか?')) {
-            return;
-         }
-      fetch('./delete.php', {
-         method: 'POST',
-         body: new URLSearchParams({
-         id: btn.dataset.id,
-      }),
-      }).then(response => {
-         return response.json();
-      }).then(json => {
-         console.log(json);
-      })
-      .catch(error => {
-         window.location.href = './../../view/error/404.php';
-         console.log("削除に失敗しました");
-      })
-         btn.closest('tr').remove();
-      });
-   });
 
-   明日への一言編 削除ボタン非同期通信
-   const word = document.getElementById("word");
-   const wordbtn = document.querySelector('.wordbtn');
-   wordbtn.addEventListener('click', () => {
-      if (!confirm('削除する?')) {
-         return;
-      }
-      fetch('./../post/postdelete.php', {
-         method: 'POST',
-      }).then(response => {
-         return response.json();
-      })
-      .then(json => {
-         word.textContent = '明日への一言を入力できます';
-         word.classList.add('word');
-         console.log(json);
-      })
-      .catch(error => {
-         window.location.href = './../../view/error/404.php';
-         console.log("削除に失敗しました");
-      })
-   });
-
-
-   let row = tbl1.rows.length;
-   const subject = document.querySelector('.subject');
-   if (1 < row) {
-      console.log("行数:" + row);
-   } else if (row = 1) {
-      console.log("行数:" + row);
-      subject.style.display = 'none';
-      subject.remove();
-
-      fetch('./postdelete.php', {
-         method: 'POST',
-      }).then(response => {
-         return response.json();
-      })
-      .then(json => {
-         subject.style.display = 'none';
-         subject.remove();
-         console.log("行数:" + row);
-         console.log(json);
-      })
-      .catch(error => {
-         console.log("削除に失敗しました");
-      })
-      subject.remove();
-   }
-
-   
-   const difference = <?php echo $weightlist['difference']; ?>;
-   const goalweight = <?php echo $weightlist['goalweights']; ?>;
-   const achieve = document.querySelector('.achieve');
-   const achieve2 = document.querySelector('.achieve2');
-   
-   if (difference <= 0) {
-      achieve.style.display = 'block';
-      console.log("0kg以下,達成");
-   } else if (difference < goalweight * 0.01) {
-      achieve.style.display = 'block';
-      achieve.classList.add('achieve2');
-      achieve.textContent ='あともう少し頑張ろう!';
-      console.log("もう少し,頑張ろう");
-   } else {
-      achieve.style.display = 'none';
-      console.log("まだまだやな");
-   }
-
-   </script> -->
 </body>
 </html>

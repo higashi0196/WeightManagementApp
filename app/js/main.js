@@ -2,28 +2,8 @@
 
 {
 
-   // let difference = "<?php echo $weightlist['difference']; ?>";
-   // let goalweight = "<?php echo $weightlist['goalweights']; ?>";
-   // let difference = "<?php echo $weightlist['difference']; ?>";
-   // let goalweight = "<?php echo $weightlist['goalweights']; ?>";
-   var achieve = document.querySelector('.achieve');
-   var achieve2 = document.querySelector('.achieve2');
-   
-   if (difference <= 0) {
-      achieve.style.display = 'block';
-      console.log("0kg以下,達成");
-   } else if (difference < goalweight * 0.01) {
-      achieve.style.display = 'block';
-      achieve.classList.add('achieve2');
-      achieve.textContent ='あともう少し頑張ろう!';
-      console.log("もう少し,頑張ろう");
-   }  else {
-      achieve.style.display = 'none';
-      console.log("まだまだやな");
-   }
-
-
    // todoリスト 削除ボタン非同期通信
+  
    const deletebtns = document.querySelectorAll('.delete-btn');
    deletebtns.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -47,4 +27,44 @@
          btn.closest('tr').remove();
       });
    });
+
+   // 明日への一言編 削除ボタン非同期通信
+   const word = document.getElementById("word");
+   const wordbtn = document.querySelector('.wordbtn');
+   wordbtn.addEventListener('click', () => {
+      if (!confirm('削除する?')) {
+         return;
+      }
+      fetch('./../post/postdelete.php', {
+         method: 'POST',
+      }).then(response => {
+         return response.json();
+      })
+      .then(json => {
+         word.textContent = '明日への一言を入力できます';
+         word.classList.add('word');
+         console.log(json);
+      })
+      .catch(error => {
+         window.location.href = './../../view/error/404.php';
+         console.log("削除に失敗しました");
+      })
+   });
+
+   const achieve = document.querySelector('.achieve');
+   const achieve2 = document.querySelector('.achieve2');
+   
+   if (difference <= 0) {
+      achieve.style.display = 'block';
+      console.log("0kg以下,達成");
+   } else if (difference < goalweight * 0.01) {
+      achieve.style.display = 'block';
+      achieve.classList.add('achieve2');
+      achieve.textContent =  'あと ' + difference + ' kg ' + 'もう少し頑張ろう !';
+      console.log("もう少し,頑張ろう");
+   }  else {
+      achieve.textContent =  'あと ' + difference + ' kg ';
+      console.log("まだまだ");
+   }
+
 }
