@@ -1,9 +1,7 @@
 'use strict';
 
 {
-
-   // todoリスト 削除ボタン非同期通信
-  
+   // todo 削除機能 非同期通信
    const deletebtns = document.querySelectorAll('.delete-btn');
    deletebtns.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -28,7 +26,7 @@
       });
    });
 
-   // 明日への一言編 削除ボタン非同期通信
+   // post 削除機能 非同期通信
    const word = document.getElementById("word");
    const wordbtn = document.querySelector('.wordbtn');
    wordbtn.addEventListener('click', () => {
@@ -67,4 +65,5 @@
       console.log("まだまだ");
    }
 
+   
 }

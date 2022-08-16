@@ -16,7 +16,6 @@ $filecontroller = new Filecontroller();
 $filelists = $filecontroller->files();
 
 if($_SERVER['REQUEST_METHOD'] === 'GET') {
-
    if(isset($_GET['comment'])) {
       $comment = $_GET['comment'];
    }
@@ -92,7 +91,6 @@ unset($_SESSION['file_errors']);
 <ol>
    <?php foreach ($filelists as $filelist): ?> 
       <li>
-         <!-- <?php echo Utils::h($counter + 1); ?> -->
          <img src="<?php echo Utils::h($filelist['file_path']); ?>" alt="">
          <a class="list-memo"> 〜〜  一言メモ 〜〜 
             <p class="list-comment"><?php echo Utils::h($filelist['comment']); ?></p>
@@ -102,46 +100,6 @@ unset($_SESSION['file_errors']);
       <?php endforeach; ?>
 </ol>
 
-
-<!-- <ol>
-   <?php $counter = 0; $counter++; foreach ($filelists as $filelist): ?> 
-      <li>
-         <?php echo Utils::h($counter + 1); ?>
-         <img src="<?php echo Utils::h($filelist['file_path']); ?>" alt="">
-         <a class="list-memo"> 〜〜  一言メモ 〜〜 
-            <p class="list-comment"><?php echo Utils::h($filelist['comment']); ?></p>
-         </a>
-         <button class="filedelete-btn" data-id="<?php echo Utils::h($filelist['id']); ?>">削除</button>
-      </li>
-      <?php if ($counter >= 4) {break;} $counter++; endforeach; ?>
-</ol> -->
-
-<script>
-  
-   const filebtns = document.querySelectorAll('.filedelete-btn');
-   filebtns.forEach(filebtn => {
-      filebtn.addEventListener('click', () => {
-         if (!confirm('削除しますか?')) {
-            return;
-         }
-      fetch('./filedelete.php', {
-         method: 'POST',
-         body: new URLSearchParams({
-         id: filebtn.dataset.id,
-      }),
-      }).then(response => {
-         return response.json();
-      }).then(json => {
-         console.log(json);
-      })
-      .catch(error => {
-         window.location.href = './../../view/error/404.php';
-         console.log("画像削除に失敗しました");
-      })
-      filebtn.parentNode.remove();
-      });
-   });
-
-</script>
+<script type="text/javascript" src="./../../js/file.js"></script>
 </body>
 </html>

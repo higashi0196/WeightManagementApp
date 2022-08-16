@@ -68,7 +68,6 @@ $weightlists = $weightcontroller->weights();
                <td><?php echo Utils::h($todo['content']); ?></td> 
                <td><a href="edit.php?id=<?php echo Utils::h($todo['id'])?>"><button class="edit-btn">編集</button></a></td>       
                <td><button class="delete-btn" data-id="<?php echo Utils::h($todo['id'])?>">削除</button></td> 
-               <!-- <td class="aaa">明日への一言を入力できます<td>   -->
             </tr> 
          <?php endforeach; ?>
       </tbody>
@@ -112,7 +111,8 @@ $weightlists = $weightcontroller->weights();
    const goalweight = "<?php echo $weightlist['goalweights']; ?>";
 </script>
 
-<script type="text/javascript" src="./../../js/main.js"></script>
-
+<script type="text/javascript" src="./../../js/main.js">
+  
+</script>
 </body>
 </html>

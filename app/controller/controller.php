@@ -56,7 +56,6 @@ class Todocontroller {
       $todo->setContent($validation_data['content']);
       $result = $todo->save();
       header("Location: ./index.php");
-     
    }
 
    public function edit() {
@@ -79,8 +78,7 @@ class Todocontroller {
       $data = array(
          "todo" => $todo,
          "params" => $params,
-      );
-      
+      );   
       return $data;
    }  
    
@@ -120,7 +118,6 @@ class Todocontroller {
       $todo->setTitle($validation_data['title']);
       $todo->setcontent($validation_data['content']);
       $result = $todo->update();
-
       header("Location: ./index.php");
    }
 
@@ -136,7 +133,6 @@ class Todocontroller {
       $todo = new Database;
       $todo->setId($id);
       $result = $todo->tododelete();
-
       return $result;
    }
 }
@@ -172,12 +168,10 @@ class Postcontroller {
       $post = new Database;
       $post->setcontent($validation_content);
       $postresult = $post->postsave();
-
       header("Location: ./../todo/index.php");
    }
 
    public function postdelete() {
-
       $post = new Database;
       $postresult = $post->postdelete();
       return $postresult;
@@ -215,7 +209,6 @@ class Weightcontroller {
       }
       
       if($validation->weightheck() === false) {
-   
          $weight_errors = $validation->getWeightErrorMessages();
          $body_errors = $validation->getBodyErrorMessages();
          $today_errors = $validation->getTodayErrorMessages();
@@ -235,7 +228,6 @@ class Weightcontroller {
       $weight->setweight($validation_weightdata['weight']);
       $weight->settoday($validation_weightdata['today']);
       $weightresult = $weight->weightsave();
-
       header("Location: ./../todo/index.php");
    }
 }

@@ -108,6 +108,19 @@ class Database
          exit;
       }
    }
+
+   public static function findId($id) {
+      $pdo = new PDO(DSN, USER, PASSWORD);
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+      $sql = "SELECT * FROM todos WHERE id = :id";
+
+      $stmt = $pdo->prepare($sql);
+      $stmt->bindValue('id', $id);
+      $stmt->execute();
+      $todo = $stmt->fetch(PDO::FETCH_ASSOC);
+      return $todo;
+  }
   
    // public static function dbconnect(){
    //    $pdo = new PDO(DSN, USER, PASSWORD);
@@ -127,79 +140,6 @@ class Database
       $stmt = $pdo->query("SELECT * FROM todos");
       $todolists = $stmt->fetchAll(PDO::FETCH_ASSOC);
       return $todolists;
-   }
-
-   public static function postgetAll() {
-      $pdo = new PDO(DSN, USER, PASSWORD);
-      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-      $stmt = $pdo->query('SELECT * FROM words ORDER BY id DESC LIMIT 1');
-      $wordlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
-      return $wordlists;
-   }
-
-   public static function weightsgetAll() {
-      $pdo = new PDO(DSN, USER, PASSWORD);
-      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-      $stmt = $pdo->query('SELECT * FROM bodies ORDER BY id DESC LIMIT 1');
-      $bodylists = $stmt->fetchAll(PDO::FETCH_ASSOC);
-      return $bodylists;
-   }
-
-   public static function goalget() {
-      $pdo = new PDO(DSN, USER, PASSWORD);
-      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-      $stmt = $pdo->query('SELECT goalweights FROM bodies ORDER BY id DESC LIMIT 1');
-      $goallists = $stmt->fetch(PDO::FETCH_ASSOC);
-      return $goallists;
-   }
-
-   public function fileAllget() {
-      $pdo = new PDO(DSN, USER, PASSWORD);
-      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-      $stmt = $pdo->query("SELECT * FROM pictures");
-      $filelists = $stmt->fetchAll(PDO::FETCH_ASSOC);
-      return $filelists;
-   }
-   
-   public static function findId($id) {
-      $pdo = new PDO(DSN, USER, PASSWORD);
-      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-      $sql = "SELECT * FROM todos WHERE id = :id";
-
-      $stmt = $pdo->prepare($sql);
-      $stmt->bindValue('id', $id);
-      $stmt->execute();
-      $todo = $stmt->fetch(PDO::FETCH_ASSOC);
-      return $todo;
-  }
-
-   public function filesave($filename,$save_path,$comment) {
-      try {
-         $pdo = new PDO(DSN, USER, PASSWORD);
-         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-         $sql = "INSERT INTO pictures (file_name, file_path, comment,created_at) VALUES (?, ?, ?, NOW())";
-         $stmt = $pdo->prepare($sql);
-         $stmt->bindValue(1, $filename);
-         $stmt->bindValue(2, $save_path);
-         $stmt->bindValue(3, $comment);
-         $stmt->execute();
-      } catch (PDOException $e) {
-         // $errorUrl = "./../../view/error/404.php";
-         // header( "HTTP/1.1 404 Not Found" );
-         // print(file_get_contents($errorUrl));
-
-         error_log($e->getMessage());
-         header('Location: ./../../view/error/404.php');
-
-         $pdo->rollBack();
-         exit;
-      }   
    }
 
    public function save() {
@@ -223,64 +163,6 @@ class Database
          // print(file_get_contents($errorUrl));
          // header("HTTP/1.1 404 Not Found");
          // include('./../../view/error/404.php');
-
-         error_log($e->getMessage());
-         header('Location: ./../../view/error/404.php');
-
-         $pdo->rollBack();
-         exit;
-      }
-   }
-
-   public function postsave() {
-      try {
-         $pdo = new PDO(DSN, USER, PASSWORD);
-         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-         $sql = "INSERT INTO words (content, created_at) VALUES ('$this->content', NOW())";
-
-         $pdo->beginTransaction();
-         $stmt = $pdo->prepare($sql);
-         $stmt->bindValue('content', $content);
-         $stmt->execute();
-
-         $pdo->commit();
-
-      } catch(Exception $e) {
-
-         // $errorUrl = "./../../view/error/404.php";
-         // header( "HTTP/1.1 404 Not Found" );
-         // print(file_get_contents($errorUrl));
-
-         error_log($e->getMessage());
-         header('Location: ./../../view/error/404.php');
-
-         $pdo->rollBack();
-         exit;
-      }
-   }
-
-   public function weightsave() {
-      try {
-         $pdo = new PDO(DSN, USER, PASSWORD);
-         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-         $sql = "INSERT INTO bodies (nowweights, goalweights, nowdate) VALUES ('$this->weight', '$this->body', '$this->today')";
-
-         // $pdo->beginTransaction();
-         $stmt = $pdo->prepare($sql);
-         $stmt->bindValue('nowweights', $weight);
-         $stmt->bindValue('goalweights', $body);
-         $stmt->bindValue('nowdate', $today);
-         $stmt->execute();
-
-         // $pdo->commit();
-         
-      } catch(Exception $e) {
-
-         // $errorUrl = "./../../view/error/404.php";
-         // header( "HTTP/1.1 404 Not Found" );
-         // print(file_get_contents($errorUrl));
 
          error_log($e->getMessage());
          header('Location: ./../../view/error/404.php');
@@ -316,7 +198,7 @@ class Database
          header('Location: ./../../view/error/404.php');
 
          $pdo->rollBack();
-         exit;it;
+         exit;
       }   
    }
 
@@ -348,6 +230,43 @@ class Database
       }   
    }
 
+   public static function postgetAll() {
+      $pdo = new PDO(DSN, USER, PASSWORD);
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+      $stmt = $pdo->query('SELECT * FROM words ORDER BY id DESC LIMIT 1');
+      $wordlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      return $wordlists;
+   }
+
+   public function postsave() {
+      try {
+         $pdo = new PDO(DSN, USER, PASSWORD);
+         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+         $sql = "INSERT INTO words (content, created_at) VALUES ('$this->content', NOW())";
+
+         $pdo->beginTransaction();
+         $stmt = $pdo->prepare($sql);
+         $stmt->bindValue('content', $content);
+         $stmt->execute();
+
+         $pdo->commit();
+
+      } catch(Exception $e) {
+
+         // $errorUrl = "./../../view/error/404.php";
+         // header( "HTTP/1.1 404 Not Found" );
+         // print(file_get_contents($errorUrl));
+
+         error_log($e->getMessage());
+         header('Location: ./../../view/error/404.php');
+
+         $pdo->rollBack();
+         exit;
+      }
+   }
+
    public function postdelete() {
       try {
          $pdo = new PDO(DSN, USER, PASSWORD);
@@ -363,6 +282,87 @@ class Database
 
       }  catch (PDOException $e) {
 
+         // $errorUrl = "./../../view/error/404.php";
+         // header( "HTTP/1.1 404 Not Found" );
+         // print(file_get_contents($errorUrl));
+
+         error_log($e->getMessage());
+         header('Location: ./../../view/error/404.php');
+
+         $pdo->rollBack();
+         exit;
+      }   
+   }
+
+   public static function weightsgetAll() {
+      $pdo = new PDO(DSN, USER, PASSWORD);
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+      $stmt = $pdo->query('SELECT * FROM bodies ORDER BY id DESC LIMIT 1');
+      $bodylists = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      return $bodylists;
+   }
+
+   public static function goalget() {
+      $pdo = new PDO(DSN, USER, PASSWORD);
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+      $stmt = $pdo->query('SELECT goalweights FROM bodies ORDER BY id DESC LIMIT 1');
+      $goallists = $stmt->fetch(PDO::FETCH_ASSOC);
+      return $goallists;
+   }
+
+   public function weightsave() {
+      try {
+         $pdo = new PDO(DSN, USER, PASSWORD);
+         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+         $sql = "INSERT INTO bodies (nowweights, goalweights, nowdate) VALUES ('$this->weight', '$this->body', '$this->today')";
+
+         // $pdo->beginTransaction();
+         $stmt = $pdo->prepare($sql);
+         $stmt->bindValue('nowweights', $weight);
+         $stmt->bindValue('goalweights', $body);
+         $stmt->bindValue('nowdate', $today);
+         $stmt->execute();
+
+         // $pdo->commit();
+         
+      } catch(Exception $e) {
+
+         // $errorUrl = "./../../view/error/404.php";
+         // header( "HTTP/1.1 404 Not Found" );
+         // print(file_get_contents($errorUrl));
+
+         error_log($e->getMessage());
+         header('Location: ./../../view/error/404.php');
+
+         $pdo->rollBack();
+         exit;
+      }
+   }
+
+   public function fileAllget() {
+      $pdo = new PDO(DSN, USER, PASSWORD);
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+      $stmt = $pdo->query("SELECT * FROM pictures");
+      $filelists = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      return $filelists;
+   }
+
+   public function filesave($filename,$save_path,$comment) {
+      try {
+         $pdo = new PDO(DSN, USER, PASSWORD);
+         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+         $sql = "INSERT INTO pictures (file_name, file_path, comment,created_at) VALUES (?, ?, ?, NOW())";
+         $stmt = $pdo->prepare($sql);
+         $stmt->bindValue(1, $filename);
+         $stmt->bindValue(2, $save_path);
+         $stmt->bindValue(3, $comment);
+         $stmt->execute();
+      } catch (PDOException $e) {
          // $errorUrl = "./../../view/error/404.php";
          // header( "HTTP/1.1 404 Not Found" );
          // print(file_get_contents($errorUrl));
