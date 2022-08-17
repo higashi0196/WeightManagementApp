@@ -9,6 +9,7 @@ class Database
    public $id;
    public $title;
    public $content;
+   public $is_done;
    public $body;
    public $weight;
    public $today;
@@ -38,6 +39,14 @@ class Database
 
    public function setContent($content) {
       $this->content = $content;
+   }
+
+   public function getIs_done() {
+      return $this->is_done;
+   }
+
+   public function setIs_done($is_done) {
+      $this->is_done = $is_done;
    }
 
    public function getBody() {
@@ -141,6 +150,18 @@ class Database
       $todolists = $stmt->fetchAll(PDO::FETCH_ASSOC);
       return $todolists;
    }
+
+   public static function toggle() {
+      $pdo = new PDO(DSN, USER, PASSWORD);
+         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+         // $sql = "UPDATE todos SET is_done = NOT is_done, updated_at = NOW() WHERE id = '$this->id'";
+          $sql = "UPDATE todos SET is_done = NOT is_done, updated_at = NOW() WHERE id = 4";
+   
+         $stmt = $pdo->prepare($sql);
+         $stmt->bindValue('id', $id, \PDO::PARAM_INT);
+         $stmt->execute();
+  }
 
    public function save() {
       try {

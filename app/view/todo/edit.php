@@ -56,7 +56,7 @@ unset($_SESSION['content_errors']);
       </div>
 
       <div>
-         <p class="title">目標</p>
+         <p class="title">詳細</p>
          <input type="text" name="content" class="titleinput" value="<?php if(isset($params['content'])):?><?php echo Utils::h($params['content']);?><?php else:?><?php echo Utils::h($todo['content']);?><?php endif;?>">
          <?php if($content_errors):?>
             <?php foreach ($content_errors as $content_error): ?>

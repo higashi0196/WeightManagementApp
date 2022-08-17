@@ -6,11 +6,39 @@ require_once('./../../controller/controller.php');
 // $pdo = Database::get();
 $todocontroller = new Todocontroller();
 $todolists = $todocontroller->todos();
+// $todocontroller->todotoggle();
 $postcontroller = new Postcontroller();
 $postlists = $postcontroller->posts();
 $weightcontroller = new Weightcontroller();
 $weightlists = $weightcontroller->weights();
 
+
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      Token::validate();
+      $action = filter_input(INPUT_GET, 'action');
+    
+      switch ($action) {
+        
+        case 'toggle':
+          $this->toggle();
+          break;
+        default:
+          exit;
+      }
+      }
+      
+function toggle()
+  {
+    $id = filter_input(INPUT_POST, 'id');
+    if (empty($id)) {
+      return;
+    }
+  
+    $stmt = $this->pdo->prepare("UPDATE todos SET is_done = NOT is_done WHERE id = :id");
+    $stmt->bindValue('id', $id, \PDO::PARAM_INT);
+    $stmt->execute();
+  }
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +75,7 @@ $weightlists = $weightcontroller->weights();
    </div>
    
    <div>
-      <h2>〜 ToDoリスト 〜</h2>
+      <h2>〜 ボディリメイク ToDoリスト 〜</h2>
       <a href="create.php"><button class="new-btn">新規登録</button></a>
    </div>
 
@@ -55,18 +83,24 @@ $weightlists = $weightcontroller->weights();
    <table>
       <thead>
          <tr>
+            <th scope="col">1</th>
             <th scope="col">タイトル</th>
             <th scope="col">目標</th>
-            <th scope="col">更新</th>
+            <th scope="col">編集</th>
             <th scope="col">削除</th>
          </tr>
       </thead>
       <tbody>
          <?php foreach ($todolists as $todo):?>
             <tr>
-               <td><?php echo Utils::h($todo['title']); ?></td>
-               <td><?php echo Utils::h($todo['content']); ?></td> 
-               <td><a href="edit.php?id=<?php echo Utils::h($todo['id'])?>"><button class="edit-btn">編集</button></a></td>       
+               <td><input type="checkbox" data-id="<?php echo Utils::h($todo['id'])?>" <?= $todo['is_done'] ? 'checked' : ''; ?>><td>
+
+               <td class="<?= $todo['is_done'] ? 'done' : ''; ?>"><?php echo Utils::h($todo['title']); ?></td>
+
+               <td class="<?= $todo['is_done'] ? 'done' : ''; ?>"><?php echo Utils::h($todo['content']); ?></td> 
+
+               <td><a href="edit.php?id=<?php echo Utils::h($todo['id'])?>"><button class="edit-btn">編集</button></a></td>  
+
                <td><button class="delete-btn" data-id="<?php echo Utils::h($todo['id'])?>">削除</button></td> 
             </tr> 
          <?php endforeach; ?>
@@ -78,17 +112,16 @@ $weightlists = $weightcontroller->weights();
          <tr>
             <th scope="col">タイトル</th>
             <th scope="col">目標</th>
-            <th scope="col">更新</th>
+            <th scope="col">編集</th>
             <th scope="col">削除</th>
          </tr>
       </thead>
    </table>
       <p class="todo">ToDoが空です</p> 
    <?php endif; ?>
-   
 
    <div class="postcreate">
-      <span> 〜 明日への一言 〜</span>
+      <span>〜 一言メッセージ 〜</span>
       <a href="./../post/post.php"><button class="post-btn">投稿する</button></a>
       <a class="wordbtn" data-id="<?php echo Utils::h($wordtodo['id']); ?>">
       <button class="postdlt-btn">削除</button></a>
@@ -100,7 +133,7 @@ $weightlists = $weightcontroller->weights();
          <p id="word"><?php echo Utils::h($postlist['content']); ?></p>
       <?php endforeach; ?>
    <?php else : ?>
-      <p id="word">明日への一言を入力できます</p> 
+      <p id="word">一言メッセージを入力できます</p> 
    <?php endif; ?> 
    </div>
 
@@ -112,7 +145,8 @@ $weightlists = $weightcontroller->weights();
 </script>
 
 <script type="text/javascript" src="./../../js/main.js">
+// <script type="text/javascript">
   
-</script>
+</script> 
 </body>
 </html>

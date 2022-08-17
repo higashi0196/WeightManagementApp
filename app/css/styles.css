@@ -1,4 +1,8 @@
 /* 共通部分 開始 */
+.done {
+   text-decoration: line-through;
+   color: #ccc;
+}
 
 body {
    width: 100%;
@@ -219,7 +223,6 @@ td {
 }
 
 .todo {
-   /* display: none; */
    height: 50px;
    font-size: 20px;
    font-weight: bold;
@@ -229,7 +232,6 @@ td {
 
 .tb {
    margin: 3px;
-   /* margin: 5px auto; */
 }
 
 /* テーブル CSS 終了 */
@@ -565,13 +567,13 @@ img {
       width: 90px;
       height: auto;
       margin: 15px 7px 10px;
-      padding: 3px;
+      padding: 2px;
       
    }
    
    .picutre-btn {
       margin: 15px 7px 10px;
-      padding: 3px;
+      padding: 2px;
    }
 
    h2 {
@@ -582,14 +584,13 @@ img {
       width: 85px;
       height: auto;
       margin: 15px 10px 0 0;
-      padding: 3px;
+      padding: 2px;
       font-size: 15px;
    }
 
    /* テーブル CSS  開始 */
    table {
-      width: 95%;
-      /* width: 400px; */
+      width: 90%;
    }
 
    th,td {
@@ -599,15 +600,15 @@ img {
    }
 
    .edit-btn {
-      width: 60px;
+      width: 50px;
       height: auto;
-      padding:1px;
+      padding: 1px;
       background-color:rgb(230, 225, 75);
       font-size: 13px;
    }
    
    .delete-btn {
-      width: 60px;
+      width: 50px;
       height: auto;
       font-size: 13px;
    }
@@ -620,7 +621,7 @@ img {
    }
    
    .postcreate > span {
-      display:block;
+      display: block;
       margin-top: 20px;
       font-size: 18px;
    }
@@ -651,7 +652,6 @@ img {
    /* create.php & eidt.php ページ 開始 */
    .outline {
       margin: 30px auto 0px;
-      /* margin-top: 50px; */
       font-size: 30px;
    }
 
@@ -682,12 +682,12 @@ img {
    textarea {
       width: 300px;
       height: 150px;
-      margin-top: 10px;
+      margin-top: 20px;
       border: 3px solid black;;
    }
 
    .post-btn2 {
-      margin: 10px auto 0;
+      margin: 30px auto 0;
    }
    
    /* post.php ページ 終了 */
@@ -757,8 +757,8 @@ img {
       width: 60px;
       margin: 15px 0 10px;
       padding: 2px 0;
-      font-weight:normal;
-      vertical-align:middle;
+      font-weight: normal;
+      vertical-align: middle;
    }
 
    /* file.php ページ 終了 */

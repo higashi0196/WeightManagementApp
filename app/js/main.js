@@ -1,6 +1,28 @@
 'use strict';
 
 {
+   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+   checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', () => {
+         fetch('./toggle.php', {
+         method: 'POST',
+         body: new URLSearchParams({
+            id: checkbox.dataset.id,
+         }),
+         }).then(response => {
+            return response.json();
+         }).then(json => {
+            word.classList.add('word');
+            console.log(json);
+         })
+         .catch(error => {
+            window.location.href = './../../view/error/404.php';
+            console.log("削除に失敗しました");
+         })
+         // checkbox.closest('tr').remove();
+      });
+  });
+
    // todo 削除機能 非同期通信
    const deletebtns = document.querySelectorAll('.delete-btn');
    deletebtns.forEach(btn => {
@@ -39,7 +61,7 @@
          return response.json();
       })
       .then(json => {
-         word.textContent = '明日への一言を入力できます';
+         word.textContent = '一言メッセージを入力できます';
          word.classList.add('word');
          console.log(json);
       })

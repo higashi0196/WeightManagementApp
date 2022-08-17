@@ -36,8 +36,9 @@ unset($_SESSION['token_errors']);
 <body>
    <form method="POST" action="./post.php">
       <div>
-         <p class="outline">明日への一言</p>
-         <textarea name="postcontent" placeholder="明日への一言を入力できます"></textarea>
+         <p class="outline">一言メッセージ</p>
+         <p class="number">メッセージをどうぞ！</p>
+         <textarea name="postcontent" placeholder="メッセージをどうぞ"></textarea>
       </div>
 
       <?php if($post_errors):?>

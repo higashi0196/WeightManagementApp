@@ -135,6 +135,21 @@ class Todocontroller {
       $result = $todo->tododelete();
       return $result;
    }
+
+   public function todotoggle() {
+      $id = $_POST['id'];
+      if($_SERVER['REQUEST_METHOD'] === 'GET') {
+         if(isset($_GET['id'])) {
+            $id = $_GET['id'];
+         }
+      }
+
+      $todo = new Database;
+      $todo->setId($id);
+      $todo->setIs_done($is_done);
+      $result = $todo->toggle();
+      return $result;
+   }
 }
 
 class Postcontroller {

@@ -9,7 +9,7 @@ CREATE TABLE todos (
    updated_at datetime NOT NULL
 );
 
-INSERT INTO todos (title, content, created_at, updated_at) VALUES ('%s', '%s', NOW(), NOW());
+INSERT INTO todos (title, content,  is_done ,created_at, updated_at) VALUES ('%s', '%s',true, NOW(), NOW());
 
 UPDATE todos SET title = '', content = '', updated_at = NOW() WHERE id = '';
 

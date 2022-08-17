@@ -53,7 +53,7 @@ unset($_SESSION['content_errors']);
 
       <div>
          <p class="title">タイトル</p>
-         <input type="text" name="title" class="titleinput" value="<?php echo Utils::h($title);?>">
+         <input type="text" name="title" class="titleinput" value="<?php echo Utils::h($title);?>" placeholder="タイトルを入力できます">
          <?php if($title_errors):?>
             <?php foreach ($title_errors as $title_error): ?>
                <p class="error-log"><?php echo Utils::h($title_error);?></p>
@@ -62,8 +62,8 @@ unset($_SESSION['content_errors']);
       </div>
       
       <div>
-         <p class="title">目標</p>
-         <input type="text" name="content" class="titleinput" value="<?php echo Utils::h($content);?>">
+         <p class="title">詳細</p>
+         <input type="text" name="content" class="titleinput" value="<?php echo Utils::h($content);?>" placeholder="詳細を入力できます">
          <?php if($content_errors):?>
             <?php foreach ($content_errors as $content_error): ?>
                <p class="error-log"><?php echo Utils::h($content_error);?></p>
