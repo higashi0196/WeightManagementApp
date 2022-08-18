@@ -146,9 +146,9 @@ class Todocontroller {
 
       $todo = new Database;
       $todo->setId($id);
-      $todo->setIs_done($is_done);
-      $result = $todo->toggle();
-      return $result;
+      $todo->setDone($done);
+      $toggleresult = $todo->toggle($id);
+      return $toggleresult;
    }
 }
 

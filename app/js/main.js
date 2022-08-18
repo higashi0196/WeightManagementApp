@@ -1,26 +1,28 @@
 'use strict';
 
 {
-   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-   checkboxes.forEach(checkbox => {
-      checkbox.addEventListener('change', () => {
+   // todo checkbox toggle機能 非同期通信
+   const toggles = document.querySelectorAll('input[type="checkbox"]');
+   toggles.forEach(toggle => {
+      toggle.addEventListener('change', () => {
          fetch('./toggle.php', {
          method: 'POST',
          body: new URLSearchParams({
-            id: checkbox.dataset.id,
+            id: toggle.dataset.id,
          }),
-         }).then(response => {
-            return response.json();
-         }).then(json => {
-            word.classList.add('word');
-            console.log(json);
-         })
-         .catch(error => {
-            window.location.href = './../../view/error/404.php';
-            console.log("削除に失敗しました");
-         })
-         // checkbox.closest('tr').remove();
+      }).then(response => {
+         return response.json();
+      }).then(json => {     
+         console.log(json);
+      })
+      .catch(error => {
+         // window.location.href = './../../view/error/404.php';
+         console.log("削除に失敗しました");
       });
+      toggle.parentNode.nextElementSibling.classList.toggle('done');
+      // toggle.closest('tr').children[1].classList.toggle('done');
+      toggle.closest('tr').children[2].classList.toggle('done');
+    });
   });
 
    // todo 削除機能 非同期通信

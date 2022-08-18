@@ -9,7 +9,7 @@ class Database
    public $id;
    public $title;
    public $content;
-   public $is_done;
+   public $done;
    public $body;
    public $weight;
    public $today;
@@ -41,12 +41,12 @@ class Database
       $this->content = $content;
    }
 
-   public function getIs_done() {
-      return $this->is_done;
+   public function getDone() {
+      return $this->done;
    }
 
-   public function setIs_done($is_done) {
-      $this->is_done = $is_done;
+   public function setDone($done) {
+      $this->done = $done;
    }
 
    public function getBody() {
@@ -151,16 +151,19 @@ class Database
       return $todolists;
    }
 
-   public static function toggle() {
+   public static function toggle($id) {
+
       $pdo = new PDO(DSN, USER, PASSWORD);
-         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-         // $sql = "UPDATE todos SET is_done = NOT is_done, updated_at = NOW() WHERE id = '$this->id'";
-          $sql = "UPDATE todos SET is_done = NOT is_done, updated_at = NOW() WHERE id = 4";
-   
-         $stmt = $pdo->prepare($sql);
-         $stmt->bindValue('id', $id, \PDO::PARAM_INT);
-         $stmt->execute();
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+      // $sql = "UPDATE todos SET is_done = NOT is_done WHERE id = :id";
+      // $sql = "UPDATE todos SET title = '$this->title', content = '$this->content', updated_at = NOW() WHERE id = '$this->id'";
+      $sql = "UPDATE todos SET is_done = NOT is_done WHERE  id = :id";
+      
+      $stmt = $pdo->prepare($sql);
+      $stmt->bindValue('id', $id, \PDO::PARAM_INT);
+      // $stmt->bindValue('is_done', $done);
+      $stmt->execute();
   }
 
    public function save() {

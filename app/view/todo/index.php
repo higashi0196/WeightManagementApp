@@ -12,33 +12,6 @@ $postlists = $postcontroller->posts();
 $weightcontroller = new Weightcontroller();
 $weightlists = $weightcontroller->weights();
 
-
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      Token::validate();
-      $action = filter_input(INPUT_GET, 'action');
-    
-      switch ($action) {
-        
-        case 'toggle':
-          $this->toggle();
-          break;
-        default:
-          exit;
-      }
-      }
-      
-function toggle()
-  {
-    $id = filter_input(INPUT_POST, 'id');
-    if (empty($id)) {
-      return;
-    }
-  
-    $stmt = $this->pdo->prepare("UPDATE todos SET is_done = NOT is_done WHERE id = :id");
-    $stmt->bindValue('id', $id, \PDO::PARAM_INT);
-    $stmt->execute();
-  }
 ?>
 
 <!DOCTYPE html>
@@ -83,7 +56,7 @@ function toggle()
    <table>
       <thead>
          <tr>
-            <th scope="col">1</th>
+            <th scope="col"></th>
             <th scope="col">タイトル</th>
             <th scope="col">目標</th>
             <th scope="col">編集</th>
@@ -93,7 +66,9 @@ function toggle()
       <tbody>
          <?php foreach ($todolists as $todo):?>
             <tr>
-               <td><input type="checkbox" data-id="<?php echo Utils::h($todo['id'])?>" <?= $todo['is_done'] ? 'checked' : ''; ?>><td>
+               <td>
+                  <input type="checkbox" data-id="<?php echo Utils::h($todo['id'])?>" <?= $todo['is_done'] ? 'checked' : ''; ?>>
+               </td>
 
                <td class="<?= $todo['is_done'] ? 'done' : ''; ?>"><?php echo Utils::h($todo['title']); ?></td>
 
