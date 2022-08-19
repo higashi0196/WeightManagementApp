@@ -44,23 +44,15 @@ unset($_SESSION['file_errors']);
 </head>
 <body>
 <p class="outline">画像アップロード</p>
-<form action="./file.php" method="POST" enctype="multipart/form-data">
-   <div>
-      <input type="file" name="img" class="fileinput">
-      <p class="memo">☆ 一言メモ ☆</p>
-      <textarea name="comment" class="comment"><?php echo Utils::h($comment);?></textarea>
-   </div>
-   <p class="number">※画像は5件までアップロードできます。</p>
-   <button type="submit" class="file-btn">アップロード</button>
-   <input type="hidden" name="MAX_FILE_SIZE" value="1048576">
-   <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
-</form>
 
-   <?php if($token_errors):?> 
-      <?php foreach ($token_errors as $token_error): ?>
-         <p class="error-log"><?php echo Utils::h($token_error);?></p>
-      <?php endforeach;?>
-   <?endif;?>
+<?php if($token_errors):?> 
+   <?php foreach ($token_errors as $token_error): ?>
+      <p class="error-log"><?php echo Utils::h($token_error);?></p>
+   <?php endforeach;?>
+<?endif;?>
+
+<form action="./file.php" method="POST" enctype="multipart/form-data">
+   <input type="file" name="img" class="fileinput">
 
    <?php if($file_errors):?>
       <?php foreach ($file_errors as $file_error): ?>
@@ -80,24 +72,36 @@ unset($_SESSION['file_errors']);
       <?php endforeach;?>
    <?endif;?>
 
+   <div>
+      <p class="memo">☆ 一言メモ ☆</p>
+      <textarea name="comment" class="comment"><?php echo Utils::h($comment);?></textarea>
+   </div>
+
    <?php if($comment_errors):?>
       <?php foreach ($comment_errors as $comment_error): ?>
          <p class="error-log"><?php echo Utils::h($comment_error);?></p>
       <?php endforeach;?>
    <?endif;?>
-   
-   <a href="./../todo/index.php"><button class="return-btn">戻る</button></a>
+
+   <!-- <p class="number">※画像は5件までアップロードできます。</p> -->
+   <button type="submit" class="file-btn">アップロード</button>
+   <input type="hidden" name="MAX_FILE_SIZE" value="1048576">
+   <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
+</form>
+
+<a href="./../todo/index.php"><button class="return-btn">戻る</button></a>
 
 <ol>
    <?php foreach ($filelists as $filelist): ?> 
       <li>
          <img src="<?php echo Utils::h($filelist['file_path']); ?>" alt="">
-         <a class="list-memo"> 〜〜  一言メモ 〜〜 
+         <div>
+            <p class="list-memo"> 〜〜  一言メモ 〜〜 </p>
             <p class="list-comment"><?php echo Utils::h($filelist['comment']); ?></p>
-         </a>
-         <button class="filedelete-btn" data-id="<?php echo Utils::h($filelist['id']); ?>">削除</button>
+            <button class="filedelete-btn" data-id="<?php echo Utils::h($filelist['id']); ?>">削除</button>
+         </div>
       </li>
-      <?php endforeach; ?>
+   <?php endforeach; ?>
 </ol>
 
 <script type="text/javascript" src="./../../js/file.js"></script>

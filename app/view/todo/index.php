@@ -6,7 +6,6 @@ require_once('./../../controller/controller.php');
 // $pdo = Database::get();
 $todocontroller = new Todocontroller();
 $todolists = $todocontroller->todos();
-// $todocontroller->todotoggle();
 $postcontroller = new Postcontroller();
 $postlists = $postcontroller->posts();
 $weightcontroller = new Weightcontroller();
@@ -39,7 +38,7 @@ $weightlists = $weightcontroller->weights();
       <p class="goal-weight"><?php echo Utils::h($weightlist['difference']); ?> kg</p>
       <p class="achieve">見事達成！やったぜ！</p>
       <p class="ideal-day">
-      (<?php echo Utils::h($weightlist['nowdate']); ?> 現在)</p>
+      ( <?php echo Utils::h($weightlist['nowdate']); ?> 現在 )</p>
    <?php endforeach; ?>
    
    <div>

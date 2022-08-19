@@ -83,7 +83,7 @@ class TodoValidation {
          empty($_SESSION['token']) ||
          $_SESSION['token'] !== filter_input(INPUT_POST, 'token')
          ) {
-            $this->token_errors[] = "不正なアクセスがありました。";
+            $this->token_errors[] = "不正なアクセスがありました";
             return false;
       }
    }
@@ -91,24 +91,24 @@ class TodoValidation {
    public function todocheck() {
 
       if(empty($this->data['title']) && empty($this->data['content'])) {
-         $this->title_errors[] = "タイトルが空です。";
-         $this->content_errors[] = "目標が空です。";
+         $this->title_errors[] = "タイトルを入力してください";
+         $this->content_errors[] = "詳細を入力してください";
          return false;
       } 
 
       if(empty($this->data['title'])) {
-         $this->title_errors[] = "タイトルが空です。";
+         $this->title_errors[] = "タイトルを入力してください";
          return false;
       } else if(50 < mb_strlen($this->data['title'], 'UTF-8')) {
-         $this->title_errors[] = "50文字以内で入力してください。";
+         $this->title_errors[] = "50文字以内で入力してください";
          return false;
       } 
 
       if(empty($this->data['content'])) {
-         $this->content_errors[] = "目標が空です。";
+         $this->content_errors[] = "詳細を入力してください";
          return false;
       } else if(50 < mb_strlen($this->data['content'], 'UTF-8')) {
-         $this->content_errors[] = "50文字以内で入力してください。";
+         $this->content_errors[] = "50文字以内で入力してください";
          return false;
       }
    }
@@ -119,66 +119,66 @@ class TodoValidation {
          empty($this->weightdata['weight']) && 
          empty($this->weightdata['today'])) 
          {
-         $this->body_errors[] = "目標体重が空っぽです。";
-         $this->weight_errors[] = "体重が空っぽです。";
-         $this->today_errors[] = "日付が選択されていません。";
+         $this->body_errors[] = "目標体重を入力してください";
+         $this->weight_errors[] = "体重を入力してください";
+         $this->today_errors[] = "日付が選択されていません";
          return false;
       } else if(empty($this->weightdata['body']) && 
          empty($this->weightdata['weight'])) 
          {
-         $this->body_errors[] = "目標体重が空っぽです。";
-         $this->weight_errors[] = "体重が空っぽです。";
+         $this->body_errors[] = "目標体重を入力してください";
+         $this->weight_errors[] = "体重を入力してください";
          return false;
       } else if(empty($this->weightdata['body']) && 
          empty($this->weightdata['today'])) 
          {
-         $this->body_errors[] = "目標体重が空っぽです。";
-         $this->today_errors[] = "日付が選択されていません。";
+         $this->body_errors[] = "目標体重を入力してください";
+         $this->today_errors[] = "日付が選択されていません";
          return false;
       }
 
       if(empty($this->weightdata['weight']) && 
          empty($this->weightdata['today'])) 
          {
-         $this->weight_errors[] = "体重が空っぽです。";
-         $this->today_errors[] = "日付が選択されていません。";
+         $this->weight_errors[] = "体重を入力してください";
+         $this->today_errors[] = "日付が選択されていません";
          return false;
       }
 
       if(empty($this->weightdata['body'])) {
-         $this->body_errors[] = "目標体重が空っぽです。";
+         $this->body_errors[] = "目標体重を入力してください";
          return false;
       } else if (!is_numeric($this->weightdata['body'])) {
-         $this->body_errors[] = "半角数字で入力してください。";
+         $this->body_errors[] = "半角数字で入力してください";
          return false;
       } else if (6 < mb_strlen($this->weightdata['body'])) {
-         $this->body_errors[] = "５桁以下で小数点第２位以下までで入力ください。";
+         $this->body_errors[] = "５桁以下で小数点第２位以下までで入力ください";
          return false;
       }
 
       if(empty($this->weightdata['weight'])) {
-         $this->weight_errors[] = "体重が空っぽです。";
+         $this->weight_errors[] = "体重を入力してください";
          return false;
       } else if (!is_numeric($this->weightdata['weight'])) {
-         $this->weight_errors[] = "半角数字で入力してください。";
+         $this->weight_errors[] = "半角数字で入力してください";
          return false;
       } else if (6 < mb_strlen($this->weightdata['weight'])) {
-         $this->weight_errors[] = "５桁以下で小数点第２位以下までで入力ください。";
+         $this->weight_errors[] = "５桁以下で小数点第２位以下までで入力ください";
          return false;
       }
 
       if(empty($this->weightdata['today'])) {
-         $this->today_errors[] = "日付が選択されていません。";
+         $this->today_errors[] = "日付が選択されていません";
          return false;
       }
    }
 
    public function postcheck() {
       if(empty($this->content)) {
-         $this->post_errors[] = "明日への一言が空です。";
+         $this->post_errors[] = "メッセージを入力してください";
          return false;
       } else if(255 < mb_strlen($this->content, 'UTF-8')) {
-         $this->post_errors[] = "255文字以内で入力してください。";
+         $this->post_errors[] = "255文字以内で入力してください";
          return false;
       }
    }
@@ -188,7 +188,7 @@ class TodoValidation {
       if (!is_uploaded_file($tmp_path) && empty($this->filedata['comment'])) {
          $this->file_errors[] = "画像ファイルとメモを入力してください";
       } else if (!is_uploaded_file($tmp_path)) {
-         $this->file_errors[] = "画像ファイルが選択されていません。";
+         $this->file_errors[] = "画像ファイルが選択されていません";
       }
       
       $allow_ext = array('jpg','jpeg','png','git','pdf');
@@ -197,11 +197,11 @@ class TodoValidation {
          $this->filemodel_errors[] = "画像ファイルの末尾をjpg,jpeg,png,git,pdfのどれかにして、メモを入力してください";
       } else
       if (!in_array(strtolower($file_ext), $allow_ext)) {
-         $this->filemodel_errors[] = "画像ファイルの末尾をjpg,jpeg,png,git,pdfのどれかにしてください。";
+         $this->filemodel_errors[] = "画像ファイルの末尾をjpg,jpeg,png,git,pdfのどれかにしてください";
       }
 
       if(1048576 < $this->filedata['filesize'] || $this->filedata['fil_err'] == 2) {
-         $this->filesize_errors[] = "ファイルは1MB未満でお願いします。";
+         $this->filesize_errors[] = "ファイルは1MB未満で送信してください";
          return false;
       }
 
@@ -209,10 +209,9 @@ class TodoValidation {
          $this->comment_errors[] = "メモを入力してください";
          return false;
       } else if(255 < mb_strlen($this->filedata['comment'], 'UTF-8')) {
-         $this->comment_errors[] = "255文字以内で入力してください。";
+         $this->comment_errors[] = "255文字以内で入力してください";
          return false;
       }
-
    }
   
 }

@@ -16,7 +16,7 @@
          console.log(json);
       })
       .catch(error => {
-         // window.location.href = './../../view/error/404.php';
+         window.location.href = './../../view/error/404.php';
          console.log("削除に失敗しました");
       });
       toggle.parentNode.nextElementSibling.classList.toggle('done');
@@ -85,6 +85,7 @@
       achieve.textContent =  'あと ' + difference + ' kg ' + 'もう少し頑張ろう !';
       console.log("もう少し,頑張ろう");
    }  else {
+      achieve.style.display = 'none';
       achieve.textContent =  'あと ' + difference + ' kg ';
       console.log("まだまだ");
    }

@@ -22,7 +22,8 @@
          window.location.href = './../../view/error/404.php';
          console.log("画像削除に失敗しました");
       })
-      filebtn.parentNode.remove();
+      // filebtn.parentNode.remove();
+      filebtn.closest('li').remove();
       });
    });
 }
