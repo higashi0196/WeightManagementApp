@@ -11,6 +11,9 @@ $postlists = $postcontroller->posts();
 $weightcontroller = new Weightcontroller();
 $weightlists = $weightcontroller->weights();
 
+// $token = new Token();
+// $token->create();
+
 ?>
 
 <!DOCTYPE html>

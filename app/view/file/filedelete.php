@@ -1,6 +1,5 @@
 <?php
 
-// require_once('./config/config.php');
 require_once('./../../controller/controller.php');
 
 $filecontroller = new Filecontroller();

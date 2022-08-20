@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 if($_SERVER['REQUEST_METHOD'] === 'GET') {
-
+   
    if(isset($_GET['title'])) {
       $title = $_GET['title'];
    }

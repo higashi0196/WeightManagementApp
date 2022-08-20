@@ -130,13 +130,6 @@ class Database
       $todo = $stmt->fetch(PDO::FETCH_ASSOC);
       return $todo;
   }
-  
-   // public static function dbconnect(){
-   //    $pdo = new PDO(DSN, USER, PASSWORD);
-   //    $stmt = $pdo->query('SELECT * FROM todos;');
-   //    $lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
-   //    return $lists;
-   // }
 
    public static function todogetAll() {
       $pdo = new PDO(DSN, USER, PASSWORD,  [
@@ -162,7 +155,6 @@ class Database
       
       $stmt = $pdo->prepare($sql);
       $stmt->bindValue('id', $id, \PDO::PARAM_INT);
-      // $stmt->bindValue('is_done', $done);
       $stmt->execute();
   }
 
