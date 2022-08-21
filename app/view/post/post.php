@@ -18,10 +18,10 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
    }
 }
 
-$post_errors = $_SESSION['post_errors'];
-unset($_SESSION['post_errors']);
 $token_errors = $_SESSION['token_errors'];
 unset($_SESSION['token_errors']);
+$post_errors = $_SESSION['post_errors'];
+unset($_SESSION['post_errors']);
 
 ?>
 

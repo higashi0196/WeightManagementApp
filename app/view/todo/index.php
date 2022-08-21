@@ -25,7 +25,7 @@ $weightlists = $weightcontroller->weights();
    <link rel="stylesheet" href="./../../css/styles.css">
 </head>
 <body>
-<div class="all">
+<main class="all" data-token="<?= Utils::h($_SESSION['token']); ?>">
    <h1>
       <img src="./../logos/logo3.png" alt="" class="logo">
       体重管理リスト
@@ -114,7 +114,7 @@ $weightlists = $weightcontroller->weights();
    <?php endif; ?> 
    </div>
 
-</div>
+</main>
 
 <script type="text/javascript">
    const difference = "<?php echo $weightlist['difference']; ?>";

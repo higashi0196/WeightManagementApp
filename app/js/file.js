@@ -1,6 +1,7 @@
 'use strict';
 
 {
+
    // file 削除機能 非同期通信
    const filebtns = document.querySelectorAll('.filedelete-btn');
    filebtns.forEach(filebtn => {
@@ -12,6 +13,7 @@
          method: 'POST',
          body: new URLSearchParams({
          id: filebtn.dataset.id,
+         // token: filebtn.dataset.token,
       }),
       }).then(response => {
          return response.json();
@@ -26,4 +28,5 @@
       filebtn.closest('li').remove();
       });
    });
+
 }
