@@ -1,7 +1,10 @@
 <?php
-session_start();
 
 require_once('./../../controller/controller.php');
+
+session_start();
+$token = new Token();
+$token->create();
 
 // $pdo = Database::get();
 $todocontroller = new Todocontroller();
@@ -11,8 +14,8 @@ $postlists = $postcontroller->posts();
 $weightcontroller = new Weightcontroller();
 $weightlists = $weightcontroller->weights();
 
-// $token = new Token();
-// $token->create();
+$token_errors = $_SESSION['token_errors'];
+unset($_SESSION['token_errors']);
 
 ?>
 
@@ -25,7 +28,7 @@ $weightlists = $weightcontroller->weights();
    <link rel="stylesheet" href="./../../css/styles.css">
 </head>
 <body>
-<main class="all" data-token="<?= Utils::h($_SESSION['token']); ?>">
+<main class="all" >
    <h1>
       <img src="./../logos/logo3.png" alt="" class="logo">
       体重管理リスト
@@ -48,7 +51,13 @@ $weightlists = $weightcontroller->weights();
       <a href="./../weight/weight.php"><button class="weight-btn">体重記入</button></a>
       <a href="./../file/file.php"><button class="picutre-btn">画像アップロード</button></a>
    </div>
-   
+
+   <?php if($token_errors):?>
+      <?php foreach ($token_errors as $token_error): ?>
+         <p class="error-log"><?php echo Utils::h($token_error);?></p>
+      <?php endforeach;?>
+   <?endif;?>
+
    <div>
       <h2>〜 ボディリメイク ToDoリスト 〜</h2>
       <a href="create.php"><button class="new-btn">新規登録</button></a>
@@ -67,7 +76,7 @@ $weightlists = $weightcontroller->weights();
       </thead>
       <tbody>
          <?php foreach ($todolists as $todo):?>
-            <tr>
+            <tr data-token="<?= Utils::h($_SESSION['token']); ?>">
                <td>
                   <input type="checkbox" data-id="<?php echo Utils::h($todo['id'])?>" <?= $todo['is_done'] ? 'checked' : ''; ?>>
                </td>
@@ -87,6 +96,7 @@ $weightlists = $weightcontroller->weights();
    <table>
       <thead>
          <tr>
+            <th scope="col"></th>
             <th scope="col">タイトル</th>
             <th scope="col">目標</th>
             <th scope="col">編集</th>
@@ -100,7 +110,7 @@ $weightlists = $weightcontroller->weights();
    <div class="postcreate">
       <span>〜 一言メッセージ 〜</span>
       <a href="./../post/post.php"><button class="post-btn">投稿する</button></a>
-      <a class="wordbtn" data-id="<?php echo Utils::h($wordtodo['id']); ?>">
+      <a class="wordbtn" data-id="<?php echo Utils::h($wordtodo['id']); ?>" data-token="<?= Utils::h($_SESSION['token']); ?>">
       <button class="postdlt-btn">削除</button></a>
    </div>
 

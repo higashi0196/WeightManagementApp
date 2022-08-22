@@ -1,7 +1,7 @@
 'use strict';
 
 {
-   const token = document.querySelector('main').dataset.token;
+
    // todo checkbox toggle機能 非同期通信
    const toggles = document.querySelectorAll('input[type="checkbox"]');
    toggles.forEach(toggle => {
@@ -10,7 +10,7 @@
          method: 'POST',
          body: new URLSearchParams({
             id: toggle.dataset.id,
-            token: token,
+            token: toggle.closest('tr').dataset.token,
          }),
       }).then(response => {
          return response.json();
@@ -37,8 +37,8 @@
       fetch('./delete.php', {
          method: 'POST',
          body: new URLSearchParams({
-         id: btn.dataset.id,
-         token: token,
+            id: btn.dataset.id,
+            token: btn.closest('tr').dataset.token,
       }),
       }).then(response => {
          return response.json();
@@ -63,7 +63,7 @@
       fetch('./../post/postdelete.php', {
          method: 'POST',
          body: new URLSearchParams({
-            token: token,
+            token: wordbtn.dataset.token,
          }),
       }).then(response => {
          return response.json();
@@ -96,5 +96,4 @@
       console.log("まだまだ");
    }
 
-   
 }

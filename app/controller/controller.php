@@ -130,6 +130,14 @@ class Todocontroller {
          }
       }
 
+      $validation = new TodoValidation;
+      if($validation->tokencheck() === false) {
+         $token_errors = $validation->getTokenErrorMessages();
+         $_SESSION['token_errors'] = $token_errors;
+         header('Location: ./../../view/error/404.php');
+         return;
+      }
+
       $todo = new Database;
       $todo->setId($id);
       $result = $todo->tododelete();
@@ -144,9 +152,16 @@ class Todocontroller {
          }
       }
 
+      $validation = new TodoValidation;
+      if($validation->tokencheck() === false) {
+         $token_errors = $validation->getTokenErrorMessages();
+         $_SESSION['token_errors'] = $token_errors;
+         header('Location: ./../../view/error/404.php');
+         return;
+      }
+
       $todo = new Database;
       $todo->setId($id);
-      $todo->setDone($done);
       $toggleresult = $todo->toggle($id);
       return $toggleresult;
    }
@@ -187,6 +202,15 @@ class Postcontroller {
    }
 
    public function postdelete() {
+
+      $validation = new TodoValidation;
+      if($validation->tokencheck() === false) {
+         $token_errors = $validation->getTokenErrorMessages();
+         $_SESSION['token_errors'] = $token_errors;
+         header('Location: ./../../view/error/404.php');
+         return;
+      }
+
       $post = new Database;
       $postresult = $post->postdelete();
       return $postresult;
@@ -344,6 +368,14 @@ class Filecontroller {
          if(isset($_GET['id'])) {
             $id = $_GET['id'];
          }
+      }
+
+      $validation = new TodoValidation;
+      if($validation->tokencheck() === false) {
+         $token_errors = $validation->getTokenErrorMessages();
+         $_SESSION['token_errors'] = $token_errors;
+         header('Location: ./../../view/error/404.php');
+         return;
       }
 
       $fileimg = new Database;

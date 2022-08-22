@@ -12,8 +12,8 @@
       fetch('./../file/filedelete.php', {
          method: 'POST',
          body: new URLSearchParams({
-         id: filebtn.dataset.id,
-         // token: filebtn.dataset.token,
+            id: filebtn.dataset.id,
+            token: filebtn.closest('li').dataset.token,
       }),
       }).then(response => {
          return response.json();
@@ -24,7 +24,6 @@
          window.location.href = './../../view/error/404.php';
          console.log("画像削除に失敗しました");
       })
-      // filebtn.parentNode.remove();
       filebtn.closest('li').remove();
       });
    });
