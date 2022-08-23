@@ -9,13 +9,9 @@ class Database
    public $id;
    public $title;
    public $content;
-   public $done;
    public $body;
    public $weight;
    public $today;
-   public $filename;
-   public $save_path;
-   
 
    public function getId() {
       return $this->id;
@@ -41,14 +37,6 @@ class Database
       $this->content = $content;
    }
 
-   public function getDone() {
-      return $this->done;
-   }
-
-   public function setDone($done) {
-      $this->done = $done;
-   }
-
    public function getBody() {
       return $this->body;
    }
@@ -71,22 +59,6 @@ class Database
 
    public function setToday($today) {
       $this->today = $today;
-   }
-
-   public function getFilename() {
-      return $this->filename;
-   }
-   
-   public function setFilename($filename) {
-      $this->filename = $filename;
-   }
-
-   public function getSave_path() {
-      return $this->save_path;
-   }
-
-   public function setSave_path($save_path) {
-      $this->save_path = $save_path;
    }
 
    public function getComment() {
@@ -145,13 +117,10 @@ class Database
    }
 
    public static function toggle($id) {
-
       $pdo = new PDO(DSN, USER, PASSWORD);
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-      // $sql = "UPDATE todos SET is_done = NOT is_done WHERE id = :id";
-      // $sql = "UPDATE todos SET title = '$this->title', content = '$this->content', updated_at = NOW() WHERE id = '$this->id'";
-      $sql = "UPDATE todos SET is_done = NOT is_done WHERE  id = :id";
+      $sql = "UPDATE todos SET is_done = NOT is_done , updated_at = NOW() WHERE  id = :id";
       
       $stmt = $pdo->prepare($sql);
       $stmt->bindValue('id', $id, \PDO::PARAM_INT);
@@ -173,13 +142,7 @@ class Database
 
          $pdo->commit();
 
-      } catch(Exception $e) {
-         // $errorUrl = "http://localhost:8000/view/error/404.php";
-         // header("HTTP/1.1 404 Not Found" );
-         // print(file_get_contents($errorUrl));
-         // header("HTTP/1.1 404 Not Found");
-         // include('./../../view/error/404.php');
-
+      } catch (Exception $e) {
          error_log($e->getMessage());
          header('Location: ./../../view/error/404.php');
 
@@ -195,21 +158,16 @@ class Database
          $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
          $sql = "UPDATE todos SET title = '$this->title', content = '$this->content', updated_at = NOW() WHERE id = '$this->id'";
 
-         // $pdo->beginTransaction();
+         $pdo->beginTransaction();
          $stmt = $pdo->prepare($sql);
          $stmt->bindValue('title', $title);
          $stmt->bindValue('content', $content);
          $stmt->bindValue('id', $id);
          $stmt->execute();
 
-         // $pdo->commit();
+         $pdo->commit();
 
-      }  catch (PDOException $e) {
-
-         // $errorUrl = "./../../view/error/404.php";
-         // header( "HTTP/1.1 404 Not Found" );
-         // print(file_get_contents($errorUrl));
-
+      } catch (PDOException $e) {
          error_log($e->getMessage());
          header('Location: ./../../view/error/404.php');
 
@@ -225,19 +183,14 @@ class Database
          $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
          $sql = "DELETE FROM todos WHERE id = $this->id";
 
-         // $pdo->beginTransaction();
+         $pdo->beginTransaction();
          $stmt = $pdo->prepare($sql);
          $stmt->bindValue('id', $id);
          $stmt->execute();
 
-         // $pdo->commit();
+         $pdo->commit();
 
-      }  catch (PDOException $e) {
-
-         // $errorUrl = "./../../view/error/404.php";
-         // header( "HTTP/1.1 404 Not Found" );
-         // print(file_get_contents($errorUrl));
-
+      } catch (PDOException $e) {
          error_log($e->getMessage());
          header('Location: ./../../view/error/404.php');
 
@@ -269,12 +222,7 @@ class Database
 
          $pdo->commit();
 
-      } catch(Exception $e) {
-
-         // $errorUrl = "./../../view/error/404.php";
-         // header( "HTTP/1.1 404 Not Found" );
-         // print(file_get_contents($errorUrl));
-
+      } catch (Exception $e) {
          error_log($e->getMessage());
          header('Location: ./../../view/error/404.php');
 
@@ -290,18 +238,13 @@ class Database
          $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
          $sql = "TRUNCATE TABLE words";
 
-         // $pdo->beginTransaction();
+         $pdo->beginTransaction();
          $stmt = $pdo->prepare($sql);
          $stmt->execute();
 
-         // $pdo->commit();
+         $pdo->commit();
 
-      }  catch (PDOException $e) {
-
-         // $errorUrl = "./../../view/error/404.php";
-         // header( "HTTP/1.1 404 Not Found" );
-         // print(file_get_contents($errorUrl));
-
+      } catch (PDOException $e) {
          error_log($e->getMessage());
          header('Location: ./../../view/error/404.php');
 
@@ -335,21 +278,16 @@ class Database
          $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
          $sql = "INSERT INTO bodies (nowweights, goalweights, nowdate) VALUES ('$this->weight', '$this->body', '$this->today')";
 
-         // $pdo->beginTransaction();
+         $pdo->beginTransaction();
          $stmt = $pdo->prepare($sql);
          $stmt->bindValue('nowweights', $weight);
          $stmt->bindValue('goalweights', $body);
          $stmt->bindValue('nowdate', $today);
          $stmt->execute();
 
-         // $pdo->commit();
+         $pdo->commit();
          
-      } catch(Exception $e) {
-
-         // $errorUrl = "./../../view/error/404.php";
-         // header( "HTTP/1.1 404 Not Found" );
-         // print(file_get_contents($errorUrl));
-
+      } catch (Exception $e) {
          error_log($e->getMessage());
          header('Location: ./../../view/error/404.php');
 
@@ -373,16 +311,17 @@ class Database
          $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
          $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
          $sql = "INSERT INTO pictures (file_name, file_path, comment,created_at) VALUES (?, ?, ?, NOW())";
+
+         $pdo->beginTransaction();
          $stmt = $pdo->prepare($sql);
          $stmt->bindValue(1, $filename);
          $stmt->bindValue(2, $save_path);
          $stmt->bindValue(3, $comment);
          $stmt->execute();
-      } catch (PDOException $e) {
-         // $errorUrl = "./../../view/error/404.php";
-         // header( "HTTP/1.1 404 Not Found" );
-         // print(file_get_contents($errorUrl));
 
+         $pdo->commit();
+
+      } catch (PDOException $e) {
          error_log($e->getMessage());
          header('Location: ./../../view/error/404.php');
 
@@ -398,19 +337,14 @@ class Database
          $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
          $sql = "DELETE FROM pictures WHERE id = $this->id";
 
-         // $pdo->beginTransaction();
+         $pdo->beginTransaction();
          $stmt = $pdo->prepare($sql);
          $stmt->bindValue('id', $id);
          $stmt->execute();
 
-         // $pdo->commit();
+         $pdo->commit();
 
-      }  catch (PDOException $e) {
-
-         // $errorUrl = "./../../view/error/404.php";
-         // header( "HTTP/1.1 404 Not Found" );
-         // print(file_get_contents($errorUrl));
-
+      } catch (PDOException $e) {
          error_log($e->getMessage());
          header('Location: ./../../view/error/404.php');
 

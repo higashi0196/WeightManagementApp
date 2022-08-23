@@ -22,8 +22,8 @@
          console.log("削除に失敗しました");
       });
       toggle.parentNode.nextElementSibling.classList.toggle('done');
-      // toggle.closest('tr').children[1].classList.toggle('done');
       toggle.closest('tr').children[2].classList.toggle('done');
+      // toggle.closest('tr').children[1].classList.toggle('done');
     });
   });
 

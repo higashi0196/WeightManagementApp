@@ -286,7 +286,7 @@ class Filecontroller {
    public function picturecreate() {
    
       $filedata = array(
-         "fil_err" => $file['error'],
+         "file_err" => $file['error'],
          "filesize" => $file['size'],
          "comment" => $_POST['comment'],
       );
@@ -294,8 +294,8 @@ class Filecontroller {
       $file = $_FILES['img'];
       $filename = basename($file['name']);
       $tmp_path = $file['tmp_name'];
-      $fil_err = $file['error'];
-      $filesize = $file['size'];
+      // $fil_err = $file['error'];
+      // $filesize = $file['size'];
       $upload_dir = './../images/';
       $save_filename = date('YmdHis') . $filename;
       $save_path = $upload_dir . $save_filename;
@@ -349,14 +349,10 @@ class Filecontroller {
 
       if(move_uploaded_file($tmp_path, $save_path)) {
     
-         $validation_filedata = $validation->getFileData();
+         // $validation_filedata = $validation->getFileData();
          $picture = new Database;
-         $picture->setFilename($validation_filedata['filename']);
-         $picture->setSave_path($validation_filedata['save_path']);
-         $picture->setComment($validation_filedata['comment']);
-
+         // $picture->setComment($validation_filedata['comment']);
          $imgresult = $picture->filesave($filename,$save_path,$comment);
-
          header("Location: ./file.php");
       }
    }
