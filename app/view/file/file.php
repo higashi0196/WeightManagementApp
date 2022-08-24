@@ -8,7 +8,7 @@ $token->create();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $filecontroller = new Filecontroller();
-   $filecontroller->picturecreate();
+   $filecontroller->filecreate();
    exit;
 }
 

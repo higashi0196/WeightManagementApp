@@ -283,7 +283,7 @@ class Filecontroller {
       return $filepages;
    }
 
-   public function picturecreate() {
+   public function filecreate() {
    
       $filedata = array(
          "file_err" => $file['error'],
@@ -294,8 +294,6 @@ class Filecontroller {
       $file = $_FILES['img'];
       $filename = basename($file['name']);
       $tmp_path = $file['tmp_name'];
-      // $fil_err = $file['error'];
-      // $filesize = $file['size'];
       $upload_dir = './../images/';
       $save_filename = date('YmdHis') . $filename;
       $save_path = $upload_dir . $save_filename;

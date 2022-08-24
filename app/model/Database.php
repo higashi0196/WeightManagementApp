@@ -68,28 +68,13 @@ class Database
    public function setComment($comment) {
       $this->comment = $comment;
    }
-
-   private static $osaka;
-   
-   public static function get() {
-      try {
-         if (!isset(self::$osaka)) {
-           self::$osaka = new PDO(
-            DSN,USER,PASSWORD,
-            [
-               PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-               PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
-               PDO::ATTR_EMULATE_PREPARES => false,
-            ]
-            );
-         }
-         return self::$osaka;
-      } catch (PDOException $e) {
-         echo $e->getMessage()  . PHP_EOL;
-         exit;
-      }
-   }
-
+  
+   // [
+   //    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+   //    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+   //    PDO::ATTR_EMULATE_PREPARES => false,
+   // ]
+  
    public static function findId($id) {
       $pdo = new PDO(DSN, USER, PASSWORD);
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -104,11 +89,7 @@ class Database
   }
 
    public static function todogetAll() {
-      $pdo = new PDO(DSN, USER, PASSWORD,  [
-         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
-         PDO::ATTR_EMULATE_PREPARES => false,
-      ]);
+      $pdo = new PDO(DSN, USER, PASSWORD);
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
       $stmt = $pdo->query("SELECT * FROM todos");

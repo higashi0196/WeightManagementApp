@@ -6,7 +6,6 @@ session_start();
 $token = new Token();
 $token->create();
 
-// $pdo = Database::get();
 $todocontroller = new Todocontroller();
 $todolists = $todocontroller->todos();
 $postcontroller = new Postcontroller();
@@ -91,7 +90,7 @@ unset($_SESSION['token_errors']);
             </tr> 
          <?php endforeach; ?>
       </tbody>
-      </table> 
+   </table> 
    <?php elseif(empty($todolists)): ?>
    <table>
       <thead>
@@ -131,9 +130,6 @@ unset($_SESSION['token_errors']);
    const goalweight = "<?php echo $weightlist['goalweights']; ?>";
 </script>
 
-<script type="text/javascript" src="./../../js/main.js">
-// <script type="text/javascript">
-  
-</script> 
+<script type="text/javascript" src="./../../js/main.js"></script> 
 </body>
 </html>

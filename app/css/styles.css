@@ -182,7 +182,6 @@ table {
    width: 720px;
    height: auto;
    margin: 25px auto 0;
-   font-size: 20px;
 }
 
 input[type=checkbox] {
@@ -205,21 +204,23 @@ table th:nth-child(5) {
 
 .done {
    text-decoration: line-through;
-   color: #ccc;
+   color: rgb(75, 75, 75, 0.75);
 }
 
 th,td {
    padding: 3px 0;
-   border: 3px solid #878080;
+   border: 3px solid gray;
 }
 
 th {
    background-color: rgb(210, 200, 200);
+   font-size: 20px;
    font-weight: bold;
 }
 
 td {
    height: auto;
+   font-size: 22px;
    word-wrap: break-word;
 }
 
@@ -613,7 +614,6 @@ li > div {
    table {
       width: 90%;
       margin-top: 20px;
-      font-size: 15px;
    }
 
    input[type=checkbox] {
@@ -633,13 +633,14 @@ li > div {
       width: 60px;
    }
 
-   /* th,td {
-      padding: 3px 4px;
-      box-sizing: border-box;
-   } */
+   th {
+      font-size: 15px;
+   }
+
    td {
       padding: 3px 4px;
-      box-sizing: border-box;
+      font-size: 16px;
+      /* box-sizing: border-box; */
    }
 
    .edit-btn {
@@ -665,7 +666,6 @@ li > div {
    
    .postcreate > span {
       display: block;
-      /* margin-top: 20px; */
       margin: 20px 0 0;
       font-size: 18px;
    }
