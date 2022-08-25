@@ -293,10 +293,14 @@ class Filecontroller {
 
       $file = $_FILES['img'];
       $filename = basename($file['name']);
-      $tmp_path = $file['tmp_name'];
+      $tmp_name = $file['tmp_name'];
+      // $tm = file_get_contents($_FILES['img']['tmp_name']);
+      // $tmp = base64_encode($tm);
+      $tmp = base64_encode($file['tmp_name']);
       $upload_dir = './../images/';
       $save_filename = date('YmdHis') . $filename;
       $save_path = $upload_dir . $save_filename;
+      $save =  base64_encode($upload_dir . $save_filename);
       $filetype = pathinfo($save_path,PATHINFO_EXTENSION);
       $arrImagetype = array('jpg','jpeg','png','git','pdf');
       $comment = filter_input(INPUT_POST, 'comment');
@@ -314,7 +318,7 @@ class Filecontroller {
          return;
       }
 
-      if (!is_uploaded_file($tmp_path)) {
+      if (!is_uploaded_file($tmp_name)) {
          $validation->filecheck();
          $file_errors = $validation->getFileErrorMessages();
          $_SESSION['file_errors'] = $file_errors;
@@ -345,14 +349,17 @@ class Filecontroller {
          return;
       }
 
-      if(move_uploaded_file($tmp_path, $save_path)) {
-    
-         // $validation_filedata = $validation->getFileData();
+      if(move_uploaded_file($tmp_name, $save_path)) {
          $picture = new Database;
-         // $picture->setComment($validation_filedata['comment']);
-         $imgresult = $picture->filesave($filename,$save_path,$comment);
+         $imgresult = $picture->filesave($filename,$save_path,$tmp,$comment);
          header("Location: ./file.php");
       }
+
+      // if(move_uploaded_file($tmp_name, $save_path)) {
+      //    $picture = new Database;
+      //    $imgresult = $picture->filesave($filename,$save_path,$comment);
+      //    header("Location: ./file.php");
+      // }
    }
 
    public function filedelete() {

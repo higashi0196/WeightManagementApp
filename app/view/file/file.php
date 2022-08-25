@@ -32,6 +32,7 @@ unset($_SESSION['filemodel_errors']);
 $file_errors = $_SESSION['file_errors'];
 unset($_SESSION['file_errors']);
 
+// var_dump($filelists);
 ?>
 
 <!DOCTYPE html>
@@ -95,6 +96,7 @@ unset($_SESSION['file_errors']);
    <?php foreach ($filelists as $filelist): ?> 
       <li data-token="<?= Utils::h($_SESSION['token']); ?>">
          <img src="<?php echo Utils::h($filelist['file_path']); ?>" alt="">
+         <img src="data:image/png;base64,<?php echo Utils::h($filelist["tmp_name"]); ?>">
          <div>
             <p class="list-memo"> 〜〜  一言メモ 〜〜 </p>
             <p class="list-comment"><?php echo Utils::h($filelist['comment']); ?></p>

@@ -286,18 +286,19 @@ class Database
       return $filelists;
    }
 
-   public function filesave($filename,$save_path,$comment) {
+   public function filesave($filename,$save_path,$tmp,$comment) {
       try {
          $pdo = new PDO(DSN, USER, PASSWORD);
          $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
          $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-         $sql = "INSERT INTO pictures (file_name, file_path, comment,created_at) VALUES (?, ?, ?, NOW())";
+         $sql = "INSERT INTO pictures (file_name, file_path, tmp_name, comment,created_at) VALUES (?, ?, ?, ?, NOW())";
 
          $pdo->beginTransaction();
          $stmt = $pdo->prepare($sql);
          $stmt->bindValue(1, $filename);
          $stmt->bindValue(2, $save_path);
-         $stmt->bindValue(3, $comment);
+         $stmt->bindValue(3, $tmp);
+         $stmt->bindValue(4, $comment);
          $stmt->execute();
 
          $pdo->commit();

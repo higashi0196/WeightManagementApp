@@ -185,11 +185,11 @@ class TodoValidation {
 
    public function filecheck() {
 
-      if (!is_uploaded_file($tmp_path) && empty($this->filedata['comment'])) {
-         $this->file_errors[] = "画像ファイルとメモを入力してください";
-      } else if (!is_uploaded_file($tmp_path)) {
-         $this->file_errors[] = "画像ファイルが選択されていません";
-      }
+      // if (!is_uploaded_file($tmp_name) && empty($this->filedata['comment'])) {
+      //    $this->file_errors[] = "画像ファイルとメモを入力してください";
+      // } else if (!is_uploaded_file($tmp_name)) {
+      //    $this->file_errors[] = "画像ファイルが選択されていません";
+      // }
       
       $allow_ext = array('jpg','jpeg','png','git','pdf');
       $file_ext = pathinfo($filename, PATHINFO_EXTENSION);
