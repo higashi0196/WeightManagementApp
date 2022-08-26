@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $filecontroller = new Filecontroller();
-$filelists = $filecontroller->files();
+$filelists = $filecontroller->files(); 
 
 if($_SERVER['REQUEST_METHOD'] === 'GET') {
    if(isset($_GET['comment'])) {
@@ -32,7 +32,13 @@ unset($_SESSION['filemodel_errors']);
 $file_errors = $_SESSION['file_errors'];
 unset($_SESSION['file_errors']);
 
-// var_dump($filelists);
+// foreach ($filelists as $filelist):
+//    ($filelist['file_path']);
+// endforeach;
+// echo base64_decode($filelist['file_path']);
+// var_dump($filelist["img"]);
+// <img src="data:image/jpg;base64,base64_encode(file_get_contents('$filelist["img"]));
+
 ?>
 
 <!DOCTYPE html>
@@ -45,6 +51,8 @@ unset($_SESSION['file_errors']);
 </head>
 <body>
 <p class="outline">画像アップロード</p>
+
+<!-- <img src="data:image/jpg;base64,<?php echo ($filelist["img"]); ?>"> -->
 
 <?php if($token_errors):?> 
    <?php foreach ($token_errors as $token_error): ?>
@@ -92,15 +100,17 @@ unset($_SESSION['file_errors']);
 
 <a href="./../todo/index.php"><button class="return-btn">戻る</button></a>
 
-<ol>
-   <?php foreach ($filelists as $filelist): ?> 
+ <ol>
+   <?php foreach ($filelists as $filelist): ?>
       <li data-token="<?= Utils::h($_SESSION['token']); ?>">
          <img src="<?php echo Utils::h($filelist['file_path']); ?>" alt="">
-         <img src="data:image/png;base64,<?php echo Utils::h($filelist["tmp_name"]); ?>">
+         <!-- <img src="data:image/jpg;base64,<?php echo Utils::h($filelist['file_path']); ?>" alt=""> -->
+         <!-- <img src="data:image/jpeg;base64,<?php echo Utils::h($filelist["img"]) ?>" alt="">  -->
+
          <div>
             <p class="list-memo"> 〜〜  一言メモ 〜〜 </p>
             <p class="list-comment"><?php echo Utils::h($filelist['comment']); ?></p>
-            <button class="filedelete-btn" data-id="<?php echo Utils::h($filelist['id']); ?>" >削除</button>
+            <button class="filedelete-btn" data-id="<?php echo Utils::h($filelist['id']); ?>">削除</button>
          </div>
       </li>
    <?php endforeach; ?>

@@ -294,9 +294,8 @@ class Filecontroller {
       $file = $_FILES['img'];
       $filename = basename($file['name']);
       $tmp_name = $file['tmp_name'];
-      // $tm = file_get_contents($_FILES['img']['tmp_name']);
-      // $tmp = base64_encode($tm);
-      $tmp = base64_encode($file['tmp_name']);
+      $file_type = $_FILES['img']['type'];
+      // $image = base64_encode($file['tmp_name']);
       $upload_dir = './../images/';
       $save_filename = date('YmdHis') . $filename;
       $save_path = $upload_dir . $save_filename;
@@ -349,9 +348,13 @@ class Filecontroller {
          return;
       }
 
-      if(move_uploaded_file($tmp_name, $save_path)) {
+      // $picture = new Database;
+      // $imgresult = $picture->filesave2($file_type,$comment);
+      // header("Location: ./file.php");
+
+      if(move_uploaded_file($tmp_name,$save_path)) {
          $picture = new Database;
-         $imgresult = $picture->filesave($filename,$save_path,$tmp,$comment);
+         $imgresult = $picture->filesave($filename,$save_path,$comment);
          header("Location: ./file.php");
       }
 
