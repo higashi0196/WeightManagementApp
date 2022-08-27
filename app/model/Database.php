@@ -281,32 +281,17 @@ class Database
       $pdo = new PDO(DSN, USER, PASSWORD);
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-      // $stmt = $pdo->query("SELECT * FROM p");
       $stmt = $pdo->query("SELECT * FROM pictures");
       $filelists = $stmt->fetchAll(PDO::FETCH_ASSOC);
       return $filelists;
    }
-
-   // public function filesave2($file_type,$comment) {
-      
-   //       $pdo = new PDO(DSN, USER, PASSWORD);
-   //       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   //       $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-   //       $image = base64_encode($_FILES['img']['tmp_name']);
-
-   //       $sql = "INSERT INTO p (img, filetype, comment, created_at) VALUES (?, ?, ?, NOW())";
-   //       $stmt = $pdo->prepare($sql);
-   //       $stmt->bindValue(1, $image);
-   //       $stmt->bindValue(2, $file_type);
-   //       $stmt->bindValue(3, $comment);
-   //       $stmt->execute();
-   // }
 
    public function filesave($filename,$save_path,$comment) {
       try {
          $pdo = new PDO(DSN, USER, PASSWORD);
          $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
          $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+         $image = base64_encode($filename);
          $image = base64_encode($_FILES['img']['tmp_name']);
 
          $sql = "INSERT INTO pictures (file_name, file_path, tmp_name, comment,created_at) VALUES (?, ?, ?, ?, NOW())";

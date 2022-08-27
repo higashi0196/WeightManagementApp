@@ -32,13 +32,6 @@ unset($_SESSION['filemodel_errors']);
 $file_errors = $_SESSION['file_errors'];
 unset($_SESSION['file_errors']);
 
-// foreach ($filelists as $filelist):
-//    ($filelist['file_path']);
-// endforeach;
-// echo base64_decode($filelist['file_path']);
-// var_dump($filelist["img"]);
-// <img src="data:image/jpg;base64,base64_encode(file_get_contents('$filelist["img"]));
-
 ?>
 
 <!DOCTYPE html>
@@ -51,8 +44,6 @@ unset($_SESSION['file_errors']);
 </head>
 <body>
 <p class="outline">画像アップロード</p>
-
-<!-- <img src="data:image/jpg;base64,<?php echo ($filelist["img"]); ?>"> -->
 
 <?php if($token_errors):?> 
    <?php foreach ($token_errors as $token_error): ?>
@@ -104,9 +95,6 @@ unset($_SESSION['file_errors']);
    <?php foreach ($filelists as $filelist): ?>
       <li data-token="<?= Utils::h($_SESSION['token']); ?>">
          <img src="<?php echo Utils::h($filelist['file_path']); ?>" alt="">
-         <!-- <img src="data:image/jpg;base64,<?php echo Utils::h($filelist['file_path']); ?>" alt=""> -->
-         <!-- <img src="data:image/jpeg;base64,<?php echo Utils::h($filelist["img"]) ?>" alt="">  -->
-
          <div>
             <p class="list-memo"> 〜〜  一言メモ 〜〜 </p>
             <p class="list-comment"><?php echo Utils::h($filelist['comment']); ?></p>

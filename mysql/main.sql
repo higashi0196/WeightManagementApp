@@ -46,20 +46,6 @@ CREATE TABLE pictures (
    created_at DATETIME NOT NULL
 );
 
-CREATE TABLE p (
-   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-   img  MEDIUMBLOB,
-   comment VARCHAR(255) NOT NULL,
-   created_at DATETIME NOT NULL
-);
--- CREATE TABLE p (
---    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
---    img  MEDIUMBLOB,
---    mime  VARCHAR(50),
---    comment VARCHAR(255) NOT NULL,
---    created_at DATETIME NOT NULL
--- );
-
 INSERT INTO pictures (file_name, file_path, comment, created_at) VALUES ('', '', '', NOW());
 
 SELECT * FROM pictures;

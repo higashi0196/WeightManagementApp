@@ -348,21 +348,11 @@ class Filecontroller {
          return;
       }
 
-      // $picture = new Database;
-      // $imgresult = $picture->filesave2($file_type,$comment);
-      // header("Location: ./file.php");
-
       if(move_uploaded_file($tmp_name,$save_path)) {
          $picture = new Database;
          $imgresult = $picture->filesave($filename,$save_path,$comment);
          header("Location: ./file.php");
       }
-
-      // if(move_uploaded_file($tmp_name, $save_path)) {
-      //    $picture = new Database;
-      //    $imgresult = $picture->filesave($filename,$save_path,$comment);
-      //    header("Location: ./file.php");
-      // }
    }
 
    public function filedelete() {
