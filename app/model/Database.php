@@ -286,13 +286,13 @@ class Database
       return $filelists;
    }
 
-   public function filesave($filename,$save_path,$comment) {
+   public function filesave($filename,$save_path,$image,$comment) {
       try {
          $pdo = new PDO(DSN, USER, PASSWORD);
          $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
          $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-         $image = base64_encode($filename);
-         $image = base64_encode($_FILES['img']['tmp_name']);
+         // $image = base64_encode($save_path);
+         // $image = bin2hex($save_path);
 
          $sql = "INSERT INTO pictures (file_name, file_path, tmp_name, comment,created_at) VALUES (?, ?, ?, ?, NOW())";
 

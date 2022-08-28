@@ -1,5 +1,5 @@
 <?php
-class TodoValidation {
+class Validation {
 
    public function getData() {
       return $this->data;

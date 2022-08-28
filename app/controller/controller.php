@@ -30,7 +30,7 @@ class Todocontroller {
          "content" => $_POST['content'],
      );
 
-      $validation = new TodoValidation;
+      $validation = new Validation;
       $validation->setData($data);
 
       if($validation->tokencheck() === false) {
@@ -90,7 +90,7 @@ class Todocontroller {
          "content" => $_POST['content'],
       );
 
-      $validation = new TodoValidation;
+      $validation = new Validation;
       $validation->setData($data);
 
       if($validation->tokencheck() === false) {
@@ -130,7 +130,7 @@ class Todocontroller {
          }
       }
 
-      $validation = new TodoValidation;
+      $validation = new Validation;
       if($validation->tokencheck() === false) {
          $token_errors = $validation->getTokenErrorMessages();
          $_SESSION['token_errors'] = $token_errors;
@@ -152,7 +152,7 @@ class Todocontroller {
          }
       }
 
-      $validation = new TodoValidation;
+      $validation = new Validation;
       if($validation->tokencheck() === false) {
          $token_errors = $validation->getTokenErrorMessages();
          $_SESSION['token_errors'] = $token_errors;
@@ -178,7 +178,7 @@ class Postcontroller {
 
       $content = (filter_input(INPUT_POST, 'postcontent'));
 
-      $validation = new TodoValidation;
+      $validation = new Validation;
       $validation->setContent($content);
 
       if($validation->tokencheck() === false) {
@@ -203,7 +203,7 @@ class Postcontroller {
 
    public function postdelete() {
 
-      $validation = new TodoValidation;
+      $validation = new Validation;
       if($validation->tokencheck() === false) {
          $token_errors = $validation->getTokenErrorMessages();
          $_SESSION['token_errors'] = $token_errors;
@@ -237,7 +237,7 @@ class Weightcontroller {
          "today" => $_POST['today'],
       );
 
-      $validation = new TodoValidation;
+      $validation = new Validation;
       $validation->setWeightData($weightdata);
 
       if($validation->tokencheck() === false) {
@@ -299,12 +299,13 @@ class Filecontroller {
       $upload_dir = './../images/';
       $save_filename = date('YmdHis') . $filename;
       $save_path = $upload_dir . $save_filename;
+      $image = base64_encode($save_path);
       $save =  base64_encode($upload_dir . $save_filename);
       $filetype = pathinfo($save_path,PATHINFO_EXTENSION);
       $arrImagetype = array('jpg','jpeg','png','git','pdf');
       $comment = filter_input(INPUT_POST, 'comment');
 
-      $validation = new TodoValidation;
+      $validation = new Validation;
       $validation->setFileData($filedata);
       $validation_data = $validation->getFileData();
 
@@ -350,7 +351,7 @@ class Filecontroller {
 
       if(move_uploaded_file($tmp_name,$save_path)) {
          $picture = new Database;
-         $imgresult = $picture->filesave($filename,$save_path,$comment);
+         $imgresult = $picture->filesave($filename,$save_path,$image,$comment);
          header("Location: ./file.php");
       }
    }
@@ -364,7 +365,7 @@ class Filecontroller {
          }
       }
 
-      $validation = new TodoValidation;
+      $validation = new Validation;
       if($validation->tokencheck() === false) {
          $token_errors = $validation->getTokenErrorMessages();
          $_SESSION['token_errors'] = $token_errors;

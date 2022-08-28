@@ -83,7 +83,6 @@ unset($_SESSION['file_errors']);
       <?php endforeach;?>
    <?endif;?>
 
-   <!-- <p class="number">※画像は5件までアップロードできます。</p> -->
    <button type="submit" class="file-btn">アップロード</button>
    <input type="hidden" name="MAX_FILE_SIZE" value="1048576">
    <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
@@ -95,6 +94,8 @@ unset($_SESSION['file_errors']);
    <?php foreach ($filelists as $filelist): ?>
       <li data-token="<?= Utils::h($_SESSION['token']); ?>">
          <img src="<?php echo Utils::h($filelist['file_path']); ?>" alt="">
+         <img src="<?php echo Utils::h(base64_decode($filelist['tmp_name'])); ?>" alt="">
+         <!-- <img src="<?php echo Utils::h(hex2bin($filelist['tmp_name'])); ?>" alt=""> -->
          <div>
             <p class="list-memo"> 〜〜  一言メモ 〜〜 </p>
             <p class="list-comment"><?php echo Utils::h($filelist['comment']); ?></p>

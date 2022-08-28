@@ -428,12 +428,6 @@ textarea {
    white-space: pre-wrap;
 }
 
-.number {
-   margin: 10px auto 0;
-   color: orangered;
-   font-size: 20px;
-}
-
 .file-btn {
    width: 130px;
    height: auto;
@@ -500,7 +494,6 @@ li > div {
    font-size: 15px;
    font-weight: bold;
    cursor : pointer;
-   /* vertical-align: top; */
 }
 
 /* file.php ページ 終了 */
@@ -640,7 +633,6 @@ li > div {
    td {
       padding: 3px 4px;
       font-size: 16px;
-      /* box-sizing: border-box; */
    }
 
    .edit-btn {
@@ -760,12 +752,6 @@ li > div {
       width: 65%;
       height: 70px;
       margin-bottom: 0;
-   }
-
-   .number {
-      margin: 8px 0 0;
-      font-size: 18px;
-      font-weight: bold;
    }
 
    .file-btn {

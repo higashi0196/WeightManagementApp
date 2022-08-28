@@ -37,7 +37,6 @@ unset($_SESSION['post_errors']);
    <form method="POST" action="./post.php">
       <div>
          <p class="outline">一言メッセージ</p>
-         <p class="number">メッセージをどうぞ！</p>
          <textarea name="postcontent" placeholder="メッセージをどうぞ"></textarea>
       </div>
 

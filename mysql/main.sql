@@ -10,9 +10,11 @@ CREATE TABLE todos (
    updated_at datetime NOT NULL
 );
 
-INSERT INTO todos (title, content,  is_done ,created_at, updated_at) VALUES ('%s', '%s',true, NOW(), NOW());
+INSERT INTO todos (title, content, is_done ,created_at, updated_at) VALUES ('', '', 0 , NOW(), NOW());
 
-UPDATE todos SET title = '', content = '', updated_at = NOW() WHERE id = '';
+UPDATE todos SET title = '', content = '',is_done = 0, updated_at = NOW() WHERE id = '';
+
+DELETE FROM todos WHERE id = '';
 
 SELECT * FROM todos;
 
@@ -23,6 +25,8 @@ CREATE TABLE words (
 );
 
 INSERT INTO words (content, created_at) VALUES ('', NOW());
+
+TRUNCATE TABLE words;
 
 SELECT * FROM words;
 
@@ -42,10 +46,13 @@ CREATE TABLE pictures (
    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
    file_name VARCHAR(255),
    file_path VARCHAR(255) UNIQUE KEY,
+   tmp_name LONGBLOB,
    comment VARCHAR(255) NOT NULL,
    created_at DATETIME NOT NULL
 );
 
-INSERT INTO pictures (file_name, file_path, comment, created_at) VALUES ('', '', '', NOW());
+INSERT INTO pictures (file_name, file_path, comment, tmp_name, created_at) VALUES ('', '', '', '', NOW());
+
+DELETE FROM pictures WHERE id = '';
 
 SELECT * FROM pictures;
