@@ -33,10 +33,10 @@ unset($_SESSION['token_errors']);
       体重管理リスト
       <img src="./../logos/logo3.png" class="logo">
    </h1>
-
+   
    <?php foreach ($weightlists as $weightlist): ?>
       <p class="ideal-weight">目標体重 :</p>
-      <p class="goal-weight"><?php echo Utils::h($weightlist['goalweights']); ?> kg</p></br>
+      <p class="goal-weight"><?php echo Utils::h($weightlist['goalweights']); ?> kg</p><br>
       <p class="ideal-weight"> 現在の体重 :</p>
       <p class="goal-weight"><?php echo Utils::h($weightlist['nowweights']); ?> kg</p><br>
       <p class="ideal-weight">目標達成まであと :</p>
@@ -68,7 +68,7 @@ unset($_SESSION['token_errors']);
          <tr>
             <th scope="col"></th>
             <th scope="col">タイトル</th>
-            <th scope="col">目標</th>
+            <th scope="col">詳細</th>
             <th scope="col">編集</th>
             <th scope="col">削除</th>
          </tr>
@@ -79,13 +79,9 @@ unset($_SESSION['token_errors']);
                <td>
                   <input type="checkbox" data-id="<?php echo Utils::h($todo['id'])?>" <?= $todo['is_done'] ? 'checked' : ''; ?>>
                </td>
-
                <td class="<?= $todo['is_done'] ? 'done' : ''; ?>"><?php echo Utils::h($todo['title']); ?></td>
-
                <td class="<?= $todo['is_done'] ? 'done' : ''; ?>"><?php echo Utils::h($todo['content']); ?></td> 
-
                <td><a href="edit.php?id=<?php echo Utils::h($todo['id'])?>"><button class="edit-btn">編集</button></a></td>  
-
                <td><button class="delete-btn" data-id="<?php echo Utils::h($todo['id'])?>">削除</button></td> 
             </tr> 
          <?php endforeach; ?>
@@ -97,7 +93,7 @@ unset($_SESSION['token_errors']);
          <tr>
             <th scope="col"></th>
             <th scope="col">タイトル</th>
-            <th scope="col">目標</th>
+            <th scope="col">詳細</th>
             <th scope="col">編集</th>
             <th scope="col">削除</th>
          </tr>
