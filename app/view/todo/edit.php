@@ -8,15 +8,14 @@ $token->create();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $todocontroller = new Todocontroller();
-    $todocontroller->update();
+    $todocontroller->todoupdate();
     exit;
 }
 
 $todocontroller = new Todocontroller();
-$data =  $todocontroller->edit();
-$todolists = $todocontroller->todos();
-$todo = $data['todo'];
-$params = $data['params'];
+$editdata =  $todocontroller->edit();
+$todo = $editdata['todo'];
+$parameter = $editdata['parameter'];
 
 $token_errors = $_SESSION['token_errors'];
 unset($_SESSION['token_errors']);
@@ -47,9 +46,7 @@ unset($_SESSION['content_errors']);
     <form method="POST" action="./edit.php">
         <div>
             <p class="title">タイトル</p>
-            <input type="text" name="title" class="titleinput" 
-            value="<?php if(isset($params['title'])):?><?php echo Utils::h($params['title']);?>
-            <?php else:?><?php echo Utils::h($todo['title']);?><?php endif;?>">
+            <input type="text" name="title" class="titleinput" value="<?php if(isset($parameter['title'])):?><?php echo Utils::h($parameter['title']);?><?php else:?><?php echo Utils::h($todo['title']);?><?php endif;?>">
 
             <?php if($title_errors):?>
             <?php foreach ($title_errors as $title_error): ?>
@@ -60,10 +57,7 @@ unset($_SESSION['content_errors']);
 
         <div>
             <p class="title">詳細</p>
-            <input type="text" name="content" class="titleinput" 
-            value="<?php if(isset($params['content'])):?><?php echo Utils::h($params['content']);?>
-            <?php else:?><?php echo Utils::h($todo['content']);?>
-            <?php endif;?>">
+            <input type="text" name="content" class="titleinput" value="<?php if(isset($parameter['content'])):?><?php echo Utils::h($parameter['content']);?><?php else:?><?php echo Utils::h($todo['content']);?><?php endif;?>">
 
             <?php if($content_errors):?>
                 <?php foreach ($content_errors as $content_error): ?>

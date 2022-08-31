@@ -60,29 +60,31 @@ class Todocontroller {
 
     public function edit() {
         $id = '';
-        $params = array();
+        // $params = array();
+        $title = array();
+        $content = array();
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
             }
             if (isset($_GET['title'])) {
-                $params['title'] = $_GET['title'];
+                $parameter['title'] = $_GET['title'];
             }
             if (isset($_GET['content'])) {
-                $params['content'] = $_GET['content'];
+                $parameter['content'] = $_GET['content'];
             }
         }
 
-        $todo = Database::findId($id);
-        
+        $todo = Database::todogetid($id);
+
         $data = array(
             "todo" => $todo,
-            "params" => $params,
+            "parameter" => $parameter,
         );   
         return $data;
     }  
    
-    public function update() {
+    public function todoupdate() {
 
         $data = array(
             "id" => $_POST['id'],
@@ -121,7 +123,7 @@ class Todocontroller {
         header("Location: ./index.php");
     }
 
-    public function delete() {
+    public function tododelete() {
 
         $id = $_POST['id'];
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {

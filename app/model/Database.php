@@ -69,7 +69,7 @@ class Database
         $this->comment = $comment;
     }
 
-    public static function findId($id) {
+    public static function todogetid($id) {
         $pdo = new PDO(DSN, USER, PASSWORD);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -81,6 +81,18 @@ class Database
         $todo = $stmt->fetch(PDO::FETCH_ASSOC);
         return $todo;
     }
+    // public static function findId($id) {
+    //     $pdo = new PDO(DSN, USER, PASSWORD);
+    //     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //     $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    //     $sql = "SELECT * FROM todos WHERE id = :id";
+
+    //     $stmt = $pdo->prepare($sql);
+    //     $stmt->bindValue('id', $id);
+    //     $stmt->execute();
+    //     $todo = $stmt->fetch(PDO::FETCH_ASSOC);
+    //     return $todo;
+    // }
 
     public static function todogetAll() {
         $pdo = new PDO(DSN, USER, PASSWORD);
