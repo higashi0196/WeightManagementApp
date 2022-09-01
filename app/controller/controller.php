@@ -60,9 +60,7 @@ class Todocontroller {
 
     public function edit() {
         $id = '';
-        // $params = array();
-        $title = array();
-        $content = array();
+        $parameter = array();
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];

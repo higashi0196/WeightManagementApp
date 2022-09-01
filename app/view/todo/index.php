@@ -28,11 +28,11 @@ unset($_SESSION['token_errors']);
 </head>
 <body>
 <main>
-<!-- <div class="backgeound-opacity"> -->
+<div class="backgeound-opacity">
     <h1>
-        <img src="./../logos/logo3.png" alt="" class="logo">
+        <img src="./../logos/logo2.png" alt="" class="logo">
         <a>体重管理リスト</a>
-        <img src="./../logos/logo3.png" class="logo">
+        <img src="./../logos/logo2.png" class="logo">
     </h1>
    
     <?php foreach ($weightlists as $weightlist): ?>
@@ -141,6 +141,6 @@ unset($_SESSION['token_errors']);
 </script>
 
 <script type="text/javascript" src="./../../js/main.js"></script>
-<!-- </div> -->
+</div>
 </body>
 </html>

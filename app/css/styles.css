@@ -6,7 +6,9 @@ body {
     margin: 0;                        
     text-align: center;
     /* font-family: "メイリオ", sans-serif; */
-    background-image: url(./../view/logos/logo1.jpg);
+    background-image: url(./../view/logos/background.jpg);
+    background-color:rgba(255, 255, 255, 0.65);
+    background-blend-mode: lighten;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -21,7 +23,7 @@ main {
 
 /* .backgeound-opacity {
     height: 100%;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.4);
     justify-content: center;
     align-items: center;
 } */
@@ -58,9 +60,9 @@ main {
     height: auto;
     margin: 35px auto 0;
     padding:  0.1em;
-    border: 2px solid rgba(145, 125, 80, 0.8);
+    border: 2px solid rgba(145, 125, 80);
     border-radius: 5px;
-    background-color: rgba(45, 50, 215, 0.5);
+    background-color: rgb(90, 160, 210);
     font-size: 18px;
     font-weight: bold;
     cursor : pointer;
@@ -187,6 +189,7 @@ table {
     width: 720px;
     height: auto;
     margin: 25px auto 0;
+    font-size: 20px;
     text-align: center;
 }
 
@@ -210,23 +213,23 @@ table th:nth-child(5) {
 
 .done {
     text-decoration: line-through;
-    color: rgb(75, 75, 75, 0.75);
+    color: rgba(185, 180, 180, 0.8);
 }
 
 th,td {
     padding: 3px 0;
-    border: 3px solid gray;
+    border: 3px solid rgb(75, 75, 75);
 }
 
 th {
     background-color: rgb(210, 200, 200);
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
 }
 
 td {
     height: auto;
-    font-size: 22px;
+    background-color: rgb(140, 140, 140);
     word-wrap: break-word;
 }
 
@@ -256,11 +259,10 @@ td {
     text-shadow: 2px 2px 4px gray; 
 }
 
-
 /* テーブル CSS 終了 */
 
 /* 明日への一言 css 開始 */
-    .postcreate {
+.postcreate {
     margin: 20px 0 0;
     vertical-align: middle;
 }
@@ -305,7 +307,7 @@ td {
     margin: 20px auto 50px;
     border: dashed 2px white;
     border-radius: 8px;
-    background-color: #10c6cf99;
+    background-color: rgb(31, 175, 186,0.8);
     box-shadow: 8px 8px 5px rgba(0,0,0,0.3);
 }
 
@@ -329,7 +331,7 @@ td {
 
 .title {
     margin: 50px auto 0;
-    color: rgb(143, 143, 148);
+    color: rgb(80, 80, 80);
     font-size: 22px;
     font-weight: bold;
 }
