@@ -70,7 +70,7 @@
         })
         .then(json => {
             word.textContent = '一言メッセージを入力できます';
-            word.classList.add('word');
+            // word.classList.add('word');
             console.log(json);
         })
         .catch(error => {

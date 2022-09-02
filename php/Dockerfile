@@ -1,3 +1,4 @@
+# FROM php:7.4.30-fpm
 FROM php:7.2-fpm
 
 # FROM --platform=linux/amd64 mysql:5.7

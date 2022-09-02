@@ -16,6 +16,8 @@ $weightlists = $weightcontroller->weights();
 $token_errors = $_SESSION['token_errors'];
 unset($_SESSION['token_errors']);
 
+// echo phpversion();
+// phpinfo();
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +30,6 @@ unset($_SESSION['token_errors']);
 </head>
 <body>
 <main>
-<div class="backgeound-opacity">
     <h1>
         <img src="./../logos/logo2.png" alt="" class="logo">
         <a>体重管理リスト</a>
@@ -131,7 +132,7 @@ unset($_SESSION['token_errors']);
         <?php else : ?>
             <p id="word">一言メッセージを入力できます</p> 
         <?php endif; ?> 
-    </div>
+        </div>
 
 </main>
 
@@ -141,6 +142,5 @@ unset($_SESSION['token_errors']);
 </script>
 
 <script type="text/javascript" src="./../../js/main.js"></script>
-</div>
 </body>
 </html>
