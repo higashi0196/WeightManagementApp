@@ -134,7 +134,7 @@ class Todocontroller {
         if($validation->tokencheck() === false) {
             $token_errors = $validation->getTokenErrorMessages();
             $_SESSION['token_errors'] = $token_errors;
-            header('Location: ./../../view/error/404.php');
+            header("Location: ./../../view/error/404.php");
             return;
         }
 
@@ -156,7 +156,7 @@ class Todocontroller {
         if ($validation->tokencheck() === false) {
             $token_errors = $validation->getTokenErrorMessages();
             $_SESSION['token_errors'] = $token_errors;
-            header('Location: ./../../view/error/404.php');
+            header("Location: ./../../view/error/404.php");
             return;
         }
 
@@ -207,7 +207,7 @@ class Postcontroller {
         if ($validation->tokencheck() === false) {
             $token_errors = $validation->getTokenErrorMessages();
             $_SESSION['token_errors'] = $token_errors;
-            header('Location: ./../../view/error/404.php');
+            header("Location: ./../../view/error/404.php");
             return;
         }
 
@@ -368,7 +368,7 @@ class Filecontroller {
         if ($validation->tokencheck() === false) {
             $token_errors = $validation->getTokenErrorMessages();
             $_SESSION['token_errors'] = $token_errors;
-            header('Location: ./../../view/error/404.php');
+            header("Location: ./../../view/error/404.php");
             return;
         }
 

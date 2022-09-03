@@ -7,8 +7,8 @@
 	<link rel="stylesheet" href="./../../css/styles.css">
 </head>
 <body>
-    <h1 class="error">ERROR 404 Not Found.</h1>
-    <p class="error">通信障害が起きました。</p>
-    <a href="./../todo/index.php"><button class="return-btn">戻る</button></a>
+    <p class="errorfont">ERROR 404 Not Found.</p>
+    <p class="errorpage">お探しのページはありませんでした。</p>
+    <a href="./../todo/index.php" class="toppage">トップ画面に戻る</a>
 </body>
 </html>

@@ -70,277 +70,356 @@ class Database
     }
 
     public static function todogetid($id) {
-        $pdo = new PDO(DSN, USER, PASSWORD);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $sql = "SELECT * FROM todos WHERE id = :id";
+        try {
+            $pdo = new PDO(DSN, USER, PASSWORD);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $sql = "SELECT * FROM todos WHERE id = :id";
 
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindValue('id', $id);
-        $stmt->execute();
-        $todo = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $todo;
+            $pdo->beginTransaction();
+            $stmt = $pdo->query($sql);
+            $stmt->bindValue('id', $id);
+            $stmt->execute();
+            $todo = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $todo;
+
+            $pdo->commit();
+
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            header("Location: ./../../view/error/404.php");
+
+            $pdo->rollBack();
+            exit;
+        }
     }
-    // public static function findId($id) {
-    //     $pdo = new PDO(DSN, USER, PASSWORD);
-    //     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //     $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-    //     $sql = "SELECT * FROM todos WHERE id = :id";
-
-    //     $stmt = $pdo->prepare($sql);
-    //     $stmt->bindValue('id', $id);
-    //     $stmt->execute();
-    //     $todo = $stmt->fetch(PDO::FETCH_ASSOC);
-    //     return $todo;
-    // }
 
     public static function todogetAll() {
-        $pdo = new PDO(DSN, USER, PASSWORD);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $stmt = $pdo->query("SELECT * FROM todos");
-        $todolists = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $todolists;
-    }
+        try {
+            $pdo = new PDO(DSN, USER, PASSWORD);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $sql = "SELECT * FROM todos";
 
-    public static function toggle($id) {
-        $pdo = new PDO(DSN, USER, PASSWORD);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $sql = "UPDATE todos SET is_done = NOT is_done, updated_at = NOW() WHERE id = :id";
-        
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindValue('id', $id, \PDO::PARAM_INT);
-        $stmt->execute();
+            $pdo->beginTransaction();
+            $stmt = $pdo->query($sql);
+            $todolists = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $todolists;
+
+            $pdo->commit();
+
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            header("Location: ./../../view/error/404.php");
+
+            $pdo->rollBack();
+            exit;
+        }
     }
 
     public function save() {
         try {
-        $pdo = new PDO(DSN, USER, PASSWORD);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $sql = "INSERT INTO todos (title, content, created_at, updated_at) VALUES ('$this->title', '$this->content', NOW(), NOW())";
+            $pdo = new PDO(DSN, USER, PASSWORD);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $sql = "INSERT INTO todos (title, content, created_at, updated_at) VALUES ('$this->title', '$this->content', NOW(), NOW())";
 
-        $pdo->beginTransaction();
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindValue('title', $title);
-        $stmt->bindValue('content', $content);
-        $stmt->execute();
+            $pdo->beginTransaction();
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue('title', $title);
+            $stmt->bindValue('content', $content);
+            $stmt->execute();
 
-        $pdo->commit();
+            $pdo->commit();
 
         } catch (Exception $e) {
-        error_log($e->getMessage());
-        header('Location: ./../../view/error/404.php');
+            error_log($e->getMessage());
+            header("Location: ./../../view/error/404.php");
 
-        $pdo->rollBack();
-        exit;
+            $pdo->rollBack();
+            exit;
         }
     }
 
     public function update() {
         try {
-        $pdo = new PDO(DSN, USER, PASSWORD);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $sql = "UPDATE todos SET title = '$this->title', content = '$this->content', updated_at = NOW() WHERE id = '$this->id'";
+            $pdo = new PDO(DSN, USER, PASSWORD);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $sql = "UPDATE todos SET title = '$this->title', content = '$this->content', updated_at = NOW() WHERE id = '$this->id'";
 
-        $pdo->beginTransaction();
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindValue('title', $title);
-        $stmt->bindValue('content', $content);
-        $stmt->bindValue('id', $id);
-        $stmt->execute();
+            $pdo->beginTransaction();
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue('title', $title);
+            $stmt->bindValue('content', $content);
+            $stmt->bindValue('id', $id);
+            $stmt->execute();
 
-        $pdo->commit();
+            $pdo->commit();
 
         } catch (PDOException $e) {
-        error_log($e->getMessage());
-        header('Location: ./../../view/error/404.php');
+            error_log($e->getMessage());
+            header("Location: ./../../view/error/404.php");
 
-        $pdo->rollBack();
-        exit;
+            $pdo->rollBack();
+            exit;
         }   
+    }
+
+    public static function toggle($id) {
+        try {
+            $pdo = new PDO(DSN, USER, PASSWORD);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $sql = "UPDATE todos SET is_done = NOT is_done, updated_at = NOW() WHERE id = :id";
+            
+            $pdo->beginTransaction();
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue('id', $id, \PDO::PARAM_INT);
+            $stmt->execute();
+
+            $pdo->commit();
+
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            header("Location: ./../../view/error/404.php");
+
+            $pdo->rollBack();
+            exit;
+        }
     }
 
     public function tododelete() {
         try {
-        $pdo = new PDO(DSN, USER, PASSWORD);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $sql = "DELETE FROM todos WHERE id = $this->id";
+            $pdo = new PDO(DSN, USER, PASSWORD);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $sql = "DELETE FROM todos WHERE id = $this->id";
 
-        $pdo->beginTransaction();
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindValue('id', $id);
-        $stmt->execute();
+            $pdo->beginTransaction();
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue('id', $id);
+            $stmt->execute();
 
-        $pdo->commit();
+            $pdo->commit();
 
         } catch (PDOException $e) {
-        error_log($e->getMessage());
-        header('Location: ./../../view/error/404.php');
+            error_log($e->getMessage());
+            header("Location: ./../../view/error/404.php");
 
-        $pdo->rollBack();
-        exit;
+            $pdo->rollBack();
+            exit;
         }   
     }
 
     public static function postgetAll() {
-        $pdo = new PDO(DSN, USER, PASSWORD);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $stmt = $pdo->query('SELECT * FROM words ORDER BY id DESC LIMIT 1');
-        $wordlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $wordlists;
+        try {
+            $pdo = new PDO(DSN, USER, PASSWORD);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $sql = "SELECT * FROM words ORDER BY id DESC LIMIT 1";
+
+            $pdo->beginTransaction();
+            $stmt = $pdo->query($sql);
+            $wordlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $wordlists;
+
+            $pdo->commit();
+
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            header("Location: ./../../view/error/404.php");
+
+            $pdo->rollBack();
+            exit;
+        }
     }
 
     public function postsave() {
         try {
-        $pdo = new PDO(DSN, USER, PASSWORD);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $sql = "INSERT INTO words (content, created_at) VALUES ('$this->content', NOW())";
+            $pdo = new PDO(DSN, USER, PASSWORD);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $sql = "INSERT INTO words (content, created_at) VALUES ('$this->content', NOW())";
 
-        $pdo->beginTransaction();
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindValue('content', $content);
-        $stmt->execute();
+            $pdo->beginTransaction();
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue('content', $content);
+            $stmt->execute();
 
-        $pdo->commit();
+            $pdo->commit();
 
         } catch (Exception $e) {
-        error_log($e->getMessage());
-        header('Location: ./../../view/error/404.php');
+            error_log($e->getMessage());
+            header("Location: ./../../view/error/404.php");
 
-        $pdo->rollBack();
-        exit;
+            $pdo->rollBack();
+            exit;
         }
     }
 
     public function postdelete() {
         try {
-        $pdo = new PDO(DSN, USER, PASSWORD);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $sql = "TRUNCATE TABLE words";
+            $pdo = new PDO(DSN, USER, PASSWORD);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $sql = "TRUNCATE TABLE words";
 
-        $pdo->beginTransaction();
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
+            $pdo->beginTransaction();
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
 
-        $pdo->commit();
+            $pdo->commit();
 
         } catch (PDOException $e) {
-        error_log($e->getMessage());
-        header('Location: ./../../view/error/404.php');
+            error_log($e->getMessage());
+            header("Location: ./../../view/error/404.php");
 
-        $pdo->rollBack();
-        exit;
+            $pdo->rollBack();
+            exit;
         }   
     }
 
     public static function weightsgetAll() {
-        $pdo = new PDO(DSN, USER, PASSWORD);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $stmt = $pdo->query('SELECT * FROM bodies ORDER BY id DESC LIMIT 1');
-        $bodylists = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $bodylists;
+        try {
+            $pdo = new PDO(DSN, USER, PASSWORD);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $sql = "SELECT * FROM bodies ORDER BY id DESC LIMIT 1";
+
+            $pdo->beginTransaction();
+            $stmt = $pdo->query($sql);
+            $bodylists = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $bodylists;
+
+            $pdo->commit();
+            
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            header("Location: ./../../view/error/404.php");
+
+            $pdo->rollBack();
+            exit;
+        }
     }
 
     public static function goalget() {
-        $pdo = new PDO(DSN, USER, PASSWORD);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $stmt = $pdo->query('SELECT goalweights FROM bodies ORDER BY id DESC LIMIT 1');
-        $goallists = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $goallists;
+        try {
+            $pdo = new PDO(DSN, USER, PASSWORD);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $sql = "SELECT goalweights FROM bodies ORDER BY id DESC LIMIT 1";
+
+            $pdo->beginTransaction();
+            $stmt = $pdo->query($sql);
+            $goallists = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $goallists;
+
+            $pdo->commit();
+        
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            header("Location: ./../../view/error/404.php");
+
+            $pdo->rollBack();
+            exit;
+        }
     }
 
     public function weightsave() {
         try {
-        $pdo = new PDO(DSN, USER, PASSWORD);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $sql = "INSERT INTO bodies (nowweights, goalweights, nowdate) VALUES ('$this->weight', '$this->body', '$this->today')";
+            $pdo = new PDO(DSN, USER, PASSWORD);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $sql = "INSERT INTO bodies (nowweights, goalweights, nowdate) VALUES ('$this->weight', '$this->body', '$this->today')";
 
-        $pdo->beginTransaction();
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindValue('nowweights', $weight);
-        $stmt->bindValue('goalweights', $body);
-        $stmt->bindValue('nowdate', $today);
-        $stmt->execute();
+            $pdo->beginTransaction();
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue('nowweights', $weight);
+            $stmt->bindValue('goalweights', $body);
+            $stmt->bindValue('nowdate', $today);
+            $stmt->execute();
 
-        $pdo->commit();
+            $pdo->commit();
         
         } catch (Exception $e) {
-        error_log($e->getMessage());
-        header('Location: ./../../view/error/404.php');
+            error_log($e->getMessage());
+            header("Location: ./../../view/error/404.php");
 
-        $pdo->rollBack();
-        exit;
+            $pdo->rollBack();
+            exit;
         }
     }
 
     public function fileAllget() {
-        $pdo = new PDO(DSN, USER, PASSWORD);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $stmt = $pdo->query("SELECT * FROM pictures");
-        $filelists = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $filelists;
+        try {
+            $pdo = new PDO(DSN, USER, PASSWORD);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $sql = "SELECT * FROM pictures";
+
+            $pdo->beginTransaction();
+            $stmt = $pdo->query($sql);
+            $filelists = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $filelists;
+
+            $pdo->commit();
+
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            header("Location: ./../../view/error/404.php");
+
+            $pdo->rollBack();
+            exit;
+        }  
     }
 
     public function filesave($filename,$save_path,$image,$comment) {
         try {
-        $pdo = new PDO(DSN, USER, PASSWORD);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $pdo = new PDO(DSN, USER, PASSWORD);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $sql = "INSERT INTO pictures (file_name, file_path, tmp_name, comment, created_at) VALUES (?, ?, ?, ?, NOW())";
 
-        $sql = "INSERT INTO pictures (file_name, file_path, tmp_name, comment, created_at) VALUES (?, ?, ?, ?, NOW())";
+            $pdo->beginTransaction();
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue(1, $filename);
+            $stmt->bindValue(2, $save_path);
+            $stmt->bindValue(3, $image);
+            $stmt->bindValue(4, $comment);
+            $stmt->execute();
 
-        $pdo->beginTransaction();
-        $stmt = $pdo->prepare($sql);
-
-        $stmt->bindValue(1, $filename);
-        $stmt->bindValue(2, $save_path);
-        $stmt->bindValue(3, $image);
-        $stmt->bindValue(4, $comment);
-        $stmt->execute();
-
-        $pdo->commit();
+            $pdo->commit();
 
         } catch (PDOException $e) {
-        error_log($e->getMessage());
-        header('Location: ./../../view/error/404.php');
+            error_log($e->getMessage());
+            header("Location: ./../../view/error/404.php");
 
-        $pdo->rollBack();
-        exit;
+            $pdo->rollBack();
+            exit;
         }   
     }
 
     public function filedelete() {
         try {
-        $pdo = new PDO(DSN, USER, PASSWORD);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $sql = "DELETE FROM pictures WHERE id = $this->id";
+            $pdo = new PDO(DSN, USER, PASSWORD);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $sql = "DELETE FROM pictures WHERE id = $this->id";
 
-        $pdo->beginTransaction();
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindValue('id', $id);
-        $stmt->execute();
+            $pdo->beginTransaction();
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue('id', $id);
+            $stmt->execute();
 
-        $pdo->commit();
+            $pdo->commit();
 
         } catch (PDOException $e) {
-        error_log($e->getMessage());
-        header('Location: ./../../view/error/404.php');
+            error_log($e->getMessage());
+            header("Location: ./../../view/error/404.php");
 
-        $pdo->rollBack();
-        exit;
+            $pdo->rollBack();
+            exit;
         }   
-    }
-      
-   }
+    }      
+}
