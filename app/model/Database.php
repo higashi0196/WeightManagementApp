@@ -379,14 +379,14 @@ class Database
             $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-            $sql = "INSERT INTO pictures (file_name, file_path, tmp_name, comment, created_at) VALUES (?, ?, ?, ?, NOW())";
+            $sql = "INSERT INTO pictures (file_name, file_path, tmp_name, comment, created_at) VALUES ('$filename', '$save_path', '$image', '$comment', NOW())";
 
             $pdo->beginTransaction();
             $stmt = $pdo->prepare($sql);
-            $stmt->bindValue(1, $filename);
-            $stmt->bindValue(2, $save_path);
-            $stmt->bindValue(3, $image);
-            $stmt->bindValue(4, $comment);
+            $stmt->bindValue('file_name', $filename);
+            $stmt->bindValue('file_path', $save_path);
+            $stmt->bindValue('tmp_name', $image);
+            $stmt->bindValue('comment', $comment);
             $stmt->execute();
 
             $pdo->commit();

@@ -73,7 +73,7 @@ unset($_SESSION['file_errors']);
         <?endif;?>
 
         <div>
-            <p class="memo">☆ 一言メモ ☆</p>
+            <p class="memo">〜 一言メモ 〜</p>
             <textarea name="comment" class="comment"><?php echo Utils::h($comment);?></textarea>
         </div>
 
@@ -92,7 +92,6 @@ unset($_SESSION['file_errors']);
     <ol>
         <?php foreach ($filelists as $filelist): ?>
             <li data-token="<?= Utils::h($_SESSION['token']); ?>">
-                <img src="<?php echo Utils::h($filelist['file_path']); ?>" alt="">
                 <img src="<?php echo Utils::h(base64_decode($filelist['tmp_name'])); ?>" alt="">
                 <div>
                     <p class="list-memo"> 〜〜  一言メモ 〜〜 </p>

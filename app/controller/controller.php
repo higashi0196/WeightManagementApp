@@ -294,12 +294,11 @@ class Filecontroller {
         $file = $_FILES['img'];
         $filename = basename($file['name']);
         $tmp_name = $file['tmp_name'];
-        $file_type = $_FILES['img']['type'];
+        $file_type = $file['type'];
         $upload_dir = './../images/';
         $save_filename = date('YmdHis') . $filename;
         $save_path = $upload_dir . $save_filename;
         $image = base64_encode($save_path);
-        $save =  base64_encode($upload_dir . $save_filename);
         $filetype = pathinfo($save_path,PATHINFO_EXTENSION);
         $arrImagetype = array('jpg','jpeg','png','git','pdf');
         $comment = filter_input(INPUT_POST, 'comment');

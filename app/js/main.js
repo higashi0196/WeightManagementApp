@@ -21,10 +21,9 @@
             window.location.href = './../../view/error/404.php';
             console.log("削除に失敗しました");
         });
-        toggle.parentNode.nextElementSibling.classList.toggle('done');
-        toggle.closest('tr').children[2].classList.toggle('done');
-        // toggle.closest('tr').children[1].classList.toggle('done');
-    });
+            toggle.closest('tr').children[1].classList.toggle('done');
+            toggle.closest('tr').children[2].classList.toggle('done');
+        });
     });
 
     // todo 削除機能 非同期通信
@@ -70,7 +69,6 @@
         })
         .then(json => {
             word.textContent = '一言メッセージを入力できます';
-            // word.classList.add('word');
             console.log(json);
         })
         .catch(error => {

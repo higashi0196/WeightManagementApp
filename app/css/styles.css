@@ -76,7 +76,6 @@ main {
 }
 
 .toppage {
-    /* margin-top: 50px; */
     font-size: 22px;
 }
 
@@ -86,15 +85,15 @@ main {
 
 h1 {
     margin: 35px auto 15px;
-    font-size: 30px;
+    font-size: 33px;
     text-align: center;
 }
 
 .logo {
     display: inline-block;
-    width: 30px;
-    height: 30px;
-    margin: 0 5px;
+    width: 32px;
+    height: 32px;
+    margin: 0 5px 3px;
     vertical-align: middle;
 }
 
@@ -295,7 +294,6 @@ td {
 }
 
 .message {
-    /* position: relative; */
     width: 450px;
     height: auto;
     margin: 20px auto 50px;
@@ -449,7 +447,7 @@ ol {
 
 li {
     margin: 25px auto 0;
-    border-top: 2.5px solid rgb(148, 216, 221);
+    border-top: 2.5px solid rgb(150, 215, 220);
 }
 
 img {
@@ -466,7 +464,7 @@ li > div {
 
 .list-memo {
     margin: 20px auto 0;
-    color:rgb(37, 35, 62);
+    color:rgb(40, 35, 60);
     font-size: 20px;
 }
 

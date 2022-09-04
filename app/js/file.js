@@ -17,13 +17,14 @@
         }).then(response => {
             return response.json();
         }).then(json => {
+            
             console.log(json);
         })
         .catch(error => {
             window.location.href = './../../view/error/404.php';
             console.log("画像削除に失敗しました");
         })
-        filebtn.closest('li').remove();
+            filebtn.closest('li').remove();
         });
     });
 }
