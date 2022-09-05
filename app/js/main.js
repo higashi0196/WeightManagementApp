@@ -18,7 +18,7 @@
             console.log(json);
         })
         .catch(error => {
-            window.location.href = './../../view/error/404.php';
+            window.location.href = './../../view/error/404.html';
             console.log("削除に失敗しました");
         });
             toggle.closest('tr').children[1].classList.toggle('done');
@@ -45,7 +45,7 @@
             console.log(json);
         })
         .catch(error => {
-            window.location.href = './../../view/error/404.php';
+            window.location.href = './../../view/error/404.html';
             console.log("削除に失敗しました");
         })
             btn.closest('tr').remove();
@@ -72,7 +72,7 @@
             console.log(json);
         })
         .catch(error => {
-            window.location.href = './../../view/error/404.php';
+            window.location.href = './../../view/error/404.html';
             console.log("削除に失敗しました");
         })
     });

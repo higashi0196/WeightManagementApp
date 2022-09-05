@@ -77,7 +77,7 @@ class Database
             $sql = "SELECT * FROM todos WHERE id = :id";
 
             $pdo->beginTransaction();
-            $stmt = $pdo->query($sql);
+            $stmt = $pdo->prepare($sql);
             $stmt->bindValue('id', $id);
             $stmt->execute();
             $todo = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -87,7 +87,7 @@ class Database
 
         } catch (Exception $e) {
             error_log($e->getMessage());
-            header("Location: ./../../view/error/404.php");
+            header("Location: ./../../view/error/404.html");
 
             $pdo->rollBack();
             exit;
@@ -110,7 +110,7 @@ class Database
 
         } catch (Exception $e) {
             error_log($e->getMessage());
-            header("Location: ./../../view/error/404.php");
+            header("Location: ./../../view/error/404.html");
 
             $pdo->rollBack();
             exit;
@@ -134,7 +134,7 @@ class Database
 
         } catch (Exception $e) {
             error_log($e->getMessage());
-            header("Location: ./../../view/error/404.php");
+            header("Location: ./../../view/error/404.html");
 
             $pdo->rollBack();
             exit;
@@ -159,7 +159,7 @@ class Database
 
         } catch (PDOException $e) {
             error_log($e->getMessage());
-            header("Location: ./../../view/error/404.php");
+            header("Location: ./../../view/error/404.html");
 
             $pdo->rollBack();
             exit;
@@ -182,7 +182,7 @@ class Database
 
         } catch (Exception $e) {
             error_log($e->getMessage());
-            header("Location: ./../../view/error/404.php");
+            header("Location: ./../../view/error/404.html");
 
             $pdo->rollBack();
             exit;
@@ -205,7 +205,7 @@ class Database
 
         } catch (PDOException $e) {
             error_log($e->getMessage());
-            header("Location: ./../../view/error/404.php");
+            header("Location: ./../../view/error/404.html");
 
             $pdo->rollBack();
             exit;
@@ -228,7 +228,7 @@ class Database
 
         } catch (Exception $e) {
             error_log($e->getMessage());
-            header("Location: ./../../view/error/404.php");
+            header("Location: ./../../view/error/404.html");
 
             $pdo->rollBack();
             exit;
@@ -251,7 +251,7 @@ class Database
 
         } catch (Exception $e) {
             error_log($e->getMessage());
-            header("Location: ./../../view/error/404.php");
+            header("Location: ./../../view/error/404.html");
 
             $pdo->rollBack();
             exit;
@@ -273,7 +273,7 @@ class Database
 
         } catch (PDOException $e) {
             error_log($e->getMessage());
-            header("Location: ./../../view/error/404.php");
+            header("Location: ./../../view/error/404.html");
 
             $pdo->rollBack();
             exit;
@@ -296,7 +296,7 @@ class Database
             
         } catch (Exception $e) {
             error_log($e->getMessage());
-            header("Location: ./../../view/error/404.php");
+            header("Location: ./../../view/error/404.html");
 
             $pdo->rollBack();
             exit;
@@ -319,7 +319,7 @@ class Database
         
         } catch (Exception $e) {
             error_log($e->getMessage());
-            header("Location: ./../../view/error/404.php");
+            header("Location: ./../../view/error/404.html");
 
             $pdo->rollBack();
             exit;
@@ -344,7 +344,7 @@ class Database
         
         } catch (Exception $e) {
             error_log($e->getMessage());
-            header("Location: ./../../view/error/404.php");
+            header("Location: ./../../view/error/404.html");
 
             $pdo->rollBack();
             exit;
@@ -367,7 +367,7 @@ class Database
 
         } catch (PDOException $e) {
             error_log($e->getMessage());
-            header("Location: ./../../view/error/404.php");
+            header("Location: ./../../view/error/404.html");
 
             $pdo->rollBack();
             exit;
@@ -393,7 +393,7 @@ class Database
 
         } catch (PDOException $e) {
             error_log($e->getMessage());
-            header("Location: ./../../view/error/404.php");
+            header("Location: ./../../view/error/404.html");
 
             $pdo->rollBack();
             exit;
@@ -416,7 +416,7 @@ class Database
 
         } catch (PDOException $e) {
             error_log($e->getMessage());
-            header("Location: ./../../view/error/404.php");
+            header("Location: ./../../view/error/404.html");
 
             $pdo->rollBack();
             exit;

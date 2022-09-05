@@ -134,7 +134,7 @@ class Todocontroller {
         if($validation->tokencheck() === false) {
             $token_errors = $validation->getTokenErrorMessages();
             $_SESSION['token_errors'] = $token_errors;
-            header("Location: ./../../view/error/404.php");
+            header("Location: ./../../view/error/404.html");
             return;
         }
 
@@ -156,7 +156,7 @@ class Todocontroller {
         if ($validation->tokencheck() === false) {
             $token_errors = $validation->getTokenErrorMessages();
             $_SESSION['token_errors'] = $token_errors;
-            header("Location: ./../../view/error/404.php");
+            header("Location: ./../../view/error/404.html");
             return;
         }
 
@@ -207,7 +207,7 @@ class Postcontroller {
         if ($validation->tokencheck() === false) {
             $token_errors = $validation->getTokenErrorMessages();
             $_SESSION['token_errors'] = $token_errors;
-            header("Location: ./../../view/error/404.php");
+            header("Location: ./../../view/error/404.html");
             return;
         }
 
@@ -291,10 +291,9 @@ class Filecontroller {
             "comment" => $_POST['comment'],
         );
 
-        $file = $_FILES['img'];
-        $filename = basename($file['name']);
-        $tmp_name = $file['tmp_name'];
-        $file_type = $file['type'];
+        $filename = basename($_FILES['img']['name']);
+        $tmp_name = $_FILES['img']['tmp_name'];
+        $file_type = $_FILES['img']['type'];
         $upload_dir = './../images/';
         $save_filename = date('YmdHis') . $filename;
         $save_path = $upload_dir . $save_filename;
@@ -367,7 +366,7 @@ class Filecontroller {
         if ($validation->tokencheck() === false) {
             $token_errors = $validation->getTokenErrorMessages();
             $_SESSION['token_errors'] = $token_errors;
-            header("Location: ./../../view/error/404.php");
+            header("Location: ./../../view/error/404.html");
             return;
         }
 

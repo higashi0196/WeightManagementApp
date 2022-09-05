@@ -405,11 +405,8 @@ textarea {
 }
 
 .memo {
-    width: 370px;
-    height: 30px;
     margin: 30px auto 0;
     font-size: 20px;
-    text-align: left;
     font-style: oblique;
 }
 
@@ -452,7 +449,7 @@ li {
 
 img {
     width: 300px;
-    height: 300px;
+    height: 360px;
     margin: 20px auto;
 }
 
@@ -465,18 +462,18 @@ li > div {
 .list-memo {
     margin: 20px auto 0;
     color:rgb(40, 35, 60);
-    font-size: 20px;
+    font-size: 22px;
 }
 
 .list-comment {
     width: 300px;
     height: auto;
     margin: 20px auto 0;
-    padding: 2px;
+    padding: 3px 5px;
     border: dashed 2px gray;
-    border-radius: 3px;
+    border-radius: 4px;
     background-color: rgb(215, 210, 210);
-    font-size: 18px;
+    font-size: 19px;
     box-shadow: 8px 8px 5px rgba(0,0,0,0.3);
     white-space: pre-wrap;
 }
@@ -752,8 +749,8 @@ li > div {
 
     img {
         display: block;
-        width: 250px;
-        height: 250px;
+        width: 280px;
+        height: 335px;
         margin-bottom: 0;
     }
 
