@@ -96,9 +96,7 @@ unset($_SESSION['file_errors']);
                 <div>
                     <p class="list-memo"> 〜〜  一言メモ 〜〜 </p>
                     <p class="list-comment"><?php echo Utils::h($filelist['comment']); ?></p>
-                    <button class="filedelete-btn" 
-                    data-id="<?php echo Utils::h($filelist['id']); ?>">
-                    削除</button>
+                    <button class="filedelete-btn" data-id="<?php echo Utils::h($filelist['id']); ?>">削除</button>
                 </div>
             </li>
         <?php endforeach; ?>

@@ -89,7 +89,7 @@ h1 {
     text-align: center;
 }
 
-.logo {
+h1 > img {
     display: inline-block;
     width: 32px;
     height: 32px;
@@ -529,7 +529,7 @@ li > div {
         margin: 25px 10px 7px;
     }
 
-    .logo {
+    h1 > img {
         width: 25px;
         height: 20px;
     }

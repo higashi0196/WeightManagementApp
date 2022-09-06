@@ -16,7 +16,6 @@ $weightlists = $weightcontroller->weights();
 $token_errors = $_SESSION['token_errors'];
 unset($_SESSION['token_errors']);
 
-// phpinfo();
 ?>
 
 <!DOCTYPE html>
@@ -30,9 +29,9 @@ unset($_SESSION['token_errors']);
 <body>
 <main>
     <h1>
-        <img src="./../logos/logo3.png" alt="" class="logo">
+        <img src="./../logos/logo3.png" alt="">
         <a>体重管理リスト</a>
-        <img src="./../logos/logo3.png" class="logo">
+        <img src="./../logos/logo3.png" alt="">
     </h1>
    
     <?php foreach ($weightlists as $weightlist): ?>

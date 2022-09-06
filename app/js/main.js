@@ -30,9 +30,9 @@
     const deletebtns = document.querySelectorAll('.delete-btn');
     deletebtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            if (!confirm('削除しますか?')) {
+        if (!confirm('削除しますか?')) {
             return;
-            }
+        }
         fetch('./delete.php', {
             method: 'POST',
             body: new URLSearchParams({
