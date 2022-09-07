@@ -60,16 +60,16 @@ class Todocontroller {
 
     public function edit() {
         $id = '';
-        $parameter = array();
+        $param = array();
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
             }
             if (isset($_GET['title'])) {
-                $parameter['title'] = $_GET['title'];
+                $param['title'] = $_GET['title'];
             }
             if (isset($_GET['content'])) {
-                $parameter['content'] = $_GET['content'];
+                $param['content'] = $_GET['content'];
             }
         }
 
@@ -77,7 +77,7 @@ class Todocontroller {
 
         $data = array(
             "todo" => $todo,
-            "parameter" => $parameter,
+            "param" => $param,
         );   
         return $data;
     }  
