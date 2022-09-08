@@ -13,7 +13,6 @@ body {
     background-position: center;
     background-size: cover;
     user-select: none;
-    cursor:default;
 }
 
 main {
@@ -397,10 +396,9 @@ textarea {
 /* file.php ページ 開始 */
 
 .fileinput {
-    width: 350px;
-    height: 30px;
+    width: 310px;
+    height: 40px;
     margin: 25px auto 0;
-    padding: 3px;
     font-size: 18px;
 }
 
@@ -418,7 +416,7 @@ textarea {
     padding: 5px 8px;
     border: 2px solid black;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 18px;
     box-shadow: 10px 10px 15px rgba(0,0,0,0.5);
     resize: none;
     white-space: pre-wrap;
@@ -716,8 +714,9 @@ li > div {
     /* file.php ページ 開始 */
 
     .fileinput {
-        width: 320px;
-        margin: 25px 0 0 40px;
+        width: 290px;
+        height: 35px;
+        margin-left: 40px;
         font-size: 15px;
     }
 

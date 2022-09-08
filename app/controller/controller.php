@@ -121,6 +121,28 @@ class Todocontroller {
         header("Location: ./index.php");
     }
 
+    public function todotoggle() {
+        $id = $_POST['id'];
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+            }
+        }
+
+        $validation = new Validation;
+        if ($validation->tokencheck() === false) {
+            $token_errors = $validation->getTokenErrorMessages();
+            $_SESSION['token_errors'] = $token_errors;
+            header("Location: ./../../view/error/404.html");
+            return;
+        }
+
+        $todo = new Database;
+        $todo->setId($id);
+        $toggleresult = $todo->toggle($id);
+        return $toggleresult;
+    }
+
     public function tododelete() {
 
         $id = $_POST['id'];
@@ -142,28 +164,6 @@ class Todocontroller {
         $todo->setId($id);
         $result = $todo->tododelete();
         return $result;
-    }
-
-    public function todotoggle() {
-        $id = $_POST['id'];
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            if (isset($_GET['id'])) {
-                $id = $_GET['id'];
-            }
-        }
-
-        $validation = new Validation;
-        if ($validation->tokencheck() === false) {
-            $token_errors = $validation->getTokenErrorMessages();
-            $_SESSION['token_errors'] = $token_errors;
-            header("Location: ./../../view/error/404.html");
-            return;
-        }
-
-        $todo = new Database;
-        $todo->setId($id);
-        $toggleresult = $todo->toggle($id);
-        return $toggleresult;
     }
 }
 
@@ -286,8 +286,8 @@ class Filecontroller {
     public function filecreate() {
     
         $filedata = array(
-            "file_err" => $file['error'],
-            "filesize" => $file['size'],
+            "filesize" => $_FILES['img']['size'],
+            "file_err" => $_FILES['img']['error'],
             "comment" => $_POST['comment'],
         );
 

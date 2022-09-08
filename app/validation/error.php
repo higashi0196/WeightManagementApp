@@ -194,13 +194,13 @@ class Validation {
         $allow_ext = array('jpg','jpeg','png','git','pdf');
         $file_ext = pathinfo($filename, PATHINFO_EXTENSION);
         if (!in_array(strtolower($file_ext), $allow_ext) && empty($this->filedata['comment'])) {
-            $this->filemodel_errors[] = "画像ファイルの末尾をjpg,jpeg,png,git,pdfのどれかにして、メモを入力してください";
+            $this->filemodel_errors[] = "画像ファイルの末尾を「jpg,jpeg,png,git,pdf」のどれかにして、メモを入力してください";
         } else if (!in_array(strtolower($file_ext), $allow_ext)) {
-            $this->filemodel_errors[] = "画像ファイルの末尾をjpg,jpeg,png,git,pdfのどれかにしてください";
+            $this->filemodel_errors[] = "画像ファイルの形式を「jpg,jpeg,png,git,pdf」のどれかにしてください";
         }
 
-        if (1048576 < $this->filedata['filesize'] || $this->filedata['fil_err'] == 2) {
-            $this->filesize_errors[] = "ファイルは1MB未満で送信してください";
+        if (1048576 < $this->filedata['filesize'] || $this->filedata['file_err'] == 2) {
+            $this->filesize_errors[] = "画像ファイルは1MB未満で送信してください";
             return false;
         }
 
