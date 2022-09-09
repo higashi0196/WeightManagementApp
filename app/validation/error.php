@@ -33,48 +33,48 @@ class Validation {
         return $this->filedata;
     }
 
-    public function getTokenErrorMessages() {
-        return $this->token_errors;
+    public function getTokenErrorMessage() {
+        return $this->token_error;
     }
 
-    public function getTitleErrorMessages() {
-        return $this->title_errors;
+    public function getTitleErrorMessage() {
+        return $this->title_error;
     }
 
-    public function getCotentErrorMessages() {
-        return $this->content_errors;
+    public function getCotentErrorMessage() {
+        return $this->content_error;
     }
 
-    public function getWeightErrorMessages() {
-        return $this->weight_errors;
+    public function getWeightErrorMessage() {
+        return $this->weight_error;
     }
 
-    public function getBodyErrorMessages() {
-        return $this->body_errors;
+    public function getBodyErrorMessage() {
+        return $this->body_error;
     }
 
-    public function getTodayErrorMessages() {
-        return $this->today_errors;
+    public function getTodayErrorMessage() {
+        return $this->today_error;
     }
 
-    public function getPostErrorMessages() {
-        return $this->post_errors;
+    public function getPostErrorMessage() {
+        return $this->post_error;
     }
 
-    public function getFileErrorMessages() {
-        return $this->file_errors;
+    public function getFileErrorMessage() {
+        return $this->file_error;
     }
 
-    public function getFileModelErrorMessages() {
-        return $this->filemodel_errors;
+    public function getFileModelErrorMessage() {
+        return $this->filemodel_error;
     }
 
-    public function getFileSizeErrorMessages() {
-        return $this->filesize_errors;
+    public function getFileSizeErrorMessage() {
+        return $this->filesize_error;
     }
 
-    public function getCommentErrorMessages() {
-        return $this->comment_errors;
+    public function getCommentErrorMessage() {
+        return $this->comment_error;
     }
 
     public function tokencheck() {
@@ -83,7 +83,7 @@ class Validation {
             empty($_SESSION['token']) ||
             $_SESSION['token'] !== filter_input(INPUT_POST, 'token')
             ) {
-            $this->token_errors[] = "不正なアクセスがありました";
+            $this->token_error[] = "不正なアクセスがありました";
             return false;
         }
     }
@@ -91,24 +91,24 @@ class Validation {
     public function todocheck() {
 
         if (empty($this->data['title']) && empty($this->data['content'])) {
-            $this->title_errors[] = "タイトルを入力してください";
-            $this->content_errors[] = "詳細を入力してください";
+            $this->title_error[] = "タイトルを入力してください";
+            $this->content_error[] = "詳細を入力してください";
             return false;
         } 
 
         if (empty($this->data['title'])) {
-            $this->title_errors[] = "タイトルを入力してください";
+            $this->title_error[] = "タイトルを入力してください";
             return false;
         } else if (50 < mb_strlen($this->data['title'], 'UTF-8')) {
-            $this->title_errors[] = "50文字以内で入力してください";
+            $this->title_error[] = "50文字以内で入力してください";
             return false;
         } 
 
         if (empty($this->data['content'])) {
-            $this->content_errors[] = "詳細を入力してください";
+            $this->content_error[] = "詳細を入力してください";
             return false;
         } else if (50 < mb_strlen($this->data['content'], 'UTF-8')) {
-            $this->content_errors[] = "50文字以内で入力してください";
+            $this->content_error[] = "50文字以内で入力してください";
             return false;
         }
     }
@@ -119,66 +119,66 @@ class Validation {
             empty($this->weightdata['weight']) && 
             empty($this->weightdata['today'])) 
             {
-            $this->body_errors[] = "目標体重を入力してください";
-            $this->weight_errors[] = "体重を入力してください";
-            $this->today_errors[] = "日付が選択されていません";
+            $this->body_error[] = "目標体重を入力してください";
+            $this->weight_error[] = "体重を入力してください";
+            $this->today_error[] = "日付が選択されていません";
             return false;
         } else if (empty($this->weightdata['body']) && 
             empty($this->weightdata['weight'])) 
             {
-            $this->body_errors[] = "目標体重を入力してください";
-            $this->weight_errors[] = "体重を入力してください";
+            $this->body_error[] = "目標体重を入力してください";
+            $this->weight_error[] = "体重を入力してください";
             return false;
         } else if (empty($this->weightdata['body']) && 
             empty($this->weightdata['today'])) 
             {
-            $this->body_errors[] = "目標体重を入力してください";
-            $this->today_errors[] = "日付が選択されていません";
+            $this->body_error[] = "目標体重を入力してください";
+            $this->today_error[] = "日付が選択されていません";
             return false;
         }
 
         if (empty($this->weightdata['weight']) && 
             empty($this->weightdata['today'])) 
             {
-            $this->weight_errors[] = "体重を入力してください";
-            $this->today_errors[] = "日付が選択されていません";
+            $this->weight_error[] = "体重を入力してください";
+            $this->today_error[] = "日付が選択されていません";
             return false;
         }
 
         if(empty($this->weightdata['body'])) {
-            $this->body_errors[] = "目標体重を入力してください";
+            $this->body_error[] = "目標体重を入力してください";
             return false;
         } else if (!is_numeric($this->weightdata['body'])) {
-            $this->body_errors[] = "半角数字で入力してください";
+            $this->body_error[] = "半角数字で入力してください";
             return false;
         } else if (6 < mb_strlen($this->weightdata['body'])) {
-            $this->body_errors[] = "５桁以下で小数点第２位以下までで入力ください";
+            $this->body_error[] = "５桁以下で小数点第２位以下までで入力ください";
             return false;
         }
 
         if (empty($this->weightdata['weight'])) {
-            $this->weight_errors[] = "体重を入力してください";
+            $this->weight_error[] = "体重を入力してください";
             return false;
         } else if (!is_numeric($this->weightdata['weight'])) {
-            $this->weight_errors[] = "半角数字で入力してください";
+            $this->weight_error[] = "半角数字で入力してください";
             return false;
         } else if (6 < mb_strlen($this->weightdata['weight'])) {
-            $this->weight_errors[] = "５桁以下で小数点第２位以下までで入力ください";
+            $this->weight_error[] = "５桁以下で小数点第２位以下までで入力ください";
             return false;
         }
 
         if (empty($this->weightdata['today'])) {
-            $this->today_errors[] = "日付が選択されていません";
+            $this->today_error[] = "日付が選択されていません";
             return false;
         }
     }
 
     public function postcheck() {
         if (empty($this->content)) {
-            $this->post_errors[] = "メッセージを入力してください";
+            $this->post_error[] = "メッセージを入力してください";
             return false;
         } else if (255 < mb_strlen($this->content, 'UTF-8')) {
-            $this->post_errors[] = "255文字以内で入力してください";
+            $this->post_error[] = "255文字以内で入力してください";
             return false;
         }
     }
@@ -186,29 +186,29 @@ class Validation {
     public function filecheck() {
 
         if (!is_uploaded_file($tmp_name) && empty($this->filedata['comment'])) {
-            $this->file_errors[] = "画像ファイルとメモを入力してください";
+            $this->file_error[] = "画像ファイルとメモを入力してください";
         } else if (!is_uploaded_file($tmp_name)) {
-            $this->file_errors[] = "画像ファイルが選択されていません";
+            $this->file_error[] = "画像ファイルが選択されていません";
         }
         
-        $allow_ext = array('jpg','jpeg','png','git','pdf');
+        $allow_ext = array('jpg','jpeg','png','gif');
         $file_ext = pathinfo($filename, PATHINFO_EXTENSION);
         if (!in_array(strtolower($file_ext), $allow_ext) && empty($this->filedata['comment'])) {
-            $this->filemodel_errors[] = "画像ファイルの末尾を「jpg,jpeg,png,git,pdf」のどれかにして、メモを入力してください";
+            $this->filemodel_error[] = "画像ファイルの末尾を｢jpg,jpeg,png,gif｣のどれかにして、メモを入力してください";
         } else if (!in_array(strtolower($file_ext), $allow_ext)) {
-            $this->filemodel_errors[] = "画像ファイルの形式を「jpg,jpeg,png,git,pdf」のどれかにしてください";
+            $this->filemodel_error[] = "画像ファイルの形式を｢jpg,jpeg,png,gif｣のどれかにしてください";
         }
 
         if (1048576 < $this->filedata['filesize'] || $this->filedata['file_err'] == 2) {
-            $this->filesize_errors[] = "画像ファイルは1MB未満で送信してください";
+            $this->filesize_error[] = "画像ファイルは1MB未満で送信してください";
             return false;
         }
 
         if (empty($this->filedata['comment'])) {
-            $this->comment_errors[] = "メモを入力してください";
+            $this->comment_error[] = "メモを入力してください";
             return false;
         } else if (255 < mb_strlen($this->filedata['comment'], 'UTF-8')) {
-            $this->comment_errors[] = "255文字以内で入力してください";
+            $this->comment_error[] = "255文字以内で入力してください";
             return false;
         }
     }

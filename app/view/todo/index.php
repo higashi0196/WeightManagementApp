@@ -13,8 +13,8 @@ $postlists = $postcontroller->posts();
 $weightcontroller = new Weightcontroller();
 $weightlists = $weightcontroller->weights();
 
-$token_errors = $_SESSION['token_errors'];
-unset($_SESSION['token_errors']);
+$token_error = $_SESSION['token_error'];
+unset($_SESSION['token_error']);
 
 ?>
 
@@ -24,7 +24,7 @@ unset($_SESSION['token_errors']);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>体重管理アプリ</title>
-    <link rel="stylesheet" href="./../../css/styles.css">
+    <link rel="stylesheet" href="./../../public/css/styles.css">
 </head>
 <body>
 <main>
@@ -51,9 +51,9 @@ unset($_SESSION['token_errors']);
         <a href="./../file/file.php"><button class="picutre-btn">画像アップロード</button></a>
     </div>
 
-    <?php if($token_errors):?>
-        <?php foreach ($token_errors as $token_error): ?>
-            <p class="error-log"><?php echo Utils::h($token_error);?></p>
+    <?php if ($token_error):?>
+        <?php foreach ($token_error as $token_err): ?>
+            <p class="error-log"><?php echo Utils::h($token_err);?></p>
         <?php endforeach;?>
     <?endif;?>
 
@@ -139,6 +139,6 @@ unset($_SESSION['token_errors']);
     const goalweight = "<?php echo $weightlist['goalweights']; ?>";
 </script>
 
-<script type="text/javascript" src="./../../js/main.js"></script>
+<script type="text/javascript" src="./../../public/js/main.js"></script>
 </body>
 </html>

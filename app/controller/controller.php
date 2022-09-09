@@ -34,15 +34,15 @@ class Todocontroller {
         $validation->setData($data);
 
         if ($validation->tokencheck() === false) {
-            $token_errors = $validation->getTokenErrorMessages();
-            $_SESSION['token_errors'] = $token_errors;
+            $token_error = $validation->getTokenErrorMessage();
+            $_SESSION['token_error'] = $token_error;
             header("Location: ./create.php");
             return;
         } else if ($validation->todocheck() === false) {
-            $title_errors = $validation->getTitleErrorMessages();
-            $content_errors = $validation->getCotentErrorMessages();
-            $_SESSION['title_errors'] = $title_errors;
-            $_SESSION['content_errors'] = $content_errors;
+            $title_error = $validation->getTitleErrorMessage();
+            $content_error = $validation->getCotentErrorMessage();
+            $_SESSION['title_error'] = $title_error;
+            $_SESSION['content_error'] = $content_error;
 
             $params = sprintf("?id=%s&title=%s&content=%s", $_POST['id'], $_POST['title'], $_POST['content']);
             header(sprintf("Location: ./create.php%s", $params));
@@ -94,17 +94,17 @@ class Todocontroller {
         $validation->setData($data);
 
         if ($validation->tokencheck() === false) {
-            $token_errors = $validation->getTokenErrorMessages();
-            $_SESSION['token_errors'] = $token_errors;
+            $token_error = $validation->getTokenErrorMessage();
+            $_SESSION['token_error'] = $token_error;
             header("Location: ./edit.php");
             return;
         }
 
         if ($validation->todocheck() === false) {
-            $title_errors = $validation->getTitleErrorMessages();
-            $content_errors = $validation->getCotentErrorMessages();
-            $_SESSION['title_errors'] = $title_errors;
-            $_SESSION['content_errors'] = $content_errors;
+            $title_error = $validation->getTitleErrorMessage();
+            $content_error = $validation->getCotentErrorMessage();
+            $_SESSION['title_error'] = $title_error;
+            $_SESSION['content_error'] = $content_error;
 
             $params = sprintf("?id=%s&title=%s&content=%s",$_POST['id'], $_POST['title'], $_POST['content']);
             header(sprintf("Location: ./edit.php%s", $params));
@@ -131,8 +131,8 @@ class Todocontroller {
 
         $validation = new Validation;
         if ($validation->tokencheck() === false) {
-            $token_errors = $validation->getTokenErrorMessages();
-            $_SESSION['token_errors'] = $token_errors;
+            $token_error = $validation->getTokenErrorMessage();
+            $_SESSION['token_error'] = $token_error;
             header("Location: ./../../view/error/404.html");
             return;
         }
@@ -154,8 +154,8 @@ class Todocontroller {
 
         $validation = new Validation;
         if($validation->tokencheck() === false) {
-            $token_errors = $validation->getTokenErrorMessages();
-            $_SESSION['token_errors'] = $token_errors;
+            $token_error = $validation->getTokenErrorMessage();
+            $_SESSION['token_error'] = $token_error;
             header("Location: ./../../view/error/404.html");
             return;
         }
@@ -182,13 +182,13 @@ class Postcontroller {
         $validation->setContent($content);
 
         if ($validation->tokencheck() === false) {
-            $token_errors = $validation->getTokenErrorMessages();
-            $_SESSION['token_errors'] = $token_errors;
+            $token_error = $validation->getTokenErrorMessage();
+            $_SESSION['token_error'] = $token_error;
             header("Location: ./post.php");
             return;
         } else if ($validation->postcheck() === false) {
-            $post_errors = $validation->getPostErrorMessages();
-            $_SESSION['post_errors'] = $post_errors;
+            $post_error = $validation->getPostErrorMessage();
+            $_SESSION['post_error'] = $post_error;
             header("Location: ./post.php");
             return;
         }
@@ -205,8 +205,8 @@ class Postcontroller {
 
         $validation = new Validation;
         if ($validation->tokencheck() === false) {
-            $token_errors = $validation->getTokenErrorMessages();
-            $_SESSION['token_errors'] = $token_errors;
+            $token_error = $validation->getTokenErrorMessage();
+            $_SESSION['token_error'] = $token_error;
             header("Location: ./../../view/error/404.html");
             return;
         }
@@ -241,19 +241,19 @@ class Weightcontroller {
         $validation->setWeightData($weightdata);
 
         if ($validation->tokencheck() === false) {
-            $token_errors = $validation->getTokenErrorMessages();
-            $_SESSION['token_errors'] = $token_errors;
+            $token_error = $validation->getTokenErrorMessage();
+            $_SESSION['token_error'] = $token_error;
             header("Location: ./weight.php");
             return;
         }
       
         if ($validation->weightheck() === false) {
-            $weight_errors = $validation->getWeightErrorMessages();
-            $body_errors = $validation->getBodyErrorMessages();
-            $today_errors = $validation->getTodayErrorMessages();
-            $_SESSION['weight_errors'] = $weight_errors;
-            $_SESSION['body_errors'] = $body_errors;
-            $_SESSION['today_errors'] = $today_errors;
+            $weight_error = $validation->getWeightErrorMessage();
+            $body_error = $validation->getBodyErrorMessage();
+            $today_error = $validation->getTodayErrorMessage();
+            $_SESSION['weight_error'] = $weight_error;
+            $_SESSION['body_error'] = $body_error;
+            $_SESSION['today_error'] = $today_error;
 
             $weightparams = sprintf("?body=%s&weight=%s&today=%s", $_POST['body'], $_POST['weight'], $_POST['today']);
             header(sprintf("Location: ./weight.php%s", $weightparams));
@@ -299,7 +299,7 @@ class Filecontroller {
         $save_path = $upload_dir . $save_filename;
         $image = base64_encode($save_path);
         $filetype = pathinfo($save_path,PATHINFO_EXTENSION);
-        $arrImagetype = array('jpg','jpeg','png','git','pdf');
+        $arrImagetype = array('jpg','jpeg','png','gif');
         $comment = filter_input(INPUT_POST, 'comment');
 
         $validation = new Validation;
@@ -307,18 +307,16 @@ class Filecontroller {
         $validation_data = $validation->getFileData();
 
         if ($validation->tokencheck() === false) {
-            $token_errors = $validation->getTokenErrorMessages();
-            $_SESSION['token_errors'] = $token_errors;
-
-            $fileparams = sprintf("?comment=%s", $_POST['comment']);
-            header(sprintf("Location: ./file.php%s", $fileparams));
+            $token_error = $validation->getTokenErrorMessage();
+            $_SESSION['token_error'] = $token_error;
+            header("Location: ./file.php");
             return;
         }
 
         if (!is_uploaded_file($tmp_name)) {
             $validation->filecheck();
-            $file_errors = $validation->getFileErrorMessages();
-            $_SESSION['file_errors'] = $file_errors;
+            $file_error = $validation->getFileErrorMessage();
+            $_SESSION['file_error'] = $file_error;
 
             $fileparams = sprintf("?comment=%s", $_POST['comment']);
             header(sprintf("Location: ./file.php%s", $fileparams));
@@ -327,8 +325,8 @@ class Filecontroller {
 
         if (!in_array(strtolower($filetype), $arrImagetype)) {
             $validation->filecheck();
-            $filemodel_errors = $validation->getFileModelErrorMessages();
-            $_SESSION['filemodel_errors'] = $filemodel_errors;
+            $filemodel_error = $validation->getFileModelErrorMessage();
+            $_SESSION['filemodel_error'] = $filemodel_error;
 
             $fileparams = sprintf("?comment=%s", $_POST['comment']);
             header(sprintf("Location: ./file.php%s", $fileparams));
@@ -336,10 +334,10 @@ class Filecontroller {
         } 
 
         if ($validation->filecheck() === false) {
-            $filesize_errors = $validation->getFileSizeErrorMessages();
-            $comment_errors = $validation->getCommentErrorMessages();
-            $_SESSION['filesize_errors'] = $filesize_errors;
-            $_SESSION['comment_errors'] = $comment_errors;
+            $filesize_error = $validation->getFileSizeErrorMessage();
+            $comment_error = $validation->getCommentErrorMessage();
+            $_SESSION['filesize_error'] = $filesize_error;
+            $_SESSION['comment_error'] = $comment_error;
 
             $fileparams = sprintf("?comment=%s", $_POST['comment']);
             header(sprintf("Location: ./file.php%s", $fileparams));
@@ -364,8 +362,8 @@ class Filecontroller {
 
         $validation = new Validation;
         if ($validation->tokencheck() === false) {
-            $token_errors = $validation->getTokenErrorMessages();
-            $_SESSION['token_errors'] = $token_errors;
+            $token_error = $validation->getTokenErrorMessage();
+            $_SESSION['token_error'] = $token_error;
             header("Location: ./../../view/error/404.html");
             return;
         }

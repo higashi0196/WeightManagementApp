@@ -18,10 +18,10 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 }
 
-$token_errors = $_SESSION['token_errors'];
-unset($_SESSION['token_errors']);
-$post_errors = $_SESSION['post_errors'];
-unset($_SESSION['post_errors']);
+$token_error = $_SESSION['token_error'];
+unset($_SESSION['token_error']);
+$post_error = $_SESSION['post_error'];
+unset($_SESSION['post_error']);
 
 ?>
 
@@ -31,7 +31,7 @@ unset($_SESSION['post_errors']);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>明日への一言</title>
-    <link rel="stylesheet" href="./../../css/styles.css">
+    <link rel="stylesheet" href="./../../public/css/styles.css">
 </head>
 <body>
     <form method="POST" action="./post.php">
@@ -40,15 +40,15 @@ unset($_SESSION['post_errors']);
             <textarea name="postcontent" placeholder="メッセージをどうぞ"></textarea>
         </div>
 
-        <?php if ($post_errors):?>
-            <?php foreach ($post_errors as $post_error): ?>
-                <p class="error-log"><?php echo Utils::h($post_error);?></p>
+        <?php if ($token_error):?>
+            <?php foreach ($token_error as $token_err): ?>
+                <p class="error-log"><?php echo Utils::h($token_err);?></p>
             <?php endforeach;?>
         <?endif;?>
 
-        <?php if ($token_errors):?>
-            <?php foreach ($token_errors as $token_error): ?>
-                <p class="error-log"><?php echo Utils::h($token_error);?></p>
+        <?php if ($post_error):?>
+            <?php foreach ($post_error as $post_err): ?>
+                <p class="error-log"><?php echo Utils::h($post_err);?></p>
             <?php endforeach;?>
         <?endif;?>
 

@@ -6,7 +6,7 @@ body {
     margin: 0;                        
     text-align: center;
     /* font-family: "メイリオ", sans-serif; */
-    background-image: url(./../view/logos/background.jpg);
+    background-image: url(./../../view/logos/background.jpg);
     background-color:rgba(255, 255, 255, 0.65);
     background-blend-mode: lighten;
     background-repeat: no-repeat;
@@ -304,10 +304,10 @@ td {
 
 #word {
     margin: 0;
-    padding: 5px 3px;
+    padding: 5px;
     font-size: 18px;
     text-align: center;
-    white-space: pre-wrap;
+    white-space: pre;
 }
 
 /* 明日への一言 css 終了 */
@@ -473,7 +473,7 @@ li > div {
     background-color: rgb(215, 210, 210);
     font-size: 19px;
     box-shadow: 8px 8px 5px rgba(0,0,0,0.3);
-    white-space: pre-wrap;
+    white-space: pre;
 }
 
 .filedelete-btn {

@@ -30,14 +30,14 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 }
 
-$token_errors = $_SESSION['token_errors'];
-unset($_SESSION['token_errors']);
-$weight_errors = $_SESSION['weight_errors'];
-unset($_SESSION['weight_errors']);
-$body_errors = $_SESSION['body_errors'];
-unset($_SESSION['body_errors']);
-$today_errors = $_SESSION['today_errors'];
-unset($_SESSION['today_errors']);
+$token_error = $_SESSION['token_error'];
+unset($_SESSION['token_error']);
+$weight_error = $_SESSION['weight_error'];
+unset($_SESSION['weight_error']);
+$body_error = $_SESSION['body_error'];
+unset($_SESSION['body_error']);
+$today_error = $_SESSION['today_error'];
+unset($_SESSION['today_error']);
 
 ?>
 
@@ -47,41 +47,41 @@ unset($_SESSION['today_errors']);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>新規登録</title>
-    <link rel="stylesheet" href="./../../css/styles.css">
+    <link rel="stylesheet" href="./../../public/css/styles.css">
 </head>
 <body>
     <p class="outline">体重記録</p>
 
     <form method="POST" action="./weight.php">
 
-        <?php if ($token_errors):?>
-            <?php foreach ($token_errors as $token_error): ?>
-                <p class="error-log"><?php echo Utils::h($token_error);?></p>
+        <?php if ($token_error):?>
+            <?php foreach ($token_error as $token_err): ?>
+                <p class="error-log"><?php echo Utils::h($token_err);?></p>
             <?php endforeach;?>
         <?endif;?>
 
         <p class="bodytitle">目標体重 : <input type="text" name="body" class="weightinput" value="<?php if (isset($body)):?><?php echo Utils::h($body);?><?php else:?><?php echo Utils::h($goallists['goalweights']);?><?php endif;?>"> kg</p>
 
-        <?php if ($body_errors):?>
-            <?php foreach ($body_errors as $body_error): ?>
-                <p class="error-log"><?php echo Utils::h($body_error);?></p>
+        <?php if ($body_error):?>
+            <?php foreach ($body_error as $body_err): ?>
+                <p class="error-log"><?php echo Utils::h($body_err);?></p>
             <?php endforeach;?>
         <?endif;?>
 
         <p class="bodytitle">現在の体重 : <input type="text" name="weight" class="weightinput" value="<?php echo Utils::h($weight); ?>"> kg</p>
 
-        <?php if ($weight_errors):?>
-            <?php foreach ($weight_errors as $weight_error): ?>
-                <p class="error-log"><?php echo Utils::h($weight_error);?></p>
+        <?php if ($weight_error):?>
+            <?php foreach ($weight_error as $weight_err): ?>
+                <p class="error-log"><?php echo Utils::h($weight_err);?></p>
             <?php endforeach;?>
         <?endif;?>
 
         <p class="bodytitle">日付 :
         <input type="date" name="today" class="dayinput" value="<?php echo Utils::h($today); ?>"></p>
 
-        <?php if ($today_errors):?>
-            <?php foreach ($today_errors as $today_error): ?>
-                <p class="error-log"><?php echo Utils::h($today_error);?></p>
+        <?php if ($today_error):?>
+            <?php foreach ($today_error as $today_err): ?>
+                <p class="error-log"><?php echo Utils::h($today_err);?></p>
             <?php endforeach;?>
         <?endif;?>
 

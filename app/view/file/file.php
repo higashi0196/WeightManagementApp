@@ -21,16 +21,16 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 }
 
-$token_errors = $_SESSION['token_errors'];
-unset($_SESSION['token_errors']);
-$filesize_errors = $_SESSION['filesize_errors'];
-unset($_SESSION['filesize_errors']);
-$comment_errors = $_SESSION['comment_errors'];
-unset($_SESSION['comment_errors']);
-$filemodel_errors = $_SESSION['filemodel_errors'];
-unset($_SESSION['filemodel_errors']);
-$file_errors = $_SESSION['file_errors'];
-unset($_SESSION['file_errors']);
+$token_error = $_SESSION['token_error'];
+unset($_SESSION['token_error']);
+$filesize_error = $_SESSION['filesize_error'];
+unset($_SESSION['filesize_error']);
+$comment_error = $_SESSION['comment_error'];
+unset($_SESSION['comment_error']);
+$filemodel_error = $_SESSION['filemodel_error'];
+unset($_SESSION['filemodel_error']);
+$file_error = $_SESSION['file_error'];
+unset($_SESSION['file_error']);
 
 ?>
 
@@ -40,35 +40,35 @@ unset($_SESSION['file_errors']);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>画像アップロード</title>
-    <link rel="stylesheet" href="./../../css/styles.css">
+    <link rel="stylesheet" href="./../../public/css/styles.css">
 </head>
 <body>
     <p class="outline">画像アップロード</p>
 
-    <?php if ($token_errors):?> 
-        <?php foreach ($token_errors as $token_error): ?>
-            <p class="error-log"><?php echo Utils::h($token_error);?></p>
+    <?php if ($token_error):?> 
+        <?php foreach ($token_error as $token_err): ?>
+            <p class="error-log"><?php echo Utils::h($token_err);?></p>
         <?php endforeach;?>
     <?endif;?>
 
     <form action="./file.php" method="POST" enctype="multipart/form-data">
         <input type="file" name="img" class="fileinput">
 
-        <?php if ($file_errors):?>
-            <?php foreach ($file_errors as $file_error): ?>
-                <p class="error-log"><?php echo Utils::h($file_error);?></p>
+        <?php if ($file_error):?>
+            <?php foreach ($file_error as $file_err): ?>
+                <p class="error-log"><?php echo Utils::h($file_err);?></p>
             <?php endforeach;?>
         <?endif;?>
 
-        <?php if ($filemodel_errors):?>
-            <?php foreach ($filemodel_errors as $filemodel_error): ?>
-                <p class="error-log"><?php echo Utils::h($filemodel_error);?></p>
+        <?php if ($filemodel_error):?>
+            <?php foreach ($filemodel_error as $filemodel_err): ?>
+                <p class="error-log"><?php echo Utils::h($filemodel_err);?></p>
             <?php endforeach;?>
         <?endif;?>
 
-        <?php if ($filesize_errors):?>
-            <?php foreach ($filesize_errors as $filesize_error): ?>
-                <p class="error-log"><?php echo Utils::h($filesize_error);?></p>
+        <?php if ($filesize_error):?>
+            <?php foreach ($filesize_error as $filesize_err): ?>
+                <p class="error-log"><?php echo Utils::h($filesize_err);?></p>
             <?php endforeach;?>
         <?endif;?>
 
@@ -77,9 +77,9 @@ unset($_SESSION['file_errors']);
             <textarea name="comment" class="comment"><?php echo Utils::h($comment);?></textarea>
         </div>
 
-        <?php if ($comment_errors):?>
-            <?php foreach ($comment_errors as $comment_error): ?>
-                <p class="error-log"><?php echo Utils::h($comment_error);?></p>
+        <?php if ($comment_error):?>
+            <?php foreach ($comment_error as $comment_err): ?>
+                <p class="error-log"><?php echo Utils::h($comment_err);?></p>
             <?php endforeach;?>
         <?endif;?>
 
@@ -102,6 +102,6 @@ unset($_SESSION['file_errors']);
         <?php endforeach; ?>
     </ol>
 
-    <script type="text/javascript" src="./../../js/file.js"></script>
+    <script type="text/javascript" src="./../../public/js/file.js"></script>
 </body>
 </html>
