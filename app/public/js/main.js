@@ -52,19 +52,14 @@
     });
 
     const achieve = document.querySelector('.achieve');
-    const achieve2 = document.querySelector('.achieve2');
-
     if (difference <= 0) {
-        achieve.style.display = 'block';
         console.log("0kg以下,達成");
-    } else if (difference < goalweight * 0.01) {
-        achieve.style.display = 'block';
-        achieve.classList.add('achieve2');
+    } else if (difference <= goalweight * 0.02) {
+        achieve.classList.add("achieve2");
         achieve.textContent =  'あと ' + difference + ' kg ' + 'もう少し頑張ろう !';
         console.log("もう少し,頑張ろう");
-    }  else {
+    } else {
         achieve.style.display = 'none';
-        achieve.textContent =  'あと ' + difference + ' kg ';
         console.log("まだまだ");
     }
 

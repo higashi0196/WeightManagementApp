@@ -16,8 +16,6 @@ $weightlists = $weightcontroller->weights();
 $token_error = $_SESSION['token_error'];
 unset($_SESSION['token_error']);
 
-// echo phpinfo();
-
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +41,7 @@ unset($_SESSION['token_error']);
         <p class="goal-weight"><?php echo Utils::h($weightlist['nowweights']); ?> kg</p><br>
         <p class="ideal-weight">目標達成まであと :</p>
         <p class="goal-weight"><?php echo Utils::h($weightlist['difference']); ?> kg</p>
-        <p class="achieve">見事達成！やったぜ！</p>
+        <p class="achieve">見事達成 ! Good job !</p>
         <p class="ideal-day">
         ( <?php echo Utils::h($weightlist['nowdate']); ?> 現在 )</p>
     <?php endforeach; ?>
