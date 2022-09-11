@@ -69,6 +69,7 @@ class Database
         $this->comment = $comment;
     }
 
+    // todosテーブルのid取得
     public static function todogetid($id) {
         try {
             $pdo = new PDO(DSN, USER, PASSWORD);
@@ -94,6 +95,7 @@ class Database
         }
     }
 
+    // todosテーブルのデータを全て取得
     public static function todogetAll() {
         try {
             $pdo = new PDO(DSN, USER, PASSWORD);
@@ -117,6 +119,7 @@ class Database
         }
     }
 
+    // todosテーブルにtitle(タイトル),content(詳細)のデータ保存
     public function save() {
         try {
             $pdo = new PDO(DSN, USER, PASSWORD);
@@ -141,6 +144,7 @@ class Database
         }
     }
 
+    // todosテーブルにtitle(タイトル),content(詳細)のデータを更新
     public function update() {
         try {
             $pdo = new PDO(DSN, USER, PASSWORD);
@@ -166,6 +170,8 @@ class Database
         }   
     }
 
+    // todosテーブルのis_doneカラム ture,falseを更新
+    // 1 = true, 0 = false として,insert時はfalseにて保存
     public static function toggle($id) {
         try {
             $pdo = new PDO(DSN, USER, PASSWORD);
@@ -189,6 +195,7 @@ class Database
         }
     }
 
+    // todosテーブルのデータを削除
     public function tododelete() {
         try {
             $pdo = new PDO(DSN, USER, PASSWORD);
@@ -212,6 +219,7 @@ class Database
         }   
     }
 
+    // postsテーブルの最新データのみ取得
     public static function postgetAll() {
         try {
             $pdo = new PDO(DSN, USER, PASSWORD);
@@ -235,6 +243,7 @@ class Database
         }
     }
 
+    // postsテーブルのcontentデータを保存
     public function postsave() {
         try {
             $pdo = new PDO(DSN, USER, PASSWORD);
@@ -258,6 +267,7 @@ class Database
         }
     }
 
+    // postsテーブルの全てのデータを削除
     public function postdelete() {
         try {
             $pdo = new PDO(DSN, USER, PASSWORD);
@@ -280,6 +290,7 @@ class Database
         }   
     }
 
+    // bodiesテーブルの最新データのみ取得
     public static function weightsgetAll() {
         try {
             $pdo = new PDO(DSN, USER, PASSWORD);
@@ -303,6 +314,7 @@ class Database
         }
     }
 
+    // bodiesテーブルのgoalweights(目標体重)の最新データのみ取得
     public static function goalget() {
         try {
             $pdo = new PDO(DSN, USER, PASSWORD);
@@ -326,6 +338,10 @@ class Database
         }
     }
 
+    // bodiesテーブルにデータを保存
+    // nowweights(現在の体重)
+    // goalweights(目標体重) 
+    // nowdate(現在の日付)
     public function weightsave() {
         try {
             $pdo = new PDO(DSN, USER, PASSWORD);
@@ -351,6 +367,7 @@ class Database
         }
     }
 
+    // picturesテーブルのデータを取得
     public function fileAllget() {
         try {
             $pdo = new PDO(DSN, USER, PASSWORD);
@@ -374,6 +391,11 @@ class Database
         }  
     }
 
+    // picturesテーブルにデータを保存
+    // $filename(ファイル名),
+    // $save_path(保存先のパス),
+    // $image(保存先のパスのバイナリデータ),
+    // $comment(一言メモ)
     public function filesave($filename,$save_path,$image,$comment) {
         try {
             $pdo = new PDO(DSN, USER, PASSWORD);
@@ -400,6 +422,7 @@ class Database
         }   
     }
 
+    // picturesテーブルのデータを削除
     public function filedelete() {
         try {
             $pdo = new PDO(DSN, USER, PASSWORD);

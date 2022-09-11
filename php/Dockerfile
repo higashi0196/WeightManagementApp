@@ -1,6 +1,6 @@
 FROM php:7.4.30-fpm
 
-# RUN cd /usr/bin && curl -s http://getcomposer.org/installer \n\
+RUN cd /usr/bin && curl -s http://getcomposer.org/installer | php && ln -s /usr/bin/composer.phar /usr/bin/composer
 RUN apt-get update \
 && apt-get install -y \
 git \
