@@ -153,7 +153,7 @@ class Todocontroller {
         }
 
         $validation = new Validation;
-        if($validation->tokencheck() === false) {
+        if ($validation->tokencheck() === false) {
             $token_error = $validation->getTokenErrorMessage();
             $_SESSION['token_error'] = $token_error;
             header("Location: ./../../view/error/404.html");
