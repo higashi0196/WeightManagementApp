@@ -1,6 +1,7 @@
 'use strict';
 
 {
+    
     // todo 削除機能 非同期通信
     const deletebtns = document.querySelectorAll('.delete-btn');
     deletebtns.forEach(btn => {
@@ -8,12 +9,12 @@
         if (!confirm('削除しますか?')) {
             return;
         }
-        fetch('./delete.php', {
-            method: 'POST',
-            body: new URLSearchParams({
-            id: btn.dataset.id,
-            token: btn.closest('tr').dataset.token,
-        }),
+            fetch('./delete.php', {
+                method: 'POST',
+                body: new URLSearchParams({
+                id: btn.dataset.id,
+                token: btn.closest('tr').dataset.token,
+            }),
         }).then(response => {
             return response.json();
         }).then(json => {
@@ -32,10 +33,10 @@
     toggles.forEach(toggle => {
         toggle.addEventListener('change', () => {
             fetch('./toggle.php', {
-            method: 'POST',
-            body: new URLSearchParams({
-            id: toggle.dataset.id,
-            token: toggle.closest('tr').dataset.token,
+                method: 'POST',
+                body: new URLSearchParams({
+                id: toggle.dataset.id,
+                token: toggle.closest('tr').dataset.token,
             }),
         }).then(response => {
             return response.json();

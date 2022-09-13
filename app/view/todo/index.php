@@ -8,8 +8,10 @@ $token->create();
 
 $todocontroller = new Todocontroller();
 $todolists = $todocontroller->todos();
+
 $postcontroller = new Postcontroller();
 $postlists = $postcontroller->posts();
+
 $weightcontroller = new Weightcontroller();
 $weightlists = $weightcontroller->weights();
 
