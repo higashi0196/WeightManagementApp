@@ -35,18 +35,28 @@ unset($_SESSION['token_error']);
         <a>体重管理リスト</a>
         <img src="./../logos/logo3.png" alt="">
     </h1>
-   
-    <?php foreach ($weightlists as $weightlist): ?>
+
+    <?php if ($weightlists): ?>
+        <?php foreach ($weightlists as $weightlist): ?>
+            <p class="ideal-weight">目標体重 :</p>
+            <p class="goal-weight"><?php echo Utils::h($weightlist['goalweights']); ?> kg</p><br>
+            <p class="ideal-weight"> 現在の体重 :</p>
+            <p class="goal-weight"><?php echo Utils::h($weightlist['nowweights']); ?> kg</p><br>
+            <p class="ideal-weight">目標達成まであと :</p>
+            <p class="goal-weight"><?php echo Utils::h($weightlist['difference']); ?> kg</p>
+            <p class="achieve">見事達成 ! Good job !</p>
+            <p class="ideal-day">
+            ( <?php echo Utils::h($weightlist['nowdate']); ?> 現在 )</p>
+        <?php endforeach; ?>
+    <?php elseif (empty($weightlists)): ?>
+        <p class="weight-save">~ 体重を入力できます ~</p>
         <p class="ideal-weight">目標体重 :</p>
-        <p class="goal-weight"><?php echo Utils::h($weightlist['goalweights']); ?> kg</p><br>
+        <p class="goal-weight"> -- kg</p><br>
         <p class="ideal-weight"> 現在の体重 :</p>
-        <p class="goal-weight"><?php echo Utils::h($weightlist['nowweights']); ?> kg</p><br>
+        <p class="goal-weight"> -- kg</p><br>
         <p class="ideal-weight">目標達成まであと :</p>
-        <p class="goal-weight"><?php echo Utils::h($weightlist['difference']); ?> kg</p>
-        <p class="achieve">見事達成 ! Good job !</p>
-        <p class="ideal-day">
-        ( <?php echo Utils::h($weightlist['nowdate']); ?> 現在 )</p>
-    <?php endforeach; ?>
+        <p class="goal-weight"> -- kg</p>
+    <?php endif; ?> 
    
     <div>
         <a href="./../weight/weight.php"><button class="weight-btn">体重記入</button></a>

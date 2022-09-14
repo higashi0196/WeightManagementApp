@@ -113,10 +113,10 @@ h1 > img {
 }
 
 .achieve {
-    color:red;
     margin: 10px auto 0;
     font-size: 20px;
     font-weight: bold;
+    color:red;
 }
 
 .achieve2 {
@@ -127,6 +127,15 @@ h1 > img {
     margin: 10px 0 0;
     font-size: 20px;
     font-weight: bold;
+}
+
+.weight-save {
+    margin: 10px auto 0;
+    color: rgb(30, 80, 85);
+    font-size: 23px;
+    font-weight: bold;
+    font-style: oblique;
+    text-shadow: 2px 2px 3px rgb(190, 190, 190); 
 }
 
 .weight-btn {
@@ -307,7 +316,7 @@ td {
     padding: 5px;
     font-size: 18px;
     text-align: center;
-    white-space: pre;
+    white-space: pre-wrap;
 }
 
 /* 明日への一言 css 終了 */
@@ -501,6 +510,7 @@ li > div {
         height: 20px;
         padding: 4px 6px;
         font-size: 15px;
+        outline-color: blue;
     }
 
     .error-log {
@@ -538,7 +548,6 @@ li > div {
     }
 
     .ideal-day {
-        /* margin: 5px; */
         font-size: 18px;
     }
 
@@ -555,6 +564,10 @@ li > div {
         
     .achieve2 {
         font-size: 18px;
+    }
+
+    .weight-save {
+        font-size: 22px;     
     }
 
     .weight-btn {
@@ -688,11 +701,13 @@ li > div {
 
     .weightinput {
         width: 100px;
+        outline-color: blue;
     }
 
     .dayinput {
         width: 150px;
         font-size: 18px;
+        outline-color: blue;
     }
 
     /* weight.phpページ 終了 */
@@ -702,7 +717,8 @@ li > div {
         width: 300px;
         height: 150px;
         margin-top: 20px;
-        border: 3px solid black;;
+        border: 3px solid black;
+        outline-color: blue;
     }
 
     .post-btn2 {
@@ -732,6 +748,7 @@ li > div {
         width: 280px;
         height: 70px;
         margin-bottom: 0;
+        outline-color: blue;
     }
 
     .file-btn {
