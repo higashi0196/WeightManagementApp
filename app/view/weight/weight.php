@@ -52,14 +52,14 @@ unset($_SESSION['today_error']);
 <body>
     <p class="outline">体重記録</p>
 
+    <?php if ($token_error):?>
+        <?php foreach ($token_error as $token_err): ?>
+            <p class="error-log"><?php echo Utils::h($token_err);?></p>
+        <?php endforeach;?>
+    <?endif;?>
+
     <form method="POST" action="./weight.php">
-
-        <?php if ($token_error):?>
-            <?php foreach ($token_error as $token_err): ?>
-                <p class="error-log"><?php echo Utils::h($token_err);?></p>
-            <?php endforeach;?>
-        <?endif;?>
-
+        
         <p class="bodytitle">目標体重 : <input type="text" name="body" class="weightinput" value="<?php if (isset($body)):?><?php echo Utils::h($body);?><?php else:?><?php echo Utils::h($goallists['goalweights']);?><?php endif;?>"> kg</p>
 
         <?php if ($body_error):?>

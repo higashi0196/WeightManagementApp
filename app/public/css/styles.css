@@ -31,7 +31,7 @@ main {
 }
 
 .error-log {
-    margin: 2px;
+    margin: 10px 0 0;
     color: red;
     font-size: 22px;
     font-weight: bold;
@@ -375,6 +375,7 @@ td {
 /* post.php ページ 開始 */
 
 textarea {
+    display: block;
     width: 350px;
     height: 180px;
     margin: 25px auto 0;
@@ -514,7 +515,7 @@ li > div {
     }
 
     .error-log {
-        margin: 10px;
+        margin-top: 5px;
         font-size: 20px;
     }
 
@@ -683,12 +684,12 @@ li > div {
 
     /* create.php & eidt.php ページ 開始 */
     .outline {
-        margin: 30px auto 0px;
+        margin: 30px auto 0;
         font-size: 30px;
     }
 
     .title {
-        margin: 30px auto 10px;
+        margin: 30px auto 0;
     }
 
     /* create.php & eidt.php ページ 終了 */

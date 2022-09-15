@@ -122,7 +122,7 @@ unset($_SESSION['token_error']);
             </tr>
         </thead>
     </table>
-        <p class="todo">ToDoが空です</p> 
+        <p class="todo">ToDoを入力できます</p> 
     <?php endif; ?>
 
     <div class="postcreate">
@@ -142,7 +142,7 @@ unset($_SESSION['token_error']);
         <?php else : ?>
             <p id="word">一言メッセージを入力できます</p> 
         <?php endif; ?> 
-        </div>
+    </div>
 
 </main>
 

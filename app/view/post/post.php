@@ -34,18 +34,17 @@ unset($_SESSION['post_error']);
     <link rel="stylesheet" href="./../../public/css/styles.css">
 </head>
 <body>
+    <p class="outline">一言メッセージ</p>
+
+    <?php if ($token_error):?>
+        <?php foreach ($token_error as $token_err): ?>
+            <p class="error-log"><?php echo Utils::h($token_err);?></p>
+        <?php endforeach;?>
+    <?endif;?>
+
     <form method="POST" action="./post.php">
-        <div>
-            <p class="outline">一言メッセージ</p>
-            <textarea name="postcontent" placeholder="メッセージをどうぞ"></textarea>
-        </div>
-
-        <?php if ($token_error):?>
-            <?php foreach ($token_error as $token_err): ?>
-                <p class="error-log"><?php echo Utils::h($token_err);?></p>
-            <?php endforeach;?>
-        <?endif;?>
-
+        <textarea name="postcontent" placeholder="メッセージをどうぞ"></textarea>
+        
         <?php if ($post_error):?>
             <?php foreach ($post_error as $post_err): ?>
                 <p class="error-log"><?php echo Utils::h($post_err);?></p>
