@@ -1,6 +1,6 @@
 <?php
 
-require_once('./../../controller/controller.php');
+require_once('./../../../controller/controller.php');
 
 session_start();
 $token = new Token();
@@ -26,7 +26,7 @@ unset($_SESSION['token_error']);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>体重管理アプリ</title>
-    <link rel="stylesheet" href="./../../public/css/styles.css">
+    <link rel="stylesheet" href="./../../css/styles.css">
 </head>
 <body>
 <main>
@@ -151,6 +151,6 @@ unset($_SESSION['token_error']);
     const goalweight = "<?php echo $weightlist['goalweights']; ?>";
 </script>
 
-<script type="text/javascript" src="./../../public/js/main.js"></script>
+<script type="text/javascript" src="./../../js/main.js"></script>
 </body>
 </html>

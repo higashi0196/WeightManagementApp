@@ -1,6 +1,6 @@
 <?php
 
-require_once('./../../controller/controller.php');
+require_once('./../../../controller/controller.php');
 
 $filecontroller = new Filecontroller();
 $fileresult = $filecontroller->filedelete();

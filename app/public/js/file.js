@@ -1,7 +1,6 @@
 'use strict';
 
 {
-
     // file 削除機能 非同期通信
     const filebtns = document.querySelectorAll('.filedelete-btn');
     filebtns.forEach(filebtn => {
@@ -9,7 +8,7 @@
             if (!confirm('削除しますか?')) {
                 return;
             }
-        fetch('./../file/filedelete.php', {
+        fetch('./filedelete.php', {
             method: 'POST',
             body: new URLSearchParams({
             id: filebtn.dataset.id,
@@ -27,5 +26,4 @@
             filebtn.closest('li').remove();
         });
     });
-    
 }

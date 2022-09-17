@@ -1,6 +1,6 @@
 <?php
 
-require_once('./../../controller/controller.php');
+require_once('./../../../controller/controller.php');
 
 session_start();
 $token = new Token();
@@ -31,7 +31,7 @@ unset($_SESSION['post_error']);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>明日への一言</title>
-    <link rel="stylesheet" href="./../../public/css/styles.css">
+    <link rel="stylesheet" href="./../../css/styles.css">
 </head>
 <body>
     <p class="outline">一言メッセージ</p>
