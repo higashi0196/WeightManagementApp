@@ -177,8 +177,7 @@ class Database
             $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-            $sql = "UPDATE todos 
-            SET is_done = NOT is_done, updated_at = NOW() WHERE id = :id";
+            $sql = "UPDATE todos SET is_done = NOT is_done, updated_at = NOW() WHERE id = :id";
             
             $pdo->beginTransaction();
             $stmt = $pdo->prepare($sql);
