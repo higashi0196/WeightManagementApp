@@ -75,53 +75,53 @@ unset($_SESSION['token_error']);
     </div>
 
     <?php if ($todolists): ?>
-    <table>
-        <thead>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col">タイトル</th>
-                <th scope="col">詳細</th>
-                <th scope="col">編集</th>
-                <th scope="col">削除</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($todolists as $todo):?>
-                <tr data-token="<?= Utils::h($_SESSION['token']); ?>">
-                    <td>
-                        <input type="checkbox" 
-                        data-id="<?php echo Utils::h($todo['id'])?>" 
-                        <?= $todo['is_done'] ? 'checked' : ''; ?>>
-                    </td>
-                    <td class="<?= $todo['is_done'] ? 'done' : ''; ?>">
-                        <?php echo Utils::h($todo['title']); ?>
-                    </td>
-                    <td class="<?= $todo['is_done'] ? 'done' : ''; ?>">
-                        <?php echo Utils::h($todo['content']); ?>
-                    </td> 
-                    <td>
-                        <a href="edit.php?id=<?php echo Utils::h($todo['id'])?>">
-                        <button class="edit-btn">編集</button></a>
-                    </td>  
-                    <td>
-                        <button class="delete-btn" data-id="<?php echo Utils::h($todo['id'])?>">削除</button>
-                    </td> 
-                </tr> 
-            <?php endforeach; ?>
-        </tbody>
-    </table> 
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">タイトル</th>
+                    <th scope="col">詳細</th>
+                    <th scope="col">編集</th>
+                    <th scope="col">削除</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($todolists as $todo):?>
+                    <tr data-token="<?= Utils::h($_SESSION['token']); ?>">
+                        <td>
+                            <input type="checkbox" 
+                            data-id="<?php echo Utils::h($todo['id'])?>" 
+                            <?= $todo['is_done'] ? 'checked' : ''; ?>>
+                        </td>
+                        <td class="<?= $todo['is_done'] ? 'done' : ''; ?>">
+                            <?php echo Utils::h($todo['title']); ?>
+                        </td>
+                        <td class="<?= $todo['is_done'] ? 'done' : ''; ?>">
+                            <?php echo Utils::h($todo['content']); ?>
+                        </td> 
+                        <td>
+                            <a href="edit.php?id=<?php echo Utils::h($todo['id'])?>">
+                            <button class="edit-btn">編集</button></a>
+                        </td>  
+                        <td>
+                            <button class="delete-btn" data-id="<?php echo Utils::h($todo['id'])?>">削除</button>
+                        </td> 
+                    </tr> 
+                <?php endforeach; ?>
+            </tbody>
+        </table> 
     <?php elseif (empty($todolists)): ?>
-    <table>
-        <thead>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col">タイトル</th>
-                <th scope="col">詳細</th>
-                <th scope="col">編集</th>
-                <th scope="col">削除</th>
-            </tr>
-        </thead>
-    </table>
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">タイトル</th>
+                    <th scope="col">詳細</th>
+                    <th scope="col">編集</th>
+                    <th scope="col">削除</th>
+                </tr>
+            </thead>
+        </table>
         <p class="todo">ToDoを入力できます</p> 
     <?php endif; ?>
 
