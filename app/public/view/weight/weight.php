@@ -59,7 +59,6 @@ unset($_SESSION['today_error']);
     <?endif;?>
 
     <form method="POST" action="./weight.php">
-        
         <p class="bodytitle">目標体重 : <input type="text" name="body" class="weightinput" value="<?php if (isset($body)):?><?php echo Utils::h($body);?><?php else:?><?php echo Utils::h($goallists['goalweights']);?><?php endif;?>"> kg</p>
 
         <?php if ($body_error):?>

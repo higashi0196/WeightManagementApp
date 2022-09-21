@@ -72,6 +72,5 @@ unset($_SESSION['content_error']);
     </form>
 
     <a href="index.php"><button class="return-btn">戻る</button></a>
-
 </body>
 </html>

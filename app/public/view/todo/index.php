@@ -138,7 +138,7 @@ unset($_SESSION['token_error']);
         <?php if ($postlists): ?>
             <?php foreach ($postlists as $postlist): ?> 
                 <p id="word"><?php echo Utils::h($postlist['content']); ?></p>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
         <?php else : ?>
             <p id="word">一言メッセージを入力できます</p> 
         <?php endif; ?> 
