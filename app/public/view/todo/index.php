@@ -17,7 +17,7 @@ $weightlists = $weightcontroller->weights();
 
 $token_error = $_SESSION['token_error'];
 unset($_SESSION['token_error']);
-echo phpinfo();
+
 ?>
 
 <!DOCTYPE html>
