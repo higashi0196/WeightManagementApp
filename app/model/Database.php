@@ -69,6 +69,18 @@ class Database
         $this->comment = $comment;
     }
 
+    public function heroku() {
+        $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+        $db_name = substr($url["path"], 1);
+        $db_host = $url["host"];
+        $user = $url["user"];
+        $password = $url["pass"];
+            
+        $dsn = "mysql:dbname=".$db_name.";host=".$db_host;
+    
+        $pdo=new PDO($dsn,$user,$password,array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
+    }
+
     // todosテーブルのid取得
     public function todogetid($id) {
         try {

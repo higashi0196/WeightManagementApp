@@ -1,7 +1,0 @@
-composer.json
-composer.lock
-nginx_app.conf
-procfile
-vendor
-docker-compose.yml
-web/.
