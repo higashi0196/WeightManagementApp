@@ -4,3 +4,5 @@ nginx_app.conf
 procfile
 vendor
 docker-compose.yml
+php/
+mysql/
