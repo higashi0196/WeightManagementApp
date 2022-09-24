@@ -99,6 +99,7 @@ class Database
     // todosテーブルのデータを全て取得
     public function todogetAll() {
         try {
+            // $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo = new PDO($dsn, $db['user'], $db['pass']);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -123,6 +124,7 @@ class Database
     // todosテーブルにtitle(タイトル),content(詳細)のデータ保存
     public function save() {
         try {
+            // $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo = new PDO($dsn, $db['user'], $db['pass']);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -148,6 +150,7 @@ class Database
     // todosテーブルにtitle(タイトル),content(詳細)のデータを更新
     public function update() {
         try {
+            // $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo = new PDO($dsn, $db['user'], $db['pass']);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -175,6 +178,7 @@ class Database
     // 1 = true, 0 = false として,insert時はfalseにて保存
     public function toggle($id) {
         try {
+            // $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo = new PDO($dsn, $db['user'], $db['pass']);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -199,6 +203,7 @@ class Database
     // todosテーブルのデータを削除
     public function tododelete() {
         try {
+            // $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo = new PDO($dsn, $db['user'], $db['pass']);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -223,6 +228,7 @@ class Database
     // postsテーブルの最新データのみ取得
     public function postgetAll() {
         try {
+            // $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo = new PDO($dsn, $db['user'], $db['pass']);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -247,6 +253,7 @@ class Database
     // postsテーブルのcontentデータを保存
     public function postsave() {
         try {
+            // $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo = new PDO($dsn, $db['user'], $db['pass']);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -271,6 +278,7 @@ class Database
     // postsテーブルの全てのデータを削除
     public function postdelete() {
         try {
+            // $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo = new PDO($dsn, $db['user'], $db['pass']);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -294,6 +302,7 @@ class Database
     // bodiesテーブルの最新データのみ取得
     public function weightsgetAll() {
         try {
+            // $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo = new PDO($dsn, $db['user'], $db['pass']);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -318,6 +327,7 @@ class Database
     // bodiesテーブルのgoalweights(目標体重)の最新データのみ取得
     public function goalget() {
         try {
+            // $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo = new PDO($dsn, $db['user'], $db['pass']);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -345,6 +355,7 @@ class Database
     // nowdate(現在の日付)
     public function weightsave() {
         try {
+            // $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo = new PDO($dsn, $db['user'], $db['pass']);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -371,6 +382,7 @@ class Database
     // picturesテーブルのデータを取得
     public function fileAllget() {
         try {
+            // $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo = new PDO($dsn, $db['user'], $db['pass']);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -397,17 +409,17 @@ class Database
     // $save_path(保存先のパス),
     // $image(保存先のパスのバイナリデータ),
     // $comment(一言メモ)
-    public function filesave($filename,$save_path,$image,$comment) {
+    public function filesave($filename,$image,$comment) {
         try {
+            // $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo = new PDO($dsn, $db['user'], $db['pass']);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-            $sql = "INSERT INTO pictures (file_name, file_path, tmp_name, comment, created_at) VALUES ('$filename', '$save_path', '$image', '$comment', NOW())";
+            $sql = "INSERT INTO pictures (file_name, tmp_name, comment, created_at) VALUES ('$filename', '$image', '$comment', NOW())";
 
             $pdo->beginTransaction();
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue('file_name', $filename);
-            $stmt->bindValue('file_path', $save_path);
             $stmt->bindValue('tmp_name', $image);
             $stmt->bindValue('comment', $comment);
             $stmt->execute();
@@ -426,6 +438,7 @@ class Database
     // picturesテーブルのデータを削除
     public function filedelete() {
         try {
+            // $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo = new PDO($dsn, $db['user'], $db['pass']);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);

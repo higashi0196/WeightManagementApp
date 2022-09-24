@@ -346,7 +346,7 @@ class Filecontroller {
 
         if (move_uploaded_file($tmp_name,$save_path)) {
             $picture = new Database;
-            $imgresult = $picture->filesave($filename,$save_path,$image,$comment);
+            $imgresult = $picture->filesave($filename,$image,$comment);
             header("Location: ./file.php");
         }
     }
