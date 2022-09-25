@@ -101,7 +101,7 @@ class Database
     }
 
     // todosテーブルのデータを全て取得
-    public function todogetAll() {
+    public static function todogetAll() {
         try {
             // $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
             // $db['dbname'] = ltrim($db['path'], '/');
@@ -236,7 +236,7 @@ class Database
     }
 
     // postsテーブルの最新データのみ取得
-    public function postgetAll() {
+    public static function postgetAll() {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo = new PDO($dsn,$user,$password);
@@ -310,7 +310,7 @@ class Database
     }
 
     // bodiesテーブルの最新データのみ取得
-    public function weightsgetAll() {
+    public static function weightsgetAll() {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo = new PDO($dsn,$user,$password);
@@ -335,7 +335,7 @@ class Database
     }
 
     // bodiesテーブルのgoalweights(目標体重)の最新データのみ取得
-    public function goalget() {
+    public static function goalget() {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo = new PDO($dsn,$user,$password);
@@ -390,7 +390,7 @@ class Database
     }
 
     // picturesテーブルのデータを取得
-    public function fileAllget() {
+    public static function fileAllget() {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo = new PDO($dsn,$user,$password);
