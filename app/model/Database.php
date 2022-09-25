@@ -69,6 +69,12 @@ class Database
         $this->comment = $comment;
     }
 
+    // $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+    // $db['dbname'] = ltrim($db['path'], '/');
+    // $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+    // $user = $db['user'];
+    // $password = $db['pass'];
+
     // todosテーブルのid取得
     public function todogetid($id) {
         try {
@@ -99,6 +105,12 @@ class Database
     // todosテーブルのデータを全て取得
     public function todogetAll() {
         try {
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+            $user = $db['user'];
+            $password = $db['pass'];
+
             // $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
