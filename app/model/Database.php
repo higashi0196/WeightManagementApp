@@ -1,7 +1,5 @@
 <?php
 
-// session_start();
-
 require_once('./../../../config/config.php');
 
 class Database
@@ -105,11 +103,11 @@ class Database
     // todosテーブルのデータを全て取得
     public function todogetAll() {
         try {
-            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-            $db['dbname'] = ltrim($db['path'], '/');
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
-            $user = $db['user'];
-            $password = $db['pass'];
+            // $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            // $db['dbname'] = ltrim($db['path'], '/');
+            // $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+            // $user = $db['user'];
+            // $password = $db['pass'];
 
             // $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo = new PDO($dsn,$user,$password);

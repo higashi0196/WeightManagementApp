@@ -19,10 +19,14 @@ class Token {
 
 class Todocontroller {
 
-    public function todos() {
+    public static function todos() {
         $todolists = Database::todogetAll();
         return $todolists;
     }
+    // public function todos() {
+    //     $todolists = Database::todogetAll();
+    //     return $todolists;
+    // }
   
     public function todocreate() {
         $data = array(
@@ -169,7 +173,7 @@ class Todocontroller {
 
 class Postcontroller {
 
-    public function posts() {
+    public static function posts() {
         $postlists = Database::postgetAll();
         return $postlists;
     }
@@ -219,7 +223,7 @@ class Postcontroller {
 
 class Weightcontroller {
 
-    public function weights() {
+    public static function weights() {
         $weightlists = Database::weightsgetAll();
         return $weightlists;
     }
@@ -273,14 +277,9 @@ class Weightcontroller {
 
 class Filecontroller {
 
-    public function files() {
+    public static function files() {
         $filelists = Database::fileAllget();
         return $filelists;
-    }
-
-    public function filenumbers() {
-        $filepages = Database::filepageAll();
-        return $filepages;
     }
 
     public function filecreate() {
