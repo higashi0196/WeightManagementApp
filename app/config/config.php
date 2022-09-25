@@ -1,6 +1,6 @@
 <?php
 
-// session_start();
+session_start();
 
 // const DSN = 'mysql:host=mysql;dbname=todolists;charset=utf8mb4';
 // const USER = 'root';
