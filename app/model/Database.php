@@ -2,6 +2,12 @@
 
 require_once('./../../../config/config.php');
 
+$db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+$db['dbname'] = ltrim($db['path'], '/');
+$dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+$user = $db['user'];
+$password = $db['pass'];
+
 class Database
 {  
     public $id;
@@ -66,12 +72,6 @@ class Database
     public function setComment($comment) {
         $this->comment = $comment;
     }
-
-    // $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-    // $db['dbname'] = ltrim($db['path'], '/');
-    // $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
-    // $user = $db['user'];
-    // $password = $db['pass'];
 
     // todosテーブルのid取得
     public function todogetid($id) {
