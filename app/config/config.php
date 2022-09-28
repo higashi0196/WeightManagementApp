@@ -6,15 +6,10 @@ session_start();
 // const USER = 'root';
 // const PASSWORD = 'Nanahigashi10!';
 
-// $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-// $db['dbname'] = ltrim($db['path'], '/');
-
-$db = parse_url(getenv("CLEARDB_DATABASE_URL"));
-$db_name = substr($db["path"], 1);
+$db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+$db['dbname'] = ltrim($db['path'], '/');
 $user = $db['user'];
 $password = $db['pass'];
-$db_host = $db["host"];
+$dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
 
-$dsn ="mysql:dbname=".$db_name.";host=".$db_host;"charset=utf8";
-// $dsn = "mysql:dbname=".$db_name.";host=".$db_host;"charset=utf8";
 define ('SITE_URL', 'http://' . $_SERVER['HTTP_HOST']);
