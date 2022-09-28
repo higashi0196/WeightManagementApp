@@ -9,8 +9,10 @@ session_start();
 // $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
 $db = parse_url(getenv("CLEARDB_DATABASE_URL"));
 $db['dbname'] = ltrim($db['path'], '/');
-$dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
 $user = $db['user'];
 $password = $db['pass'];
+$db_host = $db["host"];
 
+$dsn = "mysql:dbname=.$db_name.;host=.$db_host;charset=utf8";
+// $dsn = "mysql:dbname=".$db_name.";host=".$db_host;"charset=utf8";
 define ('SITE_URL', 'http://' . $_SERVER['HTTP_HOST']);
