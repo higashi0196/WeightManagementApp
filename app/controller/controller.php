@@ -228,9 +228,14 @@ class Weightcontroller {
         return $weightlists;
     }
 
-    public function goals() {
+    public function goalweights() {
         $goallists = Database::goalget();
         return $goallists;
+    }
+
+    public function gapweights() {
+        $difference = Database::gapget();
+        return $difference;
     }
 
    public function dietcreate() {

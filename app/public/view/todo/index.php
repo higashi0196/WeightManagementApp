@@ -14,6 +14,7 @@ $postlists = $postcontroller->posts();
 
 $weightcontroller = new Weightcontroller();
 $weightlists = $weightcontroller->weights();
+$difference = $weightcontroller->gapweights();
 
 $token_error = $_SESSION['token_error'];
 unset($_SESSION['token_error']);
@@ -37,16 +38,19 @@ unset($_SESSION['token_error']);
     </h1>
 
     <?php if ($weightlists): ?>
-        <?php foreach ($weightlists as $weightlist): ?>
+        <?php foreach ($weightlists as $weight): ?>
             <p class="ideal-weight">目標体重 :</p>
-            <p class="goal-weight"><?php echo Utils::h($weightlist['goalweights']); ?> kg</p><br>
+            <p class="goal-weight"><?php echo Utils::h($weight['goalweights']); ?> kg</p><br>
             <p class="ideal-weight"> 現在の体重 :</p>
-            <p class="goal-weight"><?php echo Utils::h($weightlist['nowweights']); ?> kg</p><br>
+            <p class="goal-weight"><?php echo Utils::h($weight['nowweights']); ?> kg</p><br>
             <p class="ideal-weight">目標達成まであと :</p>
-            <p class="goal-weight"><?php echo Utils::h($weightlist['difference']); ?> kg</p>
+            <p class="goal-weight">
+            <?php foreach ($difference as $different): ?>
+                <?php echo Utils::h($different); ?>
+            <?php endforeach; ?> kg</p>
             <p class="achieve">見事達成 ! Good job !</p>
             <p class="ideal-day">
-            ( <?php echo Utils::h($weightlist['nowdate']); ?> 現在 )</p>
+            ( <?php echo Utils::h($weight['nowdate']); ?> 現在 )</p>
         <?php endforeach; ?>
     <?php elseif (empty($weightlists)): ?>
         <p class="weight-save">~ 体重を入力できます ~</p>
@@ -129,15 +133,14 @@ unset($_SESSION['token_error']);
         <span>〜 一言メッセージ 〜</span>
         <a href="./../post/post.php"><button class="post-btn">投稿する</button></a>
         <a class="wordbtn" 
-        data-id="<?php echo Utils::h($wordtodo['id']); ?>" 
         data-token="<?= Utils::h($_SESSION['token']); ?>">
         <button class="postdlt-btn">削除</button></a>
     </div>
 
     <div class="message">
         <?php if ($postlists): ?>
-            <?php foreach ($postlists as $postlist): ?> 
-                <p id="word"><?php echo Utils::h($postlist['content']); ?></p>
+            <?php foreach ($postlists as $post): ?> 
+                <p id="word"><?php echo Utils::h($post['content']); ?></p>
             <?php endforeach; ?>
         <?php else : ?>
             <p id="word">一言メッセージを入力できます</p> 
@@ -147,8 +150,8 @@ unset($_SESSION['token_error']);
 </main>
 
 <script type="text/javascript">
-    const difference = "<?php echo $weightlist['difference']; ?>";
-    const goalweight = "<?php echo $weightlist['goalweights']; ?>";
+    const difference = "<?php echo Utils::h($different); ?>";
+    const goalweight = "<?php echo $weight['goalweights']; ?>";
 </script>
 
 <script type="text/javascript" src="./../../js/main.js"></script>

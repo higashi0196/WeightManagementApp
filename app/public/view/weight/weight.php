@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $weightcontroller = new Weightcontroller();
-$goallists = $weightcontroller->goals();
+$goallists = $weightcontroller->goalweights();
 
 if($_SERVER['REQUEST_METHOD'] === 'GET') {
 
