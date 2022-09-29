@@ -1,1 +1,1 @@
-web:vendor/bin/heroku-php-apache2 public/view/todo/
+web:vendor/bin/heroku-php-apache2 app/public/
