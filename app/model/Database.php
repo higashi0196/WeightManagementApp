@@ -67,11 +67,20 @@ class Database
         $this->comment = $comment;
     }
 
+    // $pdo = new PDO($dsn,$user,$password);
+
     // todosテーブルのid取得
     public function todogetid($id) {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+
             $pdo = new PDO($dsn,$user,$password);
+
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $sql = "SELECT * FROM todos WHERE id = :id";
@@ -98,7 +107,14 @@ class Database
     public static function todogetAll() {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+
             $pdo = new PDO($dsn,$user,$password);
+
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $sql = "SELECT * FROM todos";
@@ -123,7 +139,14 @@ class Database
     public function save() {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+
             $pdo = new PDO($dsn,$user,$password);
+
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $sql = "INSERT INTO todos (title, content, created_at, updated_at) VALUES ('$this->title', '$this->content', NOW(), NOW())";
@@ -149,7 +172,14 @@ class Database
     public function update() {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+
             $pdo = new PDO($dsn,$user,$password);
+
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $sql = "UPDATE todos SET title = '$this->title', content = '$this->content', updated_at = NOW() WHERE id = '$this->id'";
@@ -177,7 +207,14 @@ class Database
     public function toggle($id) {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+
             $pdo = new PDO($dsn,$user,$password);
+
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $sql = "UPDATE todos SET is_done = NOT is_done, updated_at = NOW() WHERE id = :id";
@@ -202,7 +239,14 @@ class Database
     public function tododelete() {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+
             $pdo = new PDO($dsn,$user,$password);
+
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $sql = "DELETE FROM todos WHERE id = $this->id";
@@ -227,7 +271,14 @@ class Database
     public static function postgetAll() {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+
             $pdo = new PDO($dsn,$user,$password);
+
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $sql = "SELECT * FROM posts ORDER BY id DESC LIMIT 1";
@@ -252,7 +303,14 @@ class Database
     public function postsave() {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+
             $pdo = new PDO($dsn,$user,$password);
+
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $sql = "INSERT INTO posts (content, created_at) VALUES ('$this->content', NOW())";
@@ -277,7 +335,14 @@ class Database
     public function postdelete() {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+
             $pdo = new PDO($dsn,$user,$password);
+
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $sql = "TRUNCATE TABLE posts";
@@ -301,7 +366,14 @@ class Database
     public static function weightsgetAll() {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+
             $pdo = new PDO($dsn,$user,$password);
+
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $sql = "SELECT * FROM bodies ORDER BY id DESC LIMIT 1";
@@ -326,7 +398,14 @@ class Database
     public static function goalget() {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+
             $pdo = new PDO($dsn,$user,$password);
+
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $sql = "SELECT goalweights FROM bodies ORDER BY id DESC LIMIT 1";
@@ -352,7 +431,14 @@ class Database
     public static function gapget() {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+
             $pdo = new PDO($dsn,$user,$password);
+
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $sql = "SELECT nowweights - goalweights FROM bodies ORDER BY id DESC LIMIT 1";
@@ -380,7 +466,14 @@ class Database
     public function weightsave() {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+
             $pdo = new PDO($dsn,$user,$password);
+
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $sql = "INSERT INTO bodies (nowweights, goalweights, nowdate) VALUES ('$this->weight', '$this->body', '$this->today')";
@@ -407,7 +500,14 @@ class Database
     public static function fileAllget() {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+
             $pdo = new PDO($dsn,$user,$password);
+
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $sql = "SELECT * FROM pictures";
@@ -436,7 +536,14 @@ class Database
     public function filesave($filename,$image,$comment) {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+
             $pdo = new PDO($dsn,$user,$password);
+
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $sql = "INSERT INTO pictures (file_name, tmp_name, comment, created_at) VALUES ('$filename', '$image', '$comment', NOW())";
@@ -463,7 +570,14 @@ class Database
     public function filedelete() {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+
             $pdo = new PDO($dsn,$user,$password);
+
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $sql = "DELETE FROM pictures WHERE id = $this->id";
