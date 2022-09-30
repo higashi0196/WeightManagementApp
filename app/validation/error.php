@@ -100,7 +100,7 @@ class Validation {
         if (empty($this->data['title'])) {
             $this->title_error[] = "タイトルを入力してください";
             return false;
-        } else if (50 < mb_strlen($this->data['title'], 'UTF-8')) {
+        } else if (50 < mb_strlen($this->data['title'],'UTF-8')) {
             $this->title_error[] = "50文字以内で入力してください";
             return false;
         } 
@@ -108,7 +108,7 @@ class Validation {
         if (empty($this->data['content'])) {
             $this->content_error[] = "詳細を入力してください";
             return false;
-        } else if (50 < mb_strlen($this->data['content'], 'UTF-8')) {
+        } else if (50 < mb_strlen($this->data['content'],'UTF-8')) {
             $this->content_error[] = "50文字以内で入力してください";
             return false;
         }
@@ -152,7 +152,7 @@ class Validation {
         } else if (!is_numeric($this->weightdata['body'])) {
             $this->body_error[] = "半角数字で入力してください";
             return false;
-        } else if (6 < mb_strlen($this->weightdata['body'])) {
+        } else if (6 < mb_strlen($this->weightdata['body'],'UTF-8')) {
             $this->body_error[] = "５桁以下で小数点第２位以下までで入力ください";
             return false;
         }
@@ -163,7 +163,7 @@ class Validation {
         } else if (!is_numeric($this->weightdata['weight'])) {
             $this->weight_error[] = "半角数字で入力してください";
             return false;
-        } else if (6 < mb_strlen($this->weightdata['weight'])) {
+        } else if (6 < mb_strlen($this->weightdata['weight'],'UTF-8')) {
             $this->weight_error[] = "５桁以下で小数点第２位以下までで入力ください";
             return false;
         }
@@ -208,7 +208,7 @@ class Validation {
         if (empty($this->filedata['comment'])) {
             $this->comment_error[] = "メモを入力してください";
             return false;
-        } else if (255 < mb_strlen($this->filedata['comment'], 'UTF-8')) {
+        } else if (255 < mb_strlen($this->filedata['comment'],'UTF-8')) {
             $this->comment_error[] = "255文字以内で入力してください";
             return false;
         }
