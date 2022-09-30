@@ -18,7 +18,7 @@ $difference = $weightcontroller->gapweights();
 
 $token_error = $_SESSION['token_error'];
 unset($_SESSION['token_error']);
-
+phpinfo();
 ?>
 
 <!DOCTYPE html>
