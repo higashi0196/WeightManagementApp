@@ -77,7 +77,8 @@ class Database
             $db['dbname'] = ltrim($db['path'], '/');
             $user = $db['user'];
             $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+            $dsn = "mysql:host=us-cdbr-east-06.cleardb.net;dbname=b4a5d320fa3f63;charset=utf8mb4";
+            // $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
 
@@ -111,7 +112,8 @@ class Database
             $db['dbname'] = ltrim($db['path'], '/');
             $user = $db['user'];
             $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
+            // $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
 
@@ -143,7 +145,8 @@ class Database
             $db['dbname'] = ltrim($db['path'], '/');
             $user = $db['user'];
             $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
+            // $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
 
@@ -176,7 +179,8 @@ class Database
             $db['dbname'] = ltrim($db['path'], '/');
             $user = $db['user'];
             $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
+            // $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
 
@@ -211,7 +215,8 @@ class Database
             $db['dbname'] = ltrim($db['path'], '/');
             $user = $db['user'];
             $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
+            // $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
 
@@ -243,7 +248,8 @@ class Database
             $db['dbname'] = ltrim($db['path'], '/');
             $user = $db['user'];
             $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
+            // $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
 
@@ -275,7 +281,8 @@ class Database
             $db['dbname'] = ltrim($db['path'], '/');
             $user = $db['user'];
             $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
+            // $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
 
@@ -307,7 +314,8 @@ class Database
             $db['dbname'] = ltrim($db['path'], '/');
             $user = $db['user'];
             $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
+            // $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
 
@@ -339,7 +347,8 @@ class Database
             $db['dbname'] = ltrim($db['path'], '/');
             $user = $db['user'];
             $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
+            // $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
 
@@ -370,7 +379,8 @@ class Database
             $db['dbname'] = ltrim($db['path'], '/');
             $user = $db['user'];
             $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
+            // $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
 
@@ -402,7 +412,8 @@ class Database
             $db['dbname'] = ltrim($db['path'], '/');
             $user = $db['user'];
             $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
+            // $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
 
@@ -435,7 +446,8 @@ class Database
             $db['dbname'] = ltrim($db['path'], '/');
             $user = $db['user'];
             $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
+            // $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
 
@@ -470,7 +482,8 @@ class Database
             $db['dbname'] = ltrim($db['path'], '/');
             $user = $db['user'];
             $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
+            // $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
 
@@ -504,7 +517,8 @@ class Database
             $db['dbname'] = ltrim($db['path'], '/');
             $user = $db['user'];
             $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
+            // $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
 
@@ -540,7 +554,8 @@ class Database
             $db['dbname'] = ltrim($db['path'], '/');
             $user = $db['user'];
             $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
+            // $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
 
@@ -574,7 +589,8 @@ class Database
             $db['dbname'] = ltrim($db['path'], '/');
             $user = $db['user'];
             $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
+            // $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
 
