@@ -1,4 +1,5 @@
 <?php
+
 class Validation {
 
     public function getData() {

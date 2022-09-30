@@ -2,7 +2,7 @@
 
 require_once('./../../../controller/controller.php');
 
-session_start();
+// session_start();
 $token = new Token();
 $token->create();
 
