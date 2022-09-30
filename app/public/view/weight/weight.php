@@ -8,24 +8,24 @@ $token->create();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $weightcontroller = new Weightcontroller();
-    $weightcontroller->dietcreate();
+    $weightcontroller->weightcreate();
     exit;
 }
 
 $weightcontroller = new Weightcontroller();
 $goallists = $weightcontroller->goalweights();
 
-if($_SERVER['REQUEST_METHOD'] === 'GET') {
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-    if(isset($_GET['body'])) {
+    if (isset($_GET['body'])) {
         $body = $_GET['body'];
     }
 
-    if(isset($_GET['weight'])) {
+    if (isset($_GET['weight'])) {
         $weight = $_GET['weight'];
     }
 
-    if(isset($_GET['today'])) {
+    if (isset($_GET['today'])) {
         $today = $_GET['today'];
     }
 }

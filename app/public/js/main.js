@@ -68,7 +68,7 @@
     const word = document.getElementById("word");
     const wordbtn = document.querySelector('.wordbtn');
     wordbtn.addEventListener('click', () => {
-        if (!confirm('削除する?')) {
+        if (!confirm('削除しますか?')) {
             return;
         }
         fetch('./../post/postdelete.php', {

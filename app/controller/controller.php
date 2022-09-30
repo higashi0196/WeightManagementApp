@@ -23,10 +23,6 @@ class Todocontroller {
         $todolists = Database::todogetAll();
         return $todolists;
     }
-    // public function todos() {
-    //     $todolists = Database::todogetAll();
-    //     return $todolists;
-    // }
   
     public function todocreate() {
         $data = array(
@@ -223,7 +219,7 @@ class Postcontroller {
 
 class Weightcontroller {
 
-    public  function weights() {
+    public function weights() {
         $weightlists = Database::weightsgetAll();
         return $weightlists;
     }
@@ -238,7 +234,7 @@ class Weightcontroller {
         return $difference;
     }
 
-   public function dietcreate() {
+   public function weightcreate() {
 
         $weightdata = array(
             "body" => $_POST['body'],

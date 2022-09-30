@@ -12,8 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-if($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if(isset($_GET['content'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    if (isset($_GET['content'])) {
         $content = $_GET['content'];
     }
 }

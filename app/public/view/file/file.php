@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $filecontroller = new Filecontroller();
 $filelists = $filecontroller->files(); 
 
-if($_SERVER['REQUEST_METHOD'] === 'GET') {
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (isset($_GET['comment'])) {
         $comment = $_GET['comment'];
     }
