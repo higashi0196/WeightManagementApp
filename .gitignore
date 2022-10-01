@@ -1,0 +1,8 @@
+composer.json
+composer.lock
+mysql
+php
+procfile
+vendor
+docker-compose.yml
+app/config/
