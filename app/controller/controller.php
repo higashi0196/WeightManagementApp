@@ -1,7 +1,7 @@
 <?php
 
-require_once('./../../model/Database.php');
-require_once('./../../validation/error.php');
+require_once('./../model/Database.php');
+require_once('./../validation/error.php');
 
 class Utils {
     public static function h($str) {
@@ -133,7 +133,7 @@ class Todocontroller {
         if ($validation->tokencheck() === false) {
             $token_error = $validation->getTokenErrorMessage();
             $_SESSION['token_error'] = $token_error;
-            header("Location: ./../../public/view/404.html");
+            header("Location: ./../../public/404.html");
             return;
         }
 
@@ -156,7 +156,7 @@ class Todocontroller {
         if ($validation->tokencheck() === false) {
             $token_error = $validation->getTokenErrorMessage();
             $_SESSION['token_error'] = $token_error;
-            header("Location: ./../../view/error/404.html");
+            header("Location: ./../../public/404.html");
             return;
         }
 
@@ -207,7 +207,7 @@ class Postcontroller {
         if ($validation->tokencheck() === false) {
             $token_error = $validation->getTokenErrorMessage();
             $_SESSION['token_error'] = $token_error;
-            header("Location: ./../..view/error/404.html");
+            header("Location: ./../../public/404.html");
             return;
         }
 
