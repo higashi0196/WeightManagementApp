@@ -20,7 +20,7 @@
             console.log(json);
         })
         .catch(error => {
-            window.location.href = './../../view/error/404.html';
+            window.location.href = './../view/404.html';
             console.log("画像削除に失敗しました");
         })
             filebtn.closest('li').remove();

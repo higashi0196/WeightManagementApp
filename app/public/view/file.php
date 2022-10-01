@@ -1,6 +1,6 @@
 <?php
 
-require_once('./../../../controller/controller.php');
+require_once('./../../controller/controller.php');
 
 // session_start();
 $token = new Token();
@@ -40,7 +40,7 @@ unset($_SESSION['file_error']);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>画像アップロード</title>
-    <link rel="stylesheet" href="./../../css/styles.css">
+    <link rel="stylesheet" href="./../css/styles.css">
 </head>
 <body>
     <p class="outline">画像アップロード</p>
@@ -88,7 +88,7 @@ unset($_SESSION['file_error']);
         <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
     </form>
 
-    <a href="./../todo/index.php"><button class="return-btn">戻る</button></a>
+    <a href="./index.php"><button class="return-btn">戻る</button></a>
     <ol>
         <?php foreach ($filelists as $filelist): ?>
             <li data-token="<?= Utils::h($_SESSION['token']); ?>">
@@ -102,6 +102,6 @@ unset($_SESSION['file_error']);
         <?php endforeach; ?>
     </ol>
 
-    <script type="text/javascript" src="./../../js/file.js"></script>
+    <script type="text/javascript" src="./../js/file.js"></script>
 </body>
 </html>

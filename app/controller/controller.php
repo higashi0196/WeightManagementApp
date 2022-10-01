@@ -1,7 +1,7 @@
 <?php
 
-require_once('./../../../model/Database.php');
-require_once('./../../../validation/error.php');
+require_once('./../../model/Database.php');
+require_once('./../../validation/error.php');
 
 class Utils {
     public static function h($str) {
@@ -133,7 +133,7 @@ class Todocontroller {
         if ($validation->tokencheck() === false) {
             $token_error = $validation->getTokenErrorMessage();
             $_SESSION['token_error'] = $token_error;
-            header("Location: ./../../view/error/404.html");
+            header("Location: ./../../public/view/404.html");
             return;
         }
 
@@ -198,7 +198,7 @@ class Postcontroller {
         $post = new Database;
         $post->setcontent($validation_content);
         $postresult = $post->postsave();
-        header("Location: ./../todo/index.php");
+        header("Location: ./index.php");
     }
 
     public function postdelete() {
@@ -207,7 +207,7 @@ class Postcontroller {
         if ($validation->tokencheck() === false) {
             $token_error = $validation->getTokenErrorMessage();
             $_SESSION['token_error'] = $token_error;
-            header("Location: ./../../view/error/404.html");
+            header("Location: ./../..view/error/404.html");
             return;
         }
 
@@ -272,7 +272,7 @@ class Weightcontroller {
         $weight->setweight($validation_weightdata['weight']);
         $weight->settoday($validation_weightdata['today']);
         $weightresult = $weight->weightsave();
-        header("Location: ./../todo/index.php");
+        header("Location: ./index.php");
     }
 }
 
@@ -294,7 +294,7 @@ class Filecontroller {
         $filename = basename($_FILES['img']['name']);
         $tmp_name = $_FILES['img']['tmp_name'];
         $file_type = $_FILES['img']['type'];
-        $upload_dir = './../images/';
+        $upload_dir = './images/';
         $save_filename = date('YmdHis') . $filename;
         $save_path = $upload_dir . $save_filename;
         $image = base64_encode($save_path);

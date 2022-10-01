@@ -1,6 +1,6 @@
 <?php
 
-require_once('./../../../controller/controller.php');
+require_once('./../../controller/controller.php');
 
 // session_start();
 $token = new Token();
@@ -31,7 +31,7 @@ unset($_SESSION['post_error']);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>明日への一言</title>
-    <link rel="stylesheet" href="./../../css/styles.css">
+    <link rel="stylesheet" href="./../css/styles.css">
 </head>
 <body>
     <p class="outline">一言メッセージ</p>
@@ -55,6 +55,6 @@ unset($_SESSION['post_error']);
         <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
     </form>
 
-    <a href="./../todo/index.php"><button class="return-btn">戻る</button></a>
+    <a href="./index.php"><button class="return-btn">戻る</button></a>
 </body>
 </html>
