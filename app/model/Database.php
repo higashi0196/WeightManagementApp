@@ -73,11 +73,6 @@ class Database
     public function todogetid($id) {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
-            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-            $db['dbname'] = ltrim($db['path'], '/');
-            $user = $db['user'];
-            $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
 
@@ -107,11 +102,6 @@ class Database
     public static function todogetAll() {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
-            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-            $db['dbname'] = ltrim($db['path'], '/');
-            $user = $db['user'];
-            $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -137,12 +127,7 @@ class Database
     // todosテーブルにtitle(タイトル),content(詳細)のデータ保存
     public function save() {
         try {
-             // $pdo = new PDO(DSN, USER, PASSWORD);
-            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-            $db['dbname'] = ltrim($db['path'], '/');
-            $user = $db['user'];
-            $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
+            // $pdo = new PDO(DSN, USER, PASSWORD);
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -170,11 +155,6 @@ class Database
     public function update() {
         try {
              // $pdo = new PDO(DSN, USER, PASSWORD);
-            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-            $db['dbname'] = ltrim($db['path'], '/');
-            $user = $db['user'];
-            $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -204,11 +184,6 @@ class Database
     public function toggle($id) {
         try {
              // $pdo = new PDO(DSN, USER, PASSWORD);
-            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-            $db['dbname'] = ltrim($db['path'], '/');
-            $user = $db['user'];
-            $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -235,11 +210,6 @@ class Database
     public function tododelete() {
         try {
              // $pdo = new PDO(DSN, USER, PASSWORD);
-            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-            $db['dbname'] = ltrim($db['path'], '/');
-            $user = $db['user'];
-            $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -266,11 +236,6 @@ class Database
     public static function postgetAll() {
         try {
              // $pdo = new PDO(DSN, USER, PASSWORD);
-            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-            $db['dbname'] = ltrim($db['path'], '/');
-            $user = $db['user'];
-            $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -297,11 +262,6 @@ class Database
     public function postsave() {
         try {
              // $pdo = new PDO(DSN, USER, PASSWORD);
-            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-            $db['dbname'] = ltrim($db['path'], '/');
-            $user = $db['user'];
-            $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -328,11 +288,6 @@ class Database
     public function postdelete() {
         try {
              // $pdo = new PDO(DSN, USER, PASSWORD);
-            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-            $db['dbname'] = ltrim($db['path'], '/');
-            $user = $db['user'];
-            $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -358,11 +313,6 @@ class Database
     public static function weightsgetAll() {
         try {
              // $pdo = new PDO(DSN, USER, PASSWORD);
-            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-            $db['dbname'] = ltrim($db['path'], '/');
-            $user = $db['user'];
-            $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -389,11 +339,6 @@ class Database
     public static function goalget() {
         try {
              // $pdo = new PDO(DSN, USER, PASSWORD);
-            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-            $db['dbname'] = ltrim($db['path'], '/');
-            $user = $db['user'];
-            $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -421,11 +366,6 @@ class Database
     public static function gapget() {
         try {
              // $pdo = new PDO(DSN, USER, PASSWORD);
-            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-            $db['dbname'] = ltrim($db['path'], '/');
-            $user = $db['user'];
-            $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -455,11 +395,6 @@ class Database
     public function weightsave() {
         try {
              // $pdo = new PDO(DSN, USER, PASSWORD);
-            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-            $db['dbname'] = ltrim($db['path'], '/');
-            $user = $db['user'];
-            $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -488,11 +423,6 @@ class Database
     public static function fileAllget() {
         try {
              // $pdo = new PDO(DSN, USER, PASSWORD);
-            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-            $db['dbname'] = ltrim($db['path'], '/');
-            $user = $db['user'];
-            $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -523,11 +453,6 @@ class Database
     public function filesave($filename,$image,$comment) {
         try {
              // $pdo = new PDO(DSN, USER, PASSWORD);
-            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-            $db['dbname'] = ltrim($db['path'], '/');
-            $user = $db['user'];
-            $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -556,11 +481,6 @@ class Database
     public function filedelete() {
         try {
              // $pdo = new PDO(DSN, USER, PASSWORD);
-            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-            $db['dbname'] = ltrim($db['path'], '/');
-            $user = $db['user'];
-            $password = $db['pass'];
-            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

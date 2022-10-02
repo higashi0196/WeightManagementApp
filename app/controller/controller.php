@@ -169,7 +169,7 @@ class Todocontroller {
 
 class Postcontroller {
 
-    public  function posts() {
+    public function posts() {
         $postlists = Database::postgetAll();
         return $postlists;
     }
