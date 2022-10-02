@@ -67,12 +67,16 @@ class Database
         $this->comment = $comment;
     }
 
-    // $pdo = new PDO($dsn,$user,$password);
-
     // todosテーブルのid取得
     public function todogetid($id) {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
+
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
 
@@ -103,6 +107,12 @@ class Database
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
 
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
+            
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -129,6 +139,12 @@ class Database
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
 
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
+            
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -154,7 +170,13 @@ class Database
     // todosテーブルにtitle(タイトル),content(詳細)のデータを更新
     public function update() {
         try {
-             // $pdo = new PDO(DSN, USER, PASSWORD);
+            // $pdo = new PDO(DSN, USER, PASSWORD);
+
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -183,8 +205,14 @@ class Database
     // 1 = true, 0 = false として,insert時はfalseにて保存
     public function toggle($id) {
         try {
-             // $pdo = new PDO(DSN, USER, PASSWORD);
+            // $pdo = new PDO(DSN, USER, PASSWORD);
 
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
+    
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -209,7 +237,13 @@ class Database
     // todosテーブルのデータを削除
     public function tododelete() {
         try {
-             // $pdo = new PDO(DSN, USER, PASSWORD);
+            // $pdo = new PDO(DSN, USER, PASSWORD);
+
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -235,7 +269,13 @@ class Database
     // postsテーブルの最新データのみ取得
     public static function postgetAll() {
         try {
-             // $pdo = new PDO(DSN, USER, PASSWORD);
+            // $pdo = new PDO(DSN, USER, PASSWORD);
+
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -261,7 +301,13 @@ class Database
     // postsテーブルのcontentデータを保存
     public function postsave() {
         try {
-             // $pdo = new PDO(DSN, USER, PASSWORD);
+            // $pdo = new PDO(DSN, USER, PASSWORD);
+
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -287,7 +333,13 @@ class Database
     // postsテーブルの全てのデータを削除
     public function postdelete() {
         try {
-             // $pdo = new PDO(DSN, USER, PASSWORD);
+            // $pdo = new PDO(DSN, USER, PASSWORD);
+
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -312,7 +364,13 @@ class Database
     // bodiesテーブルの最新データのみ取得
     public static function weightsgetAll() {
         try {
-             // $pdo = new PDO(DSN, USER, PASSWORD);
+            // $pdo = new PDO(DSN, USER, PASSWORD);
+
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -338,7 +396,13 @@ class Database
     // bodiesテーブルのgoalweights(目標体重)の最新データのみ取得
     public static function goalget() {
         try {
-             // $pdo = new PDO(DSN, USER, PASSWORD);
+            // $pdo = new PDO(DSN, USER, PASSWORD);
+
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -365,7 +429,13 @@ class Database
     // 最新データのみ取得
     public static function gapget() {
         try {
-             // $pdo = new PDO(DSN, USER, PASSWORD);
+            // $pdo = new PDO(DSN, USER, PASSWORD);
+
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -394,7 +464,13 @@ class Database
     // nowdate(現在の日付)
     public function weightsave() {
         try {
-             // $pdo = new PDO(DSN, USER, PASSWORD);
+            // $pdo = new PDO(DSN, USER, PASSWORD);
+
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -422,7 +498,13 @@ class Database
     // picturesテーブルのデータを取得
     public static function fileAllget() {
         try {
-             // $pdo = new PDO(DSN, USER, PASSWORD);
+            // $pdo = new PDO(DSN, USER, PASSWORD);
+
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -452,7 +534,13 @@ class Database
     // $comment(一言メモ)
     public function filesave($filename,$image,$comment) {
         try {
-             // $pdo = new PDO(DSN, USER, PASSWORD);
+            // $pdo = new PDO(DSN, USER, PASSWORD);
+
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -480,7 +568,13 @@ class Database
     // picturesテーブルのデータを削除
     public function filedelete() {
         try {
-             // $pdo = new PDO(DSN, USER, PASSWORD);
+            // $pdo = new PDO(DSN, USER, PASSWORD);
+
+            $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+            $db['dbname'] = ltrim($db['path'], '/');
+            $user = $db['user'];
+            $password = $db['pass'];
+            $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8mb4";
 
             $pdo = new PDO($dsn,$user,$password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
