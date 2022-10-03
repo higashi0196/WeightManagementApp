@@ -71,9 +71,7 @@ class Database
     public function todogetid($id) {
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
-
-            // $pdo = new PDO(DSN, USER, PASSWORD);
-
+            
             $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
             $db['dbname'] = ltrim($db['path'], '/');
             $user = $db['user'];
@@ -82,24 +80,19 @@ class Database
 
             $pdo = new PDO($dsn,$user,$password);
 
-
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $sql = "SELECT * FROM todos WHERE id = :id";
 
-            $pdo->beginTransaction();
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue('id', $id);
             $stmt->execute();
             $todo = $stmt->fetch(PDO::FETCH_ASSOC);
+
             return $todo;
 
-            $pdo->commit();
-
         } catch (Exception $e) {
-            $pdo->rollBack();
             error_log($e->getMessage());
-            
             header("Location: ./../../public/404.html");
             exit;
         }
@@ -122,17 +115,13 @@ class Database
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $sql = "SELECT * FROM todos";
 
-            $pdo->beginTransaction();
             $stmt = $pdo->query($sql);
             $todolists = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
             return $todolists;
 
-            $pdo->commit();
-
         } catch (Exception $e) {
-            $pdo->rollBack();
             error_log($e->getMessage());
-            
             header("Location: ./../../public/404.html");
             exit;
         }
@@ -291,17 +280,12 @@ class Database
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $sql = "SELECT * FROM posts ORDER BY id DESC LIMIT 1";
 
-            $pdo->beginTransaction();
             $stmt = $pdo->query($sql);
             $wordlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $wordlists;
 
-            $pdo->commit();
-
         } catch (Exception $e) {
-            $pdo->rollBack();
             error_log($e->getMessage());
-            
             header("Location: ./../../public/404.html");
             exit;
         }
@@ -389,17 +373,12 @@ class Database
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $sql = "SELECT * FROM bodies ORDER BY id DESC LIMIT 1";
 
-            $pdo->beginTransaction();
             $stmt = $pdo->query($sql);
             $bodylists = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $bodylists;
-
-            $pdo->commit();
             
         } catch (Exception $e) {
-            $pdo->rollBack();
             error_log($e->getMessage());
-            
             header("Location: ./../../public/404.html");
             exit;
         }
@@ -422,17 +401,12 @@ class Database
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $sql = "SELECT goalweights FROM bodies ORDER BY id DESC LIMIT 1";
 
-            $pdo->beginTransaction();
             $stmt = $pdo->query($sql);
             $goallists = $stmt->fetch(PDO::FETCH_ASSOC);
             return $goallists;
-
-            $pdo->commit();
         
         } catch (Exception $e) {
-            $pdo->rollBack();
             error_log($e->getMessage());
-            
             header("Location: ./../../public/404.html");
             exit;
         }
@@ -456,17 +430,12 @@ class Database
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $sql = "SELECT nowweights - goalweights FROM bodies ORDER BY id DESC LIMIT 1";
 
-            $pdo->beginTransaction();
             $stmt = $pdo->query($sql);
             $difference = $stmt->fetch(PDO::FETCH_ASSOC);
             return $difference;
-
-            $pdo->commit();
         
         } catch (Exception $e) {
-            $pdo->rollBack();
             error_log($e->getMessage());
-            
             header("Location: ./../../public/404.html");
             exit;
         }
@@ -527,17 +496,12 @@ class Database
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $sql = "SELECT * FROM pictures";
 
-            $pdo->beginTransaction();
             $stmt = $pdo->query($sql);
             $filelists = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $filelists;
 
-            $pdo->commit();
-
         } catch (PDOException $e) {
-            $pdo->rollBack();
             error_log($e->getMessage());
-            
             header("Location: ./../../public/404.html");
             exit;
         }  
