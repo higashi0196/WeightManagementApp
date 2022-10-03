@@ -1,0 +1,6 @@
+{
+	"require": {
+		"ext-mbstring": "*",
+		"php": "~7.4.8"
+	}
+}
