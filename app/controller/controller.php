@@ -295,7 +295,6 @@ class Filecontroller {
         $tmp_name = $_FILES['img']['tmp_name'];
         $file_type = $_FILES['img']['type'];
         $upload_dir = './images/';
-        // $upload_dir = './images';
         $save_filename = date('YmdHis') . $filename;
         $save_path = $upload_dir . $save_filename;
         $image = base64_encode($save_path);
