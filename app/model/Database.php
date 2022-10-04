@@ -72,7 +72,6 @@ class Database
         try {
             // $pdo = new PDO(DSN, USER, PASSWORD);
 
-            $pdo = new PDO($dsn,$user,$password);
             $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
             $db['dbname'] = ltrim($db['path'], '/');
             $user = $db['user'];
