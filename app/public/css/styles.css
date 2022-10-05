@@ -218,11 +218,11 @@ table th:nth-child(5) {
 }
 
 th,td {
-    padding: 3px 0;
     border: 3px solid rgb(75, 75, 75);
 }
 
 th {
+    padding: 3px 4px;
     background-color: rgb(180, 215, 220);
     font-size: 18px;
     font-weight: bold;
@@ -230,6 +230,7 @@ th {
 
 td {
     height: auto;
+    padding: 3px 2px;
     background-color: rgb(165, 165, 165);
     word-wrap: break-word;
 }
@@ -237,6 +238,7 @@ td {
 .edit-btn {
     width: 65px;
     height: 28px;
+    margin: 0 auto 3px;
     border-radius: 5px;
     background-color:rgb(230, 225, 75);
     font-size: 15px;
@@ -246,6 +248,7 @@ td {
 .delete-btn {
     width: 65px;
     height: 28px;
+    margin: 0 auto 3px;
     border-radius: 5px;
     background:rgb(205, 40, 20);
     font-size: 15px;
@@ -624,7 +627,7 @@ li > div {
     }
 
     td {
-        padding: 3px 4px;
+        padding-bottom: 3px 0 4px;
         font-size: 16px;
     }
 
