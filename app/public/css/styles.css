@@ -603,8 +603,8 @@ li > div {
     }
 
     input[type=checkbox] {
-        transform: scale(1.0);
-        margin: auto;
+        transform: scale(0.8);
+        margin: 0 auto;
     }
 
     table th:nth-child(1) {
@@ -631,13 +631,13 @@ li > div {
     .edit-btn {
         width: 50px;
         height: auto;
-        font-size: 12px;
+        font-size: 13px;
     }
 
     .delete-btn {
         width: 50px;
         height: auto;
-        font-size: 12px;
+        font-size: 13px;
     }
 
     /* テーブル CSS  終了 */
