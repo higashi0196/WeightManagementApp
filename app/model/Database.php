@@ -142,7 +142,7 @@ class Database
 
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-            $sql = "INSERT INTO todos (title, content, created_at, updated_at) VALUES ('$this->title', '$this->content', NOW(), NOW())";
+            $sql = "INSERT INTO todos (title, content, created_at) VALUES ('$this->title', '$this->content', NOW())";
 
             $pdo->beginTransaction();
             $stmt = $pdo->prepare($sql);
@@ -512,7 +512,7 @@ class Database
     // $save_path(保存先のパス),
     // $image(保存先のパスのバイナリデータ),
     // $comment(一言メモ)
-    public function filesave($filename,$image,$comment) {
+    public function filesave($filename,$save_path,$comment) {
         try {
             $pdo = new PDO(DSN, USER, PASSWORD);
 
@@ -526,12 +526,12 @@ class Database
 
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-            $sql = "INSERT INTO pictures (file_name, tmp_name, comment, created_at) VALUES ('$filename', '$image', '$comment', NOW())";
+            $sql = "INSERT INTO pictures (file_name, file_path, comment, created_at) VALUES ('$filename', '$save_path', '$comment', NOW())";
 
             $pdo->beginTransaction();
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue('file_name', $filename);
-            $stmt->bindValue('tmp_name', $image);
+            $stmt->bindValue('file_path', $save_path);
             $stmt->bindValue('comment', $comment);
             $stmt->execute();
 

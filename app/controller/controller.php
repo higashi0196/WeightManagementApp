@@ -294,10 +294,9 @@ class Filecontroller {
         $filename = basename($_FILES['img']['name']);
         $tmp_name = $_FILES['img']['tmp_name'];
         $file_type = $_FILES['img']['type'];
-        $upload_dir = './images/';
+        $upload_dir = 'images/';
         $save_filename = date('YmdHis') . $filename;
         $save_path = $upload_dir . $save_filename;
-        $image = base64_encode($save_path);
         $filetype = pathinfo($save_path,PATHINFO_EXTENSION);
         $arrImagetype = array('jpg','jpeg','png','gif');
         $comment = filter_input(INPUT_POST, 'comment');
@@ -346,7 +345,8 @@ class Filecontroller {
 
         if (move_uploaded_file($tmp_name,$save_path)) {
             $picture = new Database;
-            $imgresult = $picture->filesave($filename,$image,$comment);
+            $imgresult = $picture->filesave($filename,$save_path,$comment);
+            // $imgresult = $picture->filesave($filename,$image,$comment);
             header("Location: ./file.php");
         }
     }

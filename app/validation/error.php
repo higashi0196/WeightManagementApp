@@ -108,8 +108,8 @@ class Validation {
         if (empty($this->data['content'])) {
             $this->content_error[] = "詳細を入力してください";
             return false;
-        } else if (50 < mb_strlen($this->data['content'],'UTF-8')) {
-            $this->content_error[] = "50文字以内で入力してください";
+        } else if (255 < mb_strlen($this->data['content'],'UTF-8')) {
+            $this->content_error[] = "255文字以内で入力してください";
             return false;
         }
     }
