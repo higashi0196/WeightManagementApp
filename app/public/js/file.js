@@ -8,7 +8,7 @@
             if (!confirm('削除しますか?')) {
                 return;
             }
-        fetch('./filedelete.php', {
+        fetch('./filedeletw.php', {
             method: 'POST',
             body: new URLSearchParams({
             id: filebtn.dataset.id,
@@ -20,7 +20,7 @@
             console.log(json);
         })
         .catch(error => {
-            window.location.href = './404.html';
+            window.location.href = './../error/404.html';
             console.log("画像削除に失敗しました");
         })
             filebtn.closest('li').remove();

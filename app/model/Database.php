@@ -1,6 +1,6 @@
 <?php
 
-require_once('./../config/config.php');
+require_once('./../../config/config.php');
 
 class Database
 {  
@@ -93,7 +93,7 @@ class Database
 
         } catch (Exception $e) {
             error_log($e->getMessage());
-            header("Location: ./../../public/404.html");
+            header("Location: ./../../view/error/404.html");
             exit;
         }
     }
@@ -122,7 +122,7 @@ class Database
 
         } catch (Exception $e) {
             error_log($e->getMessage());
-            header("Location: ./../../public/404.html");
+            header("Location: ./../../view/error/404.html");
             exit;
         }
     }
@@ -156,7 +156,7 @@ class Database
             $pdo->rollBack();
             error_log($e->getMessage());
             
-            header("Location: ./../../public/404.html");
+            header("Location: ./../../view/error/404.html");
             exit;
         }
     }
@@ -191,7 +191,7 @@ class Database
             $pdo->rollBack();
             error_log($e->getMessage());
             
-            header("Location: ./../../public/404.html");
+            header("Location: ./../../view/error/404.html");
             exit;
         }   
     }
@@ -225,7 +225,7 @@ class Database
             $pdo->rollBack();
             error_log($e->getMessage());
             
-            header("Location: ./../../public/404.html");
+            header("Location: ./../../view/error/404.html");
             exit;
         }
     }
@@ -258,7 +258,7 @@ class Database
             $pdo->rollBack();
             error_log($e->getMessage());
             
-            header("Location: ./../../public/404.html");
+            header("Location: ./../../view/error/404.html");
             exit;
         }   
     }
@@ -286,7 +286,7 @@ class Database
 
         } catch (Exception $e) {
             error_log($e->getMessage());
-            header("Location: ./../../public/404.html");
+            header("Location: ./../../view/error/404.html");
             exit;
         }
     }
@@ -319,7 +319,7 @@ class Database
             $pdo->rollBack();
             error_log($e->getMessage());
             
-            header("Location: ./../../public/404.html");
+            header("Location: ./../../view/error/404.html");
             exit;
         }
     }
@@ -351,7 +351,7 @@ class Database
             $pdo->rollBack();
             error_log($e->getMessage());
             
-            header("Location: ./../../public/404.html");
+            header("Location: ./../../view/error/404.html");
             exit;
         }   
     }
@@ -379,7 +379,7 @@ class Database
             
         } catch (Exception $e) {
             error_log($e->getMessage());
-            header("Location: ./../../public/404.html");
+            header("Location: ./../../view/error/404.html");
             exit;
         }
     }
@@ -407,7 +407,7 @@ class Database
         
         } catch (Exception $e) {
             error_log($e->getMessage());
-            header("Location: ./../../public/404.html");
+            header("Location: ./../../view/error/404.html");
             exit;
         }
     }
@@ -436,7 +436,7 @@ class Database
         
         } catch (Exception $e) {
             error_log($e->getMessage());
-            header("Location: ./../../public/404.html");
+            header("Location: ./../../view/error/404.html");
             exit;
         }
     }
@@ -474,7 +474,7 @@ class Database
             $pdo->rollBack();
             error_log($e->getMessage());
             
-            header("Location: ./../../public/404.html");
+            header("Location: ./../../view/error/404.html");
             exit;
         }
     }
@@ -502,7 +502,7 @@ class Database
 
         } catch (PDOException $e) {
             error_log($e->getMessage());
-            header("Location: ./../../public/404.html");
+            header("Location: ./../../view/error/404.html");
             exit;
         }  
     }
@@ -541,7 +541,7 @@ class Database
             $pdo->rollBack();
             error_log($e->getMessage());
             
-            header("Location: ./../../public/404.html");
+            header("Location: ./../../view/error/404.html");
             exit;
         }   
     }
@@ -574,7 +574,7 @@ class Database
             $pdo->rollBack();
             error_log($e->getMessage());
             
-            header("Location: ./../../public/404.html");
+            header("Location: ./../../view/error/404.html");
             exit;
         }   
     }      

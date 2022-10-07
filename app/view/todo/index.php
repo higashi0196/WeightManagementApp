@@ -1,6 +1,6 @@
 <?php
 
-require_once('./../controller/controller.php');
+require_once('./../../controller/controller.php');
 
 $token = new Token();
 $token->create();
@@ -26,14 +26,14 @@ unset($_SESSION['token_error']);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>体重管理アプリ</title>
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./../../public/css/styles.css">
 </head>
 <body>
 <main>
     <h1>
-        <img src="./logos/logo3.png" alt="">
+        <img src="./../logos/logo3.png" alt="">
         <a>体重管理リスト</a>
-        <img src="./logos/logo3.png" alt="">
+        <img src="./../logos/logo3.png" alt="">
     </h1>
 
     <?php if ($weightlists): ?>
@@ -62,8 +62,8 @@ unset($_SESSION['token_error']);
     <?php endif; ?> 
    
     <div>
-        <a href="./weight.php"><button class="weight-btn">体重記入</button></a>
-        <a href="./file.php"><button class="picutre-btn">画像アップロード</button></a>
+        <a href="./../weight/weight.php"><button class="weight-btn">体重記入</button></a>
+        <a href="./../file/file.php"><button class="picutre-btn">画像アップロード</button></a>
     </div>
 
     <?php if ($token_error):?>
@@ -74,7 +74,7 @@ unset($_SESSION['token_error']);
 
     <div>
         <h2>〜 ボディリメイク ToDoリスト 〜</h2>
-        <a href="create.php"><button class="new-btn">新規登録</button></a>
+        <a href="./create.php"><button class="new-btn">新規登録</button></a>
     </div>
 
     <?php if ($todolists): ?>
@@ -130,7 +130,7 @@ unset($_SESSION['token_error']);
 
     <div class="postcreate">
         <span>〜 一言メッセージ 〜</span>
-        <a href="./post.php"><button class="post-btn">投稿する</button></a>
+        <a href="./../post/post.php"><button class="post-btn">投稿する</button></a>
         <a class="wordbtn" 
         data-token="<?= Utils::h($_SESSION['token']); ?>">
         <button class="postdlt-btn">削除</button></a>
@@ -153,6 +153,6 @@ unset($_SESSION['token_error']);
     const goalweight = "<?php echo $weight['goalweights']; ?>";
 </script>
 
-<script type="text/javascript" src="./js/main.js"></script>
+<script type="text/javascript" src="./../../public/js/main.js"></script>
 </body>
 </html>

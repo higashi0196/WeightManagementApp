@@ -1,7 +1,7 @@
 <?php
 
-require_once('./../model/Database.php');
-require_once('./../validation/error.php');
+require_once('./../../model/Database.php');
+require_once('./../../validation/error.php');
 
 class Utils {
     public static function h($str) {
@@ -198,7 +198,7 @@ class Postcontroller {
         $post = new Database;
         $post->setcontent($validation_content);
         $postresult = $post->postsave();
-        header("Location: ./index.php");
+        header("Location: ./../todo/index.php");
     }
 
     public function postdelete() {
@@ -272,7 +272,7 @@ class Weightcontroller {
         $weight->setweight($validation_weightdata['weight']);
         $weight->settoday($validation_weightdata['today']);
         $weightresult = $weight->weightsave();
-        header("Location: ./index.php");
+        header("Location: ./../todo/index.php");
     }
 }
 
@@ -294,7 +294,7 @@ class Filecontroller {
         $filename = basename($_FILES['img']['name']);
         $tmp_name = $_FILES['img']['tmp_name'];
         $file_type = $_FILES['img']['type'];
-        $upload_dir = 'images/';
+        $upload_dir = './../images/';
         $save_filename = date('YmdHis') . $filename;
         $save_path = $upload_dir . $save_filename;
         $filetype = pathinfo($save_path,PATHINFO_EXTENSION);
@@ -346,7 +346,6 @@ class Filecontroller {
         if (move_uploaded_file($tmp_name,$save_path)) {
             $picture = new Database;
             $imgresult = $picture->filesave($filename,$save_path,$comment);
-            // $imgresult = $picture->filesave($filename,$image,$comment);
             header("Location: ./file.php");
         }
     }

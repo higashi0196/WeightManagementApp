@@ -1,6 +1,6 @@
 <?php
 
-require_once('./../controller/controller.php');
+require_once('./../../controller/controller.php');
 
 $token = new Token();
 $token->create();
@@ -39,7 +39,7 @@ unset($_SESSION['file_error']);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>画像アップロード</title>
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./../../public/css/styles.css">
 </head>
 <body>
     <p class="outline">画像アップロード</p>
@@ -87,12 +87,11 @@ unset($_SESSION['file_error']);
         <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
     </form>
 
-    <a href="./index.php"><button class="return-btn">戻る</button></a>
+    <a href="./../todo/index.php"><button class="return-btn">戻る</button></a>
     <ol>
         <?php foreach ($filelists as $filelist): ?>
             <li data-token="<?= Utils::h($_SESSION['token']); ?>">
                 <img src="<?php echo Utils::h($filelist['file_path']); ?>" alt="">
-                <!-- <img src="<?php echo Utils::h(base64_decode($filelist['tmp_name'])); ?>" alt=""> -->
                 <div>
                     <p class="list-memo"> 〜〜  一言メモ 〜〜 </p>
                     <p class="list-comment"><?php echo Utils::h($filelist['comment']); ?></p>
@@ -102,6 +101,6 @@ unset($_SESSION['file_error']);
         <?php endforeach; ?>
     </ol>
 
-    <script type="text/javascript" src="./js/file.js"></script>
+    <script type="text/javascript" src="./../../public/js/file.js"></script>
 </body>
 </html>

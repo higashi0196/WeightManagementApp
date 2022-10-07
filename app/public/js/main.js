@@ -21,7 +21,7 @@
             console.log(json);
         })
         .catch(error => {
-            window.location.href = './404.html';
+            window.location.href = './../error/404.html';
             console.log("削除に失敗しました");
         })
             btn.closest('tr').remove();
@@ -44,7 +44,7 @@
             console.log(json);
         })
         .catch(error => {
-            window.location.href = './404.html';
+            window.location.href = './../error/404.html';
             console.log("削除に失敗しました");
         });
             toggle.closest('tr').children[1].classList.toggle('done');
@@ -71,7 +71,7 @@
         if (!confirm('削除しますか?')) {
             return;
         }
-        fetch('./postdelete.php', {
+        fetch('./../post/postdelete.php', {
             method: 'POST',
             body: new URLSearchParams({
             token: wordbtn.dataset.token,
@@ -84,7 +84,7 @@
             console.log(json);
         })
         .catch(error => {
-            window.location.href = './404.html';
+            window.location.href = './../error/404.html';
             console.log("削除に失敗しました");
         })
     });
