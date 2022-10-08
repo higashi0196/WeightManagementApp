@@ -35,20 +35,20 @@ unset($_SESSION['post_error']);
 <body>
     <p class="outline">一言メッセージ</p>
 
-    <?php if ($token_error):?>
+    <?php if ($token_error): ?>
         <?php foreach ($token_error as $token_err): ?>
             <p class="error-log"><?php echo Utils::h($token_err);?></p>
-        <?php endforeach;?>
-    <?endif;?>
+        <?php endforeach; ?>
+    <?endif; ?>
 
     <form method="POST" action="./post.php">
         <textarea name="postcontent" placeholder="メッセージをどうぞ"></textarea>
         
-        <?php if ($post_error):?>
+        <?php if ($post_error): ?>
             <?php foreach ($post_error as $post_err): ?>
-                <p class="error-log"><?php echo Utils::h($post_err);?></p>
-            <?php endforeach;?>
-        <?endif;?>
+                <p class="error-log"><?php echo Utils::h($post_err); ?></p>
+            <?php endforeach; ?>
+        <?endif; ?>
 
         <button type="submit" class="post-btn2">投稿する</button>
         <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
