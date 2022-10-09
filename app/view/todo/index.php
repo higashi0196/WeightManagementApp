@@ -1,6 +1,7 @@
 <?php
 
 require_once('./../../controller/controller.php');
+// error_reporting(E_ALL & ~E_NOTICE);
 
 $token = new Token();
 $token->create();
@@ -17,7 +18,9 @@ $difference = $weightcontroller->gapweights();
 
 $token_error = $_SESSION['token_error'];
 unset($_SESSION['token_error']);
+
 // phpinfo();
+
 ?>
 
 <!DOCTYPE html>
@@ -66,11 +69,11 @@ unset($_SESSION['token_error']);
         <a href="./../file/file.php"><button class="picutre-btn">画像アップロード</button></a>
     </div>
 
-    <?php if ($token_error):?>
-        <?php foreach ($token_error as $token_err): ?>
-            <p class="error-log"><?php echo Utils::h($token_err);?></p>
-        <?php endforeach;?>
-    <?endif;?>
+        <?php if ($token_error): ?>
+            <?php foreach ($token_error as $token_err): ?>
+                <p class="error-log"><?php echo Utils::h($token_err);?></p>
+            <?php endforeach?>
+        <?php endif; ?>
 
     <div>
         <h2>〜 ボディリメイク ToDoリスト 〜</h2>
@@ -89,7 +92,7 @@ unset($_SESSION['token_error']);
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($todolists as $todo):?>
+                <?php foreach ($todolists as $todo): ?>
                     <tr data-token="<?= Utils::h($_SESSION['token']); ?>">
                         <td>
                             <input type="checkbox" 
@@ -149,10 +152,10 @@ unset($_SESSION['token_error']);
 </main>
 
 <script type="text/javascript">
-    const difference = "<?php echo Utils::h($different); ?>";
-    const goalweight = "<?php echo $weight['goalweights']; ?>";
+    let difference = "<?php echo Utils::h($different); ?>";
+    let goalweight = "<?php echo $weight['goalweights']; ?>";
 </script>
-
 <script type="text/javascript" src="./../../public/js/main.js"></script>
+
 </body>
 </html>

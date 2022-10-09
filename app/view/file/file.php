@@ -1,6 +1,7 @@
 <?php
 
 require_once('./../../controller/controller.php');
+// error_reporting(E_ALL & ~E_NOTICE);
 
 $token = new Token();
 $token->create();
@@ -48,7 +49,7 @@ unset($_SESSION['file_error']);
         <?php foreach ($token_error as $token_err): ?>
             <p class="error-log"><?php echo Utils::h($token_err);?></p>
         <?php endforeach;?>
-    <?endif;?>
+    <?php endif; ?>
 
     <form action="./file.php" method="POST" enctype="multipart/form-data">
         <input type="file" name="img" class="fileinput">
@@ -57,19 +58,19 @@ unset($_SESSION['file_error']);
             <?php foreach ($file_error as $file_err): ?>
                 <p class="error-log"><?php echo Utils::h($file_err);?></p>
             <?php endforeach;?>
-        <?endif;?>
+        <?php endif; ?>
 
         <?php if ($filemodel_error):?>
             <?php foreach ($filemodel_error as $filemodel_err): ?>
                 <p class="error-log"><?php echo Utils::h($filemodel_err);?></p>
             <?php endforeach;?>
-        <?endif;?>
+        <?php endif; ?>
 
         <?php if ($filesize_error):?>
             <?php foreach ($filesize_error as $filesize_err): ?>
                 <p class="error-log"><?php echo Utils::h($filesize_err);?></p>
             <?php endforeach;?>
-        <?endif;?>
+        <?php endif; ?>
 
         <div>
             <p class="memo">〜 一言メモ 〜</p>
@@ -80,7 +81,7 @@ unset($_SESSION['file_error']);
             <?php foreach ($comment_error as $comment_err): ?>
                 <p class="error-log"><?php echo Utils::h($comment_err);?></p>
             <?php endforeach;?>
-        <?endif;?>
+        <?php endif; ?>
 
         <button type="submit" class="file-btn">アップロード</button>
         <input type="hidden" name="MAX_FILE_SIZE" value="1048576">

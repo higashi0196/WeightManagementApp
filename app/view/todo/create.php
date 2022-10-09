@@ -1,6 +1,7 @@
 <?php
 
 require_once('./../../controller/controller.php');
+// error_reporting(E_ALL & ~E_NOTICE);
 
 $token = new Token();
 $token->create();
@@ -47,7 +48,7 @@ unset($_SESSION['content_error']);
         <?php foreach ($token_error as $token_err): ?>
             <p class="error-log"><?php echo Utils::h($token_err);?></p>
         <?php endforeach;?>
-    <?endif;?>
+    <?php endif; ?>
 
     <form method="POST" action="./create.php">
         <div>
@@ -60,19 +61,19 @@ unset($_SESSION['content_error']);
                 <?php foreach ($title_error as $title_err): ?>
                     <p class="error-log"><?php echo Utils::h($title_err);?></p>
                 <?php endforeach;?>
-            <?endif;?>
+            <?php endif; ?>
         </div>
         <div>
             <p class="title">詳細</p>
             <input type="text" name="content" class="titleinput" 
-            value="<?php echo Utils::h($content);?>" 
+            value="<?php echo $content;?>" 
             placeholder="詳細を入力できます">
             
             <?php if ($content_error):?>
                 <?php foreach ($content_error as $content_err): ?>
                     <p class="error-log"><?php echo Utils::h($content_err);?></p>
                 <?php endforeach;?>
-            <?endif;?>
+            <?php endif; ?>
         </div>
         <button type="submit" class="register-btn">登録</button>
         <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">

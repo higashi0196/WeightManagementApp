@@ -1,6 +1,7 @@
 <?php
 
 require_once('./../../controller/controller.php');
+// error_reporting(E_ALL & ~E_NOTICE);
 
 $postcontroller = new Postcontroller();
 $postresult = $postcontroller->postdelete();

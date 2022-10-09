@@ -1,6 +1,7 @@
 <?php
 
 require_once('./../../controller/controller.php');
+// error_reporting(E_ALL & ~E_NOTICE);
 
 $token = new Token();
 $token->create();
@@ -39,7 +40,7 @@ unset($_SESSION['post_error']);
         <?php foreach ($token_error as $token_err): ?>
             <p class="error-log"><?php echo Utils::h($token_err);?></p>
         <?php endforeach; ?>
-    <?endif; ?>
+    <?php endif; ?>
 
     <form method="POST" action="./post.php">
         <textarea name="postcontent" placeholder="メッセージをどうぞ"></textarea>
@@ -48,7 +49,7 @@ unset($_SESSION['post_error']);
             <?php foreach ($post_error as $post_err): ?>
                 <p class="error-log"><?php echo Utils::h($post_err); ?></p>
             <?php endforeach; ?>
-        <?endif; ?>
+        <?php endif; ?>
 
         <button type="submit" class="post-btn2">投稿する</button>
         <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">

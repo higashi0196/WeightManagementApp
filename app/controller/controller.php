@@ -73,7 +73,8 @@ class Todocontroller {
             }
         }
 
-        $todo = Database::todogetid($id);
+        $todo = new Database;
+        $todo = $todo->todogetid($id);
 
         $data = array(
             "todo" => $todo,
