@@ -84,7 +84,7 @@ class Database
             return $todo;
 
         } catch (Exception $e) {
-            error_log($e->getMessage());
+            error_log('todosテーブルのid取得に失敗しました'.$e->getMessage());
             header("Location: ./../../view/error/404.html");
             exit;
         }
@@ -104,7 +104,7 @@ class Database
             return $todolists;
 
         } catch (Exception $e) {
-            error_log($e->getMessage());
+            error_log('todosテーブルの全データ取得に失敗しました'.$e->getMessage());
             header("Location: ./../../view/error/404.html");
             exit;
         }
@@ -128,8 +128,7 @@ class Database
 
         } catch (Exception $e) {
             $pdo->rollBack();
-            error_log($e->getMessage());
-            
+            error_log('todosの新規作成に失敗しました'.$e->getMessage());
             header("Location: ./../../view/error/404.html");
             exit;
         }
@@ -152,10 +151,9 @@ class Database
 
             $pdo->commit();
 
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             $pdo->rollBack();
-            error_log($e->getMessage());
-            
+            error_log('todosの更新に失敗しました'.$e->getMessage());
             header("Location: ./../../view/error/404.html");
             exit;
         }   
@@ -179,8 +177,7 @@ class Database
 
         } catch (Exception $e) {
             $pdo->rollBack();
-            error_log($e->getMessage());
-            
+            error_log('todosのtoggle更新に失敗しました' .$e->getMessage());
             header("Location: ./../../view/error/404.html");
             exit;
         }
@@ -201,10 +198,9 @@ class Database
 
             $pdo->commit();
 
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             $pdo->rollBack();
-            error_log($e->getMessage());
-            
+            error_log('todosの削除に失敗しました' .$e->getMessage());
             header("Location: ./../../view/error/404.html");
             exit;
         }   
@@ -223,7 +219,7 @@ class Database
             return $wordlists;
 
         } catch (Exception $e) {
-            error_log($e->getMessage());
+            error_log('postsテーブルの最新データの取得に失敗しました'.$e->getMessage());
             header("Location: ./../../view/error/404.html");
             exit;
         }
@@ -246,8 +242,7 @@ class Database
 
         } catch (Exception $e) {
             $pdo->rollBack();
-            error_log($e->getMessage());
-            
+            error_log('postsの新規作成に失敗しました'.$e->getMessage());
             header("Location: ./../../view/error/404.html");
             exit;
         }
@@ -267,10 +262,9 @@ class Database
 
             $pdo->commit();
 
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             $pdo->rollBack();
-            error_log($e->getMessage());
-            
+            error_log('postsの削除に失敗しました'.$e->getMessage());
             header("Location: ./../../view/error/404.html");
             exit;
         }   
@@ -289,7 +283,7 @@ class Database
             return $bodylists;
             
         } catch (Exception $e) {
-            error_log($e->getMessage());
+            error_log('bodiesテーブルのデータの取得に失敗しました'.$e->getMessage());
             header("Location: ./../../view/error/404.html");
             exit;
         }
@@ -308,7 +302,7 @@ class Database
             return $goallists;
         
         } catch (Exception $e) {
-            error_log($e->getMessage());
+            error_log('bodiesテーブルのgoalweightsの取得に失敗しました'.$e->getMessage());
             header("Location: ./../../view/error/404.html");
             exit;
         }
@@ -328,7 +322,7 @@ class Database
             return $difference;
         
         } catch (Exception $e) {
-            error_log($e->getMessage());
+            error_log('bodiesテーブルのdifferenceの取得に失敗しました'.$e->getMessage());
             header("Location: ./../../view/error/404.html");
             exit;
         }
@@ -356,8 +350,7 @@ class Database
         
         } catch (Exception $e) {
             $pdo->rollBack();
-            error_log($e->getMessage());
-            
+            error_log('bodiesの新規作成に失敗しました'.$e->getMessage());
             header("Location: ./../../view/error/404.html");
             exit;
         }
@@ -375,8 +368,8 @@ class Database
             $filelists = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $filelists;
 
-        } catch (PDOException $e) {
-            error_log($e->getMessage());
+        } catch (Exception $e) {
+            error_log('picturesテーブルの取得に失敗しました'.$e->getMessage());
             header("Location: ./../../view/error/404.html");
             exit;
         }  
@@ -403,10 +396,9 @@ class Database
 
             $pdo->commit();
 
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             $pdo->rollBack();
-            error_log($e->getMessage());
-            
+            error_log('picturesの新規作成に失敗しました'.$e->getMessage());
             header("Location: ./../../view/error/404.html");
             exit;
         }   
@@ -427,10 +419,9 @@ class Database
 
             $pdo->commit();
 
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             $pdo->rollBack();
-            error_log($e->getMessage());
-            
+            error_log('picturesの削除に失敗しました'.$e->getMessage());
             header("Location: ./../../view/error/404.html");
             exit;
         }   

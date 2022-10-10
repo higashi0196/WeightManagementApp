@@ -7,4 +7,3 @@ $result = $todocontroller->tododelete();
 
 $response = '非同期通信 & todo削除 成功';
 echo json_encode($response);
-echo $json;

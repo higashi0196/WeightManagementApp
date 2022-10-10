@@ -3,6 +3,5 @@ composer.lock
 procfile
 vendor
 app/config
-mysql
-php
+docker
 docker-compose.yml

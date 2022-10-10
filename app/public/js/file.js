@@ -8,7 +8,7 @@
             if (!confirm('削除しますか?')) {
                 return;
             }
-        fetch('./filedeletw.php', {
+        fetch('./filedelete.php', {
             method: 'POST',
             body: new URLSearchParams({
             id: filebtn.dataset.id,
