@@ -1,7 +1,7 @@
 <?php
 
 require_once('./../../model/Database.php');
-require_once('./../../validation/error.php');
+require_once('./../../validation/Validation.php');
 
 class Utils {
     public static function h($str) {

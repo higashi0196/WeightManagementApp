@@ -1,6 +1,6 @@
 <?php
 
-require_once('./../../controller/controller.php');
+require_once('./../../controller/Controller.php');
 
 $token = new Token();
 $token->create();
@@ -31,7 +31,6 @@ unset($_SESSION['token_error']);
     <link rel="stylesheet" href="./../../public/css/styles.css">
 </head>
 <body>
-<main>
     <h1>
         <img src="./../logos/logo3.png" alt="">
         <a>体重管理リスト</a>
@@ -70,7 +69,7 @@ unset($_SESSION['token_error']);
 
         <?php if ($token_error): ?>
             <?php foreach ($token_error as $token_err): ?>
-                <p class="error-log"><?php echo Utils::h($token_err);?></p>
+                <p class="error-log"><?php echo Utils::h($token_err); ?></p>
             <?php endforeach?>
         <?php endif; ?>
 
@@ -92,7 +91,7 @@ unset($_SESSION['token_error']);
             </thead>
             <tbody>
                 <?php foreach ($todolists as $todo): ?>
-                    <tr data-token="<?= Utils::h($_SESSION['token']); ?>">
+                    <tr data-token="<?php echo Utils::h($_SESSION['token']); ?>">
                         <td>
                             <input type="checkbox" 
                             data-id="<?php echo Utils::h($todo['id'])?>" 
@@ -134,7 +133,7 @@ unset($_SESSION['token_error']);
         <span>〜 一言メッセージ 〜</span>
         <a href="./../post/post.php"><button class="post-btn">投稿する</button></a>
         <a class="wordbtn" 
-        data-token="<?= Utils::h($_SESSION['token']); ?>">
+        data-token="<?php echo Utils::h($_SESSION['token']); ?>">
         <button class="postdlt-btn">削除</button></a>
     </div>
 
@@ -143,12 +142,10 @@ unset($_SESSION['token_error']);
             <?php foreach ($postlists as $post): ?> 
                 <p id="word"><?php echo Utils::h($post['content']); ?></p>
             <?php endforeach; ?>
-        <?php else : ?>
+        <?php else: ?>
             <p id="word">一言メッセージを入力できます</p> 
         <?php endif; ?> 
     </div>
-
-</main>
 
 <script type="text/javascript">
     let difference = "<?php echo Utils::h($different); ?>";

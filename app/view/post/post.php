@@ -1,6 +1,6 @@
 <?php
 
-require_once('./../../controller/controller.php');
+require_once('./../../controller/Controller.php');
 
 $token = new Token();
 $token->create();
@@ -37,7 +37,7 @@ unset($_SESSION['post_error']);
 
     <?php if ($token_error): ?>
         <?php foreach ($token_error as $token_err): ?>
-            <p class="error-log"><?php echo Utils::h($token_err);?></p>
+            <p class="error-log"><?php echo Utils::h($token_err); ?></p>
         <?php endforeach; ?>
     <?php endif; ?>
 

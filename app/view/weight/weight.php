@@ -1,6 +1,6 @@
 <?php
 
-require_once('./../../controller/controller.php');
+require_once('./../../controller/Controller.php');
 
 $token = new Token();
 $token->create();
@@ -51,36 +51,36 @@ unset($_SESSION['today_error']);
 <body>
     <p class="outline">体重記録</p>
 
-    <?php if ($token_error):?>
+    <?php if ($token_error): ?>
         <?php foreach ($token_error as $token_err): ?>
-            <p class="error-log"><?php echo Utils::h($token_err);?></p>
-        <?php endforeach;?>
+            <p class="error-log"><?php echo Utils::h($token_err); ?></p>
+        <?php endforeach; ?>
     <?php endif; ?>
 
     <form method="POST" action="./weight.php">
-        <p class="bodytitle">目標体重 : <input type="text" name="body" class="weightinput" value="<?php if (isset($body)):?><?php echo Utils::h($body);?><?php else:?><?php echo Utils::h($goallists['goalweights']);?><?php endif;?>"> kg</p>
+        <p class="bodytitle">目標体重 : <input type="text" name="body" class="weightinput" value="<?php if (isset($body)): ?><?php echo Utils::h($body); ?><?php else: ?><?php echo Utils::h($goallists['goalweights']); ?><?php endif; ?>"> kg</p>
 
-        <?php if ($body_error):?>
+        <?php if ($body_error): ?>
             <?php foreach ($body_error as $body_err): ?>
-                <p class="error-log"><?php echo Utils::h($body_err);?></p>
-            <?php endforeach;?>
+                <p class="error-log"><?php echo Utils::h($body_err); ?></p>
+            <?php endforeach; ?>
         <?php endif; ?>
 
         <p class="bodytitle">現在の体重 : <input type="text" name="weight" class="weightinput" value="<?php echo Utils::h($weight); ?>"> kg</p>
 
-        <?php if ($weight_error):?>
+        <?php if ($weight_error): ?>
             <?php foreach ($weight_error as $weight_err): ?>
-                <p class="error-log"><?php echo Utils::h($weight_err);?></p>
-            <?php endforeach;?>
+                <p class="error-log"><?php echo Utils::h($weight_err); ?></p>
+            <?php endforeach; ?>
         <?php endif; ?>
 
         <p class="bodytitle">日付 :
         <input type="date" name="today" class="dayinput" value="<?php echo Utils::h($today); ?>"></p>
 
-        <?php if ($today_error):?>
+        <?php if ($today_error): ?>
             <?php foreach ($today_error as $today_err): ?>
-                <p class="error-log"><?php echo Utils::h($today_err);?></p>
-            <?php endforeach;?>
+                <p class="error-log"><?php echo Utils::h($today_err); ?></p>
+            <?php endforeach; ?>
         <?php endif; ?>
 
         <button type="submit" class="register-btn">記入</button>

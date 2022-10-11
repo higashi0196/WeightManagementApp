@@ -1,6 +1,6 @@
 <?php
 
-require_once('./../../controller/controller.php');
+require_once('./../../controller/Controller.php');
 
 $token = new Token();
 $token->create();
@@ -44,42 +44,42 @@ unset($_SESSION['file_error']);
 <body>
     <p class="outline">画像アップロード</p>
 
-    <?php if ($token_error):?> 
+    <?php if ($token_error): ?> 
         <?php foreach ($token_error as $token_err): ?>
-            <p class="error-log"><?php echo Utils::h($token_err);?></p>
-        <?php endforeach;?>
+            <p class="error-log"><?php echo Utils::h($token_err); ?></p>
+        <?php endforeach; ?>
     <?php endif; ?>
 
     <form action="./file.php" method="POST" enctype="multipart/form-data">
         <input type="file" name="img" class="fileinput">
 
-        <?php if ($file_error):?>
+        <?php if ($file_error): ?>
             <?php foreach ($file_error as $file_err): ?>
-                <p class="error-log"><?php echo Utils::h($file_err);?></p>
-            <?php endforeach;?>
+                <p class="error-log"><?php echo Utils::h($file_err); ?></p>
+            <?php endforeach; ?>
         <?php endif; ?>
 
-        <?php if ($filemodel_error):?>
+        <?php if ($filemodel_error): ?>
             <?php foreach ($filemodel_error as $filemodel_err): ?>
-                <p class="error-log"><?php echo Utils::h($filemodel_err);?></p>
-            <?php endforeach;?>
+                <p class="error-log"><?php echo Utils::h($filemodel_err); ?></p>
+            <?php endforeach; ?>
         <?php endif; ?>
 
-        <?php if ($filesize_error):?>
+        <?php if ($filesize_error): ?>
             <?php foreach ($filesize_error as $filesize_err): ?>
-                <p class="error-log"><?php echo Utils::h($filesize_err);?></p>
-            <?php endforeach;?>
+                <p class="error-log"><?php echo Utils::h($filesize_err); ?></p>
+            <?php endforeach; ?>
         <?php endif; ?>
 
         <div>
             <p class="memo">〜 一言メモ 〜</p>
-            <textarea name="comment" class="comment"><?php echo Utils::h($comment);?></textarea>
+            <textarea name="comment" class="comment"><?php echo Utils::h($comment); ?></textarea>
         </div>
 
-        <?php if ($comment_error):?>
+        <?php if ($comment_error): ?>
             <?php foreach ($comment_error as $comment_err): ?>
-                <p class="error-log"><?php echo Utils::h($comment_err);?></p>
-            <?php endforeach;?>
+                <p class="error-log"><?php echo Utils::h($comment_err); ?></p>
+            <?php endforeach; ?>
         <?php endif; ?>
 
         <button type="submit" class="file-btn">アップロード</button>
@@ -90,7 +90,7 @@ unset($_SESSION['file_error']);
     <a href="./../todo/index.php"><button class="return-btn">戻る</button></a>
     <ol>
         <?php foreach ($filelists as $filelist): ?>
-            <li data-token="<?= Utils::h($_SESSION['token']); ?>">
+            <li data-token="<?php echo Utils::h($_SESSION['token']); ?>">
                 <img src="<?php echo Utils::h($filelist['file_path']); ?>" alt="">
                 <div>
                     <p class="list-memo"> 〜〜  一言メモ 〜〜 </p>

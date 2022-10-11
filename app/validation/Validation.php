@@ -84,7 +84,7 @@ class Validation {
             empty($_SESSION['token']) ||
             $_SESSION['token'] !== filter_input(INPUT_POST, 'token')
             ) {
-            $this->token_error[] = "不正なアクセスがありました";
+            $this->token_error[] = "もう一度やり直してください";
             return false;
         }
     }

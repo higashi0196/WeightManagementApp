@@ -1,7 +1,6 @@
 'use strict';
 
 {
-    
     // todo 削除機能 非同期通信
     const deletebtns = document.querySelectorAll('.delete-btn');
     deletebtns.forEach(btn => {
@@ -89,5 +88,4 @@
             console.log("削除に失敗しました");
         })
     });
-
 }
