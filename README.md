@@ -1,10 +1,11 @@
-# アプリケーション名 
+## アプリケーション名
 「 ボディリメイクTodoリスト 」
 ***
 ## アプリケーション概要
-体重管理したい人やボディリメイクしたい人をサポートするToDoリストアプリです。
+体重管理をしたい人やボディリメイクしたい人をサポートするToDoリストアプリです。
 ***
-## URL 
+## URL
+https://www.todosweight.com/app/view/todo/
 ***
 ## 開発環境
 【ローカル環境】
@@ -17,16 +18,16 @@
 * ToDoリスト 新規登録機能
 * ToDoリスト 編集機能
 * ToDoリスト 状態更新機能 
-  * ( fetch 非同期通信にて)
+  * ( fetch非同期通信にて)
 * ToDoリスト 削除機能
-  * ( fetch 非同期通信にて)
+  * ( fetch非同期通信にて)
 * 体重 新規登録機能
 * コメント 新規登録機能 
 * コメント 削除機能
-  * ( fetch 非同期通信にて)
+  * ( fetch非同期通信にて)
 * 画像アップロード機能
 * 画像 削除機能
-  * ( fetch 非同期通信にて)
+  * ( fetch非同期通信にて)
 ***
 ## 使い方
 * 体重記入ページにて目標体重、現在の体重、日付の入力を新規登録出来ます。その後、自動的に目標体重まで「あと〜kg」なのかが表示されます。
@@ -39,7 +40,7 @@
 
 ***
 ### ライセンス
-* This TaijuList is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
+* This TaijuList is under [MIT license](http://TomoakiTANAKA.mit-license.org).
 * Copyright © 2022,higashi1000
 ***
 ### 文責
