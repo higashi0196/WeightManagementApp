@@ -37,7 +37,12 @@ https://www.todosweight.com/app/view/todo/
 * 画像アップロード画面にて画像アップロード、一言メモが入力出来ます。
 
 * 一言メッセージにてコメントを投稿出来ます。
-
+***
+## こだわったポイント
+***
+## 苦労したポイント
+***
+## このさき実装予定の機能
 ***
 ### ライセンス
 * This TaijuList is under [MIT license](http://TomoakiTANAKA.mit-license.org).
