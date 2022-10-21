@@ -336,12 +336,12 @@ class Database
             $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-            $sql = "INSERT INTO bodies (nowweights, goalweights, nowdate) VALUES ('$this->weight', '$this->body', '$this->today')";
+            $sql = "INSERT INTO bodies (goalweights, nowweights,nowdate) VALUES ('$this->body','$this->weight', '$this->today')";
 
             $pdo->beginTransaction();
             $stmt = $pdo->prepare($sql);
-            $stmt->bindValue('nowweights', $weight);
             $stmt->bindValue('goalweights', $body);
+            $stmt->bindValue('nowweights', $weight);
             $stmt->bindValue('nowdate', $today);
             $stmt->execute();
 
