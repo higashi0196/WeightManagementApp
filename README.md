@@ -9,6 +9,13 @@
  <img width="1400" height="" alt="readme" src="https://user-images.githubusercontent.com/101165076/197324611-0dd748ee-7917-4e0e-8db5-7a9423d56c78.png">
 
 ---
+## このアプリを作った思い
+* もっと目標の体型に近づきたい、格好良い体型になりたいという気持ちを持ち続けいた
+* 目標の体型を意識して高いモチベーションを維持して励みたい
+
+**この二つの自分の体験を踏まえて、同じ境遇の人たちに手助けをしたいと思い作成しましました。**
+
+---
 ## URL
 https://www.todosweight.com/app/view/todo/
 
