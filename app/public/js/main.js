@@ -52,7 +52,6 @@
     });
 
     const achieve = document.querySelector('.achieve');
-    // var difference = JSON.parse('<?php echo $json; ?>');
     if (difference <= 0) {
         console.log("0kg以下,達成");
     } else if (difference <= goalweight * 0.02) {
