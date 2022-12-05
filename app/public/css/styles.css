@@ -40,14 +40,14 @@ main {
     width: 75px;
     height: auto;
     margin: 35px auto 0;
-    padding:  2px;
+    padding: 2px;
     border: 2px solid rgba(145, 125, 80);
     border-radius: 5px;
     color: black;
     background-color: rgb(90, 160, 210);
     font-size: 18px;
     font-weight: bold;
-    cursor : pointer;
+    cursor: pointer;
 }
 
 .return-btn {
@@ -61,7 +61,7 @@ main {
     background-color: rgb(245, 250, 245);
     font-size: 18px;
     font-weight: bold;
-    cursor : pointer;
+    cursor: pointer;
 }
 
 .errorfont {
