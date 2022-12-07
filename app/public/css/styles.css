@@ -411,7 +411,7 @@ textarea {
     background-color: rgb(10, 200, 210);
     font-size: 18px;
     font-weight: bold;
-    cursor : pointer;
+    cursor: pointer;
 }
 
 /* post.php ページ 終了 */
@@ -456,7 +456,7 @@ textarea {
     background-color: rgb(70, 210, 10);
     font-size: 18px;
     font-weight: bold;
-    cursor : pointer;
+    cursor: pointer;
 }
 
 ol {
@@ -483,7 +483,7 @@ li > div {
 
 .list-memo {
     margin: 20px auto 0;
-    color:rgb(40, 35, 60);
+    color: rgb(40, 35, 60);
     font-size: 22px;
 }
 
@@ -511,7 +511,7 @@ li > div {
     background-color:rgb(225, 45, 25);
     font-size: 15px;
     font-weight: bold;
-    cursor : pointer;
+    cursor: pointer;
 }
 
 /* file.php ページ 終了 */
