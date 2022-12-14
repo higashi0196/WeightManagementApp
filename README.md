@@ -75,6 +75,8 @@ https://www.todosweight.com/app/view/todo/
 ### 苦労したこと
 * 非同期通信(fetch)が思うようにデータベースに繋がらず、データの操作ができなかったこと。引数やカスタムデータ属性の関係性を考え直し解決しました。
 
+* 画像アップロード機能でのファイルの大きさ、ファイルの形式のバリデーションが思うように前の画面に返しれくれず苦労しました。
+
 ---
 ### ライセンス
 * This TaijuList is under [MIT license](http://TomoakiTANAKA.mit-license.org).
