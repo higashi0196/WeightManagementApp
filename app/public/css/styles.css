@@ -139,11 +139,17 @@ h1 > img {
     text-shadow: 2px 2px 3px rgb(190, 190, 190); 
 }
 
+.btns {
+    /* display: flex;
+    justify-content: center; */
+    margin-top: 22px;
+}
+
 .weight-btn {
-    width: 100px;
-    height: auto;
-    margin: 20px 10px 15px;
-    padding: 4px 5px;
+    width: 90px;
+    height: 35px;
+    margin-right: 20px;
+    padding: 0;
     border: 2px solid black;
     border-radius: 5px;
     color: black;
@@ -154,9 +160,8 @@ h1 > img {
 
 .picutre-btn {
     width: 160px;
-    height: auto;
-    margin: 20px 10px 15px;
-    padding: 4px 5px;
+    height: 35px;
+    padding: 0;
     border: 2px solid black;
     border-radius: 5px;
     color: black;
@@ -165,18 +170,22 @@ h1 > img {
     cursor: pointer;
 }
 
+.todo-title {
+    margin: 15px auto 0;
+}
+
 h2 {
     display: inline-block;
-    margin: 15px 10px 0 0;
+    margin: 0;
+    padding-right: 20px;
     font-size: 23px;
     vertical-align: middle;
 }
 
 .new-btn {
-    width: 115px;
-    height: auto;
-    margin: 15px 10px 0 0;
-    padding: 2px;
+    width: 90px;
+    height: 35px;
+    padding: 0;
     border: 2px solid black;
     border-radius: 5px;
     color: black;
@@ -274,22 +283,22 @@ td {
 /* テーブル CSS 終了 */
 
 /* 明日への一言 css 開始 */
+
 .postcreate {
     margin: 20px 0 0;
 }
 
 .postcreate > span {
     display: inline-block;
-    margin: 5px 10px 0 10px;
     font-size: 20px;
     font-weight: bold;
 }
 
 .post-btn {
     width: 90px;
-    height: auto;
-    margin: 5px 10px 0 10px;
-    padding: 3px 0;
+    height: 35px;
+    margin: 0 10px;
+    padding: 0;
     border: 2px solid black;
     border-radius: 5px;
     color: black;
@@ -302,8 +311,7 @@ td {
 .postdlt-btn {
     width: 65px;
     height: 35px;
-    margin: 5px 10px 0 10px;
-    padding: 3px 0;
+    padding: 0;
     border: 2px solid black;
     border-radius: 5px;
     color: black;
@@ -588,29 +596,35 @@ li > div {
         font-size: 22px;     
     }
 
+    .btns {
+        /* display: flex;
+        justify-content: center; */
+        margin-top: 17px;
+    }
+
     .weight-btn {
-        width: 90px;
-        height: auto;
-        margin: 15px 7px 0;
-        padding: 2px;      
+        width: 80px;
+        height: 30px;
+        font-size: 15px;
+
     }
 
     .picutre-btn {
-        margin: 15px 7px 0;
-        padding: 2px;
+        width: 140px;
+        height: 30px;
+        font-size: 15px;
     }
 
     h2 {
         display: block;
-        margin: 15px auto 0;
+        padding: 0;
         font-size: 20px;
     }
 
     .new-btn {
-        width: 85px;
-        height: auto;
+        width: 80px;
+        height: 30px;
         margin: 10px auto 0;
-        padding: 2px;
         font-size: 15px;
     }
 
@@ -662,37 +676,33 @@ li > div {
     /* テーブル CSS  終了 */
 
     /* 明日への一言 css 開始 */
+
     .postcreate {
-        margin: 5px 0 0 0;
+        margin-top: 20px;
     }
 
     .postcreate > span {
         display: block;
-        margin: 20px 0 0;
         font-size: 18px;
     }
 
     .post-btn {
         width: 80px;
         height: 30px;
-        margin: 10px 15px 0 5px;
-        padding: 0;
+        margin: 10px 10px 0 0;
         font-size: 15px;
     }
 
     .postdlt-btn {
         width: 55px;
         height: 30px;
-        padding: 0;
-        margin: 10px 0 0 10px;
         font-size: 15px;
     }
 
     .message {
-        width: 60%;
         width: 310px;
         height: auto;
-        margin: 15px auto;
+        margin: 20px auto;
     }
 
     /* 明日への一言 css 終了 */

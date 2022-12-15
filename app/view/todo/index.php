@@ -60,7 +60,7 @@ unset($_SESSION['token_error']);
         <p class="goal-weight"> -- kg</p>
     <?php endif; ?> 
    
-    <div>
+    <div class="btns">
         <a href="./../weight/weight.php"><button class="weight-btn">体重記入</button></a>
         <a href="./../file/file.php"><button class="picutre-btn">画像アップロード</button></a>
     </div>
@@ -71,7 +71,7 @@ unset($_SESSION['token_error']);
             <?php endforeach?>
         <?php endif; ?>
 
-    <div>
+    <div class="todo-title">
         <h2>〜 ボディリメイク ToDoリスト 〜</h2>
         <a href="./create.php"><button class="new-btn">新規登録</button></a>
     </div>
