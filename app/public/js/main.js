@@ -1,5 +1,4 @@
-'use strict';
-
+'use strict'
 {
     // todo 削除機能 非同期通信
     const deletebtns = document.querySelectorAll('.delete-btn');
@@ -87,4 +86,5 @@
             console.log("削除に失敗しました");
         })
     });
+
 }

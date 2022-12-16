@@ -1,8 +1,6 @@
-'use strict';
-
+'use strict'
 {
-    // file 削除機能 非同期通信
-    const filebtns = document.querySelectorAll('.filedelete-btn');
+	const filebtns = document.querySelectorAll('.filedelete-btn');
     filebtns.forEach(filebtn => {
         filebtn.addEventListener('click', () => {
             if (!confirm('削除しますか?')) {

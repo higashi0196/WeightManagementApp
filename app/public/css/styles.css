@@ -467,20 +467,23 @@ textarea {
     cursor: pointer;
 }
 
-ol {
+ul {
     list-style-type: none;
+    margin: 25px auto 0;
     padding: 0px;
 }
 
 li {
-    margin: 25px auto 0;
     border-top: 2.5px solid rgb(150, 215, 220);
+    width: 700px;
+    margin: 0 auto;
 }
 
 img {
     width: 300px;
     height: 360px;
     margin: 20px auto;
+    text-align: center;
 }
 
 li > div {
@@ -497,7 +500,7 @@ li > div {
 
 .list-comment {
     width: 300px;
-    height: auto;
+    height: 30px;
     margin: 20px auto 0;
     padding: 3px 5px;
     border: dashed 2px gray;
@@ -509,10 +512,9 @@ li > div {
 }
 
 .filedelete-btn {
-    width: 70px;
-    height: auto;
+    width: 65px;
+    height: 30px;
     margin: 30px 0 0;
-    padding: 2px 0;
     border: 2px solid black;
     border-radius: 5px;
     color: black;
@@ -788,7 +790,8 @@ li > div {
     }
 
     li {
-        margin: 0;
+        width: 90%;
+        margin: 0 auto;
     }
 
     img {
@@ -799,17 +802,17 @@ li > div {
     }
 
     li > div {
-        margin: 0;
+        margin: 20px auto;
     }
 
     .list-memo {
-        margin: 10px auto 0;
+        margin: 0;
         font-size: 18px;
     }
 
     .list-comment {
         width: 250px;
-        height: auto;
+        height: 25px;
         margin: 10px auto 0;
         padding: 2px;
         font-size: 16px;
@@ -817,10 +820,8 @@ li > div {
 
     .filedelete-btn {
         width: 60px;
-        margin: 15px 0 10px;
-        padding: 2px 0;
+        margin: 15px 0 0;
         font-weight: normal;
-        vertical-align: middle;
     }
 
     /* file.php ページ 終了 */

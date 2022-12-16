@@ -88,7 +88,7 @@ unset($_SESSION['file_error']);
     </form>
 
     <a href="./../todo/index.php"><button class="return-btn">戻る</button></a>
-    <ol>
+    <ul class="file-lists">
         <?php foreach ($filelists as $filelist): ?>
             <li data-token="<?php echo Utils::h($_SESSION['token']); ?>">
                 <img src="<?php echo Utils::h($filelist['file_path']); ?>" alt="">
@@ -99,7 +99,7 @@ unset($_SESSION['file_error']);
                 </div>
             </li>
         <?php endforeach; ?>
-    </ol>
+    </ul>
 
     <script type="text/javascript" src="./../../public/js/file.js"></script>
 </body>
