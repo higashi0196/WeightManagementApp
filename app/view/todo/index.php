@@ -12,7 +12,7 @@ $postcontroller = new Postcontroller();
 $postlists = $postcontroller->posts();
 
 $weightcontroller = new Weightcontroller();
-$weightlists = $weightcontroller->weights();
+$weights = $weightcontroller->weights();
 $difference = $weightcontroller->gapweights();
 
 $token_error = $_SESSION['token_error'];
@@ -35,8 +35,8 @@ unset($_SESSION['token_error']);
         <img src="./../logos/logo3.png" alt="">
     </h1>
 
-    <?php if ($weightlists): ?>
-        <?php foreach ($weightlists as $weight): ?>
+    <?php if ($weights): ?>
+        <?php foreach ($weights as $weight): ?>
             <p class="ideal-weight">目標体重 :</p>
             <p class="goal-weight"><?php echo Utils::h($weight['goalweights']); ?> kg</p><br>
             <p class="ideal-weight"> 現在の体重 :</p>
@@ -50,7 +50,7 @@ unset($_SESSION['token_error']);
             <p class="ideal-day">
             ( <?php echo Utils::h($weight['nowdate']); ?> 現在 )</p>
         <?php endforeach; ?>
-    <?php elseif (empty($weightlists)): ?>
+    <?php elseif (empty($weights)): ?>
         <p class="weight-save">~ 体重を入力できます ~</p>
         <p class="ideal-weight">目標体重 :</p>
         <p class="goal-weight"> -- kg</p><br>
@@ -62,6 +62,7 @@ unset($_SESSION['token_error']);
    
     <div class="btns">
         <a href="./../weight/weight.php"><button class="weight-btn">体重記入</button></a>
+        <a href="./../weight/weightlists.php"><button class="weight-btn">体重履歴</button></a>
         <a href="./../file/file.php"><button class="picutre-btn">画像アップロード</button></a>
     </div>
 

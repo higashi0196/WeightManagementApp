@@ -221,6 +221,11 @@ class Postcontroller {
 class Weightcontroller {
 
     public function weights() {
+        $latestweight = Database::latestweight();
+        return $latestweight;
+    }
+
+    public function weightlists() {
         $weightlists = Database::weightsgetAll();
         return $weightlists;
     }
@@ -233,6 +238,11 @@ class Weightcontroller {
     public function gapweights() {
         $difference = Database::gapget();
         return $difference;
+    }
+
+    public function gapAllweights() {
+        $gaps = Database::gapAllget();
+        return $gaps;
     }
 
    public function weightcreate() {
