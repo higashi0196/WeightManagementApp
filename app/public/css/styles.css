@@ -282,38 +282,6 @@ td {
 
 /* テーブル CSS 終了 */
 
-
-/* weightlist テーブル CSS  開始 */
-.list {
-    border-collapse: collapse;
-    table-layout: fixed;
-    width: auto;
-    height: auto;
-    margin: 25px auto 0;
-    text-align: center;
-}
-
-.list th,td {
-    width: 140px;
-    border: 2px solid rgb(75, 75, 75);
-}
-
-.list th {
-    height: 35px;
-    padding: 0;
-    background-color: rgb(138, 228, 242);
-    font-size: 18px;
-}
-
-.list td {
-    height: 30px;
-    padding: 2px;
-    background-color: rgb(235, 235, 235);
-    font-size: 17px;
-}
-
-/* weightlist テーブル CSS  終了 */
-
 /* 明日への一言 css 開始 */
 
 .postcreate {
@@ -423,6 +391,40 @@ td {
 }
 
 /* weight.phpページ 終了 */
+
+/* weightlist.phpページ  開始 */
+
+.list {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: auto;
+    height: auto;
+    margin: 25px auto 0;
+    text-align: center;
+}
+
+.list th,td {
+    width: 140px;
+    
+}
+
+.list th {
+    height: 35px;
+    padding: 0;
+    background-color: rgb(138, 228, 242);
+    border: 1.5px solid rgb(75, 75, 75);
+    font-size: 18px;
+}
+
+.list td {
+    height: 30px;
+    padding: 2px;
+    background-color: rgb(235, 235, 235);
+    border: 1.5px solid rgb(75, 75, 75);
+    font-size: 17px;
+}
+
+/* weightlist.phpページ 終了 */
 
 /* post.php ページ 開始 */
 
@@ -709,6 +711,24 @@ li > div {
 
     /* テーブル CSS  終了 */
 
+    /* weightlist テーブル CSS  開始 */
+
+    .list th,td {
+        width: 110px;
+    }
+
+    .list th {
+        height: 32px;
+        font-size: 16px;
+    }
+
+    .list td {
+        height: 28px;
+        font-size: 15px;
+    }
+
+    /* weightlist テーブル CSS  終了 */
+
     /* 明日への一言 css 開始 */
 
     .postcreate {
@@ -857,4 +877,29 @@ li > div {
     }
 
     /* file.php ページ 終了 */
+
+    /* weightlist.phpページ  開始 */
+
 }
+
+@media (max-width: 499px) {
+   
+    .list th,td {
+        width: 82px;
+    }
+    
+    .list th {
+        height: 26px;
+        font-size: 14px;
+        border: 1px solid rgb(75, 75, 75);
+    }
+    
+    .list td {
+        height: 25px;
+        padding: 0;
+        font-size: 13px;
+        border: 1px solid rgb(75, 75, 75);
+    }
+    
+    /* weightlist.phpページ 終了 */
+} 

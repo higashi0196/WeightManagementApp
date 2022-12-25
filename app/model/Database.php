@@ -98,9 +98,8 @@ class Database
             $sql = "SELECT * FROM todos";
 
             $stmt = $pdo->query($sql);
-            $todolists = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            
-            return $todolists;
+            $todos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $todos;
 
         } catch (Exception $e) {
             error_log('todosテーブルの全データ取得に失敗しました'.$e->getMessage());
@@ -214,8 +213,8 @@ class Database
             $sql = "SELECT * FROM posts ORDER BY id DESC LIMIT 1";
 
             $stmt = $pdo->query($sql);
-            $wordlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $wordlists;
+            $words = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $words;
 
         } catch (Exception $e) {
             error_log('postsテーブルの最新データの取得に失敗しました'.$e->getMessage());
@@ -288,19 +287,20 @@ class Database
         }
     }
 
-    public static function weightsgetAll() {
+    public static function weightsAllget() {
         try {
             $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-            $sql = "SELECT * FROM bodies";
+            $sql = "SELECT goalweights, nowweights, nowdate, nowweights - goalweights AS total FROM
+            bodies";
 
             $stmt = $pdo->query($sql);
-            $bodylists = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $bodylists;
-            
+            $lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $lists;
+        
         } catch (Exception $e) {
-            error_log('bodiesテーブルのデータの取得に失敗しました'.$e->getMessage());
+            error_log('bodiesテーブルの全データの取得に失敗しました'.$e->getMessage());
             header("Location: ./../../view/error/404.html");
             exit;
         }
@@ -315,29 +315,11 @@ class Database
             $sql = "SELECT goalweights FROM bodies ORDER BY id DESC LIMIT 1";
 
             $stmt = $pdo->query($sql);
-            $goallists = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $goallists;
+            $goals = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $goals;
         
         } catch (Exception $e) {
             error_log('bodiesテーブルのgoalweightsの取得に失敗しました'.$e->getMessage());
-            header("Location: ./../../view/error/404.html");
-            exit;
-        }
-    }
-
-    public static function gapAllget() {
-        try {
-            $pdo = new PDO(DSN, USER, PASSWORD);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-            $sql = "SELECT nowweights - goalweights FROM bodies";
-
-            $stmt = $pdo->query($sql);
-            $gap = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $gap;
-        
-        } catch (Exception $e) {
-            error_log('bodiesテーブルのgapの取得に失敗しました'.$e->getMessage());
             header("Location: ./../../view/error/404.html");
             exit;
         }
@@ -353,11 +335,11 @@ class Database
             $sql = "SELECT nowweights - goalweights FROM bodies ORDER BY id DESC LIMIT 1";
 
             $stmt = $pdo->query($sql);
-            $difference = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $difference;
+            $gap = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $gap;
         
         } catch (Exception $e) {
-            error_log('bodiesテーブルのdifferenceの取得に失敗しました'.$e->getMessage());
+            error_log('bodiesテーブルのgapの取得に失敗しました'.$e->getMessage());
             header("Location: ./../../view/error/404.html");
             exit;
         }
@@ -400,8 +382,8 @@ class Database
             $sql = "SELECT * FROM pictures";
 
             $stmt = $pdo->query($sql);
-            $filelists = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $filelists;
+            $files = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $files;
 
         } catch (Exception $e) {
             error_log('picturesテーブルの取得に失敗しました'.$e->getMessage());

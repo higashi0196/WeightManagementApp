@@ -226,7 +226,7 @@ class Weightcontroller {
     }
 
     public function weightlists() {
-        $weightlists = Database::weightsgetAll();
+        $weightlists = Database::weightsAllget();
         return $weightlists;
     }
 
@@ -240,12 +240,7 @@ class Weightcontroller {
         return $difference;
     }
 
-    public function gapAllweights() {
-        $gaps = Database::gapAllget();
-        return $gaps;
-    }
-
-   public function weightcreate() {
+    public function weightcreate() {
 
         $weightdata = array(
             "body" => $_POST['body'],

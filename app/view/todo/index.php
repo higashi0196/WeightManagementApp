@@ -66,11 +66,11 @@ unset($_SESSION['token_error']);
         <a href="./../file/file.php"><button class="picutre-btn">画像アップロード</button></a>
     </div>
 
-        <?php if ($token_error): ?>
-            <?php foreach ($token_error as $token_err): ?>
-                <p class="error-log"><?php echo Utils::h($token_err); ?></p>
-            <?php endforeach?>
-        <?php endif; ?>
+    <?php if ($token_error): ?>
+        <?php foreach ($token_error as $token_err): ?>
+            <p class="error-log"><?php echo Utils::h($token_err); ?></p>
+        <?php endforeach?>
+    <?php endif; ?>
 
     <div class="todo-title">
         <h2>〜 ボディリメイク ToDoリスト 〜</h2>
