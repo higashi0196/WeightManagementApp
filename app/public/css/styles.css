@@ -405,7 +405,6 @@ td {
 
 .list th,td {
     width: 140px;
-    
 }
 
 .list th {
@@ -419,9 +418,18 @@ td {
 .list td {
     height: 30px;
     padding: 2px;
-    background-color: rgb(235, 235, 235);
+    background-color: rgb(243, 243, 243);
     border: 1.5px solid rgb(75, 75, 75);
     font-size: 17px;
+}
+
+.no-lists {
+    width: 350px;
+    margin: 20px auto 0;
+    color: rgb(87, 117, 118);
+    font-size: 22px;
+    font-style: oblique;
+    text-shadow: 1px 1px 2px rgb(185, 185, 185);
 }
 
 /* weightlist.phpページ 終了 */
@@ -711,24 +719,6 @@ li > div {
 
     /* テーブル CSS  終了 */
 
-    /* weightlist テーブル CSS  開始 */
-
-    .list th,td {
-        width: 110px;
-    }
-
-    .list th {
-        height: 32px;
-        font-size: 16px;
-    }
-
-    .list td {
-        height: 28px;
-        font-size: 15px;
-    }
-
-    /* weightlist テーブル CSS  終了 */
-
     /* 明日への一言 css 開始 */
 
     .postcreate {
@@ -764,6 +754,7 @@ li > div {
     /* index.php 終了 */
 
     /* create.php & eidt.php ページ 開始 */
+
     .outline {
         margin: 30px auto 0;
         font-size: 30px;
@@ -794,7 +785,31 @@ li > div {
 
     /* weight.phpページ 終了 */
 
+    /* weightlist テーブル CSS  開始 */
+
+    .list th,td {
+        width: 110px;
+    }
+
+    .list th {
+        height: 32px;
+        font-size: 16px;
+    }
+
+    .list td {
+        height: 28px;
+        font-size: 15px;
+    }
+
+    .no-lists {
+        width: 300px;
+        font-size: 20px;
+    }
+
+    /* weightlist テーブル CSS  終了 */
+
     /* post.php ページ 開始 */
+
     textarea {
         width: 300px;
         height: 150px;
@@ -878,8 +893,6 @@ li > div {
 
     /* file.php ページ 終了 */
 
-    /* weightlist.phpページ  開始 */
-
 }
 
 @media (max-width: 499px) {
@@ -900,6 +913,5 @@ li > div {
         font-size: 13px;
         border: 1px solid rgb(75, 75, 75);
     }
-    
-    /* weightlist.phpページ 終了 */
+
 } 

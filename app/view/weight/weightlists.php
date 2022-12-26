@@ -2,9 +2,6 @@
 
 require_once('./../../controller/Controller.php');
 
-$token = new Token();
-$token->create();
-
 $weightcontroller = new Weightcontroller();
 $weightlists = $weightcontroller->weightlists();
 
@@ -43,17 +40,10 @@ $weightlists = $weightcontroller->weightlists();
             </tbody>
         </table>
     <?php elseif (empty($weightlists)): ?>
-        <table>
-            <thead>
-                <tr>
-                    <th scope="col">目標体重</th>
-                    <th scope="col">現在の体重</th>
-                    <th scope="col">差</th>
-                    <th scope="col">日付</th>
-                </tr>
-            </thead>
-        </table>
-        <p class="weight-save">~ 体重を入力できます ~</p>
+        <p class="no-lists">
+            履歴がございません<br>
+            体重を記入すると表示されます
+        </p>
     <?php endif; ?> 
 
     <a href="./../todo/index.php"><button class="return-btn">戻る</button></a>
