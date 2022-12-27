@@ -280,7 +280,7 @@ td {
     text-shadow: 2px 2px 4px gray; 
 }
 
-/* テーブル CSS 終了 */
+/* todo テーブル CSS  終了 */
 
 /* 明日への一言 css 開始 */
 
@@ -892,7 +892,6 @@ li > div {
     }
 
     /* file.php ページ 終了 */
-
 }
 
 @media (max-width: 499px) {
@@ -913,5 +912,4 @@ li > div {
         font-size: 13px;
         border: 1px solid rgb(75, 75, 75);
     }
-
 } 
