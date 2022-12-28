@@ -220,13 +220,13 @@ class Postcontroller {
 
 class Weightcontroller {
 
-    public function weights() {
-        $latestweight = Database::latestweight();
-        return $latestweight;
+    public function latestweight() {
+        $latestlist = Database::newestweight();
+        return $latestlist;
     }
 
     public function weightlists() {
-        $weightlists = Database::weightsAllget();
+        $weightlists = Database::weightsgetAll();
         return $weightlists;
     }
 
@@ -235,7 +235,7 @@ class Weightcontroller {
         return $goallists;
     }
 
-    public function gapweights() {
+    public function gapweight() {
         $difference = Database::gapget();
         return $difference;
     }

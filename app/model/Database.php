@@ -213,8 +213,8 @@ class Database
             $sql = "SELECT * FROM posts ORDER BY id DESC LIMIT 1";
 
             $stmt = $pdo->query($sql);
-            $words = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $words;
+            $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $posts;
 
         } catch (Exception $e) {
             error_log('postsテーブルの最新データの取得に失敗しました'.$e->getMessage());
@@ -269,7 +269,7 @@ class Database
     }
 
     // bodiesテーブルの最新データのみ取得
-    public static function latestweight() {
+    public static function newestweight() {
         try {
             $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -287,7 +287,7 @@ class Database
         }
     }
 
-    public static function weightsAllget() {
+    public static function weightsgetAll() {
         try {
             $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
