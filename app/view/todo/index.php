@@ -59,10 +59,11 @@ unset($_SESSION['token_error']);
         <p class="ideal-weight">目標達成まであと :</p>
         <p class="goal-weight"> -- kg</p>
     <?php endif; ?> 
-   
+    
     <div class="btns">
         <a href="./../weight/weight.php"><button class="weight-btn">体重記入</button></a>
         <a href="./../weight/weightlists.php"><button class="weight-btn">体重履歴</button></a>
+        <a><button class="reset" data-token="<?php echo Utils::h($_SESSION['token']); ?>">体重リセット</button></a>
         <a href="./../file/file.php"><button class="picutre-btn">画像アップロード</button></a>
     </div>
 

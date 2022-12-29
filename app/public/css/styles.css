@@ -145,7 +145,7 @@ h1 > img {
     margin-top: 22px;
 }
 
-.weight-btn {
+.weight-btn, .reset {
     width: 90px;
     height: 35px;
     margin-right: 20px;
@@ -156,6 +156,10 @@ h1 > img {
     background-color: rgb(205, 220, 200);
     font-size: 18px;
     cursor : pointer;
+}
+
+.reset {
+    width: 120px;
 }
 
 .picutre-btn {
@@ -646,11 +650,14 @@ li > div {
         margin-top: 17px;
     }
 
-    .weight-btn {
+    .weight-btn, .reset {
         width: 80px;
         height: 30px;
         font-size: 15px;
+    }
 
+    .reset {
+        width: 100px;
     }
 
     .picutre-btn {
@@ -895,6 +902,16 @@ li > div {
 }
 
 @media (max-width: 499px) {
+
+    .btns {
+        display: block;
+        width:300px;
+        margin: 17px auto 0;
+    }
+
+    .weight-btn, .reset,.picutre-btn {
+        margin: 7px;
+    }
    
     .list th,td {
         width: 82px;
@@ -912,4 +929,5 @@ li > div {
         font-size: 13px;
         border: 1px solid rgb(75, 75, 75);
     }
+    
 } 

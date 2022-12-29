@@ -62,7 +62,28 @@
         console.log("まだまだ");
     }
 
-    // post 削除機能 非同期通信
+    const bbb = document.querySelector('.reset');
+    bbb.addEventListener('click', () => {
+        if (!confirm('体重のデータを削除しますか?')) {
+            return;
+          }
+        fetch('./../weight/weightdelete.php', {
+            method: 'POST',
+            body: new URLSearchParams({
+            token: bbb.dataset.token,
+            }),
+        }).then(response => {
+            return response.json();
+        })
+        .then(json => {
+            console.log(json);
+        })
+        .catch(error => {
+            window.location.href = './../error/404.html';
+            console.log("削除に失敗しました");
+        })
+    });
+
     const word = document.getElementById("word");
     const wordbtn = document.querySelector('.wordbtn');
     wordbtn.addEventListener('click', () => {

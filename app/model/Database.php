@@ -373,6 +373,27 @@ class Database
         }
     }
 
+    public function weightdelete() {
+        try {
+            $pdo = new PDO(DSN, USER, PASSWORD);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $sql = "TRUNCATE TABLE bodies";
+
+            $pdo->beginTransaction();
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+
+            $pdo->commit();
+
+        } catch (Exception $e) {
+            $pdo->rollBack();
+            error_log('bodiesの削除に失敗しました'.$e->getMessage());
+            header("Location: ./../../view/error/404.html");
+            exit;
+        }   
+    }
+
     // picturesテーブルのデータを取得
     public static function fileAllget() {
         try {

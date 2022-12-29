@@ -163,8 +163,8 @@ class Todocontroller {
 
         $todo = new Database;
         $todo->setId($id);
-        $result = $todo->tododelete();
-        return $result;
+        $tododeletion = $todo->tododelete();
+        return $tododeletion;
     }
 }
 
@@ -213,8 +213,8 @@ class Postcontroller {
         }
 
         $post = new Database;
-        $postresult = $post->postdelete();
-        return $postresult;
+        $postdeletion = $post->postdelete();
+        return $postdeletion;
     }
 }
 
@@ -279,6 +279,21 @@ class Weightcontroller {
         $weight->settoday($validation_weightdata['today']);
         $weightresult = $weight->weightsave();
         header("Location: ./../todo/index.php");
+    }
+
+    public function weightdelete() {
+
+        $validation = new Validation;
+        if ($validation->tokencheck() === false) {
+            $token_error = $validation->getTokenErrorMessage();
+            $_SESSION['token_error'] = $token_error;
+            header("Location: ./../../public/404.html");
+            return;
+        }
+
+        $weight = new Database;
+        $weightdeletion = $weight->weightdelete();
+        return $weightdeletion;
     }
 }
 
