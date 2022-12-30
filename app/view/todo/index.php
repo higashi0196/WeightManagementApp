@@ -29,37 +29,41 @@ unset($_SESSION['token_error']);
     <link rel="stylesheet" href="./../../public/css/styles.css">
 </head>
 <body>
-    <h1>
-        <img src="./../logos/logo3.png" alt="">
-        <a>体重管理リスト</a>
-        <img src="./../logos/logo3.png" alt="">
-    </h1>
 
-    <?php if ($latestweight): ?>
-        <?php foreach ($latestweight as $weight): ?>
+    <div class="main-title">
+        <img src="./../logos/logo3.png" alt="">
+        <h1>体重管理リスト</h1>
+        <img src="./../logos/logo3.png" alt="">
+    </div>
+
+    <div>
+        <p class="weight-save" style="display:none;">~ 体重を入力できます ~</p>
+        <?php if ($latestweight): ?>
+            <?php foreach ($latestweight as $weight): ?>
+                <p class="ideal-weight">目標体重 :</p>
+                <p class="goal-weight"><?php echo Utils::h($weight['goalweights']); ?> kg</p><br>
+                <p class="ideal-weight"> 現在の体重 :</p>
+                <p class="goal-weight"><?php echo Utils::h($weight['nowweights']); ?> kg</p><br>
+                <p class="ideal-weight">目標達成まであと :</p>
+                <p class="goal-weight">
+                <?php foreach ($difference as $different): ?>
+                    <?php echo Utils::h($different); ?>
+                <?php endforeach; ?> kg</p>
+                <p class="achieve">見事達成 ! Good job !</p>
+                <p class="ideal-day">
+                ( <?php echo Utils::h($weight['nowdate']); ?> 現在 )</p>
+            <?php endforeach; ?>
+        <?php elseif (empty($latestweights)): ?>
+            <p class="weight-save">~ 体重を入力できます ~</p>
             <p class="ideal-weight">目標体重 :</p>
-            <p class="goal-weight"><?php echo Utils::h($weight['goalweights']); ?> kg</p><br>
+            <p class="goal-weight"> -- kg</p><br>
             <p class="ideal-weight"> 現在の体重 :</p>
-            <p class="goal-weight"><?php echo Utils::h($weight['nowweights']); ?> kg</p><br>
+            <p class="goal-weight"> -- kg</p><br>
             <p class="ideal-weight">目標達成まであと :</p>
-            <p class="goal-weight">
-            <?php foreach ($difference as $different): ?>
-                <?php echo Utils::h($different); ?>
-            <?php endforeach; ?> kg</p>
-            <p class="achieve">見事達成 ! Good job !</p>
-            <p class="ideal-day">
-            ( <?php echo Utils::h($weight['nowdate']); ?> 現在 )</p>
-        <?php endforeach; ?>
-    <?php elseif (empty($latestweights)): ?>
-        <p class="weight-save">~ 体重を入力できます ~</p>
-        <p class="ideal-weight">目標体重 :</p>
-        <p class="goal-weight"> -- kg</p><br>
-        <p class="ideal-weight"> 現在の体重 :</p>
-        <p class="goal-weight"> -- kg</p><br>
-        <p class="ideal-weight">目標達成まであと :</p>
-        <p class="goal-weight"> -- kg</p>
-    <?php endif; ?> 
-    
+            <p class="goal-weight"> -- kg</p>
+        <?php endif; ?>
+    </div> 
+
     <div class="btns">
         <a href="./../weight/weight.php"><button class="weight-btn">体重記入</button></a>
         <a href="./../weight/weightlists.php"><button class="weight-btn">体重履歴</button></a>
@@ -149,7 +153,7 @@ unset($_SESSION['token_error']);
 
 <script type="text/javascript">
     let difference = "<?php echo Utils::h($different); ?>";
-    let goalweight = "<?php echo $weight['goalweights']; ?>";
+    let goal = "<?php echo Utils::h($weight['goalweights']); ?>";
 </script>
 <script type="text/javascript" src="./../../public/js/main.js"></script>
 

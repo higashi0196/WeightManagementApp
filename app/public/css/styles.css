@@ -83,21 +83,27 @@ main {
 
 /* index.php 開始 */
 
-h1 {
-    margin: 35px auto 15px;
-    font-size: 33px;
-    text-align: center;
+.main-title {
+    margin: 35px auto 0;
+    height: 50px;
 }
 
-h1 > img {
+h1 {
+    display: inline-block;
+    margin: 0;
+    font-size: 33px;
+}
+
+.main-title > img {
     display: inline-block;
     width: 32px;
     height: 32px;
     margin: 0 5px 3px;
-    vertical-align: middle;
+    vertical-align: -7px;
 }
 
 .ideal-weight {
+    /* display: none; */
     display: inline-block;
     margin: 14px 8px 0 0;
     font-size: 23px;
@@ -130,7 +136,9 @@ h1 > img {
     font-weight: bold;
 }
 
+
 .weight-save {
+    /* display: none; */
     margin: 10px auto 0;
     color: rgb(30, 80, 85);
     font-size: 23px;
@@ -607,13 +615,19 @@ li > div {
 
     /* index.php 開始 */
 
-    h1 {
-        margin: 25px 10px 7px;
+    .main-title {
+        margin-top: 23px;
+        height: 43px;
     }
-
-    h1 > img {
-        width: 25px;
-        height: 20px;
+    
+    h1 {
+        font-size: 30px;
+    }
+    
+    .main-title > img {
+        width: 28px;
+        height: 28px;
+        vertical-align: -4px;
     }
 
     .ideal-weight {
@@ -929,5 +943,5 @@ li > div {
         font-size: 13px;
         border: 1px solid rgb(75, 75, 75);
     }
-    
+
 } 
