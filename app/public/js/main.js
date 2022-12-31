@@ -51,11 +51,11 @@
     });
 
     const achieve = document.querySelector('.achieve');
-    if (difference <= 0) {
+    if (gap <= 0) {
         console.log("0kg以下,達成");
-    } else if (difference <= goal * 0.02) {
+    } else if (gap <= goal * 0.02) {
         achieve.classList.add("achieve2");
-        achieve.textContent =  'あと ' + difference + ' kg ' + 'もう少し頑張ろう !';
+        achieve.textContent =  'あと ' + gap + ' kg ' + 'もう少し頑張ろう !';
         console.log("もう少し,頑張ろう");
     } else {
         achieve.style.display = 'none';

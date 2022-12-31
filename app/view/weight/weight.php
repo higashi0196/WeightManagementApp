@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $weightcontroller = new Weightcontroller();
-$goallists = $weightcontroller->goalweights();
+$goallist = $weightcontroller->goalweight();
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
@@ -58,7 +58,7 @@ unset($_SESSION['today_error']);
     <?php endif; ?>
 
     <form method="POST" action="./weight.php">
-        <p class="bodytitle">目標体重 : <input type="text" name="body" class="weightinput" value="<?php if (isset($body)): ?><?php echo Utils::h($body); ?><?php else: ?><?php echo Utils::h($goallists['goalweights']); ?><?php endif; ?>"> kg</p>
+        <p class="bodytitle">目標体重 : <input type="text" name="body" class="weightinput" value="<?php if (isset($body)): ?><?php echo Utils::h($body); ?><?php else: ?><?php echo Utils::h($goallist['goalweights']); ?><?php endif; ?>"> kg</p>
 
         <?php if ($body_error): ?>
             <?php foreach ($body_error as $body_err): ?>

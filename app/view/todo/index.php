@@ -13,7 +13,7 @@ $postlists = $postcontroller->posts();
 
 $weightcontroller = new Weightcontroller();
 $latestweight = $weightcontroller->latestweight();
-$difference = $weightcontroller->gapweight();
+$gaps = $weightcontroller->gapweight();
 
 $token_error = $_SESSION['token_error'];
 unset($_SESSION['token_error']);
@@ -46,8 +46,8 @@ unset($_SESSION['token_error']);
                 <p class="goal-weight"><?php echo Utils::h($weight['nowweights']); ?> kg</p><br>
                 <p class="ideal-weight">目標達成まであと :</p>
                 <p class="goal-weight">
-                <?php foreach ($difference as $different): ?>
-                    <?php echo Utils::h($different); ?>
+                <?php foreach ($gaps as $gap): ?>
+                    <?php echo Utils::h($gap); ?>
                 <?php endforeach; ?> kg</p>
                 <p class="achieve">見事達成 ! Good job !</p>
                 <p class="ideal-day">
@@ -152,7 +152,7 @@ unset($_SESSION['token_error']);
     </div>
 
 <script type="text/javascript">
-    let difference = "<?php echo Utils::h($different); ?>";
+    let gap = "<?php echo Utils::h($gap); ?>";
     let goal = "<?php echo Utils::h($weight['goalweights']); ?>";
 </script>
 <script type="text/javascript" src="./../../public/js/main.js"></script>

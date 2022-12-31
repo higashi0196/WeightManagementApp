@@ -3,7 +3,7 @@
 require_once('./../../controller/Controller.php');
 
 $weightcontroller = new Weightcontroller();
-$weightlists = $weightcontroller->weightlists();
+$weightlists = $weightcontroller->weights();
 
 ?>
 

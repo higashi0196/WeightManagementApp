@@ -109,7 +109,7 @@ class Database
     }
 
     // todosテーブルにtitle(タイトル),content(詳細)のデータ保存
-    public function save() {
+    public function todosave() {
         try {
             $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -287,7 +287,7 @@ class Database
         }
     }
 
-    public static function weightsgetAll() {
+    public static function weightgetAll() {
         try {
             $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -395,7 +395,7 @@ class Database
     }
 
     // picturesテーブルのデータを取得
-    public static function fileAllget() {
+    public static function filegetAll() {
         try {
             $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

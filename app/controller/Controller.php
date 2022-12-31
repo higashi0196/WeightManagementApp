@@ -20,8 +20,8 @@ class Token {
 class Todocontroller {
 
     public function todos() {
-        $todolists = Database::todogetAll();
-        return $todolists;
+        $tododatas = Database::todogetAll();
+        return $tododatas;
     }
   
     public function todocreate() {
@@ -54,7 +54,7 @@ class Todocontroller {
         $todo = new Database;
         $todo->setTitle($validation_data['title']);
         $todo->setContent($validation_data['content']);
-        $result = $todo->save();
+        $todoresult = $todo->todosave();
         header("Location: ./index.php");
     }
 
@@ -171,8 +171,8 @@ class Todocontroller {
 class Postcontroller {
 
     public function posts() {
-        $postlists = Database::postgetAll();
-        return $postlists;
+        $postdatas = Database::postgetAll();
+        return $postdatas;
     }
 
     public function postcreate() {
@@ -225,12 +225,13 @@ class Weightcontroller {
         return $latestlist;
     }
 
-    public function weightlists() {
-        $weightlists = Database::weightsgetAll();
-        return $weightlists;
-    }
+    public function weights() {
+        $weightdatas = Database::weightgetAll();
+        return $weightdatas;
+    } 
+    
 
-    public function goalweights() {
+    public function goalweight() {
         $goallists = Database::goalget();
         return $goallists;
     }
@@ -300,8 +301,8 @@ class Weightcontroller {
 class Filecontroller {
 
     public  function files() {
-        $filelists = Database::fileAllget();
-        return $filelists;
+        $filedatas = Database::filegetAll();
+        return $filedatas;
     }
 
     public function filecreate() {
@@ -365,8 +366,8 @@ class Filecontroller {
         }
 
         if (move_uploaded_file($tmp_name,$save_path)) {
-            $picture = new Database;
-            $imgresult = $picture->filesave($filename,$save_path,$comment);
+            $file = new Database;
+            $fileresult = $file->filesave($filename,$save_path,$comment);
             header("Location: ./file.php");
         }
     }
