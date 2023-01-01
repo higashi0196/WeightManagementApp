@@ -103,7 +103,6 @@ h1 {
 }
 
 .ideal-weight {
-    /* display: none; */
     display: inline-block;
     margin: 14px 8px 0 0;
     font-size: 23px;
@@ -136,9 +135,7 @@ h1 {
     font-weight: bold;
 }
 
-
 .weight-save {
-    /* display: none; */
     margin: 10px auto 0;
     color: rgb(30, 80, 85);
     font-size: 23px;

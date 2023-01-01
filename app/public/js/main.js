@@ -62,11 +62,11 @@
         console.log("まだまだ");
     }
 
+    // weight全データ 削除 非同期通信
     const list = document.querySelector('.reset');
     const weights = document.querySelectorAll('.goal-weight');
     const save = document.querySelector('.weight-save');
     const day = document.querySelector('.ideal-day');
-
     list.addEventListener('click', () => {
         if (!confirm('体重のデータを削除しますか?')) {
             return;

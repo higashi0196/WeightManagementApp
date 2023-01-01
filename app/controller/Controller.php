@@ -230,7 +230,6 @@ class Weightcontroller {
         return $weightdatas;
     } 
     
-
     public function goalweight() {
         $goallists = Database::goalget();
         return $goallists;
@@ -392,7 +391,6 @@ class Filecontroller {
         $fileimg = new Database;
         $fileimg->setId($id);
         $fileresult = $fileimg->filedelete();
-
         return $fileresult;
     }
 }
