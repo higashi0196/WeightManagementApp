@@ -41,7 +41,7 @@ main {
     height: auto;
     margin: 35px auto 0;
     padding: 2px;
-    border: 2px solid rgba(145, 125, 80);
+    border: 2px solid rgb(145, 125, 80);
     border-radius: 5px;
     color: black;
     background-color: rgb(90, 160, 210);
@@ -145,8 +145,6 @@ h1 {
 }
 
 .btns {
-    /* display: flex;
-    justify-content: center; */
     margin-top: 22px;
 }
 
@@ -916,7 +914,7 @@ li > div {
 
     .btns {
         display: block;
-        width:300px;
+        width: 300px;
         margin: 17px auto 0;
     }
 

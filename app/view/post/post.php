@@ -50,7 +50,7 @@ unset($_SESSION['post_error']);
             <?php endforeach; ?>
         <?php endif; ?>
 
-        <button type="submit" class="post-btn2">投稿する</button>
+        <button type="submit" class="register-btn">送信</button>
         <input type="hidden" name="token" value="<?php echo Utils::h($_SESSION['token']); ?>">
     </form>
 
