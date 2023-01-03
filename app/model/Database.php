@@ -274,7 +274,7 @@ class Database
             $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-            $sql = "SELECT * FROM bodies ORDER BY id DESC LIMIT 1";
+            $sql = "SELECT goalweights, nowweights, nowdate, nowweights - goalweights AS total FROM bodies ORDER BY id DESC LIMIT 1";
 
             $stmt = $pdo->query($sql);
             $latest = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -292,8 +292,7 @@ class Database
             $pdo = new PDO(DSN, USER, PASSWORD);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-            $sql = "SELECT goalweights, nowweights, nowdate, nowweights - goalweights AS total FROM
-            bodies";
+            $sql = "SELECT goalweights, nowweights, nowdate, nowweights - goalweights AS total FROM bodies";
 
             $stmt = $pdo->query($sql);
             $lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -320,26 +319,6 @@ class Database
         
         } catch (Exception $e) {
             error_log('bodiesテーブルのgoalweightsの取得に失敗しました'.$e->getMessage());
-            header("Location: ./../../view/error/404.html");
-            exit;
-        }
-    }
-
-    // bodiesテーブルのnowweights(現体重) - goalweights(目標体重)にて
-    // 最新データのみ取得
-    public static function gapget() {
-        try {
-            $pdo = new PDO(DSN, USER, PASSWORD);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-            $sql = "SELECT nowweights - goalweights FROM bodies ORDER BY id DESC LIMIT 1";
-
-            $stmt = $pdo->query($sql);
-            $gap = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $gap;
-        
-        } catch (Exception $e) {
-            error_log('bodiesテーブルのgapの取得に失敗しました'.$e->getMessage());
             header("Location: ./../../view/error/404.html");
             exit;
         }

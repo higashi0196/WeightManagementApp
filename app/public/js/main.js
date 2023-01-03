@@ -51,11 +51,11 @@
     });
 
     const achieve = document.querySelector('.achieve');
-    if (gap <= 0) {
+    if (total <= 0) {
         console.log("0kg以下,達成");
-    } else if (gap <= goal * 0.02) {
+    } else if (total <= goal * 0.02) {
         achieve.classList.add("achieve2");
-        achieve.textContent =  'あと ' + gap + ' kg ' + 'もう少し頑張ろう !';
+        achieve.textContent =  'あと ' + total + ' kg ' + 'もう少し頑張ろう !';
         console.log("もう少し,頑張ろう");
     } else {
         achieve.style.display = 'none';
@@ -64,8 +64,9 @@
 
     // weight全データ 削除 非同期通信
     const list = document.querySelector('.reset');
-    const weights = document.querySelectorAll('.goal-weight');
     const save = document.querySelector('.weight-save');
+    const sheet = document.querySelector('.weight-sheet');
+    const weights = document.querySelectorAll('.goal-weight');
     const day = document.querySelector('.ideal-day');
     list.addEventListener('click', () => {
         if (!confirm('体重のデータを削除しますか?')) {
@@ -86,7 +87,7 @@
             window.location.href = './../error/404.html';
             console.log("削除に失敗しました");
         });
-        save.style.display = 'block';
+        sheet.textContent = '~ 体重を入力できます ~';
         day.style.display = 'none';
         achieve.style.display = 'none';
         for (var i = 0; i < weights.length; i++) {
@@ -94,7 +95,7 @@
         }
     });
 
-    const word = document.getElementById("word");
+    const post = document.querySelector('.post');
     const wordbtn = document.querySelector('.wordbtn');
     wordbtn.addEventListener('click', () => {
         if (!confirm('削除しますか?')) {
@@ -115,7 +116,7 @@
             window.location.href = './../error/404.html';
             console.log("削除に失敗しました");
         });
-        word.textContent = '一言メッセージを入力できます';
+        post.textContent = '一言メッセージを入力できます';
     });
 
 }

@@ -13,7 +13,6 @@ $postlists = $postcontroller->posts();
 
 $weightcontroller = new Weightcontroller();
 $latestweight = $weightcontroller->latestweight();
-$gaps = $weightcontroller->gapweight();
 
 $token_error = $_SESSION['token_error'];
 unset($_SESSION['token_error']);
@@ -37,24 +36,22 @@ unset($_SESSION['token_error']);
     </div>
 
     <div>
-        <p class="weight-save" style="display:none;">~ 体重を入力できます ~</p>
+        <!-- <p class="weight-save" style="display:none;">~ 体重を入力できます ~</p> -->
         <?php if ($latestweight): ?>
             <?php foreach ($latestweight as $weight): ?>
+                <p class="weight-sheet">~~ 体重管理シート ~~</p>
                 <p class="ideal-weight">目標体重 :</p>
                 <p class="goal-weight"><?php echo Utils::h($weight['goalweights']); ?> kg</p><br>
                 <p class="ideal-weight"> 現在の体重 :</p>
                 <p class="goal-weight"><?php echo Utils::h($weight['nowweights']); ?> kg</p><br>
                 <p class="ideal-weight">目標達成まであと :</p>
-                <p class="goal-weight">
-                <?php foreach ($gaps as $gap): ?>
-                    <?php echo Utils::h($gap); ?>
-                <?php endforeach; ?> kg</p>
+                <p class="goal-weight"><?php echo Utils::h($weight['total']); ?> kg</p>
                 <p class="achieve">見事達成 ! Good job !</p>
                 <p class="ideal-day">
                 ( <?php echo Utils::h($weight['nowdate']); ?> 現在 )</p>
             <?php endforeach; ?>
         <?php elseif (empty($latestweights)): ?>
-            <p class="weight-save">~ 体重を入力できます ~</p>
+            <p class="weight-sheet">~ 体重を入力できます ~</p>
             <p class="ideal-weight">目標体重 :</p>
             <p class="goal-weight"> -- kg</p><br>
             <p class="ideal-weight"> 現在の体重 :</p>
@@ -136,23 +133,22 @@ unset($_SESSION['token_error']);
     <div class="postcreate">
         <span>〜 一言メッセージ 〜</span>
         <a href="./../post/post.php"><button class="post-btn">投稿する</button></a>
-        <a class="wordbtn" 
-        data-token="<?php echo Utils::h($_SESSION['token']); ?>">
+        <a class="wordbtn" data-token="<?php echo Utils::h($_SESSION['token']); ?>">
         <button class="postdlt-btn">削除</button></a>
     </div>
 
     <div class="message">
         <?php if ($postlists): ?>
             <?php foreach ($postlists as $post): ?> 
-                <p id="word"><?php echo Utils::h($post['content']); ?></p>
+                <p class="post"><?php echo Utils::h($post['content']); ?></p>
             <?php endforeach; ?>
         <?php else: ?>
-            <p id="word">一言メッセージを入力できます</p> 
+            <p class="post">一言メッセージを入力できます</p> 
         <?php endif; ?> 
     </div>
 
 <script type="text/javascript">
-    let gap = "<?php echo Utils::h($gap); ?>";
+    let total = "<?php echo Utils::h($weight['total']); ?>";
     let goal = "<?php echo Utils::h($weight['goalweights']); ?>";
 </script>
 <script type="text/javascript" src="./../../public/js/main.js"></script>

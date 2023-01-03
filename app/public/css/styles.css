@@ -135,13 +135,24 @@ h1 {
     font-weight: bold;
 }
 
-.weight-save {
+/* .weight-save {
     margin: 10px auto 0;
     color: rgb(30, 80, 85);
     font-size: 23px;
     font-weight: bold;
     font-style: oblique;
     text-shadow: 2px 2px 3px rgb(190, 190, 190); 
+} */
+
+.weight-sheet {
+    width: 240px;
+    height: 35px;
+    line-height: 35px;
+    margin: 15px auto 0;
+    color: rgb(80, 80, 80);
+    background-color: rgba(214, 214, 214, 0.5);
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .btns {
@@ -338,11 +349,12 @@ td {
     box-shadow: 8px 8px 5px rgba(0,0,0,0.3);
 }
 
-#word {
+.post {
     margin: 0;
     padding: 5px;
     font-size: 18px;
     text-align: center;
+    letter-spacing: 0.5px;
     white-space: pre-wrap;
 }
 
@@ -765,6 +777,11 @@ li > div {
         margin: 20px auto;
     }
 
+    .post {
+        font-size: 16px;
+        letter-spacing: 0;
+    }
+
     /* 明日への一言 css 終了 */
 
     /* index.php 終了 */
@@ -911,6 +928,13 @@ li > div {
 }
 
 @media (max-width: 499px) {
+
+    .weight-sheet {
+        width: 210px;
+        height: 32px;
+        line-height: 32px;
+        font-size: 18px;
+    }
 
     .btns {
         display: block;

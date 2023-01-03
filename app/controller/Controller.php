@@ -235,11 +235,6 @@ class Weightcontroller {
         return $goallists;
     }
 
-    public function gapweight() {
-        $difference = Database::gapget();
-        return $difference;
-    }
-
     public function weightcreate() {
 
         $weightdata = array(
