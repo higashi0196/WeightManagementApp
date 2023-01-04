@@ -45,7 +45,7 @@ unset($_SESSION['content_error']);
     <form method="POST" action="./edit.php">
         <div>
             <p class="title">タイトル</p>
-            <input type="text" name="title" class="titleinput" value="<?php if (isset($param['title'])): ?><?php echo Utils::h($param['title']); ?><?php else: ?><?php echo Utils::h($todo['title']); ?><?php endif; ?>">
+            <input type="text" name="title" class="title-input" value="<?php if (isset($param['title'])): ?><?php echo Utils::h($param['title']); ?><?php else: ?><?php echo Utils::h($todo['title']); ?><?php endif; ?>">
 
             <?php if ($title_error): ?>
                 <?php foreach ($title_error as $title_err): ?>
@@ -56,7 +56,7 @@ unset($_SESSION['content_error']);
 
         <div>
             <p class="title">詳細</p>
-            <input type="text" name="content" class="titleinput" value="<?php if (isset($param['content'])): ?><?php echo Utils::h($param['content']); ?><?php else: ?><?php echo Utils::h($todo['content']); ?><?php endif; ?>">
+            <input type="text" name="content" class="title-input" value="<?php if (isset($param['content'])): ?><?php echo Utils::h($param['content']); ?><?php else: ?><?php echo Utils::h($todo['content']); ?><?php endif; ?>">
 
             <?php if ($content_error): ?>
                 <?php foreach ($content_error as $content_err): ?>

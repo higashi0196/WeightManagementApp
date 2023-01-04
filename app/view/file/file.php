@@ -51,7 +51,7 @@ unset($_SESSION['file_error']);
     <?php endif; ?>
 
     <form action="./file.php" method="POST" enctype="multipart/form-data">
-        <input type="file" name="img" class="fileinput">
+        <input type="file" name="img" class="file-input">
 
         <?php if ($file_error): ?>
             <?php foreach ($file_error as $file_err): ?>
@@ -71,7 +71,7 @@ unset($_SESSION['file_error']);
             <?php endforeach; ?>
         <?php endif; ?>
 
-        <div>
+        <div class="memo-group">
             <p class="memo">〜 一言メモ 〜</p>
             <textarea name="comment" class="comment"><?php echo Utils::h($comment); ?></textarea>
         </div>
@@ -88,14 +88,14 @@ unset($_SESSION['file_error']);
     </form>
 
     <a href="./../todo/index.php"><button class="return-btn">戻る</button></a>
-    <ul class="file-lists">
+    <ul>
         <?php foreach ($filelists as $filelist): ?>
             <li data-token="<?php echo Utils::h($_SESSION['token']); ?>">
                 <img src="<?php echo Utils::h($filelist['file_path']); ?>" alt="">
                 <div>
                     <p class="list-memo"> 〜〜  一言メモ 〜〜 </p>
                     <p class="list-comment"><?php echo Utils::h($filelist['comment']); ?></p>
-                    <button class="filedelete-btn" data-id="<?php echo Utils::h($filelist['id']); ?>">削除</button>
+                    <button class="filedlt-btn" data-id="<?php echo Utils::h($filelist['id']); ?>">削除</button>
                 </div>
             </li>
         <?php endforeach; ?>

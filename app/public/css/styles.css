@@ -1,4 +1,4 @@
-/* 共通部分 開始 */
+/* 共通部分 */
 
 body {
     width: 100%;
@@ -17,16 +17,6 @@ body {
 main {
     margin: 0 auto;
     max-width: 960px;
-}
-
-.titleinput {
-    width: 300px;
-    height: 25px;
-    margin: 10px auto 0;
-    padding: 3px 5px;
-    font-size: 18px;
-    border: 3px solid rgba(55, 55, 55, 0.8);
-    border-radius: 5px;
 }
 
 .error-log {
@@ -64,24 +54,26 @@ main {
     cursor: pointer;
 }
 
-.errorfont {
+.error-font {
     margin: 30px auto 0;
     font-size: 30px;
     font-weight: bold;
 }
  
-.errorpage {
-    margin: 25px auto 30px;
+.error-page {
+    margin: 25px auto;
     font-size: 22px;
 }
 
-.toppage {
+.top-page {
+    color: rgb(25, 25, 216);
     font-size: 22px;
+    text-decoration: none;
 }
 
-/* 共通部分 終了 */
+/* 共通部分 */
 
-/* index.php 開始 */
+/* index.php */
 
 .main-title {
     margin: 35px auto 0;
@@ -111,9 +103,9 @@ h1 {
 
 .goal-weight {
     display: inline-block;
-    margin: 14px 0 0 0;
+    margin: 14px 0 0;
     padding: 2px 10px;
-    background-color: rgba(220, 220, 220); 
+    background-color: rgb(220, 220, 220); 
     font-size: 22px;
     font-weight: bold;
 }
@@ -125,7 +117,7 @@ h1 {
     color: red;
 }
 
-.achieve2 {
+.little {
     color: orange;
 }
 
@@ -135,24 +127,18 @@ h1 {
     font-weight: bold;
 }
 
-/* .weight-save {
-    margin: 10px auto 0;
-    color: rgb(30, 80, 85);
-    font-size: 23px;
-    font-weight: bold;
-    font-style: oblique;
-    text-shadow: 2px 2px 3px rgb(190, 190, 190); 
-} */
-
 .weight-sheet {
-    width: 240px;
+    width: 280px;
     height: 35px;
     line-height: 35px;
-    margin: 15px auto 0;
-    color: rgb(80, 80, 80);
-    background-color: rgba(214, 214, 214, 0.5);
-    font-size: 20px;
+    margin: 10px auto 0;
+    border-radius: 10px;
+    color: rgb(207, 73, 28);
+    background-color: rgba(220, 220, 220, 0.75);
+    font-size: 18px;
     font-weight: bold;
+    font-style: oblique;
+    letter-spacing: 1.5px;
 }
 
 .btns {
@@ -189,13 +175,12 @@ h1 {
 }
 
 .todo-title {
-    margin: 15px auto 0;
+    margin: 20px auto 0;
 }
 
 h2 {
     display: inline-block;
-    margin: 0;
-    padding-right: 20px;
+    margin: 0 20px 0 0;
     font-size: 23px;
     vertical-align: middle;
 }
@@ -213,9 +198,7 @@ h2 {
     vertical-align: middle;
 }
 
-/* index.php 終了 */
-
-/* todo テーブル CSS 開始 */
+/* todo table */
 
 table {
     border-collapse: collapse;
@@ -246,8 +229,8 @@ table th:nth-child(5) {
 }
 
 .done {
-    text-decoration: line-through;
     color: rgb(200, 200, 200);
+    text-decoration: line-through;
 }
 
 th,td {
@@ -298,9 +281,9 @@ td {
     text-shadow: 2px 2px 4px gray; 
 }
 
-/* todo テーブル CSS  終了 */
+/* todo table */
 
-/* 明日への一言 css 開始 */
+/* 一言メッセージ */
 
 .postcreate {
     margin: 20px 0 0;
@@ -358,9 +341,11 @@ td {
     white-space: pre-wrap;
 }
 
-/* 明日への一言 css 終了 */
+/* 一言メッセージ */
 
-/* create.php & eidt.php ページ 開始 */
+/* index.php */
+
+/* create.php & eidt.php */
 
 .outline {
     margin: 5% auto 0;
@@ -375,43 +360,56 @@ td {
     font-weight: bold;
 }
 
-/* create.php & eidt.php ページ 終了 */
+.title-input {
+    width: 300px;
+    height: 25px;
+    margin: 10px auto 0;
+    padding: 3px 5px;
+    font-size: 18px;
+    border: 3px solid rgba(55, 55, 55, 0.8);
+    border-radius: 5px;
+    outline-color: blue;
+}
 
-/* weight.phpページ 開始 */
+/* create.php & eidt.php */
 
-.bodytitle {
+/* weight.php */
+
+.body-title {
     margin: 40px auto 0;
     font-size: 25px;
     font-weight: bold;
 }
 
-.weightinput {
+.weight-input {
     width: 125px;
-    height: 30px;
+    height: 35px;
     margin: 0;
-    padding: 4px;
+    padding: 2px;
     border: 2px solid rgb(95, 90, 90);
     border-radius: 5px;
     font-size: 24px;
     text-align: center;
+    cursor: pointer;
+    outline-color: blue;
 }
 
-.dayinput {
-    width: 180px;
-    height: 40px;
-    margin: 0;
-    padding: 1px;
+.day-input {
+    width: 170px;
+    height: 35px;
+    padding: 2px;
     border: 2px solid rgb(95, 90, 90);
     border-radius: 5px;
     font-size: 20px;
     font-weight: bold;
     text-align: center;
     cursor: pointer;
+    outline-color: blue;
 }
 
-/* weight.phpページ 終了 */
+/* weight.php */
 
-/* weightlist.phpページ  開始 */
+/* weightlist.php */
 
 .list {
     border-collapse: collapse;
@@ -419,7 +417,6 @@ td {
     width: auto;
     height: auto;
     margin: 25px auto 0;
-    text-align: center;
 }
 
 .list th,td {
@@ -451,9 +448,9 @@ td {
     text-shadow: 1px 1px 2px rgb(185, 185, 185);
 }
 
-/* weightlist.phpページ 終了 */
+/* weightlist.php */
 
-/* post.php ページ 開始 */
+/* post.php */
 
 textarea {
     display: block;
@@ -461,41 +458,32 @@ textarea {
     height: 180px;
     margin: 25px auto 0;
     padding: 5px 8px;
-    border: 4px solid black;
+    border: 3px solid black;
     border-radius: 8px;
     font-size: 20px;
-    box-shadow: 10px 10px 15px rgba(0,0,0,0.5);
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
     resize: none;
     white-space: pre-wrap;
+    outline-color: blue;
 }
 
-.post-btn2 {
-    width: 100px;
-    height: auto;
-    margin-top: 40px;
-    padding:  2px;
-    border: 2px solid black;
-    border-radius: 5px;
-    color: black;
-    background-color: rgb(10, 200, 210);
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-}
+/* post.php */
 
-/* post.php ページ 終了 */
+/* file.php */
 
-/* file.php ページ 開始 */
-
-.fileinput {
+.file-input {
     width: 310px;
     height: 40px;
     margin: 25px auto 0;
     font-size: 18px;
 }
 
-.memo {
+.memo-group {
     margin: 30px auto 0;
+}
+
+.memo {
+    margin: 0 auto;
     font-size: 20px;
     font-style: oblique;
 }
@@ -509,9 +497,10 @@ textarea {
     border: 2px solid black;
     border-radius: 8px;
     font-size: 18px;
-    box-shadow: 10px 10px 15px rgba(0,0,0,0.5);
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
     resize: none;
     white-space: pre-wrap;
+    outline-color: blue;
 }
 
 .file-btn {
@@ -529,15 +518,15 @@ textarea {
 }
 
 ul {
-    list-style-type: none;
     margin: 25px auto 0;
     padding: 0px;
+    list-style-type: none;
 }
 
 li {
-    border-top: 2.5px solid rgb(150, 215, 220);
     width: 700px;
     margin: 0 auto;
+    border-top: 2.5px solid rgb(150, 215, 220);
 }
 
 img {
@@ -564,15 +553,15 @@ li > div {
     height: 30px;
     margin: 20px auto 0;
     padding: 3px 5px;
-    border: dashed 2px gray;
+    border: 2px solid gray;
     border-radius: 4px;
     background-color: rgb(215, 210, 210);
     font-size: 19px;
-    box-shadow: 8px 8px 5px rgba(0,0,0,0.3);
+    box-shadow: 8px 8px 5px rgba(0, 0, 0, 0.3);
     white-space: pre-wrap;
 }
 
-.filedelete-btn {
+.filedlt-btn {
     width: 65px;
     height: 30px;
     margin: 30px 0 0;
@@ -585,21 +574,13 @@ li > div {
     cursor: pointer;
 }
 
-/* file.php ページ 終了 */
+/* file.php */
 
-/* スマートフォン向け CSS */
+/* スマートフォン向け */
 
 @media (max-width: 767px) {
 
-    /* 共通部分 開始 */
-
-    .titleinput {
-        width: 250px;
-        height: 20px;
-        padding: 4px 6px;
-        font-size: 15px;
-        outline-color: blue;
-    }
+    /* 共通部分 */
 
     .error-log {
         margin-top: 5px;
@@ -607,20 +588,18 @@ li > div {
     }
 
     .register-btn {
-        width: 75px;
-        margin-top: 50px;
-        padding: 2px;
+        width: 62px;
+        font-size: 16px;
     }
 
     .return-btn {
-        width: 75px;
-        margin: 35px auto;
-        padding: 2px;
+        width: 62px;
+        font-size: 16px;
     }
 
-    /* 共通部分 終了 */
+    /* 共通部分 */
 
-    /* index.php 開始 */
+    /* index.php */
 
     .main-title {
         margin-top: 23px;
@@ -638,12 +617,8 @@ li > div {
     }
 
     .ideal-weight {
-        margin: 10px 8px 0 0;
+        margin-top: 10px;
         font-size: 20px;
-    }
-
-    .ideal-day {
-        font-size: 18px;
     }
 
     .goal-weight {
@@ -652,12 +627,16 @@ li > div {
         font-size: 17px;
     }
 
+    .ideal-day {
+        font-size: 18px;
+    }
+
     .achieve {
         margin-top: 8px;
         font-size: 18px;
     }
         
-    .achieve2 {
+    .little {
         font-size: 18px;
     }
 
@@ -666,8 +645,6 @@ li > div {
     }
 
     .btns {
-        /* display: flex;
-        justify-content: center; */
         margin-top: 17px;
     }
 
@@ -689,7 +666,7 @@ li > div {
 
     h2 {
         display: block;
-        padding: 0;
+        margin: 0;
         font-size: 20px;
     }
 
@@ -700,10 +677,10 @@ li > div {
         font-size: 15px;
     }
 
-    /* テーブル CSS  開始 */
+    /* テーブル  */
 
     table {
-        width: 90%;
+        width: 92%;
         margin-top: 20px;
     }
 
@@ -713,7 +690,7 @@ li > div {
     }
 
     table th:nth-child(1) {
-        width: 25px;
+        width: 15px;
     }
 
     table th:nth-child(4) {
@@ -724,12 +701,16 @@ li > div {
         width: 60px;
     }
 
+    th,td {
+        border: 2px solid rgb(75, 75, 75);
+    }
+
     th {
         font-size: 15px;
     }
 
     td {
-        padding-bottom: 3px 0 4px;
+        padding: 2px;
         font-size: 16px;
     }
 
@@ -745,13 +726,9 @@ li > div {
         font-size: 12px;
     }
 
-    /* テーブル CSS  終了 */
+    /* テーブル */
 
-    /* 明日への一言 css 開始 */
-
-    .postcreate {
-        margin-top: 20px;
-    }
+    /* 一言メッセージ */
 
     .postcreate > span {
         display: block;
@@ -773,64 +750,72 @@ li > div {
 
     .message {
         width: 310px;
-        height: auto;
-        margin: 20px auto;
+        margin-bottom: 35px;
     }
 
     .post {
-        font-size: 16px;
+        font-size: 15px;
         letter-spacing: 0;
     }
 
-    /* 明日への一言 css 終了 */
+    /* 一言メッセージ */
 
-    /* index.php 終了 */
+    /* index.php */
 
-    /* create.php & eidt.php ページ 開始 */
+    /* create.php & eidt.php */
 
     .outline {
-        margin: 30px auto 0;
+        margin-top: 30px;
         font-size: 30px;
     }
 
     .title {
-        margin: 30px auto 0;
+        margin-top: 30px;
     }
 
-    /* create.php & eidt.php ページ 終了 */
-
-    /* weight.phpページ 開始 */
-
-    .bodytitle {
-        font-size: 27px;
+    .title-input {
+        width: 250px;
+        height: 20px;
+        padding: 4px 6px;
+        font-size: 15px;
     }
 
-    .weightinput {
+    /* create.php & eidt.php  */
+
+    /* weight.php */
+
+    .body-title {
+        margin-top: 35px;
+        font-size: 21px;
+    }
+
+    .weight-input {
         width: 100px;
-        outline-color: blue;
+        height: 28px;
+        font-size: 20px;
     }
 
-    .dayinput {
+    .day-input {
         width: 150px;
+        height: 29px;
         font-size: 18px;
-        outline-color: blue;
     }
 
-    /* weight.phpページ 終了 */
+    /* weight.php */
 
-    /* weightlist テーブル CSS  開始 */
+    /* weightlist テーブル  開始 */
 
     .list th,td {
         width: 110px;
     }
 
     .list th {
-        height: 32px;
+        height: 30px;
         font-size: 16px;
     }
 
     .list td {
-        height: 28px;
+        height: 27px;
         font-size: 15px;
     }
 
@@ -839,65 +824,54 @@ li > div {
         font-size: 20px;
     }
 
-    /* weightlist テーブル CSS  終了 */
+    /* weightlist テーブル  */
 
-    /* post.php ページ 開始 */
+    /* post.php  開始 */
 
     textarea {
         width: 300px;
-        height: 150px;
+        height: 130px;
         margin-top: 20px;
-        border: 3px solid black;
-        outline-color: blue;
+        border: 1.5px solid black;
     }
 
-    .post-btn2 {
-        margin: 30px auto 0;
-    }
+    /* post.php  */
 
-    /* post.php ページ 終了 */
+    /* file.php  開始 */
 
-    /* file.php ページ 開始 */
-
-    .fileinput {
-        width: 290px;
+    .file-input {
+        width: 260px;
         height: 35px;
-        margin-left: 40px;
         font-size: 15px;
     }
 
+    .memo-group {
+        margin-top: 20px;
+    }
+
     .memo {
-        width: 130px;
-        height: 25px;
-        margin-top: 25px;
         font-size: 18px;
-        text-align: center;
     }
 
     .comment {
-        width: 280px;
+        width: 250px;
         height: 70px;
-        margin-bottom: 0;
-        outline-color: blue;
     }
 
     .file-btn {
-        width: 120px;
-        height: 35px;
-        margin: 20px 0 0;
+        width: 100px;
         padding: 1px;
-        font-size: 16px;
+        font-size: 15px;
     }
 
     li {
         width: 90%;
-        margin: 0 auto;
     }
 
     img {
         display: block;
-        width: 280px;
-        height: 335px;
+        width: 230px;
+        height: 250px;
         margin-bottom: 0;
     }
 
@@ -911,29 +885,43 @@ li > div {
     }
 
     .list-comment {
-        width: 250px;
+        width: 230px;
         height: 25px;
-        margin: 10px auto 0;
+        margin-top: 10px;
         padding: 2px;
         font-size: 16px;
     }
 
-    .filedelete-btn {
-        width: 60px;
+    .filedlt-btn {
+        width:55px;
         margin: 15px 0 0;
         font-weight: normal;
     }
 
-    /* file.php ページ 終了 */
+    /* file.php  */
 }
 
 @media (max-width: 499px) {
 
-    .weight-sheet {
-        width: 210px;
-        height: 32px;
-        line-height: 32px;
+    .error-font {
+        margin-top: 45px;
+        font-size: 23px;
+    }
+     
+    .error-page {
+        font-size: 19px;
+    }
+    
+    .top-page {
         font-size: 18px;
+    }
+
+    .weight-sheet {
+        width: 225px;
+        height: 28px;
+        line-height: 28px;
+        font-size: 15px;
+        letter-spacing: 0;
     }
 
     .btns {
@@ -951,7 +939,7 @@ li > div {
     }
     
     .list th {
-        height: 26px;
+        height: 25px;
         font-size: 14px;
         border: 1px solid rgb(75, 75, 75);
     }
@@ -963,4 +951,4 @@ li > div {
         border: 1px solid rgb(75, 75, 75);
     }
 
-} 
+}

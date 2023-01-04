@@ -54,7 +54,7 @@
     if (total <= 0) {
         console.log("0kg以下,達成");
     } else if (total <= goal * 0.02) {
-        achieve.classList.add("achieve2");
+        achieve.classList.add("little");
         achieve.textContent =  'あと ' + total + ' kg ' + 'もう少し頑張ろう !';
         console.log("もう少し,頑張ろう");
     } else {
@@ -64,8 +64,6 @@
 
     // weight全データ 削除 非同期通信
     const list = document.querySelector('.reset');
-    const save = document.querySelector('.weight-save');
-    const sheet = document.querySelector('.weight-sheet');
     const weights = document.querySelectorAll('.goal-weight');
     const day = document.querySelector('.ideal-day');
     list.addEventListener('click', () => {
@@ -87,8 +85,8 @@
             window.location.href = './../error/404.html';
             console.log("削除に失敗しました");
         });
-        sheet.textContent = '~ 体重を入力できます ~';
-        day.style.display = 'none';
+        day.textContent = '~ 体重の入力ができます ~';
+        day.classList.add("weight-sheet");
         achieve.style.display = 'none';
         for (var i = 0; i < weights.length; i++) {
             weights[i].textContent = '-- kg';

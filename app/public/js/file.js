@@ -1,6 +1,6 @@
 'use strict'
 {
-	const filebtns = document.querySelectorAll('.filedelete-btn');
+	const filebtns = document.querySelectorAll('.filedlt-btn');
     filebtns.forEach(filebtn => {
         filebtn.addEventListener('click', () => {
             if (!confirm('削除しますか?')) {

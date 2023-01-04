@@ -36,10 +36,8 @@ unset($_SESSION['token_error']);
     </div>
 
     <div>
-        <!-- <p class="weight-save" style="display:none;">~ 体重を入力できます ~</p> -->
         <?php if ($latestweight): ?>
             <?php foreach ($latestweight as $weight): ?>
-                <p class="weight-sheet">~~ 体重管理シート ~~</p>
                 <p class="ideal-weight">目標体重 :</p>
                 <p class="goal-weight"><?php echo Utils::h($weight['goalweights']); ?> kg</p><br>
                 <p class="ideal-weight"> 現在の体重 :</p>
@@ -51,13 +49,13 @@ unset($_SESSION['token_error']);
                 ( <?php echo Utils::h($weight['nowdate']); ?> 現在 )</p>
             <?php endforeach; ?>
         <?php elseif (empty($latestweights)): ?>
-            <p class="weight-sheet">~ 体重を入力できます ~</p>
             <p class="ideal-weight">目標体重 :</p>
             <p class="goal-weight"> -- kg</p><br>
             <p class="ideal-weight"> 現在の体重 :</p>
             <p class="goal-weight"> -- kg</p><br>
             <p class="ideal-weight">目標達成まであと :</p>
             <p class="goal-weight"> -- kg</p>
+            <p class="weight-sheet">~ 体重の入力ができます ~</p>
         <?php endif; ?>
     </div> 
 

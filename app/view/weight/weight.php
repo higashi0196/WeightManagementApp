@@ -58,7 +58,7 @@ unset($_SESSION['today_error']);
     <?php endif; ?>
 
     <form method="POST" action="./weight.php">
-        <p class="bodytitle">目標体重 : <input type="text" name="body" class="weightinput" value="<?php if (isset($body)): ?><?php echo Utils::h($body); ?><?php else: ?><?php echo Utils::h($goallist['goalweights']); ?><?php endif; ?>"> kg</p>
+        <p class="body-title">目標体重 : <input type="text" name="body" class="weight-input" value="<?php if (isset($body)): ?><?php echo Utils::h($body); ?><?php else: ?><?php echo Utils::h($goallist['goalweights']); ?><?php endif; ?>"> kg</p>
 
         <?php if ($body_error): ?>
             <?php foreach ($body_error as $body_err): ?>
@@ -66,7 +66,7 @@ unset($_SESSION['today_error']);
             <?php endforeach; ?>
         <?php endif; ?>
 
-        <p class="bodytitle">現在の体重 : <input type="text" name="weight" class="weightinput" value="<?php echo Utils::h($weight); ?>"> kg</p>
+        <p class="body-title">現在の体重 : <input type="text" name="weight" class="weight-input" value="<?php echo Utils::h($weight); ?>"> kg</p>
 
         <?php if ($weight_error): ?>
             <?php foreach ($weight_error as $weight_err): ?>
@@ -74,8 +74,8 @@ unset($_SESSION['today_error']);
             <?php endforeach; ?>
         <?php endif; ?>
 
-        <p class="bodytitle">日付 :
-        <input type="date" name="today" class="dayinput" value="<?php echo Utils::h($today); ?>"></p>
+        <p class="body-title">日付 :
+        <input type="date" name="today" class="day-input" value="<?php echo Utils::h($today); ?>"></p>
 
         <?php if ($today_error): ?>
             <?php foreach ($today_error as $today_err): ?>

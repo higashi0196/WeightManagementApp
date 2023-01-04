@@ -52,7 +52,7 @@ unset($_SESSION['content_error']);
     <form method="POST" action="./create.php">
         <div>
             <p class="title">タイトル</p>
-            <input type="text" name="title" class="titleinput" 
+            <input type="text" name="title" class="title-input" 
             value="<?php echo Utils::h($title); ?>" 
             placeholder="タイトルを入力できます">
            
@@ -64,7 +64,7 @@ unset($_SESSION['content_error']);
         </div>
         <div>
             <p class="title">詳細</p>
-            <input type="text" name="content" class="titleinput" 
+            <input type="text" name="content" class="title-input" 
             value="<?php echo $content; ?>" 
             placeholder="詳細を入力できます">
             
