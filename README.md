@@ -45,6 +45,7 @@ https://www.todosweight.com/app/view/todo/
 * ToDoリスト 完了/未完了 更新機能 (fetch 非同期通信)
 * ToDoリスト 削除機能 (fetch 非同期通信)
 * 体重、日付 新規登録機能
+* 体重、日付 削除機能 (fetch 非同期通信)
 * コメント 新規登録機能
 * コメント 削除機能 (fetch 非同期通信)
 * 画像アップロード機能
