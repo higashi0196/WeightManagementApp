@@ -28,7 +28,6 @@ unset($_SESSION['token_error']);
     <link rel="stylesheet" href="./../../public/css/styles.css">
 </head>
 <body>
-
     <div class="main-title">
         <img src="./../logos/logo3.png" alt="">
         <h1>体重管理リスト</h1>

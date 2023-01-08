@@ -90,7 +90,6 @@ class Validation {
     }
 
     public function todocheck() {
-
         if (empty($this->data['title']) && empty($this->data['content'])) {
             $this->title_error[] = "タイトルを入力してください";
             $this->content_error[] = "詳細を入力してください";
@@ -115,7 +114,6 @@ class Validation {
     }
 
     public function weightheck() {
-
         if (empty($this->weightdata['body']) && 
             empty($this->weightdata['weight']) && 
             empty($this->weightdata['today'])) 
@@ -185,7 +183,6 @@ class Validation {
     }
 
     public function filecheck() {
-
         if (!is_uploaded_file($tmp_name) && empty($this->filedata['comment'])) {
             $this->file_error[] = "画像ファイルとメモを入力してください";
         } else if (!is_uploaded_file($tmp_name)) {

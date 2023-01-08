@@ -66,6 +66,7 @@
     const list = document.querySelector('.reset');
     const weights = document.querySelectorAll('.goal-weight');
     const day = document.querySelector('.ideal-day');
+
     list.addEventListener('click', () => {
         if (!confirm('体重のデータを削除しますか?')) {
             return;
@@ -95,6 +96,7 @@
 
     const post = document.querySelector('.post');
     const wordbtn = document.querySelector('.wordbtn');
+    
     wordbtn.addEventListener('click', () => {
         if (!confirm('削除しますか?')) {
             return;
