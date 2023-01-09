@@ -802,7 +802,7 @@ li > div {
 
     /* weight.php */
 
-    /* weightlist テーブル  開始 */
+    /* weightlist テーブル */
 
     .list th,td {
         width: 110px;
@@ -823,9 +823,9 @@ li > div {
         font-size: 20px;
     }
 
-    /* weightlist テーブル  */
+    /* weightlist テーブル */
 
-    /* post.php  開始 */
+    /* post.php */
 
     textarea {
         width: 300px;
@@ -834,9 +834,9 @@ li > div {
         border: 1.5px solid black;
     }
 
-    /* post.php  */
+    /* post.php */
 
-    /* file.php  開始 */
+    /* file.php */
 
     .file-input {
         width: 260px;
@@ -897,7 +897,7 @@ li > div {
         font-weight: normal;
     }
 
-    /* file.php  */
+    /* file.php */
 }
 
 @media (max-width: 499px) {
