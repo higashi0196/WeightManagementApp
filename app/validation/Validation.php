@@ -144,13 +144,13 @@ class Validation {
             return false;
         }
 
-        if(empty($this->weightdata['body'])) {
+        if (empty($this->weightdata['body'])) {
             $this->body_error[] = "目標体重を入力してください";
             return false;
         } else if (!is_numeric($this->weightdata['body'])) {
             $this->body_error[] = "半角数字で入力してください";
             return false;
-        } else if (6 < mb_strlen($this->weightdata['body'],'UTF-8')) {
+        } else if (6 < mb_strlen($this->weightdata['body'], 'UTF-8')) {
             $this->body_error[] = "５桁以下で小数点第２位以下までで入力ください";
             return false;
         }
@@ -161,7 +161,7 @@ class Validation {
         } else if (!is_numeric($this->weightdata['weight'])) {
             $this->weight_error[] = "半角数字で入力してください";
             return false;
-        } else if (6 < mb_strlen($this->weightdata['weight'],'UTF-8')) {
+        } else if (6 < mb_strlen($this->weightdata['weight'], 'UTF-8')) {
             $this->weight_error[] = "５桁以下で小数点第２位以下までで入力ください";
             return false;
         }

@@ -1,5 +1,6 @@
 'use strict'
 {
+    // 画像アップロード 削除機能 非同期通信
 	const filebtns = document.querySelectorAll('.filedlt-btn');
     filebtns.forEach(filebtn => {
         filebtn.addEventListener('click', () => {
