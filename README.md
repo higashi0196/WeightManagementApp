@@ -7,7 +7,7 @@
 体重管理をしたい人やボディリメイクしたい人をサポートするToDoリストアプリです。
 レスポンシブ対応しているのでスマートフォンからでもご確認いただけます。
 
- <img width="1400" height="" alt="readme" src="https://user-images.githubusercontent.com/101165076/197324611-0dd748ee-7917-4e0e-8db5-7a9423d56c78.png">
+<img width="1417" alt="weightapp" src="https://user-images.githubusercontent.com/101165076/212466210-521a9912-7d71-49cf-a386-143950e53e00.png">
 
 ---
 ## このアプリを作った思い
@@ -41,12 +41,12 @@ https://www.todosweight.com/app/view/todo/
 
 ---
 ## 機能一覧
+* 体重、日付 新規登録機能
+* 体重、日付 削除機能 (fetch 非同期通信)
 * ToDoリスト 新規登録機能
 * ToDoリスト 編集機能
 * ToDoリスト 完了/未完了 更新機能 (fetch 非同期通信)
 * ToDoリスト 削除機能 (fetch 非同期通信)
-* 体重、日付 新規登録機能
-* 体重、日付 削除機能 (fetch 非同期通信)
 * コメント 新規登録機能
 * コメント 削除機能 (fetch 非同期通信)
 * 画像アップロード機能
